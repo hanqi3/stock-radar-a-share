@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StockRadar A股事件雷达</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <div class="brand">StockRadar</div>
+          <div class="subline" id="dataStatus">加载市场数据中</div>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="refreshButton" title="刷新数据" aria-label="刷新数据">↻</button>
+          <a class="ghost-link" href="https://data.eastmoney.com/" target="_blank" rel="noreferrer">数据源</a>
+        </div>
+      </header>
+
+      <main class="dashboard">
+        <section class="overview-band" id="overview"></section>
+
+        <section class="workbench">
+          <aside class="left-rail">
+            <div class="panel">
+              <div class="panel-title">市场结构</div>
+              <div class="board-list" id="boardList"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">自选监控</div>
+              <div class="watchlist" id="watchlist"></div>
+            </div>
+          </aside>
+
+          <section class="center-stage">
+            <div class="toolbar">
+              <label class="search-box">
+                <span>⌕</span>
+                <input id="searchInput" type="search" placeholder="搜索代码、名称、板块" autocomplete="off" />
+              </label>
+              <div class="segment" id="exchangeSegment">
+                <button class="active" data-exchange="ALL">全部</button>
+                <button data-exchange="SH">沪市</button>
+                <button data-exchange="SZ">深市</button>
+                <button data-exchange="BJ">北交所</button>
+              </div>
+              <select id="sortSelect" aria-label="排序">
+                <option value="score">异动优先</option>
+                <option value="change">涨幅优先</option>
+                <option value="decline">跌幅优先</option>
+                <option value="amount">成交额优先</option>
+                <option value="turnover">换手率优先</option>
+                <option value="cap">市值优先</option>
+                <option value="code">代码排序</option>
+              </select>
+            </div>
+
+            <div class="table-shell">
+              <table>
+                <thead>
+                  <tr>
+                    <th>代码</th>
+                    <th>名称</th>
+                    <th>板块</th>
+                    <th>现价</th>
+                    <th>涨跌幅</th>
+                    <th>成交额</th>
+                    <th>换手</th>
+                    <th>信号</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="stockRows"></tbody>
+              </table>
+            </div>
+            <div class="pager">
+              <span id="resultCount"></span>
+              <button id="loadMoreButton">加载更多</button>
+            </div>
+          </section>
+
+          <aside class="right-rail">
+            <div class="panel detail-panel" id="detailPanel">
+              <div class="empty-state">选择一只股票查看事件画像</div>
+            </div>
+            <div class="panel">
+              <div class="panel-title">异动信号</div>
+              <div class="signal-list" id="signalList"></div>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="footer">
+        演示项目，仅用于公开行情聚合、异动识别和工程展示，不构成投资建议。
+      </footer>
+    </div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
