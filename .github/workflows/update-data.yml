@@ -1,0 +1,38 @@
+name: Update A-share data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 08:30 UTC = 16:30 Asia/Shanghai, after the A-share close on weekdays.
+    - cron: "30 8 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sync market data
+        run: npm run update
+
+      - name: Commit updated data
+        run: |
+          if git diff --quiet -- data/all-a-shares.json data/meta.json; then
+            echo "No market data changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/all-a-shares.json data/meta.json
+          git commit -m "Update A-share market data"
+          git push

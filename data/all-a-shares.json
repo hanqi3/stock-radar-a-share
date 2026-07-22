@@ -4760,20 +4760,6 @@
     "source": "eastmoney"
   },
   {
-    "code": "302132",
-    "name": "中航成飞",
-    "exchange": "SZ",
-    "board": "深市主板",
-    "price": 56.34,
-    "changePct": 2.25,
-    "change": 1.24,
-    "volume": 89996,
-    "amount": 502474137.86,
-    "turnover": 1.54,
-    "marketCap": 150545628124,
-    "source": "eastmoney"
-  },
-  {
     "code": "600000",
     "name": "浦发银行",
     "exchange": "SH",
@@ -50312,7 +50298,7 @@
     "volume": 202836,
     "amount": 224927085.97,
     "turnover": 2.58,
-    "marketCap": 10751496914,
+    "marketCap": 10751989974,
     "source": "eastmoney"
   },
   {
@@ -55687,8 +55673,8 @@
     "change": 0,
     "volume": 72320,
     "amount": 33517014.62,
-    "turnover": 0.76,
-    "marketCap": 4391843891,
+    "turnover": 0.77,
+    "marketCap": 4338125553,
     "source": "eastmoney"
   },
   {
@@ -79389,8 +79375,8 @@
     "change": -1.78,
     "volume": 210042,
     "amount": 707051301.48,
-    "turnover": 5.62,
-    "marketCap": 24578152600,
+    "turnover": 5.58,
+    "marketCap": 24647995448,
     "source": "eastmoney"
   },
   {
@@ -82317,6 +82303,20 @@
     "amount": null,
     "turnover": 0,
     "marketCap": null,
+    "source": "eastmoney"
+  },
+  {
+    "code": "302132",
+    "name": "中航成飞",
+    "exchange": "SZ",
+    "board": "深市主板",
+    "price": 56.34,
+    "changePct": 2.25,
+    "change": 1.24,
+    "volume": 89996,
+    "amount": 502474137.86,
+    "turnover": 1.54,
+    "marketCap": 150545628124,
     "source": "eastmoney"
   }
 ]

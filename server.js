@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 5173);
-const HOST = process.env.HOST || "127.0.0.1";
+const HOST = process.env.HOST || "localhost";
 const PUBLIC_DIR = path.join(__dirname, "public");
 const DATA_DIR = path.join(__dirname, "data");
 const FULL_DATA_FILE = path.join(DATA_DIR, "all-a-shares.json");
@@ -472,5 +472,6 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  console.log(`StockRadar is running at http://${HOST}:${PORT}`);
+  const displayHost = HOST === "0.0.0.0" || HOST === "::" ? "localhost" : HOST;
+  console.log(`StockRadar is running at http://${displayHost}:${PORT}`);
 });

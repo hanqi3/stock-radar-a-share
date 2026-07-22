@@ -25,10 +25,17 @@ StockRadar 是一个面向 A股市场的行情雷达应用。项目会同步沪�
 - Data Source: 东方财富公开延迟行情接口
 - Runtime: Node.js 18+
 
-## 快速开始
+## 本地运行
+
+环境要求：
+
+- Git
+- Node.js 18 或更高版本
+
+项目没有第三方 npm 依赖，clone 后可以直接启动：
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/hanqi3/stock-radar-a-share.git
 cd stock-radar-a-share
 npm start
 ```
@@ -39,11 +46,25 @@ npm start
 http://localhost:5173
 ```
 
-仓库已包含一份全量股票池数据。如果需要更新到最新行情，运行：
+默认端口是 `5173`。如果端口被占用，可以改用其他端口：
 
 ```bash
-npm run sync
+PORT=3000 npm start
 ```
+
+Windows PowerShell 可以这样写：
+
+```powershell
+$env:PORT=3000; npm start
+```
+
+默认只监听本机 `localhost`。如果部署在云服务器或容器里，可以指定监听地址：
+
+```bash
+HOST=0.0.0.0 PORT=5173 npm start
+```
+
+如果看到 `StockRadar is running at http://localhost:5173`，说明服务已经启动成功。
 
 ## 数据同步
 
@@ -53,7 +74,13 @@ npm run sync
 scripts/sync-a-shares.js
 ```
 
-运行后会生成或更新：
+仓库已包含一份全量股票池数据，可以直接打开应用查看。如果需要更新到最新行情，运行：
+
+```bash
+npm run update
+```
+
+该命令会先同步行情，再检查数据文件。运行后会生成或更新：
 
 ```text
 data/all-a-shares.json
@@ -79,6 +106,30 @@ source      数据来源
 
 同步脚本会校验返回数量。如果股票数量少于 4000 只，脚本会中止，避免把异常响应写入数据文件。
 
+## 每日更新
+
+仓库内置 GitHub Actions 定时任务：
+
+```text
+.github/workflows/update-data.yml
+```
+
+该任务会在交易日北京时间 16:30 运行 `npm run update`，如果 `data/all-a-shares.json` 或 `data/meta.json` 有变化，就自动提交一次数据更新。
+
+也可以在 GitHub 页面手动触发：
+
+```text
+Actions -> Update A-share data -> Run workflow
+```
+
+如果自动提交失败，需要在仓库设置里确认 GitHub Actions 有写入权限：
+
+```text
+Settings -> Actions -> General -> Workflow permissions -> Read and write permissions
+```
+
+本地运行时，应用读取的是当前目录里的 `data/all-a-shares.json`。想刷新本地数据，就执行 `npm run update`，完成后刷新浏览器。
+
 ## 数据检查
 
 ```bash
@@ -90,8 +141,8 @@ npm run check
 ```text
 Data file: data/all-a-shares.json
 Stocks: 5880
-Exchanges: {"BJ":340,"SZ":3082,"SH":2458}
-Updated at: 2026-07-22T10:51:37.974Z
+Exchanges: {"BJ":340,"SH":2458,"SZ":3082}
+Updated at: 2026-07-22T12:08:34.539Z
 ```
 
 ## API
@@ -139,6 +190,9 @@ score =
 
 ```text
 .
+├── .github/
+│   └── workflows/
+│       └── update-data.yml
 ├── data/
 │   ├── all-a-shares.json
 │   ├── meta.json
@@ -155,6 +209,16 @@ score =
 ├── server.js
 ├── package.json
 └── README.md
+```
+
+## 部署说明
+
+这是一个带后端 API 的 Node.js 应用，不是纯静态网页。前端会请求 `/api/overview`、`/api/forecast`、`/api/stocks` 等接口，所以不能只把 `public/` 目录放到 GitHub Pages 上运行。
+
+部署时需要选择能运行 Node.js 服务的平台，例如云服务器、Render、Railway、Fly.io 或容器环境。启动命令保持一致：
+
+```bash
+npm start
 ```
 
 ## 路线图
