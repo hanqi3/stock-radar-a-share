@@ -188,6 +188,127 @@ function buildOverview(stocks, meta) {
   };
 }
 
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function average(values) {
+  if (!values.length) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function median(values) {
+  if (!values.length) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+  if (sorted.length % 2) return sorted[middle];
+  return (sorted[middle - 1] + sorted[middle]) / 2;
+}
+
+function buildForecast(stocks, meta) {
+  const tradable = stocks.filter((stock) => stock.price !== null && stock.changePct !== null);
+  const changes = tradable.map((stock) => stock.changePct || 0);
+  const advancers = tradable.filter((stock) => (stock.changePct || 0) > 0).length;
+  const decliners = tradable.filter((stock) => (stock.changePct || 0) < 0).length;
+  const limitUp = tradable.filter((stock) => (stock.changePct || 0) >= 9.8).length;
+  const limitDown = tradable.filter((stock) => (stock.changePct || 0) <= -9.8).length;
+  const strongUp = tradable.filter((stock) => (stock.changePct || 0) >= 6).length;
+  const strongDown = tradable.filter((stock) => (stock.changePct || 0) <= -6).length;
+  const highTurnover = tradable.filter((stock) => (stock.turnover || 0) >= 8).length;
+  const totalAmount = tradable.reduce((sum, stock) => sum + (stock.amount || 0), 0);
+  const breadth = tradable.length ? advancers / tradable.length : 0.5;
+  const avgChangePct = average(changes);
+  const medianChangePct = median(changes);
+
+  const breadthScore = (breadth - 0.5) * 85;
+  const avgScore = clamp(avgChangePct * 9, -24, 24);
+  const medianScore = clamp(medianChangePct * 7, -18, 18);
+  const limitScore = tradable.length ? ((limitUp - limitDown) / tradable.length) * 1200 : 0;
+  const momentumScore = tradable.length ? ((strongUp - strongDown) / tradable.length) * 900 : 0;
+  const liquidityScore = totalAmount >= 2_000_000_000_000 ? 6 : totalAmount >= 1_200_000_000_000 ? 2 : -4;
+  const score = Number(clamp(breadthScore + avgScore + medianScore + limitScore + momentumScore + liquidityScore, -100, 100).toFixed(1));
+
+  const direction =
+    score >= 24 ? "偏多延续"
+      : score >= 8 ? "震荡偏强"
+      : score <= -24 ? "偏弱承压"
+      : score <= -8 ? "震荡偏弱"
+      : "震荡观察";
+
+  const confidence =
+    Math.abs(score) >= 45 ? "中高"
+      : Math.abs(score) >= 18 ? "中等"
+      : "较低";
+
+  const posture =
+    score >= 8 ? "市场短线情绪仍有延续基础，明日更适合观察强势板块是否扩散。"
+      : score <= -8 ? "市场短线承压，明日需要观察下跌家数收敛和成交额能否稳定。"
+      : "多空线索接近均衡，明日更可能围绕热点轮动和指数震荡展开。";
+
+  const drivers = [
+    {
+      label: "市场宽度",
+      value: `${advancers}/${decliners}`,
+      tone: breadth >= 0.52 ? "positive" : breadth <= 0.42 ? "negative" : "neutral",
+      detail: `上涨占比 ${(breadth * 100).toFixed(1)}%`
+    },
+    {
+      label: "涨跌停强度",
+      value: `${limitUp}/${limitDown}`,
+      tone: limitUp > limitDown * 1.4 ? "positive" : limitDown > limitUp * 1.2 ? "negative" : "neutral",
+      detail: "涨停附近 / 跌停附近"
+    },
+    {
+      label: "平均涨跌幅",
+      value: formatSigned(avgChangePct, "%"),
+      tone: avgChangePct > 0 ? "positive" : avgChangePct < 0 ? "negative" : "neutral",
+      detail: `中位数 ${formatSigned(medianChangePct, "%")}`
+    },
+    {
+      label: "活跃度",
+      value: formatMoney(totalAmount),
+      tone: totalAmount >= 2_000_000_000_000 ? "positive" : "neutral",
+      detail: `${highTurnover} 只换手率超过 8%`
+    }
+  ];
+
+  const boardGroups = Object.values(
+    tradable.reduce((acc, stock) => {
+      const key = stock.board || "未分类";
+      if (!acc[key]) acc[key] = { board: key, count: 0, changeSum: 0, amount: 0 };
+      acc[key].count += 1;
+      acc[key].changeSum += stock.changePct || 0;
+      acc[key].amount += stock.amount || 0;
+      return acc;
+    }, {})
+  ).map((item) => ({
+    board: item.board,
+    count: item.count,
+    avgChangePct: Number((item.changeSum / item.count).toFixed(2)),
+    amount: item.amount
+  }));
+
+  const leadingBoards = [...boardGroups].sort((a, b) => b.avgChangePct - a.avgChangePct).slice(0, 2);
+  const laggingBoards = [...boardGroups].sort((a, b) => a.avgChangePct - b.avgChangePct).slice(0, 2);
+
+  return {
+    title: "明日方向观察",
+    direction,
+    score,
+    confidence,
+    posture,
+    drivers,
+    leadingBoards,
+    laggingBoards,
+    risks: [
+      "该判断仅基于当日截面行情，不包含隔夜消息、外盘、政策和公告变量。",
+      "若明日开盘成交额萎缩或下跌家数继续扩大，方向需要重新评估。"
+    ],
+    asOf: meta.updatedAt || new Date().toISOString(),
+    disclaimer: "仅供公开行情研究，不构成投资建议。"
+  };
+}
+
 function groupCount(stocks, key) {
   return stocks.reduce((acc, stock) => {
     const value = stock[key] || "未知";
@@ -282,6 +403,10 @@ async function handleApi(req, res, pathname, params) {
 
   if (pathname === "/api/overview") {
     return json(res, 200, buildOverview(stocks, meta));
+  }
+
+  if (pathname === "/api/forecast") {
+    return json(res, 200, buildForecast(stocks, meta));
   }
 
   if (pathname === "/api/signals") {

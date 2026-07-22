@@ -14,6 +14,7 @@
           <div class="subline" id="dataStatus">加载市场数据中</div>
         </div>
         <div class="top-actions">
+          <button class="icon-button" id="themeToggle" title="切换明暗模式" aria-label="切换明暗模式">◐</button>
           <button class="icon-button" id="refreshButton" title="刷新数据" aria-label="刷新数据">↻</button>
           <a class="ghost-link" href="https://data.eastmoney.com/" target="_blank" rel="noreferrer">数据源</a>
         </div>
@@ -24,6 +25,9 @@
 
         <section class="workbench">
           <aside class="left-rail">
+            <div class="panel forecast-panel" id="forecastPanel">
+              <div class="empty-state">加载方向观察中</div>
+            </div>
             <div class="panel">
               <div class="panel-title">市场结构</div>
               <div class="board-list" id="boardList"></div>

@@ -8,6 +8,7 @@ const state = {
   total: 0,
   rows: [],
   selectedCode: null,
+  theme: localStorage.getItem("stockradar-theme") || "light",
   watchlist: new Set(JSON.parse(localStorage.getItem("stockradar-watchlist") || "[]"))
 };
 
@@ -23,8 +24,10 @@ const els = {
   exchangeSegment: document.querySelector("#exchangeSegment"),
   signalList: document.querySelector("#signalList"),
   detailPanel: document.querySelector("#detailPanel"),
+  forecastPanel: document.querySelector("#forecastPanel"),
   dataStatus: document.querySelector("#dataStatus"),
-  refreshButton: document.querySelector("#refreshButton")
+  refreshButton: document.querySelector("#refreshButton"),
+  themeToggle: document.querySelector("#themeToggle")
 };
 
 const moneyFormatter = new Intl.NumberFormat("zh-CN", {
@@ -54,6 +57,15 @@ function toneClass(value) {
   if (value > 0) return "positive";
   if (value < 0) return "negative";
   return "neutral";
+}
+
+function applyTheme(theme) {
+  state.theme = theme;
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem("stockradar-theme", theme);
+  els.themeToggle.textContent = theme === "dark" ? "☀" : "☾";
+  els.themeToggle.title = theme === "dark" ? "切换亮色模式" : "切换暗色模式";
+  els.themeToggle.setAttribute("aria-label", els.themeToggle.title);
 }
 
 function encode(params) {
@@ -133,6 +145,66 @@ function renderOverview(data) {
       reloadStocks();
     });
   });
+}
+
+function renderForecast(data) {
+  els.forecastPanel.innerHTML = `
+    <div class="forecast-head">
+      <div>
+        <div class="panel-kicker">${data.title}</div>
+        <div class="forecast-direction ${forecastTone(data.score)}">${data.direction}</div>
+      </div>
+      <div class="forecast-score">
+        <span>${number(data.score, 1)}</span>
+        <small>情绪分</small>
+      </div>
+    </div>
+    <div class="forecast-body">
+      <div class="confidence-row">
+        <span>置信度</span>
+        <strong>${data.confidence}</strong>
+      </div>
+      <div class="narrative forecast-copy">${data.posture}</div>
+      <div class="driver-list">
+        ${data.drivers
+          .map(
+            (driver) => `
+              <div class="driver-item">
+                <div>
+                  <div class="driver-label">${driver.label}</div>
+                  <div class="driver-detail">${driver.detail}</div>
+                </div>
+                <div class="${driver.tone}">${driver.value}</div>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+      <div class="board-snapshot">
+        <div>
+          <div class="driver-label">相对强势</div>
+          <div>${formatBoards(data.leadingBoards)}</div>
+        </div>
+        <div>
+          <div class="driver-label">相对承压</div>
+          <div>${formatBoards(data.laggingBoards)}</div>
+        </div>
+      </div>
+      <div class="forecast-note">${data.risks[0]}</div>
+    </div>
+  `;
+}
+
+function forecastTone(score) {
+  if (score >= 8) return "positive";
+  if (score <= -8) return "negative";
+  return "neutral";
+}
+
+function formatBoards(boards) {
+  return boards
+    .map((board) => `<span class="${toneClass(board.avgChangePct)}">${board.board} ${signed(board.avgChangePct, "%")}</span>`)
+    .join(" · ");
 }
 
 function renderRows(append = false) {
@@ -325,9 +397,10 @@ function drawSparkline(stock) {
     return 0.5 - trend - wave - pulse;
   });
 
-  ctx.fillStyle = "#fbfcff";
+  const styles = getComputedStyle(document.documentElement);
+  ctx.fillStyle = styles.getPropertyValue("--chart-bg").trim() || "#fbfcff";
   ctx.fillRect(0, 0, width, height);
-  ctx.strokeStyle = "#d9e1ec";
+  ctx.strokeStyle = styles.getPropertyValue("--line").trim() || "#d9e1ec";
   ctx.lineWidth = 1;
   for (let i = 1; i < 4; i += 1) {
     const y = (height / 4) * i;
@@ -354,6 +427,11 @@ function drawSparkline(stock) {
 async function reloadOverview() {
   const overview = await api("/api/overview");
   renderOverview(overview);
+}
+
+async function reloadForecast() {
+  const forecast = await api("/api/forecast");
+  renderForecast(forecast);
 }
 
 async function reloadSignals() {
@@ -421,11 +499,17 @@ function bindEvents() {
   els.refreshButton.addEventListener("click", () => {
     init();
   });
+
+  els.themeToggle.addEventListener("click", () => {
+    applyTheme(state.theme === "dark" ? "light" : "dark");
+    if (state.selectedCode) selectStock(state.selectedCode);
+  });
 }
 
 async function init() {
   els.dataStatus.textContent = "加载市场数据中";
-  await Promise.all([reloadOverview(), reloadSignals(), reloadStocks()]);
+  applyTheme(state.theme);
+  await Promise.all([reloadOverview(), reloadForecast(), reloadSignals(), reloadStocks()]);
   if (!state.selectedCode && state.rows[0]) {
     await selectStock(state.rows[0].code);
   }
