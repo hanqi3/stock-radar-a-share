@@ -332,6 +332,83 @@ async function selectStock(code) {
   renderDetail(stock);
 }
 
+function renderStockOutlook(outlook) {
+  if (!outlook) return "";
+  return `
+    <section class="stock-outlook">
+      <div class="outlook-head">
+        <div>
+          <div class="panel-kicker">${outlook.title}</div>
+          <div class="outlook-direction ${outlook.tone}">${outlook.direction}</div>
+        </div>
+        <div class="outlook-score">
+          <span>${number(outlook.score, 1)}</span>
+          <small>${outlook.confidence}</small>
+        </div>
+      </div>
+      <div class="outlook-summary">${outlook.summary}</div>
+      <div class="outlook-factor-grid">
+        ${outlook.factors.map(renderOutlookFactor).join("")}
+      </div>
+      <div class="strategy-block">
+        <div class="strategy-title">交易计划</div>
+        <div class="strategy-stance">${outlook.strategy.stance}</div>
+        <div class="strategy-zones">
+          ${outlook.strategy.entryZones.map(renderEntryZone).join("")}
+        </div>
+        <div class="strategy-line">
+          <span>失效条件</span>
+          <strong>${outlook.strategy.invalidation}</strong>
+        </div>
+        <div class="strategy-line">
+          <span>风控重点</span>
+          <strong>${outlook.strategy.riskControl}</strong>
+        </div>
+        <div class="strategy-line">
+          <span>复盘点</span>
+          <strong>${outlook.strategy.reviewPoint}</strong>
+        </div>
+      </div>
+      <div class="scenario-list">
+        ${outlook.scenarios.map(renderScenario).join("")}
+      </div>
+      <div class="outlook-risk">${outlook.risks[0]} ${outlook.disclaimer}</div>
+    </section>
+  `;
+}
+
+function renderOutlookFactor(factor) {
+  return `
+    <div class="outlook-factor">
+      <div class="driver-label">${factor.label}</div>
+      <div class="${factor.tone}">${factor.value}</div>
+      <div class="driver-detail">${factor.detail}</div>
+    </div>
+  `;
+}
+
+function renderEntryZone(zone) {
+  return `
+    <div class="entry-zone">
+      <div>
+        <div class="driver-label">${zone.label}</div>
+        <div class="driver-detail">${zone.detail}</div>
+      </div>
+      <strong>${zone.value}</strong>
+    </div>
+  `;
+}
+
+function renderScenario(scenario) {
+  return `
+    <div class="scenario-item">
+      <div class="scenario-label">${scenario.label}</div>
+      <div class="scenario-copy">${scenario.condition}</div>
+      <div class="scenario-action">${scenario.action}</div>
+    </div>
+  `;
+}
+
 function renderDetail(stock) {
   els.detailPanel.innerHTML = `
     <div class="detail-head">
@@ -372,8 +449,17 @@ function renderDetail(stock) {
           <div class="kv-label">总市值</div>
           <div class="kv-value">${money(stock.marketCap)}</div>
         </div>
+        <div class="kv">
+          <div class="kv-label">明日走势</div>
+          <div class="kv-value ${stock.outlook?.tone || "neutral"}">${stock.outlook?.direction || "暂无"}</div>
+        </div>
+        <div class="kv">
+          <div class="kv-label">策略偏向</div>
+          <div class="kv-value">${stock.outlook?.strategy?.stance || "暂无"}</div>
+        </div>
       </div>
       <div class="narrative">${stock.narrative}</div>
+      ${renderStockOutlook(stock.outlook)}
     </div>
   `;
 

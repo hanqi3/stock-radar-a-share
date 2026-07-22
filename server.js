@@ -205,6 +205,12 @@ function median(values) {
   return (sorted[middle - 1] + sorted[middle]) / 2;
 }
 
+function forecastToneFromScore(score) {
+  if (score >= 8) return "positive";
+  if (score <= -8) return "negative";
+  return "neutral";
+}
+
 function buildForecast(stocks, meta) {
   const tradable = stocks.filter((stock) => stock.price !== null && stock.changePct !== null);
   const changes = tradable.map((stock) => stock.changePct || 0);
@@ -309,6 +315,272 @@ function buildForecast(stocks, meta) {
   };
 }
 
+function priceRange(price, lowPct, highPct) {
+  if (!price) return "暂无";
+  const low = price * (1 + lowPct / 100);
+  const high = price * (1 + highPct / 100);
+  return `${low.toFixed(2)} - ${high.toFixed(2)}`;
+}
+
+function getBoardSnapshot(stock, allStocks) {
+  const peers = allStocks.filter((item) => item.board === stock.board && item.price !== null && item.changePct !== null);
+  const changes = peers.map((item) => item.changePct || 0);
+  const advancers = peers.filter((item) => (item.changePct || 0) > 0).length;
+  return {
+    count: peers.length,
+    avgChangePct: average(changes),
+    medianChangePct: median(changes),
+    breadth: peers.length ? advancers / peers.length : 0.5
+  };
+}
+
+function getLiquidityTone(stock) {
+  const turnover = stock.turnover || 0;
+  const amount = stock.amount || 0;
+  if (turnover >= 8 || amount >= 3_000_000_000) return "positive";
+  if (turnover >= 3 || amount >= 800_000_000) return "neutral";
+  if (turnover < 0.8 || amount < 50_000_000) return "negative";
+  return "neutral";
+}
+
+function getStockOutlook(stock, allStocks, meta) {
+  const price = stock.price;
+  if (price === null || price === undefined || stock.changePct === null || stock.changePct === undefined) {
+    return {
+      title: "个股明日走势",
+      horizon: "1-3 个交易日",
+      direction: "暂无有效价格",
+      score: 0,
+      confidence: "低",
+      tone: "neutral",
+      summary: "该股票当前缺少有效价格或涨跌幅数据，暂不生成交易计划。",
+      factors: [],
+      strategy: {
+        stance: "等待恢复有效报价后再评估。",
+        entryZones: [],
+        invalidation: "恢复交易后的首个有效收盘价和成交额需要重新确认。",
+        riskControl: "缺少报价时不适合做短线计划。",
+        reviewPoint: "有连续有效行情后重新评估。"
+      },
+      scenarios: [],
+      risks: ["缺少有效报价，无法判断流动性、波动和次日开盘风险。"],
+      asOf: meta.updatedAt || new Date().toISOString(),
+      disclaimer: "仅供公开行情研究，不构成投资建议。"
+    };
+  }
+
+  const marketForecast = buildForecast(allStocks, meta);
+  const board = getBoardSnapshot(stock, allStocks);
+  const change = stock.changePct || 0;
+  const turnover = stock.turnover || 0;
+  const amount = stock.amount || 0;
+  const relativeToBoard = change - board.avgChangePct;
+  const isLimitUp = change >= 9.8;
+  const isLimitDown = change <= -9.8;
+  const highVolatility = Math.abs(change) >= 6 || turnover >= 10;
+  const liquidityScore = amount >= 3_000_000_000 ? 8 : amount >= 800_000_000 ? 4 : amount < 50_000_000 ? -8 : 0;
+  const turnoverScore = turnover >= 10 ? 8 : turnover >= 5 ? 5 : turnover < 0.8 ? -5 : 0;
+  const boardScore = clamp((board.breadth - 0.5) * 35 + relativeToBoard * 3, -18, 18);
+  const marketScore = clamp(marketForecast.score / 4, -14, 14);
+  const score = Number(clamp(change * 6 + boardScore + turnoverScore + liquidityScore + marketScore, -100, 100).toFixed(1));
+
+  const direction =
+    isLimitUp ? "强势高波动"
+      : isLimitDown ? "弱势风险释放"
+      : score >= 36 ? "偏强延续"
+      : score >= 14 ? "震荡偏强"
+      : score <= -36 ? "继续承压"
+      : score <= -14 ? "震荡偏弱"
+      : "震荡观察";
+
+  const confidence =
+    highVolatility ? "较低"
+      : Math.abs(score) >= 28 && amount >= 200_000_000 ? "中等"
+      : "较低";
+
+  const summary =
+    score >= 14 ? `${stock.name} 相对自身板块表现偏强，但明日仍需要成交额和板块同步确认。`
+      : score <= -14 ? `${stock.name} 当前短线承压，明日先观察抛压是否收敛和是否出现止跌承接。`
+      : `${stock.name} 多空线索接近均衡，明日更适合等待方向选择。`;
+
+  const strategy = buildStrategyPlan({
+    stock,
+    score,
+    isLimitUp,
+    isLimitDown,
+    highVolatility,
+    marketDirection: marketForecast.direction
+  });
+
+  return {
+    title: "个股明日走势",
+    horizon: "1-3 个交易日",
+    direction,
+    score,
+    confidence,
+    tone: forecastToneFromScore(score),
+    summary,
+    factors: [
+      {
+        label: "个股动量",
+        value: formatSigned(change, "%"),
+        tone: change > 0 ? "positive" : change < 0 ? "negative" : "neutral",
+        detail: getSignalType(stock)
+      },
+      {
+        label: "相对板块",
+        value: formatSigned(relativeToBoard, "%"),
+        tone: relativeToBoard > 0 ? "positive" : relativeToBoard < 0 ? "negative" : "neutral",
+        detail: `${stock.board} 均值 ${formatSigned(board.avgChangePct, "%")}`
+      },
+      {
+        label: "成交活跃",
+        value: `${turnover.toFixed(2)}%`,
+        tone: getLiquidityTone(stock),
+        detail: `成交额 ${formatMoney(amount)}`
+      },
+      {
+        label: "大盘背景",
+        value: marketForecast.direction,
+        tone: forecastToneFromScore(marketForecast.score),
+        detail: `情绪分 ${marketForecast.score}`
+      }
+    ],
+    strategy,
+    scenarios: [
+      {
+        label: "偏多情景",
+        condition: "放量走强，且所属板块涨跌幅转强或继续领先。",
+        action: "可把它作为观察候选，优先等突破或回踩确认，避免开盘急拉后追高。"
+      },
+      {
+        label: "中性情景",
+        condition: "价格围绕最新价窄幅震荡，成交额没有明显放大。",
+        action: "保持观察，不主动放大仓位，等待方向和量能给出更清晰信号。"
+      },
+      {
+        label: "偏空情景",
+        condition: "低开低走、板块同步转弱，或跌破计划失效区间。",
+        action: "以风险控制为先，短线计划降级，等待新的止跌结构。"
+      }
+    ],
+    risks: [
+      "该计划只基于当日截面行情，不包含公告、财报、隔夜新闻和历史 K 线。",
+      "A股存在涨跌停、停复牌和跳空风险，价格区间只是观察参考，不是保证成交价。",
+      "若明日大盘方向与当前判断相反，个股计划需要同步降级。"
+    ],
+    asOf: meta.updatedAt || new Date().toISOString(),
+    disclaimer: "仅供公开行情研究，不构成投资建议。"
+  };
+}
+
+function buildStrategyPlan({ stock, score, isLimitUp, isLimitDown, highVolatility, marketDirection }) {
+  const price = stock.price;
+
+  if (isLimitUp) {
+    return {
+      stance: "强势股只做承接确认，不把涨停附近视为追高信号。",
+      entryZones: [
+        {
+          label: "开板承接",
+          value: priceRange(price, -3, -1),
+          detail: "开板或回落后仍有资金承接，再观察是否重新走强。"
+        },
+        {
+          label: "强势确认",
+          value: priceRange(price, 1, 3),
+          detail: "高位继续放量时只作为动量观察，追高风险较大。"
+        }
+      ],
+      invalidation: `若跌回 ${priceRange(price, -6, -4)} 且成交额放大，短线强势计划失效。`,
+      riskControl: "高波动品种需要降低单次试错暴露，避免把涨停情绪当作确定性。",
+      reviewPoint: `明日收盘后重点复盘封板质量、换手率和 ${stock.board} 同步性。`
+    };
+  }
+
+  if (isLimitDown) {
+    return {
+      stance: "风险释放阶段，不做左侧抄底假设，先等止跌确认。",
+      entryZones: [
+        {
+          label: "止跌观察",
+          value: priceRange(price, -2, 1),
+          detail: "只有跌势收敛、成交不再失控时才进入观察。"
+        },
+        {
+          label: "修复确认",
+          value: priceRange(price, 2, 4),
+          detail: "放量收复最新价上方区间，说明抛压可能缓和。"
+        }
+      ],
+      invalidation: `若继续跌破 ${priceRange(price, -6, -4)}，短线仍按弱势处理。`,
+      riskControl: "跌停附近容易出现流动性和跳空风险，等待可成交性恢复更重要。",
+      reviewPoint: "明日优先观察能否打开流动性和是否出现板块修复。"
+    };
+  }
+
+  if (score >= 14) {
+    return {
+      stance: "偏强候选，优先等待突破确认或回撤承接，不追开盘急拉。",
+      entryZones: [
+        {
+          label: "突破确认",
+          value: priceRange(price, 1, 3),
+          detail: "需要成交额同步放大，且大盘/板块没有明显转弱。"
+        },
+        {
+          label: "回撤承接",
+          value: priceRange(price, -3, -1),
+          detail: "回落后跌幅收敛，说明短线资金仍有承接。"
+        }
+      ],
+      invalidation: `若跌破 ${priceRange(price, -5, -3)} 且板块同步走弱，偏强计划失效。`,
+      riskControl: highVolatility ? "波动已经偏高，策略上更适合小仓位试错和快进快出。" : "只在信号确认后行动，避免单纯因为上涨而追价。",
+      reviewPoint: `明日收盘后复盘是否跑赢 ${stock.board}，以及大盘是否仍为${marketDirection}。`
+    };
+  }
+
+  if (score <= -14) {
+    return {
+      stance: "防守优先，反弹先看修复质量，不急于左侧介入。",
+      entryZones: [
+        {
+          label: "止跌确认",
+          value: priceRange(price, -1, 2),
+          detail: "需要下跌家数收敛，个股不再明显弱于板块。"
+        },
+        {
+          label: "右侧修复",
+          value: priceRange(price, 3, 5),
+          detail: "放量收复上方区间后，才说明短线情绪可能改善。"
+        }
+      ],
+      invalidation: `若跌破 ${priceRange(price, -6, -4)}，弱势计划延续。`,
+      riskControl: "承压品种先控制回撤，避免把技术反抽误判为趋势反转。",
+      reviewPoint: `明日重点看它能否从弱于 ${stock.board} 转为同步或略强。`
+    };
+  }
+
+  return {
+    stance: "震荡观察，等待方向选择，暂不把它列为强交易信号。",
+    entryZones: [
+      {
+        label: "向上确认",
+        value: priceRange(price, 2, 4),
+        detail: "突破需要量能配合，否则容易变成冲高回落。"
+      },
+      {
+        label: "向下失守",
+        value: priceRange(price, -4, -2),
+        detail: "跌入该区间且无承接时，短线需要降级。"
+      }
+    ],
+    invalidation: `若明日收盘仍低于 ${priceRange(price, -4, -2)}，继续等待更清晰结构。`,
+    riskControl: "震荡股不适合频繁追涨杀跌，先等价格和成交额给出方向。",
+    reviewPoint: "明日收盘后根据突破、失守或继续横盘三种结果重新分类。"
+  };
+}
+
 function groupCount(stocks, key) {
   return stocks.reduce((acc, stock) => {
     const value = stock[key] || "未知";
@@ -366,7 +638,7 @@ function formatMoney(value) {
   return `${value}`;
 }
 
-function getStockDetail(stock, allStocks) {
+function getStockDetail(stock, allStocks, meta) {
   const boardPeers = allStocks
     .filter((item) => item.board === stock.board && item.code !== stock.code && item.changePct !== null)
     .sort((a, b) => Math.abs(b.changePct || 0) - Math.abs(a.changePct || 0))
@@ -377,6 +649,7 @@ function getStockDetail(stock, allStocks) {
     signalType: getSignalType(stock),
     reason: getSignalReason(stock),
     score: Number(getStockScore(stock).toFixed(2)),
+    outlook: getStockOutlook(stock, allStocks, meta),
     peers: boardPeers,
     narrative: buildNarrative(stock)
   };
@@ -431,7 +704,7 @@ async function handleApi(req, res, pathname, params) {
   if (stockMatch) {
     const stock = stocks.find((item) => item.code === stockMatch[1]);
     if (!stock) return notFound(res);
-    return json(res, 200, getStockDetail(stock, stocks));
+    return json(res, 200, getStockDetail(stock, stocks, meta));
   }
 
   return notFound(res);

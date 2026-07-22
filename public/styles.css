@@ -611,6 +611,8 @@ tbody tr.selected {
 .kv-value {
   margin-top: 5px;
   font-weight: 760;
+  line-height: 1.35;
+  white-space: normal;
 }
 
 .narrative {
@@ -620,6 +622,153 @@ tbody tr.selected {
   color: var(--narrative-ink);
   line-height: 1.6;
   font-size: 14px;
+}
+
+.stock-outlook {
+  display: grid;
+  gap: 12px;
+  padding-top: 2px;
+}
+
+.outlook-head {
+  min-height: 82px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.outlook-direction {
+  margin-top: 6px;
+  font-size: 24px;
+  line-height: 1.12;
+  font-weight: 850;
+}
+
+.outlook-score {
+  min-width: 68px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-soft);
+  text-align: center;
+}
+
+.outlook-score span {
+  display: block;
+  font-size: 20px;
+  font-weight: 850;
+}
+
+.outlook-score small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.outlook-summary,
+.strategy-stance,
+.outlook-risk {
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 13px;
+}
+
+.outlook-factor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.outlook-factor,
+.entry-zone,
+.scenario-item {
+  border: 1px solid var(--row-line);
+  border-radius: 8px;
+  background: var(--panel-soft);
+}
+
+.outlook-factor {
+  min-height: 78px;
+  padding: 10px;
+}
+
+.outlook-factor .positive,
+.outlook-factor .negative,
+.outlook-factor .neutral {
+  margin-top: 5px;
+  font-weight: 800;
+}
+
+.strategy-block {
+  display: grid;
+  gap: 10px;
+}
+
+.strategy-title {
+  font-weight: 780;
+}
+
+.strategy-zones {
+  display: grid;
+  gap: 8px;
+}
+
+.entry-zone,
+.strategy-line {
+  display: grid;
+  gap: 6px;
+}
+
+.entry-zone {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 64px;
+  padding: 10px;
+}
+
+.entry-zone strong {
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.strategy-line {
+  padding-top: 2px;
+  font-size: 13px;
+}
+
+.strategy-line span {
+  color: var(--muted);
+}
+
+.strategy-line strong {
+  color: var(--ink);
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.scenario-list {
+  display: grid;
+  gap: 8px;
+}
+
+.scenario-item {
+  min-height: 82px;
+  padding: 10px;
+  display: grid;
+  gap: 5px;
+}
+
+.scenario-label {
+  font-weight: 760;
+}
+
+.scenario-copy,
+.scenario-action {
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 12px;
 }
 
 .signal-item {
@@ -703,5 +852,13 @@ tbody tr.selected {
 
   .metric-value {
     font-size: 22px;
+  }
+
+  .outlook-factor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-zone {
+    grid-template-columns: 1fr;
   }
 }
