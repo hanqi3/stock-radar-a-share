@@ -1,7 +1,7 @@
 {
   "name": "stock-radar-a-share",
   "version": "1.0.0",
-  "description": "A-share event radar app for interview demos: full stock universe sync, anomaly signals, watchlist, and dashboard.",
+  "description": "A-share market radar app with full stock universe sync, anomaly signals, watchlist, and dashboard.",
   "type": "module",
   "main": "server.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "stock",
     "dashboard",
     "market-radar",
-    "interview-project"
+    "dashboard"
   ],
   "author": "",
   "license": "MIT",

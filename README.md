@@ -1,26 +1,26 @@
 # StockRadar A股事件雷达
 
-一个适合面试展示的 A股数据应用：自动同步全量 A股股票池，识别涨跌幅、成交额、换手率等异动信号，并提供搜索、自选监控、市场结构、事件画像和可视化工作台。
+StockRadar 是一个面向 A股市场的行情雷达应用。项目会同步沪深北全量股票池，基于涨跌幅、成交额、换手率和市值等公开行情字段生成异动信号，并提供市场概览、股票检索、自选监控和个股画像。
 
-> 这是工程演示项目，只做公开行情聚合和异动识别，不构成投资建议。
+> 本项目仅用于公开行情信息整理与研究，不构成任何投资建议。
 
-## 功能
+## 功能特性
 
-- 全量 A股股票池：通过同步脚本拉取沪深北 5000+ 股票
-- 市场概览：上涨、下跌、涨停附近、跌停附近、成交额、交易所分布
-- 股票搜索：支持代码、名称、交易所、板块搜索
-- 异动排序：按异动分、涨幅、跌幅、成交额、换手率、市值排序
-- 事件信号：涨停附近、跌停附近、强势拉升、快速回撤、换手放大、成交活跃
-- 自选监控：浏览器本地保存关注股票
-- 个股画像：现价、涨跌幅、成交额、市值、异动原因和模拟走势图
-- 零依赖运行：Node.js 原生 HTTP 服务，无需安装第三方包
+- 全量股票池：同步沪深北 A股，当前数据文件包含 5000+ 只股票
+- 市场概览：统计上涨、下跌、平盘、涨停附近、跌停附近、成交额和交易所分布
+- 股票检索：支持按代码、名称、交易所、板块快速筛选
+- 异动信号：识别强势拉升、快速回撤、换手放大、成交活跃等状态
+- 多维排序：支持按异动分、涨幅、跌幅、成交额、换手率、市值和代码排序
+- 自选监控：在浏览器本地保存关注股票
+- 个股画像：呈现现价、涨跌幅、成交额、市值、异动原因和走势概览
+- 零依赖运行：使用 Node.js 原生 HTTP 服务，无需安装第三方依赖
 
 ## 技术栈
 
-- Frontend: HTML + CSS + JavaScript
+- Frontend: HTML, CSS, JavaScript
 - Backend: Node.js HTTP Server
-- Data: JSON 文件存储
-- Source: 东方财富公开延迟行情接口
+- Storage: JSON file
+- Data Source: 东方财富公开延迟行情接口
 - Runtime: Node.js 18+
 
 ## 快速开始
@@ -28,32 +28,54 @@
 ```bash
 git clone <your-repo-url>
 cd stock-radar-a-share
-npm run sync
 npm start
 ```
 
-打开：
+访问：
 
 ```text
 http://localhost:5173
 ```
 
-如果只是先看界面，可以不运行同步脚本，项目会自动使用 `data/sample-a-shares.json` 样例数据。
-
-## 同步全量 A股
+仓库已包含一份全量股票池数据。如果需要更新到最新行情，运行：
 
 ```bash
 npm run sync
 ```
 
-同步成功后会生成：
+## 数据同步
+
+同步脚本位于：
+
+```text
+scripts/sync-a-shares.js
+```
+
+运行后会生成或更新：
 
 ```text
 data/all-a-shares.json
 data/meta.json
 ```
 
-`data/all-a-shares.json` 包含股票代码、名称、交易所、板块、现价、涨跌幅、成交额、换手率、总市值等字段。当前同步脚本会校验返回数量，如果少于 4000 只会中止，避免误把异常响应写入数据文件。
+`data/all-a-shares.json` 字段包括：
+
+```text
+code        股票代码
+name        股票名称
+exchange    SH / SZ / BJ
+board       沪市主板 / 深市主板 / 创业板 / 科创板 / 北交所
+price       最新价
+changePct   涨跌幅
+change      涨跌额
+volume      成交量
+amount      成交额
+turnover    换手率
+marketCap   总市值
+source      数据来源
+```
+
+同步脚本会校验返回数量。如果股票数量少于 4000 只，脚本会中止，避免把异常响应写入数据文件。
 
 ## 数据检查
 
@@ -65,9 +87,9 @@ npm run check
 
 ```text
 Data file: data/all-a-shares.json
-Stocks: 5000+
-Exchanges: {"BJ":200+,"SH":2000+,"SZ":2800+}
-Updated at: 2026-07-22T...
+Stocks: 5880
+Exchanges: {"BJ":340,"SZ":3082,"SH":2458}
+Updated at: 2026-07-22T10:51:37.974Z
 ```
 
 ## API
@@ -76,7 +98,7 @@ Updated at: 2026-07-22T...
 GET /api/health
 GET /api/overview
 GET /api/signals?limit=80
-GET /api/stocks?q=茅台&exchange=SH&board=沪市主板&sort=score&limit=100&offset=0
+GET /api/stocks?q=600519&exchange=SH&sort=score&limit=100&offset=0
 GET /api/stocks/600519
 ```
 
@@ -92,20 +114,34 @@ cap        市值优先
 code       代码排序
 ```
 
+## 异动评分
+
+异动分用于把全市场股票按关注度排序。当前版本采用可解释的规则评分：
+
+```text
+score =
+  abs(changePct) * 2.2
+  + turnover * 0.9
+  + log10(amount) * 0.7
+  - marketCapPenalty
+```
+
+该评分综合考虑价格波动、筹码交换、成交活跃度和市值影响。它只用于信息排序，不代表收益预测。
+
 ## 项目结构
 
 ```text
 .
 ├── data/
-│   ├── sample-a-shares.json
 │   ├── all-a-shares.json
-│   └── meta.json
+│   ├── meta.json
+│   └── sample-a-shares.json
 ├── docs/
-│   └── interview.md
+│   └── architecture.md
 ├── public/
+│   ├── app.js
 │   ├── index.html
-│   ├── styles.css
-│   └── app.js
+│   └── styles.css
 ├── scripts/
 │   ├── check-data.js
 │   └── sync-a-shares.js
@@ -114,23 +150,19 @@ code       代码排序
 └── README.md
 ```
 
-## 面试讲法
+## 路线图
 
-可以这样概括：
+- 接入历史行情快照
+- 使用 PostgreSQL 存储多日市场数据
+- 增加 Redis 缓存热门榜单和搜索结果
+- 接入公告、新闻、龙虎榜等事件数据
+- 支持自选股异动推送
+- 增加用户系统和云端自选股同步
+- 增加板块、概念和指数维度分析
 
-> 我做了一个 A股事件雷达系统，重点不是预测股价，而是把全市场 5000+ 股票接入一个统一的异动识别平台。系统会同步公开行情数据，基于涨跌幅、成交额、换手率和市值生成异动分，再把个股组织成可搜索、可筛选、可监控的工作台。这个项目展示了数据采集、后端 API 设计、指标计算、前端数据可视化和产品化落地能力。
+## 说明
 
-更多面试准备见 [docs/interview.md](docs/interview.md)。
-
-## 后续可扩展
-
-- PostgreSQL 存储历史快照
-- Redis 缓存热门查询
-- 定时任务每日收盘后同步
-- 接入公告、研报、新闻做事件归因
-- 用向量检索聚合同类新闻
-- WebSocket 推送自选股异动
-- 用户登录和多端自选股同步
+行情数据来自公开网络接口，可能存在延迟、缺失或口径差异。生产环境使用前需要确认数据授权、缓存策略、访问频率限制和合规要求。
 
 ## License
 
