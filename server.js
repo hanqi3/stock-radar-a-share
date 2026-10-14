@@ -80,8 +80,19 @@ function notFound(res) {
 }
 
 function parseNumber(value, fallback) {
-  const number = Number(value);
+  // Number(null) and Number("") are both 0, which silently turned a missing
+  // query parameter into a zero limit (empty result list). Treat absent or
+  // blank values as "not provided" and fall back to the default.
+  if (value === null || value === undefined) return fallback;
+  const text = String(value).trim();
+  if (text === "") return fallback;
+  const number = Number(text);
   return Number.isFinite(number) ? number : fallback;
+}
+
+function parsePositiveInt(value, fallback, max) {
+  const parsed = Math.trunc(parseNumber(value, fallback));
+  return Math.min(Math.max(parsed, 1), max);
 }
 
 function formatSigned(value, suffix = "") {
@@ -683,13 +694,13 @@ async function handleApi(req, res, pathname, params) {
   }
 
   if (pathname === "/api/signals") {
-    const limit = Math.min(parseNumber(params.get("limit"), 60), 200);
-    return json(res, 200, { items: buildSignals(stocks, limit), count: stocks.length, meta });
+    const limit = parsePositiveInt(params.get("limit"), 60, 200);
+    return json(res, 200, { items: buildSignals(stocks, limit), count: stocks.length, limit, meta });
   }
 
   if (pathname === "/api/stocks") {
-    const limit = Math.min(parseNumber(params.get("limit"), 100), 500);
-    const offset = Math.max(parseNumber(params.get("offset"), 0), 0);
+    const limit = parsePositiveInt(params.get("limit"), 100, 500);
+    const offset = Math.max(Math.trunc(parseNumber(params.get("offset"), 0)), 0);
     const result = filterStocks(stocks, params);
     return json(res, 200, {
       items: result.slice(offset, offset + limit),

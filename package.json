@@ -9,6 +9,7 @@
     "dev": "node server.js",
     "sync": "node scripts/sync-a-shares.js",
     "check": "node scripts/check-data.js",
+    "check:api": "node scripts/check-api.js",
     "update": "node scripts/sync-a-shares.js && node scripts/check-data.js"
   },
   "keywords": [

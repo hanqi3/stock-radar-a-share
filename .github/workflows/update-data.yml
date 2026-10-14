@@ -12,6 +12,7 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,6 +24,9 @@ jobs:
 
       - name: Sync market data
         run: npm run update
+
+      - name: API smoke test
+        run: npm run check:api
 
       - name: Commit updated data
         run: |

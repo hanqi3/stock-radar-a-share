@@ -207,8 +207,8 @@ function formatBoards(boards) {
     .join(" · ");
 }
 
-function renderRows(append = false) {
-  const html = state.rows
+function renderRows(append = false, rows = state.rows) {
+  const html = rows
     .map(
       (stock) => `
         <tr class="${stock.code === state.selectedCode ? "selected" : ""}" data-code="${stock.code}">
@@ -540,9 +540,12 @@ async function reloadStocks({ append = false } = {}) {
   });
   const data = await api(`/api/stocks?${params}`);
   state.total = data.total;
+  // Appending must only insert the rows that are actually new: the old code
+  // re-appended the whole list, so every "load more" duplicated the table.
+  const renderedCount = append ? state.rows.length : 0;
   state.rows = append ? [...state.rows, ...data.items] : data.items;
   state.offset = state.rows.length;
-  renderRows(append);
+  renderRows(append, append ? state.rows.slice(renderedCount) : state.rows);
   renderWatchlist();
 }
 
