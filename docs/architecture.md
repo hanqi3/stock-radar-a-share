@@ -5,7 +5,7 @@ StockRadar 使用轻量化架构组织行情同步、指标计算和前端页面
 ## Data Flow
 
 ```text
-东方财富公开延迟行情接口
+新浪财经 / 腾讯财经 / 东方财富（按顺序故障转移）
   -> scripts/sync-a-shares.js
   -> data/all-a-shares.json
   -> server.js
@@ -17,6 +17,8 @@ StockRadar 使用轻量化架构组织行情同步、指标计算和前端页面
 ### Data Sync
 
 `scripts/sync-a-shares.js` 分页拉取沪深北 A股列表，并将原始字段标准化为项目内部使用的数据结构。
+
+同步采用提供者链：新浪财经（主）-> 腾讯财经（备份）-> 东方财富（兜底）。每个提供者把各自的原始字段归一化为统一单位（金额为元、换手率为百分比、成交量为手），再交给同一套 `inferExchange` / `inferBoard` / 排序逻辑。任一提供者整体不可用时自动切换下一个，全部失败则不覆盖已有数据文件。实际来源写入 `data/meta.json` 的 `source` 字段。
 
 ### API Server
 
