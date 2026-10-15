@@ -1542,9 +1542,12 @@ async function handleApi(req, res, pathname, params) {
     const q = normalizeText(params.get("q"));
     const flow = await loadFlow();
     const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
-    const windows = Array.isArray(flow.windows) && flow.windows.length ? flow.windows : [1, 5, 10, 20, 60];
-    // `w` picks which rolling window the ranking is sorted and labelled by.
-    const requested = parsePositiveInt(params.get("w"), 1, 250);
+    const windows = Array.isArray(flow.windows) && flow.windows.length ? flow.windows : [1, 5, 10, 20, 60, 120, 250];
+    // `w` picks which rolling window the ranking is sorted and labelled by. The
+    // clamp is deliberately loose so that an out-of-range request falls through
+    // to the membership test below and lands on the one-session window, instead
+    // of being silently rounded up to the largest stored window.
+    const requested = parsePositiveInt(params.get("w"), 1, 1024);
     const window = windows.includes(requested) ? requested : 1;
     const key = `main${window}`;
     const windowKey = `amount${window}`;

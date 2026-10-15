@@ -12,7 +12,7 @@ StockRadar 是一个面向 A股市场的行情与事件雷达应用。项目会�
 - 市场概览：统计上涨、下跌、平盘、涨停附近、跌停附近、成交额和交易所分布
 - 异动信号：识别涨停、跌停、涨停附近、跌停附近、强势拉升、快速回撤、换手放大、成交活跃、异动关注
 - 个股画像：现价、涨跌幅、成交额、市值、异动原因、走势概览、同板块对比和相关事件
-- 主力资金：`data/flow.json` 按东方财富口径记录「主力净额 = 超大单净额 + 大单净额」的最近 60 个交易日，个股榜与申万行业榜都从同一份数据聚合，可切净流入 / 净流出，并可按 当日 / 近 5 日 / 近 10 日 / 近 20 日 / 近 60 日 重排；顶部柱状图是这 60 个交易日的全市场净额走势
+- 主力资金：`data/flow.json` 按东方财富口径记录「主力净额 = 超大单净额 + 大单净额」的最近 250 个交易日（约一年），个股榜与申万行业榜都从同一份数据聚合，可切净流入 / 净流出，并可按 当日 / 近 5 日 / 近 10 日 / 近 20 日 / 近 60 日 / 近 120 日 / 近 1 年 重排；顶部柱状图是整段窗口的全市场净额走势
 - K 线图：原生 canvas 绘制日 K（`public/chart.js`），**蜡烛图 / 线图可切换**（线图带渐变面积与最新价标签），支持 5 / 10 / 15 / 30 / 60 / 120 / 250 日区间切换，可开关 MA5 / MA10 / MA15 / MA20、布林带和成交量副图，带十字光标与买点 / 止损 / 目标标记
 - 交易计划：历史行情接口同时返回买点区间、止损价、目标和失效条件，图表右侧展示
 - 双板块简报：`/api/briefing` 同时给出「中国 · A股简报」和「海外 · 全球市场简报」，海外板块覆盖美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品五组共 35 个标的，并附海外事件主题与要闻
@@ -103,7 +103,7 @@ data/sectors.json         板块节点树 + 成员关系（已提交）
 data/indicators.json      全市场个股指标快照（已提交）
 data/events.json           新闻与公告事件（已提交）
 data/indices.json         全球指数、外汇与大宗商品报价（已提交）
-data/flow.json            全市场主力资金流最近 60 个交易日（已提交）
+data/flow.json            全市场主力资金流最近 250 个交易日（已提交）
 .cache/history/           日线磁盘缓存（git 忽略，不提交）
 ```
 
@@ -146,13 +146,13 @@ note           说明文字
 
 `data/flow.json` 顶层为 `{generatedAt, date, sessions, windows, window, days, source, definition, coverage, market, history, industries, stocks}`，`source` 为 `eastmoney`，`definition` 写明「主力净额 = 超大单净额 + 大单净额（东方财富口径）」。
 
-- `windows` = `[1, 5, 10, 20, 60]`，`window` = `{start, end}`，`days` = 实际取到的交易日数（默认 60，约一个季度）。
-- `stocks` 每条为 `{code, name, exchange, board, industry, date, sessions, price, changePct, amount, mainNet, mainRatio, superNet, bigNet, midNet, smallNet}` 加上每个窗口的 `main1/main5/main10/main20/main60` 与 `amount1/…/amount60`（累计净额，单位元）。`mainNet` 即 `main1`（最新交易日）。
+- `windows` = `[1, 5, 10, 20, 60, 120, 250]`，`window` = `{start, end}`，`days` = 实际取到的交易日数（默认 250，约一年）。
+- `stocks` 每条为 `{code, name, exchange, board, industry, date, sessions, price, changePct, amount, mainNet, mainRatio, superNet, bigNet, midNet, smallNet}` 加上每个窗口的 `main1/main5/…/main250` 与 `amount1/…/amount250`（累计净额，单位元）。`mainNet` 即 `main1`（最新交易日）。
 - `history` 是**市场层面**的逐日序列 `{date, mainNet, amount, inflows, outflows, count}`，整段窗口都保留，用于资金流 tab 顶部的走势柱。
 - `industries` 用 `data/sectors.json` 的申万行业成员聚合出每个行业的净额，同样带全部窗口。
-- 同一只股票若上市不足 60 个交易日，`sessions` 会小于 `days`，各窗口是该股实际存在的天数之和（不会补零）。
+- 同一只股票若上市不足 250 个交易日，`sessions` 会小于 `days`，各窗口是该股实际存在的天数之和（不会补零）。
 
-脚本要求覆盖率不低于 90%，否则拒绝写盘。窗口长度用 `npm run flow -- --days=<n>` 调整，上限 250（约一年）：60 个交易日约 12 s（冷启动 50 s）、约 2.6 MB；250 个交易日约 5.4 min、约 2.7 MB（5 万行/页的下页开销是主要成本）。
+脚本要求覆盖率不低于 90%，否则拒绝写盘。窗口长度用 `npm run flow -- --days=<n>` 调整，上限 250（约一年）：60 个交易日约 12 s（冷启动 50 s）、约 2.6 MB；250 个交易日约 5.4 min、约 2.7 MB（约 140 万行、70 页，主要成本是下页传输）。
 
 > 新浪与东方财富对同一只股票的主力净额可能给出相反的符号（实测新易盛：成交额与价格一致，净额一个 −19.25 亿、一个 +12.92 亿）。本项目统一采用东方财富口径，整个榜单不得混用两家数据。
 

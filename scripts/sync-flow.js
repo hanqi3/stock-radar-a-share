@@ -19,7 +19,7 @@
 // yet Eastmoney said -19.25亿 and Sina said +12.92亿. A ranking column may only
 // ever use one definition, so this script is Eastmoney-only.
 //
-//   node scripts/sync-flow.js [--days=60] [--limit=100] [--codes=600519,000001]
+//   node scripts/sync-flow.js [--days=250] [--limit=100] [--codes=600519,000001]
 //                             [--out=data/flow.json] [--page-size=20000]
 //                             [--timeout-ms=20000] [--max-attempts=3]
 //                             [--min-coverage=0.9] [--allow-partial]
@@ -62,10 +62,10 @@ const COLUMNS = [
   "SMALLDEAL_NET"
 ].join(",");
 /** Rolling net-inflow windows kept per symbol, in trading sessions. */
-export const WINDOWS = [1, 5, 10, 20, 60];
+export const WINDOWS = [1, 5, 10, 20, 60, 120, 250];
 
 export const DEFAULTS = {
-  days: 60,
+  days: 250,
   maxDays: 250,
   pageSize: 20000,
   minCoverage: 0.9,

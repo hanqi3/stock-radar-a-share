@@ -454,8 +454,26 @@ try {
       flowIndustry60.body?.w === 60 &&
       flowIndustry60.body.items.every((item) => Number.isFinite(item.flow) && item.flow === item.main60)
   );
-  const flowBadW = await get("/api/flow?w=999&limit=2");
+  const flowYear = await get("/api/flow?scope=stock&side=inflow&w=250&limit=8");
+  const netsYear = (flowYear.body?.items || []).map((item) => item.flow);
   check(
+    "GET /api/flow?w=250 -> the one-year window is stored and ranks by it",
+    flowYear.status === 200 &&
+      flowYear.body?.days >= 200 &&
+      (flowYear.body?.windows || []).includes(250) &&
+      flowYear.body?.w === 250 &&
+      netsYear.length === 8 &&
+      netsYear.every((value, index) => index === 0 || netsYear[index - 1] >= value) &&
+      (flowYear.body?.items || []).every((item) => item.flow === item.main250),
+    `days=${flowYear.body?.days} windows=${(flowYear.body?.windows || []).join(",")} nets=${netsYear.map((v) => Math.round(v / 1e8)).join(",")}亿`
+  );
+  check(
+    "GET /api/flow?w=250 -> the year window is a real sum, not the 60-session value re-labelled",
+    (flowYear.body?.items || []).some((item) => item.main250 !== item.main60) &&
+      (flowYear.body?.items || []).every((item) => item.flow === item.main250),
+    `changed=${(flowYear.body?.items || []).filter((item) => item.main250 !== item.main60).map((item) => `${item.name}:${Math.round(item.main250 / 1e8)} vs ${Math.round(item.main60 / 1e8)}`).join(" ")}`
+  );
+  const flowBadW = await get("/api/flow?w=999&limit=2");  check(
     "GET /api/flow?w=<unsupported> -> falls back to the one-session window",
     flowBadW.status === 200 && flowBadW.body?.w === 1,
     `w=${flowBadW.body?.w}`

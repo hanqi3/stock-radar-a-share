@@ -907,6 +907,7 @@ function signedMoney(value) {
 }
 
 function flowWindowLabel(w) {
+  if (w === 250) return "近 1 年";
   return w > 1 ? `近 ${w} 日` : "当日";
 }
 
@@ -935,7 +936,7 @@ function renderFlowTrend(data) {
       <span>市场主力净额走势 · ${escapeHtml(span)}</span>
       <span class="flow-trend-legend">${ordered.length} 个交易日 · 柱高按当日净额绝对值</span>
     </div>
-    <div class="flow-trend-bars">${bars}</div>`;
+    <div class="flow-trend-bars${ordered.length > 120 ? " dense" : ""}">${bars}</div>`;
 }
 
 function renderFlowSummary(data) {
@@ -1001,9 +1002,11 @@ function renderFlow(data) {
         : `${signedMoney(item.main5)}`;
       const compareLabel = industry ? "当日成交额合计" : "近 5 日主力";
       const trend = `<div class="flow-side-value ${toneClass(industry ? null : item.main5)}">${compare}</div><div class="flow-side-label">${compareLabel}</div>`;
+      const partial = !industry && Number.isFinite(item.sessions) && item.sessions < w;
+      const windowNote = partial ? `${windowLabel}·仅 ${item.sessions} 日` : windowLabel;
       const detail = industry
         ? `${item.name}：${windowLabel}净额 ${signedMoney(net)}（${item.count ?? 0} 只成分）`
-        : `${item.name} ${item.code}\n${windowLabel}主力净额 ${signedMoney(net)}\n当日 ${signedMoney(item.mainNet)}（占比 ${Number.isFinite(item.mainRatio) ? signed(item.mainRatio, "%") : "—"}）\n近 5 日 ${signedMoney(item.main5)} · 近 20 日 ${signedMoney(item.main20)} · 近 60 日 ${signedMoney(item.main60)}\n超大单 ${signedMoney(item.superNet)} · 大单 ${signedMoney(item.bigNet)}\n中单 ${signedMoney(item.midNet)} · 小单 ${signedMoney(item.smallNet)}\n成交额 ${money(item.amount)}`;
+        : `${item.name} ${item.code}\n${windowLabel}主力净额 ${signedMoney(net)}${partial ? `（该股上市仅 ${item.sessions} 个交易日，此为该股全部交易日之和）` : ""}\n当日 ${signedMoney(item.mainNet)}（占比 ${Number.isFinite(item.mainRatio) ? signed(item.mainRatio, "%") : "—"}）\n近 5 日 ${signedMoney(item.main5)} · 近 20 日 ${signedMoney(item.main20)} · 近 60 日 ${signedMoney(item.main60)}\n超大单 ${signedMoney(item.superNet)} · 大单 ${signedMoney(item.bigNet)}\n中单 ${signedMoney(item.midNet)} · 小单 ${signedMoney(item.smallNet)}\n成交额 ${money(item.amount)}`;
       return `
         <div class="flow-row" ${item.code ? `data-code="${escapeHtml(item.code)}"` : ""} title="${escapeHtml(detail)}">
           <div class="flow-rank">${index + 1}</div>
@@ -1016,7 +1019,7 @@ function renderFlow(data) {
           </div>
           <div class="flow-net ${toneClass(net)}">
             <div class="flow-net-value">${signedMoney(net)}</div>
-            <div class="flow-net-ratio">${industry ? `${item.count ?? 0} 只成分` : windowLabel}</div>
+            <div class="flow-net-ratio">${industry ? `${item.count ?? 0} 只成分` : windowNote}</div>
           </div>
           <div class="flow-bar"><i class="${net >= 0 ? "up" : "down"}" style="width:${width}%"></i></div>
         </div>`;

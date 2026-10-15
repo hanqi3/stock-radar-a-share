@@ -24,7 +24,7 @@ scripts/sync-a-shares.js  --写-->  data/all-a-shares.json + data/meta.json
   -> scripts/sync-news.js         --写-->  data/events.json
                                   --写-->  data/indices.json（一次批量行情取 35 个海外标的）
 
-主力资金流（东方财富 datacenter-web RPT_DMSK_TS_FUNDFLOW，默认最近 60 个交易日）
+主力资金流（东方财富 datacenter-web RPT_DMSK_TS_FUNDFLOW，默认最近 250 个交易日，约一年）
   -> scripts/sync-flow.js         --写-->  data/flow.json
 
 data/*.json + lib/pinyin-index.json
@@ -66,15 +66,15 @@ data/*.json + lib/pinyin-index.json
 
 `scripts/sync-flow.js` 用东方财富 `datacenter-web` 的 `RPT_DMSK_TS_FUNDFLOW` 报表取全市场主力资金流，汇总成 `data/flow.json`。选它的原因是东财对 `push2*` 做了按路径封锁，`datacenter-web` 的报表接口仍然可用，且口径完整（超大单 / 大单 / 中单 / 小单四档，单位元）。
 
-窗口长度是这个脚本的核心设计点。报表的 `filter` 支持**双边** `TRADE_DATE` 区间（`(TRADE_DATE>='a')(TRADE_DATE<='b')`），表里每个交易日约 6500 行、并可回溯到 2010-01-04，所以一次分页扫描就能覆盖一整段窗口，而不需要每个交易日各扫一次。默认 `--days=60`（约一个季度）：`pageSize=20000` 时约 12 个请求、12 秒、约 2.6 MB；`--days=250`（约一年、140 万行）约 5.4 分钟、约 2.7 MB（输出体积几乎不变，因为落盘的是滚动汇总而不是逐日明细）。`columns` 只取本脚本读的 12 列，把每行从约 5.8 KB 压到约 0.3 KB。
+窗口长度是这个脚本的核心设计点。报表的 `filter` 支持**双边** `TRADE_DATE` 区间（`(TRADE_DATE>='a')(TRADE_DATE<='b')`），表里每个交易日约 5600 行、并可回溯到 2010-01-04，所以一次分页扫描就能覆盖一整段窗口，而不需要每个交易日各扫一次。默认 `--days=250`（约一年）：`pageSize=20000` 时约 70 个请求、约 5.4 分钟、约 2.7 MB 落盘（约 140 万行传输是全部成本）；`--days=60`（约一个季度）约 12 个请求、12 秒（冷启动 50 秒）。落盘体积几乎不随窗口变化，因为存的是滚动汇总而不是逐日明细。`columns` 只取本脚本读的 12 列，把每行从约 5.8 KB 压到约 0.3 KB——这也是长窗口能跑通的前提。
 
-落盘结构分成两层：`stocks[]` 每只股票保留 `main1/5/10/20/60` 与 `amount1/5/10/20/60` 的滚动累计，`history[]` 保留整段窗口的**市场层面**逐日序列（`mainNet` / `amount` / `inflows` / `outflows`），供前端画走势柱。行业榜用 `data/sectors.json` 的申万行业成员聚合，个股榜与行业榜共用同一份数据，避免混用不一致的提供者。上市不足 60 个交易日的股票 `sessions` 会小于 `days`，窗口按实际存在的天数求和。脚本要求覆盖率不低于 90%，否则保留旧文件。
+落盘结构分成两层：`stocks[]` 每只股票保留 `main1/5/10/20/60/120/250` 与 `amount1/…/amount250` 的滚动累计，`history[]` 保留整段窗口的**市场层面**逐日序列（`mainNet` / `amount` / `inflows` / `outflows`），供前端画走势柱。行业榜用 `data/sectors.json` 的申万行业成员聚合，个股榜与行业榜共用同一份数据，避免混用不一致的提供者。上市不足 250 个交易日的股票 `sessions` 会小于 `days`，窗口按实际存在的天数求和。脚本要求覆盖率不低于 90%，否则保留旧文件。
 
 ### API Server
 
 `server.js` 基于 Node.js 原生 HTTP 模块实现接口和静态资源服务，同时是唯一的数据读取方。启动时读取 `data/all-a-shares.json`（缺失时退回 `data/sample-a-shares.json`），并把 `meta.json` / `indicators.json` / `sectors.json` / `events.json` / `indices.json` / `flow.json` / `lib/pinyin-index.json` 合并成内存数据集，其中 `computeFactorTable` 负责生成截面因子，`loadFlow()` 为资金流单独做 15 秒 TTL 缓存。内存缓存有效期 15 秒（`isFresh()`），所以叠加脚本跑完后最多 15 秒即生效。
 
-路由集中在 `handleApi`：`/api/health`、`/api/search`、`/api/overview`、`/api/forecast`、`/api/sectors`、`/api/events`、`/api/indices`、`/api/news`、`/api/flow`、`/api/watchlist`、`/api/briefing`、`/api/backtest`、`/api/signals`、`/api/stocks`，以及三个正则路由 `/api/stocks/:code`、`/api/stocks/:code/history`、`/api/stocks/:code/analysis`。所有数量参数都经过 `parsePositiveInt(value, fallback, max)` 钳制（默认 `limit=100`/上限 500 的 `/api/stocks`、默认 60/上限 200 的 `/api/signals`、默认 10/上限 50 的 `/api/search`、默认 30/上限 200 的 `/api/events`、默认 400/上限 1000 的 `/api/news`、默认 60/上限 500 的 `/api/flow`、默认 250/上限 1023 的历史 `days`），未知 `sort` 回退到 `score`，未知 `scope` / `side` 回退到 `stock` / `inflow`。`/api/flow` 的 `w` 参数只在 `data/flow.json` 的 `windows` 里取值，不支持时回退 `1`，排序键、返回的 `flow` 字段与表头都跟着它走；`history` 始终返回整段窗口，所以 `w=1` 时顶部走势柱仍然是 60 个交易日。
+路由集中在 `handleApi`：`/api/health`、`/api/search`、`/api/overview`、`/api/forecast`、`/api/sectors`、`/api/events`、`/api/indices`、`/api/news`、`/api/flow`、`/api/watchlist`、`/api/briefing`、`/api/backtest`、`/api/signals`、`/api/stocks`，以及三个正则路由 `/api/stocks/:code`、`/api/stocks/:code/history`、`/api/stocks/:code/analysis`。所有数量参数都经过 `parsePositiveInt(value, fallback, max)` 钳制（默认 `limit=100`/上限 500 的 `/api/stocks`、默认 60/上限 200 的 `/api/signals`、默认 10/上限 50 的 `/api/search`、默认 30/上限 200 的 `/api/events`、默认 400/上限 1000 的 `/api/news`、默认 60/上限 500 的 `/api/flow`、默认 250/上限 1023 的历史 `days`），未知 `sort` 回退到 `score`，未知 `scope` / `side` 回退到 `stock` / `inflow`。`/api/flow` 的 `w` 参数只在 `data/flow.json` 的 `windows` 里取值（默认 `[1, 5, 10, 20, 60, 120, 250]`），不支持时回退 `1`，排序键、返回的 `flow` 字段与表头都跟着它走；`history` 始终返回整段窗口，所以 `w=1` 时顶部走势柱仍然是 250 个交易日。
 
 `buildNewsFeed(events, indices, { limit, q })` 对每条事件跑 `classifyEvent` 与 `classifyRegion`，拼 `title/summary/source/themes/codes` 做关键词过滤，返回 `{generatedAt, count, total, limit, query, counts:{cn,global}, indices, items}`，其中 `counts` 与 `total` 都是筛选后的口径。`buildGlobalBriefing(indices, events)` 生成海外板块的 `{count, groups, themes, newsCount, headlines, narrative}`，挂在 `/api/briefing` 的 `overseas` 字段上。
 

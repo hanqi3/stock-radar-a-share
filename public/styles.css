@@ -1764,6 +1764,10 @@ html[data-theme="dark"] .anomaly-chip {
   opacity: 0.85;
 }
 
+/* A 250-session strip needs thinner bars than a 60-session one to stay on one line. */
+.flow-trend-bars.dense { gap: 1px; }
+.flow-trend-bars.dense i { min-width: 1px; }
+
 .flow-trend-bars i.up { color: var(--red); }
 .flow-trend-bars i.down { color: var(--green); }
 
