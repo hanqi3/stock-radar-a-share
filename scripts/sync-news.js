@@ -17,6 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const DATA_DIR = path.join(ROOT, "data");
 const OUT_FILE = path.join(DATA_DIR, "events.json");
+const INDICES_FILE = path.join(DATA_DIR, "indices.json");
 
 const BROWSER_UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36";
@@ -24,7 +25,9 @@ const BROWSER_UA =
 export const DEFAULTS = {
   timeoutMs: 20000,
   maxAttempts: 3,
-  maxEvents: 600,
+  // The 中国 | 海外 boards both need depth, so the feed keeps more than the
+  // announcement firehose alone would need.
+  maxEvents: 900,
   announcementDays: 2,
   cninfoPages: 4,
   emAnnouncementPages: 2,
@@ -95,7 +98,9 @@ function parseJsonp(text) {
 export const SINA_LIVE_TAGS = [
   { tagId: 0, label: "公司" },
   { tagId: 1, label: "政策" },
-  { tagId: 2, label: "数据" }
+  { tagId: 2, label: "数据" },
+  // tag 102 is the overseas desk: US/HK/Japan/Europe macro and market wire.
+  { tagId: 102, label: "国际" }
 ];
 
 export function parseSinaLive(payload, meta = {}) {
@@ -146,7 +151,7 @@ export async function fetchSinaLive(settings = DEFAULTS) {
 export const SINA_ROLL_CHANNELS = [
   { lid: 2516, label: "股市" },
   { lid: 2517, label: "要闻" },
-  { lid: 2510, label: "财经" }
+  { lid: 2509, label: "财经" }
 ];
 
 export function parseSinaRoll(payload, meta = {}) {
@@ -178,7 +183,7 @@ export async function fetchSinaRoll(settings = DEFAULTS) {
 
 // --- Eastmoney 7x24 kuaixun -------------------------------------------------
 
-export function parseKuaixun(text) {
+export function parseKuaixun(text, meta = {}) {
   const json = String(text).replace(/^var\s+ajaxResult\s*=\s*/, "").trim();
   const payload = JSON.parse(json);
   const list = payload?.LivesList;
@@ -188,19 +193,41 @@ export function parseKuaixun(text) {
     title: stripTags(item.title),
     summary: stripTags(item.digest || ""),
     url: item.url_w || item.url_unique || "",
-    source: "东方财富快讯",
+    source: `东方财富快讯${meta.label ? `·${meta.label}` : ""}`,
     publishedAt: toIso(item.showtime)
   }));
 }
 
-export async function fetchEastmoneyKuaixun(settings = DEFAULTS, pages = DEFAULTS.kuaixunPages) {
+// Eastmoney splits its 7x24 wire into channels; 102 is the firehose, the rest are
+// desks that carry overseas central-bank / macro / commodity coverage.
+export const KUAIXUN_CHANNELS = [
+  { channel: 102, label: "", pages: 2 },
+  { channel: 111, label: "宏观", pages: 1 },
+  { channel: 119, label: "美国·美联储", pages: 1 },
+  { channel: 120, label: "欧洲央行", pages: 1 },
+  { channel: 122, label: "日本央行", pages: 1 },
+  { channel: 107, label: "外汇债券", pages: 1 },
+  { channel: 106, label: "期货商品", pages: 1 }
+];
+
+export async function fetchEastmoneyKuaixun(
+  settings = DEFAULTS,
+  channels = KUAIXUN_CHANNELS
+) {
   const items = [];
-  for (let page = 1; page <= pages; page += 1) {
-    const url = `https://newsapi.eastmoney.com/kuaixun/v1/getlist_102_ajaxResult_50_${page}_.html`;
-    try {
-      items.push(...parseKuaixun(await request(url, { headers: { referer: "https://kuaixun.eastmoney.com/" } }, settings)));
-    } catch (error) {
-      items.push({ __error: `em-kuaixun[${page}]: ${error.message}` });
+  for (const { channel, label = "", pages = 1 } of channels) {
+    for (let page = 1; page <= pages; page += 1) {
+      const url = `https://newsapi.eastmoney.com/kuaixun/v1/getlist_${channel}_ajaxResult_50_${page}_.html`;
+      try {
+        items.push(
+          ...parseKuaixun(
+            await request(url, { headers: { referer: "https://kuaixun.eastmoney.com/" } }, settings),
+            { label }
+          )
+        );
+      } catch (error) {
+        items.push({ __error: `em-kuaixun[${channel}/${page}]: ${error.message}` });
+      }
     }
   }
   return items;
@@ -215,6 +242,7 @@ export function parseCninfo(payload) {
   if (!Array.isArray(list)) throw new Error("unexpected payload shape (no announcements)");
   return list.map((item) => ({
     id: `cninfo-${item.announcementId || item.adjunctUrl}`,
+    kind: "announcement",
     title: stripTags(item.announcementTitle),
     summary: `${stripTags(item.secName)} ${stripTags(item.announcementTypeName)}`.trim(),
     url: item.adjunctUrl ? `http://static.cninfo.com.cn/${item.adjunctUrl}` : "",
@@ -286,6 +314,7 @@ export function parseEastmoneyAnnouncements(payload) {
     const columns = (item.columns || []).map((column) => column.column_name).filter(Boolean);
     return {
       id: `em-ann-${item.art_code}`,
+      kind: "announcement",
       title: stripTags(item.title),
       summary: `${stripTags(item.codes?.[0]?.short_name || "")} ${columns.join("/")}`.trim(),
       url: code && item.art_code ? `https://data.eastmoney.com/notices/detail/${code}/${item.art_code}.html` : "",
@@ -345,6 +374,183 @@ export function isUsableEvent(item) {
   return true;
 }
 
+// --- global markets ---------------------------------------------------------
+//
+// One Sina batch call covers the overseas benchmarks the "海外" column needs.
+// Field layouts differ per family, so each prefix gets its own reader:
+//   gb_*   名称,最新,涨跌幅%,时间,涨跌额,昨收,今开,最高,最低,...
+//   int_*  名称,最新,涨跌额,涨跌幅%
+//   rt_hk* 代码,名称,今开,昨收,最高,最低,最新,涨跌额,涨跌幅%,...,日期,时间
+//   hf_*   最新,?,买,卖,最高,最低,时间,昨收,今开,...,日期,名称
+//   fx_*   时间,买,卖,?,?,昨收,今开,最低,最新,名称,涨跌幅%,涨跌额,振幅,...,日期
+//   DINIW  时间,买,卖,?,?,昨收,今开,最低,最新,名称,日期
+//
+// All of it arrives in ONE batch call, so the 海外 board costs a single request.
+export const GLOBAL_INDEX_SYMBOLS = [
+  // 美洲
+  { symbol: "gb_dji", name: "道琼斯", group: "美洲" },
+  { symbol: "gb_ixic", name: "纳斯达克", group: "美洲" },
+  { symbol: "gb_inx", name: "标普500", group: "美洲" },
+  { symbol: "gb_ndx", name: "纳斯达克100", group: "美洲" },
+  { symbol: "gb_sox", name: "费城半导体", group: "美洲" },
+  // 美股龙头（中概/科技）
+  { symbol: "gb_nvda", name: "英伟达", group: "美股龙头" },
+  { symbol: "gb_aapl", name: "苹果", group: "美股龙头" },
+  { symbol: "gb_tsm", name: "台积电", group: "美股龙头" },
+  { symbol: "gb_baba", name: "阿里巴巴", group: "美股龙头" },
+  // 亚太 / 欧洲
+  { symbol: "int_nikkei", name: "日经225", group: "亚太欧洲" },
+  { symbol: "rt_hkHSI", name: "恒生指数", group: "亚太欧洲" },
+  { symbol: "rt_hkHSCEI", name: "恒生国企", group: "亚太欧洲" },
+  { symbol: "int_ftse", name: "伦敦富时", group: "亚太欧洲" },
+  // 外汇
+  { symbol: "DINIW", name: "美元指数", group: "外汇", digits: 3 },
+  { symbol: "fx_susdcnh", name: "离岸人民币", group: "外汇", digits: 4 },
+  { symbol: "fx_susdcny", name: "在岸人民币", group: "外汇", digits: 4 },
+  { symbol: "fx_susdjpy", name: "美元日元", group: "外汇", digits: 3 },
+  { symbol: "fx_seurcnh", name: "欧元离岸人民币", group: "外汇", digits: 4 },
+  { symbol: "fx_sgbpusd", name: "英镑美元", group: "外汇", digits: 4 },
+  { symbol: "fx_saudcnh", name: "澳元离岸人民币", group: "外汇", digits: 4 },
+  { symbol: "fx_susdchf", name: "美元瑞郎", group: "外汇", digits: 4 },
+  { symbol: "fx_susdhkd", name: "美元港元", group: "外汇", digits: 4 },
+  { symbol: "fx_susdkrw", name: "美元韩元", group: "外汇" },
+  // 商品
+  { symbol: "hf_GC", name: "纽约黄金", group: "商品" },
+  { symbol: "hf_SI", name: "纽约白银", group: "商品" },
+  { symbol: "hf_CL", name: "纽约原油", group: "商品" },
+  { symbol: "hf_OIL", name: "布伦特原油", group: "商品" },
+  { symbol: "hf_HG", name: "美铜", group: "商品" },
+  { symbol: "hf_CAD", name: "伦铜", group: "商品" },
+  { symbol: "hf_AHD", name: "伦铝", group: "商品" },
+  { symbol: "hf_NG", name: "美国天然气", group: "商品", digits: 3 },
+  { symbol: "hf_S", name: "美国大豆", group: "商品" },
+  { symbol: "hf_C", name: "美国玉米", group: "商品" },
+  { symbol: "hf_W", name: "美国小麦", group: "商品" },
+  { symbol: "hf_CT", name: "美国棉花", group: "商品" }
+];
+
+const SINA_QUOTE_HOST = "https://hq.sinajs.cn/list=";
+
+function num(value) {
+  const parsed = Number(String(value ?? "").trim());
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function round(value, digits) {
+  if (!Number.isFinite(value)) return null;
+  return Number(value.toFixed(digits ?? 2));
+}
+
+// Sina stamps quotes as local Beijing time in a mix of "2026-10-15 09:49",
+// "2026/10/15 16:09:30", "2026-10-15"+"19:29:38" and "19:29:33"+"2026-10-15".
+function sinoStamp(date, time) {
+  const day = String(date ?? "").trim().replace(/\//g, "-");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return null;
+  const clock = String(time ?? "").trim();
+  const hhmmss = /^\d{2}:\d{2}(:\d{2})?$/.test(clock) ? (clock.length === 5 ? `${clock}:00` : clock) : "00:00:00";
+  const parsed = new Date(`${day}T${hhmmss}+08:00`);
+  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
+}
+
+export function parseGlobalQuotes(text, now = new Date()) {
+  const symbols = new Map(GLOBAL_INDEX_SYMBOLS.map((entry) => [entry.symbol, entry]));
+  const items = [];
+  for (const line of String(text ?? "").split("\n")) {
+    const match = line.match(/var hq_str_(\w+)="([^"]*)"/);
+    if (!match) continue;
+    const meta = symbols.get(match[1]);
+    const raw = match[2];
+    if (!meta || !raw) continue;
+    const parts = raw.split(",");
+    let price = null;
+    let changePct = null;
+    let change = null;
+    let updatedAt = now.toISOString();
+
+    if (match[1].startsWith("gb_")) {
+      price = num(parts[1]);
+      changePct = num(parts[2]);
+      change = num(parts[4]);
+      // parts[3] is "YYYY-MM-DD HH:MM" in Beijing time.
+      const stamp = String(parts[3] ?? "").trim();
+      if (stamp) {
+        const parsed = new Date(`${stamp.replace(/\//g, "-").replace(" ", "T")}+08:00`);
+        if (!Number.isNaN(parsed.getTime())) updatedAt = parsed.toISOString();
+      }
+    } else if (match[1].startsWith("rt_hk")) {
+      price = num(parts[6]);
+      change = num(parts[7]);
+      changePct = num(parts[8]);
+      updatedAt = sinoStamp(parts[17], parts[18]) || updatedAt;
+    } else if (match[1].startsWith("int_")) {
+      price = num(parts[1]);
+      change = num(parts[2]);
+      changePct = num(parts[3]);
+    } else if (match[1].startsWith("hf_")) {
+      price = num(parts[0]);
+      const prev = num(parts[7]);
+      if (price !== null && prev) {
+        change = price - prev;
+        changePct = (change / prev) * 100;
+      }
+      updatedAt = sinoStamp(parts[12], parts[6]) || updatedAt;
+    } else {
+      // fx_* carries 涨跌幅% / 涨跌额 explicitly; DINIW has neither and is
+      // derived from 昨收 (parts[5]) instead.
+      price = num(parts[8]) ?? num(parts[1]);
+      const prev = num(parts[5]);
+      const pct = num(parts[10]);
+      const diff = num(parts[11]);
+      if (Number.isFinite(pct) && Number.isFinite(diff)) {
+        changePct = pct;
+        change = diff;
+      } else if (price !== null && prev) {
+        change = price - prev;
+        changePct = (change / prev) * 100;
+      }
+      updatedAt = sinoStamp(parts[17] ?? parts[10], parts[0]) || updatedAt;
+    }
+
+    if (price === null && changePct === null) continue;
+    items.push({
+      symbol: match[1],
+      name: meta.name,
+      group: meta.group,
+      digits: meta.digits ?? 2,
+      price: round(price, meta.digits),
+      change: round(change, meta.digits),
+      changePct: changePct === null ? null : Number(changePct.toFixed(2)),
+      updatedAt
+    });
+  }
+  return items;
+}
+
+export async function fetchGlobalIndices(settings = DEFAULTS, fetchImpl = fetch) {
+  const url = SINA_QUOTE_HOST + GLOBAL_INDEX_SYMBOLS.map((entry) => entry.symbol).join(",");
+  const { timeoutMs = DEFAULTS.timeoutMs, maxAttempts = DEFAULTS.maxAttempts } = settings;
+  let lastError = null;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      const response = await fetchImpl(url, {
+        headers: {
+          "user-agent": BROWSER_UA,
+          Referer: "https://finance.sina.com.cn/"
+        },
+        signal: AbortSignal.timeout(timeoutMs)
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+      // hq.sinajs.cn answers in GBK, so read bytes and decode explicitly.
+      const buffer = Buffer.from(await response.arrayBuffer());
+      return parseGlobalQuotes(new TextDecoder("gbk").decode(buffer));
+    } catch (error) {
+      lastError = error;
+      if (attempt < maxAttempts) await sleep(400 * 2 ** (attempt - 1));
+    }
+  }
+  throw new Error(`${url} failed after ${maxAttempts} attempts: ${lastError?.message || lastError}`);
+}
+
 export async function collectEvents(settings = DEFAULTS, providers = PROVIDERS) {
   const items = [];
   const errors = [];
@@ -385,6 +591,27 @@ export async function main() {
   };
   await fs.mkdir(DATA_DIR, { recursive: true });
   await fs.writeFile(OUT_FILE, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+
+  let indices = { generatedAt: payload.generatedAt, count: 0, items: [] };
+  try {
+    const indexItems = await fetchGlobalIndices();
+    if (indexItems.length) {
+      indices = {
+        generatedAt: payload.generatedAt,
+        source: "sina-hq",
+        count: indexItems.length,
+        note: "Overseas benchmarks and commodities quoted by Sina hq.sinajs.cn.",
+        items: indexItems
+      };
+      await fs.writeFile(INDICES_FILE, `${JSON.stringify(indices, null, 2)}\n`, "utf8");
+    } else {
+      errors.push("global indices: empty response");
+    }
+  } catch (error) {
+    // Overseas quotes are a nice-to-have: never fail the event sync for them.
+    errors.push(`global indices: ${error.message}`);
+  }
+
   const windowHours = (Date.now() - new Date(items[items.length - 1].publishedAt).getTime()) / 3_600_000;
   console.log(
     `Collected ${items.length} events from ${providers.filter((p) => p.count > 0).length}/${providers.length} providers ` +
@@ -393,11 +620,12 @@ export async function main() {
   for (const provider of providers) {
     console.log(`  ${provider.count > 0 ? "ok  " : "MISS"} ${provider.id.padEnd(16)} ${String(provider.count).padStart(4)}${provider.error ? `  ${provider.error}` : ""}`);
   }
+  console.log(`  ${indices.count > 0 ? "ok  " : "MISS"} ${"global-indices".padEnd(16)} ${String(indices.count).padStart(4)}`);
   if (errors.length) console.warn(`WARN: ${errors.length} provider error(s), first: ${errors[0]}`);
-  return payload;
+  return { ...payload, indices };
 }
 
-export { DATA_DIR, OUT_FILE, ROOT };
+export { DATA_DIR, OUT_FILE, INDICES_FILE, ROOT };
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {

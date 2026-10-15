@@ -253,6 +253,151 @@ try {
     Array.isArray(briefing.body?.sectorAnomalies) &&
       briefing.body.sectorAnomalies.every((row) => typeof row.name === "string" && Array.isArray(row.flags))
   );
+  check(
+    "GET /api/briefing -> splits the narrative into China and overseas boards",
+    Array.isArray(briefing.body?.narrative) &&
+      Array.isArray(briefing.body?.overseas?.narrative) &&
+      briefing.body.overseas.narrative.length > 0 &&
+      Array.isArray(briefing.body.overseas.groups) &&
+      briefing.body.overseas.groups.length > 0 &&
+      Array.isArray(briefing.body.overseas.headlines),
+    `overseas=${briefing.body?.overseas?.narrative?.length} groups=${briefing.body?.overseas?.groups?.length}`
+  );
+  check(
+    "GET /api/briefing -> overseas board carries a quote for every group",
+    (briefing.body?.overseas?.groups || []).length > 0 &&
+      (briefing.body?.overseas?.groups || []).every(
+        (entry) =>
+          typeof entry.group === "string" &&
+          Array.isArray(entry.items) &&
+          entry.items.length > 0 &&
+          entry.items.every((item) => typeof item.name === "string" && Number.isFinite(item.price))
+      ),
+    `groups=${(briefing.body?.overseas?.groups || []).map((entry) => entry.group).join(",")}`
+  );
+
+  const indices = await get("/api/indices");
+  check(
+    "GET /api/indices -> 200 with overseas benchmarks",
+    indices.status === 200 && indices.body?.items?.length >= 20,
+    `items=${indices.body?.items?.length}`
+  );
+  check(
+    "GET /api/indices -> every quote carries a group, name and precision",
+    (indices.body?.items || []).every(
+      (item) =>
+        typeof item.symbol === "string" &&
+        typeof item.name === "string" &&
+        typeof item.group === "string" &&
+        Number.isInteger(item.digits) &&
+        (Number.isFinite(item.price) || item.price === null)
+    )
+  );
+  const indexGroups = new Set((indices.body?.items || []).map((item) => item.group));
+  check(
+    "GET /api/indices -> covers Americas, Europe/Asia, FX and commodities",
+    ["美洲", "亚太欧洲", "外汇", "商品"].every((group) => indexGroups.has(group)),
+    `groups=${[...indexGroups].join(",")}`
+  );
+
+  const news = await get("/api/news?limit=15");
+  check(
+    "GET /api/news?limit=15 -> 200 and honours the limit",
+    news.status === 200 && news.body?.items?.length === 15 && news.body?.limit === 15,
+    `items=${news.body?.items?.length}`
+  );
+  check(
+    "GET /api/news -> counts split into cn and global",
+    news.body?.counts?.cn + news.body?.counts?.global === news.body?.total,
+    `cn=${news.body?.counts?.cn} global=${news.body?.counts?.global} total=${news.body?.total}`
+  );
+  check(
+    "GET /api/news -> both columns are populated",
+    news.body?.counts?.cn > 0 && news.body?.counts?.global > 0
+  );
+  check(
+    "GET /api/news -> entries carry a region and a filing flag",
+    (news.body?.items || []).every(
+      (item) => ["cn", "global"].includes(item.region) && typeof item.title === "string" && "kind" in item
+    )
+  );
+  check(
+    "GET /api/news -> announcements are tagged as such",
+    (news.body?.items || []).every((item) => item.kind === null || item.kind === "announcement")
+  );
+
+  const newsCorpus = await get("/api/news?limit=1");
+  const corpusTotal = newsCorpus.body?.total ?? 0;
+  const newsQuery = await get("/api/news?q=%E7%BE%8E%E8%81%94%E5%82%A8&limit=200");
+  check(
+    "GET /api/news?q=美联储 -> filtered subset, all matching",
+    newsQuery.status === 200 &&
+      newsQuery.body.items.length > 0 &&
+      newsQuery.body.total < corpusTotal &&
+      newsQuery.body.items.every((item) => `${item.title} ${item.summary ?? ""}`.includes("美联储")),
+    `matched=${newsQuery.body?.items?.length} corpus=${corpusTotal}`
+  );
+  check(
+    "GET /api/news?q=<junk> -> empty result, not an error",
+    (await get("/api/news?q=zzzznotakeyword")).body?.items?.length === 0
+  );
+
+  const flowIn = await get("/api/flow?scope=stock&side=inflow&limit=5");
+  check(
+    "GET /api/flow -> 200 with five ranked stocks",
+    flowIn.status === 200 && flowIn.body?.items?.length === 5,
+    `items=${flowIn.body?.items?.length}`
+  );
+  check(
+    "GET /api/flow -> declares its provider and definition",
+    typeof flowIn.body?.definition === "string" && flowIn.body.definition.length > 0 && Number.isFinite(flowIn.body?.market?.mainNet)
+  );
+  check(
+    "GET /api/flow -> entries carry the four-tier breakdown",
+    (flowIn.body?.items || []).every(
+      (item) =>
+        typeof item.code === "string" &&
+        Number.isFinite(item.mainNet) &&
+        Number.isFinite(item.superNet) &&
+        Number.isFinite(item.bigNet) &&
+        Number.isFinite(item.midNet) &&
+        Number.isFinite(item.smallNet) &&
+        Number.isFinite(item.amount)
+    )
+  );
+  const flowNets = (flowIn.body?.items || []).map((item) => item.mainNet);
+  check(
+    "GET /api/flow?side=inflow -> mainNet sorted descending",
+    flowNets.every((value, index) => index === 0 || flowNets[index - 1] >= value),
+    `nets=${flowNets.join(",")}`
+  );
+  check(
+    "GET /api/flow?side=inflow -> every row is a net inflow",
+    flowNets.every((value) => value > 0)
+  );
+
+  const flowOut = await get("/api/flow?scope=stock&side=outflow&limit=5");
+  check(
+    "GET /api/flow?side=outflow -> largest outflows first",
+    flowOut.body?.items?.length === 5 && flowOut.body.items.every((item) => item.mainNet < 0)
+  );
+
+  const flowIndustry = await get("/api/flow?scope=industry&side=inflow&limit=8");
+  check(
+    "GET /api/flow?scope=industry -> aggregated 申万 industries",
+    flowIndustry.status === 200 &&
+      flowIndustry.body?.scope === "industry" &&
+      flowIndustry.body.items.length === 8 &&
+      flowIndustry.body.items.every((item) => typeof item.name === "string" && Number.isFinite(item.mainNet) && item.count > 0),
+    `items=${flowIndustry.body?.items?.length}`
+  );
+
+  const flowJunk = await get("/api/flow?scope=nonsense&side=nonsense&limit=abc");
+  check(
+    "GET /api/flow?<junk args> -> falls back to the defaults instead of 500",
+    flowJunk.status === 200 && flowJunk.body?.scope === "stock" && flowJunk.body?.side === "inflow" && flowJunk.body?.items?.length > 0,
+    `scope=${flowJunk.body?.scope} side=${flowJunk.body?.side}`
+  );
 
   const watch = await get("/api/watchlist?codes=600519,000001,999999");
   check("GET /api/watchlist -> 200 with one item per code", watch.status === 200 && watch.body?.items?.length === 3);

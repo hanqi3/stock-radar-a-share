@@ -22,13 +22,17 @@ scripts/sync-a-shares.js  --写-->  data/all-a-shares.json + data/meta.json
 
 新闻与公告（新浪 7x24 / 新浪滚动 / 东财快讯 / 巨潮公告 / 东财公告）
   -> scripts/sync-news.js         --写-->  data/events.json
+                                  --写-->  data/indices.json（一次批量行情取 35 个海外标的）
+
+主力资金流（东方财富 datacenter-web RPT_DMSK_TS_FUNDFLOW，最近 5 个交易日）
+  -> scripts/sync-flow.js         --写-->  data/flow.json
 
 data/*.json + lib/pinyin-index.json
   -> server.js（读取 + 15s 内存缓存 + 路由）
   -> public/index.html + public/app.js + public/chart.js
 ```
 
-`.github/workflows/update-data.yml` 是唯一的生产写入方：交易日 15:30（cron `30 7 * * 1-5`，即 07:30 UTC）依次执行 `npm run update`、`npm run sectors`、`npm run history`、`npm run news`、`npm run check:api`，最后提交有变化的数据文件。三个增量来源都标了 `continue-on-error: true`，单个第三方源失败不会阻断当天的行情提交。
+`.github/workflows/update-data.yml` 是唯一的生产写入方：交易日 15:30（cron `30 7 * * 1-5`，即 07:30 UTC）依次执行 `npm run update`、`npm run sectors`、`npm run history`、`npm run news`、`npm run flow`、`npm run check:api`，最后提交有变化的数据文件。四个增量来源都标了 `continue-on-error: true`，单个第三方源失败不会阻断当天的行情提交。
 
 ## Modules
 
@@ -52,19 +56,31 @@ data/*.json + lib/pinyin-index.json
 
 ### News Pipeline
 
-`scripts/sync-news.js` 聚合 5 个免鉴权来源：新浪 7x24 快讯、新浪滚动新闻、东财快讯、巨潮公告（POST `www.cninfo.com.cn/new/hisAnnouncement/query`，`pageSize` 上限 30）、东财公告。各来源独立解析（`parseSinaLive` / `parseSinaRoll` / `parseKuaixun` / `parseCninfo` / `parseEastmoneyAnnouncements`），经 `dedupeEvents` 与 `isUsableEvent` 去重过滤后写入 `data/events.json`，按时间倒序截断到 600 条。顶层为 `{generatedAt, providers, count, note, items}`，`providers` 记录每个来源的条数或错误，便于区分「当天没消息」和「来源挂了」。
+`scripts/sync-news.js` 聚合 5 个免鉴权来源：新浪 7x24 快讯（tag 0 公司 / 1 政策 / 2 数据 / 102 国际）、新浪滚动新闻、东财快讯（含美联储 / 欧洲央行 / 日本央行 / 期货商品 / 外汇债券 / 宏观等 desk）、巨潮公告（POST `www.cninfo.com.cn/new/hisAnnouncement/query`，`pageSize` 上限 30）、东财公告。各来源独立解析（`parseSinaLive` / `parseSinaRoll` / `parseKuaixun` / `parseCninfo` / `parseEastmoneyAnnouncements`），经 `dedupeEvents` 与 `isUsableEvent` 去重过滤后写入 `data/events.json`，按时间倒序截断到 900 条。顶层为 `{generatedAt, providers, count, note, items}`，`providers` 记录每个来源的条数或错误，便于区分「当天没消息」和「来源挂了」。公告类来源会写 `kind: "announcement"`，这是区域判定与前端「公告 / 报道」配比的唯一依据。
+
+同一次运行还会把 35 个海外标的（道指 / 纳指 / 标普 / 费半 / 美股龙头 4 只 / 日经 / 恒指 / 恒生国企 / 富时 / 美元指数 / 8 个汇率 / 12 个商品）合成**一次** `hq.sinajs.cn/list=` 批量请求，GBK 解码后写入 `data/indices.json`。字段布局按前缀分派（`gb_*` / `int_*` / `rt_hk*` / `hf_*` / `fx_*` 与 `DINIW` 各不相同），美元指数没有涨跌幅字段，只能由昨收推导。指数抓取失败只记进 `errors`，不影响事件同步。
+
+`lib/news-region.js` 在读取时把事件分成 `cn` / `global`：显式 `region` 优先，其次带 A股 `codes` 且只命中地理词的判 `cn`，再次 `kind === "announcement"` 且有代码的判 `cn`，然后才看强海外信号词与地理词，最后默认 `cn`。600 条真实事件的分布约为 509 / 91。
+
+### Money Flow
+
+`scripts/sync-flow.js` 用东方财富 `datacenter-web` 的 `RPT_DMSK_TS_FUNDFLOW` 报表取全市场主力资金流，按交易日分页拉取最近 5 个交易日（每页 5000 条），汇总成 `data/flow.json`。选它的原因是东财对 `push2*` 做了按路径封锁，`datacenter-web` 的报表接口仍然可用，且口径完整（超大单 / 大单 / 中单 / 小单四档，单位元）。行业榜用 `data/sectors.json` 的申万行业成员聚合，个股榜与行业榜共用同一份数据，避免混用不一致的提供者。脚本要求最近交易日覆盖率不低于 90%，否则保留旧文件。
 
 ### API Server
 
-`server.js` 基于 Node.js 原生 HTTP 模块实现接口和静态资源服务，同时是唯一的数据读取方。启动时读取 `data/all-a-shares.json`（缺失时退回 `data/sample-a-shares.json`），并把 `meta.json` / `indicators.json` / `sectors.json` / `events.json` / `lib/pinyin-index.json` 合并成内存数据集，其中 `computeFactorTable` 负责生成截面因子。内存缓存有效期 15 秒（`isFresh()`），所以叠加脚本跑完后最多 15 秒即生效。
+`server.js` 基于 Node.js 原生 HTTP 模块实现接口和静态资源服务，同时是唯一的数据读取方。启动时读取 `data/all-a-shares.json`（缺失时退回 `data/sample-a-shares.json`），并把 `meta.json` / `indicators.json` / `sectors.json` / `events.json` / `indices.json` / `flow.json` / `lib/pinyin-index.json` 合并成内存数据集，其中 `computeFactorTable` 负责生成截面因子，`loadFlow()` 为资金流单独做 15 秒 TTL 缓存。内存缓存有效期 15 秒（`isFresh()`），所以叠加脚本跑完后最多 15 秒即生效。
 
-路由集中在 `handleApi`：`/api/health`、`/api/search`、`/api/overview`、`/api/forecast`、`/api/sectors`、`/api/events`、`/api/watchlist`、`/api/briefing`、`/api/backtest`、`/api/signals`、`/api/stocks`，以及三个正则路由 `/api/stocks/:code`、`/api/stocks/:code/history`、`/api/stocks/:code/analysis`。所有数量参数都经过 `parsePositiveInt(value, fallback, max)` 钳制（默认 `limit=100`/上限 500 的 `/api/stocks`、默认 60/上限 200 的 `/api/signals`、默认 10/上限 50 的 `/api/search`、默认 30/上限 200 的 `/api/events`、默认 250/上限 1023 的历史 `days`），未知 `sort` 回退到 `score`。
+路由集中在 `handleApi`：`/api/health`、`/api/search`、`/api/overview`、`/api/forecast`、`/api/sectors`、`/api/events`、`/api/indices`、`/api/news`、`/api/flow`、`/api/watchlist`、`/api/briefing`、`/api/backtest`、`/api/signals`、`/api/stocks`，以及三个正则路由 `/api/stocks/:code`、`/api/stocks/:code/history`、`/api/stocks/:code/analysis`。所有数量参数都经过 `parsePositiveInt(value, fallback, max)` 钳制（默认 `limit=100`/上限 500 的 `/api/stocks`、默认 60/上限 200 的 `/api/signals`、默认 10/上限 50 的 `/api/search`、默认 30/上限 200 的 `/api/events`、默认 400/上限 1000 的 `/api/news`、默认 60/上限 500 的 `/api/flow`、默认 250/上限 1023 的历史 `days`），未知 `sort` 回退到 `score`，未知 `scope` / `side` 回退到 `stock` / `inflow`。
+
+`buildNewsFeed(events, indices, { limit, q })` 对每条事件跑 `classifyEvent` 与 `classifyRegion`，拼 `title/summary/source/themes/codes` 做关键词过滤，返回 `{generatedAt, count, total, limit, query, counts:{cn,global}, indices, items}`，其中 `counts` 与 `total` 都是筛选后的口径。`buildGlobalBriefing(indices, events)` 生成海外板块的 `{count, groups, themes, newsCount, headlines, narrative}`，挂在 `/api/briefing` 的 `overseas` 字段上。
 
 静态资源从 `public/` 目录读取，`/` 映射到 `/index.html`，并对 `filePath.startsWith(PUBLIC_DIR)` 做路径穿越防护。服务监听 `HOST`（默认 `localhost`）和 `PORT`（默认 5173）。
 
 ### Dashboard
 
-`public/app.js` 负责调用 API、维护页面状态、处理筛选排序、即时检索、自选股和个股详情渲染。`public/chart.js` 是独立的 `drawPriceChart(canvas, payload, options)`，用原生 canvas 绘制日 K、均线、布林带、成交量副图和十字光标，并渲染买点 / 止损 / 目标标记，不引入任何图表库。检索的四个维度（代码 / 名称 / 全拼 / 首字母）统一走 `/api/search`。
+`public/app.js` 负责调用 API、维护页面状态、处理筛选排序、即时检索、自选股和个股详情渲染。页面是三栏工作台：左侧竖直 tab 栏（`showTab`，共 `flow` / `stocks` / `news` / `watch` 四栏）驱动中间主舞台，右侧个股详情与异动信号常驻。`public/chart.js` 是独立的 `drawPriceChart(canvas, payload, options)`，用原生 canvas 绘制日 K、均线、布林带、成交量副图和十字光标，并渲染买点 / 止损 / 目标标记，不引入任何图表库；`options.type` 取 `"candle"`（默认）或 `"line"`，线图模式画收盘折线加渐变面积，两种模式都带 TradingView 式最新价标签。检索的四个维度（代码 / 名称 / 全拼 / 首字母）统一走 `/api/search`。
+
+新闻栏的两列内容来自同一份事件池，`composeColumn` 对每列做三件事：同一发行人最多 2 条、公告类不超过整栏三分之一、报道与公告两股流按 2:1 交错，避免收盘公告把当天报道整段压到底部。
 
 ### Search
 
@@ -125,8 +141,8 @@ data/events.json
 
 ## Testing
 
-`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言。
+`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 6 个文件 74 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪五种行情族解析与公告解析器的 `kind` 标记，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中新增的 `/api/indices`、`/api/news`、`/api/flow` 断言覆盖分组完整性、筛选口径与榜单排序方向。
 
 ## Production Upgrade
 
-后续可以将 JSON 文件替换为 PostgreSQL，将高频读取结果放入 Redis，并把 `.github/workflows/update-data.yml` 的定时任务迁移到常驻调度器。日线缓存目前落在本地磁盘，多实例部署时需要换成共享存储。此外还可以继续扩充事件源（龙虎榜、资金流向、财报）并复用现有的分类与扩散管线。
+后续可以将 JSON 文件替换为 PostgreSQL，将高频读取结果放入 Redis，并把 `.github/workflows/update-data.yml` 的定时任务迁移到常驻调度器。日线缓存目前落在本地磁盘，多实例部署时需要换成共享存储。此外还可以继续扩充事件源（龙虎榜、财报、北向资金）并复用现有的分类与扩散管线；资金流目前只有 5 个交易日的滚动窗口，做更长周期的资金趋势需要另建历史归档。

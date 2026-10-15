@@ -6,14 +6,18 @@ StockRadar 是一个面向 A股市场的行情与事件雷达应用。项目会�
 
 ## 功能特性
 
-- 全量股票池：同步沪深北 A股，当前 `data/all-a-shares.json` 含 5573 只股票
+- 全量股票池：同步沪深北 A股，当前 `data/all-a-shares.json` 含 5575 只股票
+- 左侧工作台：竖直 tab 栏分四栏 —— 主力资金、股票、新闻政策、我的自选，切换后中间主舞台整体换内容，右侧个股详情与异动信号常驻
 - 拼音检索：按代码 / 名称 / 全拼 / 首字母即时联想，支持上下键选择、回车确认、Esc 关闭
 - 市场概览：统计上涨、下跌、平盘、涨停附近、跌停附近、成交额和交易所分布
 - 异动信号：识别涨停、跌停、涨停附近、跌停附近、强势拉升、快速回撤、换手放大、成交活跃、异动关注
 - 个股画像：现价、涨跌幅、成交额、市值、异动原因、走势概览、同板块对比和相关事件
-- K 线图：原生 canvas 绘制日 K（`public/chart.js`），支持 5 / 10 / 15 / 30 / 60 / 120 / 250 日区间切换，可开关 MA5 / MA10 / MA15 / MA20、布林带和成交量副图，带十字光标与买点 / 止损 / 目标标记
+- 主力资金：`data/flow.json` 按东方财富口径记录「主力净额 = 超大单净额 + 大单净额」的近 5 个交易日序列，个股榜与申万行业榜都从同一份数据聚合，可切净流入 / 净流出
+- K 线图：原生 canvas 绘制日 K（`public/chart.js`），**蜡烛图 / 线图可切换**（线图带渐变面积与最新价标签），支持 5 / 10 / 15 / 30 / 60 / 120 / 250 日区间切换，可开关 MA5 / MA10 / MA15 / MA20、布林带和成交量副图，带十字光标与买点 / 止损 / 目标标记
 - 交易计划：历史行情接口同时返回买点区间、止损价、目标和失效条件，图表右侧展示
-- 每日简报与主题雷达：`/api/briefing` 生成市场简报文字、主题事件雷达和行业相对强弱
+- 双板块简报：`/api/briefing` 同时给出「中国 · A股简报」和「海外 · 全球市场简报」，海外板块覆盖美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品五组共 35 个标的，并附海外事件主题与要闻
+- 新闻政策：`/api/news` 把 900 条事件按区域分「中国 / 海外」两栏，支持关键词搜索（标题、摘要、来源、主题、代码）与命中高亮，公告类按发行人限流，避免同一公司的公告刷屏
+- 主题雷达：`/api/briefing` 生成市场简报文字、主题事件雷达和行业相对强弱
 - 板块异动监测：每个行业输出宽度（`breadth`）与 `anomalyScore`，对横截面相对强弱离群、涨跌停扎堆、宽度极端的板块打 `flags` 标签，并在雷达带行业行上显示异动 chip；`/api/briefing` 附 `sectorAnomalies`
 - 板块成员：`data/sectors.json` 记录 31 个申万行业和 213 个概念板块的成员关系，用于行业相对强度和主题事件扩散
 - 事件驱动：`data/events.json` 聚合政策新闻、市场快讯和交易所公告，读取时分类并做时间衰减
@@ -27,7 +31,7 @@ StockRadar 是一个面向 A股市场的行情与事件雷达应用。项目会�
 
 - Frontend: HTML, CSS, JavaScript（K 线为手写 canvas，不引入图表库）
 - Backend: Node.js HTTP Server
-- Storage: JSON file（行情 / 板块 / 指标 / 事件四个数据文件）
+- Storage: JSON file（行情 / 板块 / 指标 / 事件 / 全球指数 / 资金流六个数据文件）
 - Data Source: 多源提供者链（新浪财经 → 腾讯财经 → 东方财富），自动故障转移
 - Search: 预生成拼音索引 `lib/pinyin-index.json`
 - Runtime: Node.js 18+
@@ -81,9 +85,10 @@ HOST=0.0.0.0 PORT=5173 npm start
 | `npm run sync` | 只同步股票池（`scripts/sync-a-shares.js`） |
 | `npm run sectors` | 同步板块节点树与成员关系（`scripts/sync-sectors.js`） |
 | `npm run history` | 同步日线并计算全市场指标（`scripts/sync-history.js`） |
-| `npm run news` | 聚合新闻与公告（`scripts/sync-news.js`） |
+| `npm run news` | 聚合新闻与公告，并抓取全球指数（`scripts/sync-news.js`） |
+| `npm run flow` | 同步全市场主力资金流（`scripts/sync-flow.js`） |
 | `npm run update` | `sync` + `check`，即同步行情并校验数据文件 |
-| `npm run enrich` | `sectors` + `history` + `news`，即全部增量数据 |
+| `npm run enrich` | `sectors` + `history` + `news` + `flow`，即全部增量数据 |
 | `npm run check` | 校验 `data/all-a-shares.json`（`scripts/check-data.js`） |
 | `npm run check:api` | 启动服务并逐个接口自检（`scripts/check-api.js`） |
 | `npm run test` | 运行单元测试（`node --test tests/`） |
@@ -96,7 +101,9 @@ data/all-a-shares.json    原始股票池（每晚更新，已提交）
 data/meta.json            数据来源与更新时间（已提交）
 data/sectors.json         板块节点树 + 成员关系（已提交）
 data/indicators.json      全市场个股指标快照（已提交）
-data/events.json          新闻与公告事件（已提交）
+data/events.json           新闻与公告事件（已提交）
+data/indices.json         全球指数、外汇与大宗商品报价（已提交）
+data/flow.json            全市场主力资金流近 5 个交易日（已提交）
 .cache/history/           日线磁盘缓存（git 忽略，不提交）
 ```
 
@@ -133,7 +140,13 @@ note           说明文字
 
 `data/indicators.json` 顶层为 `{generatedAt, days, requested, succeeded, failed, coverage, note, failures, items}`，`items` 以 6 位代码为键，值为 `{date, close, ma5, ma10, ma20, ma60, ma20Gap, ma60Gap, momentum5, momentum20, momentum60, volatility20, atrPct, rsi14, macdHist, bollPercentB, volumeRatio, bars, source, industryMomentum20, group}`，其中 `bars` 是该股票实际可用的日线根数。默认覆盖率为 0.8，低于该值且没有 `--allow-partial` 时脚本退出并保留旧文件。
 
-`data/events.json` 顶层为 `{generatedAt, providers, count, note, items}`，`providers` 是每个来源的 `{id, label, count, error?}`，单条事件为 `{id, title, summary, url, source, publishedAt, codes[]}`，公告类事件还会带 `category`。
+`data/events.json` 顶层为 `{generatedAt, providers, count, note, items}`，`providers` 是每个来源的 `{id, label, count, error?}`，单条事件为 `{id, kind, title, summary, url, source, publishedAt, codes[]}`。`kind` 只有公告披露类来源（巨潮资讯、东方财富公告）会写成 `"announcement"`，区域分类和前端「公告 / 报道」配比都依赖它；缺失时全部事件会退化成按正文关键词评分。
+
+`data/indices.json` 顶层为 `{generatedAt, source, count, note, items}`，`source` 固定为 `sina-hq`。单条为 `{symbol, name, group, digits, price, change, changePct, updatedAt}`，`group` 取 `美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品`，`digits` 是该标的的合理小数位（美元指数 3 位、汇率 4 位、指数 2 位），前端按它格式化。35 个标的由一次新浪批量行情请求取回，指数抓取失败不会影响事件同步。
+
+`data/flow.json` 顶层为 `{generatedAt, source, definition, days, sessions, coverage, count, industries, items}`，`source` 为 `eastmoney`，`definition` 写明「主力净额 = 超大单净额 + 大单净额（东方财富口径）」。`items` 以 6 位代码为键，值为 `{name, industry, price, changePct, sessions, amount, mainNet, mainRatio, superNet, bigNet, midNet, smallNet, main5, amount5}`，金额单位为元；`industries` 用 `data/sectors.json` 的申万行业成员聚合出每个行业的净额。脚本要求最近一个交易日覆盖率不低于 90%，否则拒绝写盘。
+
+> 新浪与东方财富对同一只股票的主力净额可能给出相反的符号（实测新易盛：成交额与价格一致，净额一个 −19.25 亿、一个 +12.92 亿）。本项目统一采用东方财富口径，整个榜单不得混用两家数据。
 
 所有金额统一为「元」、换手率统一为百分比、成交量统一为「手」，由各数据源的
 normalize 函数换算，所以换数据源不会改变前端展示。
@@ -188,11 +201,12 @@ schedule:
 npm run update      # 同步行情并校验
 npm run sectors     # continue-on-error: true
 npm run history     # continue-on-error: true
-npm run news        # continue-on-error: true
+npm run news        # continue-on-error: true，同时写 data/indices.json
+npm run flow        # continue-on-error: true
 npm run check:api   # 接口冒烟测试
 ```
 
-三个增量数据来源都是第三方服务，单个源抽风不应该让当天数据提交失败，所以 `sectors` / `history` / `news` 都标了 `continue-on-error: true`。任务 `timeout-minutes` 为 40。最后如果 `data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json` 有变化，就用 `github-actions[bot]` 身份提交一次 `Update A-share market data`。
+四个增量数据来源都是第三方服务，单个源抽风不应该让当天数据提交失败，所以 `sectors` / `history` / `news` / `flow` 都标了 `continue-on-error: true`。任务 `timeout-minutes` 为 40。最后如果 `data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/flow.json` 有变化，就用 `github-actions[bot]` 身份提交一次 `Update A-share market data`。
 
 也可以在 GitHub 页面手动触发：
 
@@ -232,12 +246,13 @@ Updated at: 2026-10-14T07:36:19.254Z
 npm run test
 ```
 
-等价于 `node --test tests/`，不依赖任何第三方测试框架。当前 5 个文件共 62 个用例，全部通过：
+等价于 `node --test tests/`，不依赖任何第三方测试框架。当前 6 个文件共 74 个用例，全部通过：
 
 | 文件 | 覆盖内容 |
 | --- | --- |
 | `tests/lib.test.js` | 交易所 / 板块推断、各板块涨跌停规则、ST 识别、涨跌停价取整与临界判定、SMA/EMA/布林/RSI/MACD/KDJ/ATR、百分位排名与因子表、回测端到端（T+1、整手、涨停不买）与样本内外拆分 |
 | `tests/events.test.js` | 政策与主题关键词识别、利好利空分类与量级、指标抽取、18 小时半衰期衰减、事件向直接提及个股与主题成员扩散 |
+| `tests/news-region.test.js` | 中国 / 海外区域判定优先级（显式 region、公告带 A股代码、地理词与强信号词）、`tagRegions` / `splitByRegion` / `regionCounts` 一致性、全球指数符号前缀、新浪五种行情族布局解析、未知符号与空载荷降级、公告解析器写入 `kind: "announcement"` |
 | `tests/search.test.js` | 查询归一化、多音字、按字符兜底、代码 / 名称 / 全拼 / 首字母命中与排序权重、空查询语义、随仓库发布的拼音索引覆盖率 |
 | `tests/history.test.js` | 交易所前缀、URL 深度钳制、新浪与腾讯两种载荷解码（含列顺序）、异常载荷降级、去重排序、提供者回退与错误聚合、磁盘缓存 TTL 与窗口深度 |
 | `tests/sectors.test.js` | 节点树扁平化、按前缀筛选去重、成员数组解析、分页页数计算、成员数解析、板块索引合并去重与落盘字段形状 |
@@ -257,6 +272,9 @@ GET /api/search?q=gzmt&limit=10
 GET /api/sectors
 GET /api/events?limit=30
 GET /api/briefing
+GET /api/indices
+GET /api/news?limit=400&q=
+GET /api/flow?scope=stock&side=inflow&limit=60
 GET /api/backtest?topN=10&holdDays=10&days=250
 GET /api/watchlist?codes=600519,000001
 ```
@@ -271,6 +289,9 @@ GET /api/watchlist?codes=600519,000001
 | `/api/stocks/:code/history` | `days` | 250 | 1023；历史不可用时返回 502 `{"error":"history unavailable"}` |
 | `/api/stocks/:code/analysis` | 无 | 固定取 250 天 | 历史失败时 `history` 字段变成 `{error}`，接口仍返回 200 |
 | `/api/events` | `limit` | 30 | 200 |
+| `/api/indices` | 无 | 返回 `data/indices.json` 的全部标的 | — |
+| `/api/news` | `limit`、`q` | `limit=400` | `limit` 1000；`q` 匹配标题 / 摘要 / 来源 / 主题 / 代码，`counts` 与 `total` 都是筛选后的口径 |
+| `/api/flow` | `scope`、`side`、`limit` | `scope=stock`、`side=inflow`、`limit=60` | `limit` 500；`scope` 取 `stock` / `industry`，`side` 取 `inflow` / `outflow`，非法值回退默认 |
 | `/api/watchlist` | `codes` | 空 | 最多 60 个 6 位代码，非 6 位直接丢弃；未知代码返回 `{code, missing:true, alerts:[]}` |
 | `/api/backtest` | 见下方「策略回测」 | — | 参数越界会被钳制到区间内，无历史时返回 422 |
 
@@ -365,6 +386,21 @@ GET /api/backtest?codes=600519,000001&topN=10&minScore=5&holdDays=10
 
 个股详情中的 `outlook` 使用同一套公开行情快照，并额外结合个股涨跌幅、相对板块表现、成交额、换手率和大盘背景生成条件化交易计划。价格区间按最新价比例估算，不代表技术支撑/压力，也不构成买卖建议。
 
+## 工作台布局
+
+页面分三栏：最左是竖直 tab 栏，中间是随 tab 切换的主舞台，右侧常驻个股详情与异动信号。
+
+```text
+主力资金   全市场主力净额汇总 + 个股 / 行业榜单（净流入 / 净流出）+ 市场结构 + 行业相对强弱
+股票       搜索、筛选、排序、分页、K 线图（蜡烛 / 线图）与交易计划、相关事件
+新闻政策   中国 · A股简报 | 海外 · 全球市场简报（35 个标的）+ 主题雷达 + 明日方向观察 + 新闻政策双栏与关键词搜索
+我的自选   自选监控与告警 + 策略回测与表现追踪
+```
+
+当前 tab 存在 `localStorage` 的 `stockradar-tab`，刷新后保持；图表类型存在 `stockradar-chart-type`，资金流的范围和方向分别存在 `stockradar-flow-scope` / `stockradar-flow-side`。
+
+新闻政策栏的两列内容来自同一份事件池，按 `lib/news-region.js` 的区域判定拆分。公告披露会成串到达（实测某公司一分钟内提交 11 份文件），因此每列做了两道限制：同一发行人最多 2 条，公告类不超过整栏的三分之一，并把「报道」与「公告」两股流按 2:1 交错排列，避免收盘公告把当天报道整段压到底部。
+
 ## 项目结构
 
 ```text
@@ -375,6 +411,8 @@ GET /api/backtest?codes=600519,000001&topN=10&minScore=5&holdDays=10
 ├── data/
 │   ├── all-a-shares.json
 │   ├── events.json
+│   ├── flow.json
+│   ├── indices.json
 │   ├── indicators.json
 │   ├── meta.json
 │   ├── sample-a-shares.json
@@ -389,6 +427,7 @@ GET /api/backtest?codes=600519,000001&topN=10&minScore=5&holdDays=10
 │   ├── history-cache.js
 │   ├── history.js
 │   ├── indicators.js
+│   ├── news-region.js
 │   ├── pinyin-index.json
 │   └── search.js
 ├── public/
@@ -401,6 +440,7 @@ GET /api/backtest?codes=600519,000001&topN=10&minScore=5&holdDays=10
 │   ├── check-api.js
 │   ├── check-data.js
 │   ├── sync-a-shares.js
+│   ├── sync-flow.js
 │   ├── sync-history.js
 │   ├── sync-news.js
 │   └── sync-sectors.js
@@ -408,6 +448,7 @@ GET /api/backtest?codes=600519,000001&topN=10&minScore=5&holdDays=10
 │   ├── events.test.js
 │   ├── history.test.js
 │   ├── lib.test.js
+│   ├── news-region.test.js
 │   ├── search.test.js
 │   └── sectors.test.js
 ├── server.js

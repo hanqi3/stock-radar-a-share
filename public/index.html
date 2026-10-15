@@ -24,75 +24,278 @@
         <section class="overview-band" id="overview"></section>
 
         <section class="workbench">
-          <aside class="left-rail">
-            <div class="panel forecast-panel" id="forecastPanel">
-              <div class="empty-state">加载方向观察中</div>
-            </div>
-            <div class="panel">
-              <div class="panel-title">市场结构</div>
-              <div class="board-list" id="boardList"></div>
-            </div>
-            <div class="panel">
-              <div class="panel-title">自选监控</div>
-              <div class="watchlist" id="watchlist"></div>
-            </div>
-          </aside>
+          <nav class="tab-rail" id="tabRail" role="tablist" aria-label="功能导航">
+            <button class="tab-button" role="tab" data-tab="flow" aria-controls="panelFlow" aria-selected="false" title="主力资金流入流出">
+              <span class="tab-icon" aria-hidden="true">¥</span>
+              <span class="tab-label">主力资金</span>
+            </button>
+            <button class="tab-button active" role="tab" data-tab="stocks" aria-controls="panelStocks" aria-selected="true" title="股票与 K 线">
+              <span class="tab-icon" aria-hidden="true">▤</span>
+              <span class="tab-label">股票</span>
+            </button>
+            <button class="tab-button" role="tab" data-tab="news" aria-controls="panelNews" aria-selected="false" title="新闻与政策">
+              <span class="tab-icon" aria-hidden="true">◈</span>
+              <span class="tab-label">新闻政策</span>
+            </button>
+            <button class="tab-button" role="tab" data-tab="watch" aria-controls="panelWatch" aria-selected="false" title="我的自选">
+              <span class="tab-icon" aria-hidden="true">★</span>
+              <span class="tab-label">我的自选</span>
+            </button>
+          </nav>
 
-          <section class="center-stage">
-            <div class="toolbar">
-              <div class="search-wrap" id="searchWrap">
-                <label class="search-box">
-                  <span>⌕</span>
-                  <input
-                    id="searchInput"
-                    type="search"
-                    placeholder="搜索代码 / 名称 / 拼音 / 首字母"
-                    autocomplete="off"
-                    role="combobox"
-                    aria-expanded="false"
-                    aria-controls="searchSuggestions"
-                  />
-                </label>
-                <div class="search-suggestions" id="searchSuggestions" role="listbox" hidden></div>
+          <section class="tab-stage">
+            <!-- ================= 主力资金 ================= -->
+            <div class="tab-panel" id="panelFlow" role="tabpanel" hidden>
+              <div class="panel">
+                <div class="panel-title">
+                  主力资金流向 <span class="panel-hint" id="flowTime"></span>
+                </div>
+                <div class="flow-toolbar">
+                  <div class="segment" id="flowScopeSegment">
+                    <button class="active" data-flow-scope="stock">个股</button>
+                    <button data-flow-scope="industry">行业</button>
+                  </div>
+                  <div class="segment" id="flowSideSegment">
+                    <button class="active" data-flow-side="inflow">净流入</button>
+                    <button data-flow-side="outflow">净流出</button>
+                  </div>
+                </div>
+                <div class="flow-summary" id="flowSummary"></div>
+                <div class="flow-body" id="flowBody">
+                  <div class="empty-state">加载资金流数据中</div>
+                </div>
               </div>
-              <div class="segment" id="exchangeSegment">
-                <button class="active" data-exchange="ALL">全部</button>
-                <button data-exchange="SH">沪市</button>
-                <button data-exchange="SZ">深市</button>
-                <button data-exchange="BJ">北交所</button>
+
+              <div class="panel flow-split">
+                <div>
+                  <div class="panel-title">市场结构</div>
+                  <div class="board-list" id="boardList"></div>
+                </div>
+                <div>
+                  <div class="panel-title">行业相对强弱</div>
+                  <div class="industry-list" id="industryList">
+                    <div class="empty-state">加载中</div>
+                  </div>
+                </div>
               </div>
-              <select id="sortSelect" aria-label="排序">
-                <option value="score">异动优先</option>
-                <option value="change">涨幅优先</option>
-                <option value="decline">跌幅优先</option>
-                <option value="amount">成交额优先</option>
-                <option value="turnover">换手率优先</option>
-                <option value="cap">市值优先</option>
-                <option value="code">代码排序</option>
-              </select>
             </div>
 
-            <div class="table-shell">
-              <table>
-                <thead>
-                  <tr>
-                    <th>代码</th>
-                    <th>名称</th>
-                    <th>板块</th>
-                    <th>现价</th>
-                    <th>涨跌幅</th>
-                    <th>成交额</th>
-                    <th>换手</th>
-                    <th>信号</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="stockRows"></tbody>
-              </table>
+            <!-- ================= 股票 ================= -->
+            <div class="tab-panel" id="panelStocks" role="tabpanel">
+              <div class="toolbar">
+                <div class="search-wrap" id="searchWrap">
+                  <label class="search-box">
+                    <span>⌕</span>
+                    <input
+                      id="searchInput"
+                      type="search"
+                      placeholder="搜索代码 / 名称 / 拼音 / 首字母"
+                      autocomplete="off"
+                      role="combobox"
+                      aria-expanded="false"
+                      aria-controls="searchSuggestions"
+                    />
+                  </label>
+                  <div class="search-suggestions" id="searchSuggestions" role="listbox" hidden></div>
+                </div>
+                <div class="segment" id="exchangeSegment">
+                  <button class="active" data-exchange="ALL">全部</button>
+                  <button data-exchange="SH">沪市</button>
+                  <button data-exchange="SZ">深市</button>
+                  <button data-exchange="BJ">北交所</button>
+                </div>
+                <select id="sortSelect" aria-label="排序">
+                  <option value="score">异动优先</option>
+                  <option value="change">涨幅优先</option>
+                  <option value="decline">跌幅优先</option>
+                  <option value="amount">成交额优先</option>
+                  <option value="turnover">换手率优先</option>
+                  <option value="cap">市值优先</option>
+                  <option value="code">代码排序</option>
+                </select>
+              </div>
+
+              <section class="panel chart-stage" id="chartStage" hidden>
+                <div class="chart-head">
+                  <div class="chart-identity">
+                    <div class="chart-name" id="chartName">—</div>
+                    <div class="chart-meta" id="chartMeta"></div>
+                  </div>
+                  <div class="chart-price">
+                    <div class="chart-last" id="chartLast">—</div>
+                    <div class="chart-change" id="chartChange"></div>
+                  </div>
+                  <div class="chart-controls">
+                    <div class="segment toggles" id="chartTypeSegment">
+                      <button class="active" data-chart-type="candle">蜡烛图</button>
+                      <button data-chart-type="line">线图</button>
+                    </div>
+                    <div class="segment" id="rangeSegment">
+                      <button data-range="5">5日</button>
+                      <button data-range="10">10日</button>
+                      <button data-range="15">15日</button>
+                      <button data-range="30">30日</button>
+                      <button data-range="60">60日</button>
+                      <button class="active" data-range="120">120日</button>
+                      <button data-range="250">250日</button>
+                    </div>
+                    <div class="segment toggles" id="overlaySegment">
+                      <button class="active" data-overlay="ma5">MA5</button>
+                      <button class="active" data-overlay="ma10">MA10</button>
+                      <button class="active" data-overlay="ma15">MA15</button>
+                      <button class="active" data-overlay="ma20">MA20</button>
+                      <button class="active" data-overlay="boll">布林带</button>
+                      <button class="active" data-overlay="volume">成交量</button>
+                    </div>
+                    <button class="icon-button" id="chartClose" title="关闭图表" aria-label="关闭图表">✕</button>
+                  </div>
+                </div>
+                <div class="chart-body">
+                  <div class="chart-canvas-wrap">
+                    <canvas id="priceChart" width="960" height="420"></canvas>
+                    <div class="chart-empty" id="chartEmpty" hidden>正在加载 K 线…</div>
+                  </div>
+                  <div class="chart-side">
+                    <div class="panel-title">交易计划</div>
+                    <div class="plan-block" id="planBlock"><div class="empty-state">—</div></div>
+                    <div class="panel-title">相关事件</div>
+                    <div class="event-block" id="eventBlock"><div class="empty-state">暂无相关事件</div></div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>代码</th>
+                      <th>名称</th>
+                      <th>板块</th>
+                      <th>现价</th>
+                      <th>涨跌幅</th>
+                      <th>成交额</th>
+                      <th>换手</th>
+                      <th>信号</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="stockRows"></tbody>
+                </table>
+              </div>
+              <div class="pager">
+                <span id="resultCount"></span>
+                <button id="loadMoreButton">加载更多</button>
+              </div>
             </div>
-            <div class="pager">
-              <span id="resultCount"></span>
-              <button id="loadMoreButton">加载更多</button>
+
+            <!-- ================= 新闻政策 ================= -->
+            <div class="tab-panel" id="panelNews" role="tabpanel" hidden>
+              <div class="briefing-grid">
+                <div class="panel briefing-card" id="briefingCnCard">
+                  <div class="panel-title">
+                    中国 · A 股简报 <span class="panel-hint" id="briefingTime"></span>
+                  </div>
+                  <div class="briefing-body" id="briefingBody">
+                    <div class="empty-state">加载简报中</div>
+                  </div>
+                </div>
+
+                <div class="panel briefing-card" id="briefingGlobalCard">
+                  <div class="panel-title">
+                    海外 · 全球市场简报 <span class="panel-hint" id="overseasTime"></span>
+                  </div>
+                  <div class="briefing-body" id="overseasBriefingBody">
+                    <div class="empty-state">加载简报中</div>
+                  </div>
+                  <div class="theme-chips" id="overseasThemeChips"></div>
+                </div>
+              </div>
+
+              <div class="panel">
+                <div class="panel-title">
+                  全球市场 <span class="panel-hint" id="indexCount"></span>
+                </div>
+                <div class="index-list" id="globalIndexList">
+                  <div class="empty-state">加载中</div>
+                </div>
+              </div>
+
+              <div class="panel news-panel">
+                <div class="panel-title">
+                  新闻与政策
+                  <span class="panel-hint" id="newsCount"></span>
+                </div>
+                <div class="news-toolbar">
+                  <label class="search-box">
+                    <span>⌕</span>
+                    <input
+                      id="newsSearchInput"
+                      type="search"
+                      placeholder="关键词搜索：政策 / 行业 / 公司 / 美联储…"
+                      autocomplete="off"
+                    />
+                  </label>
+                  <div class="segment" id="newsScopeSegment">
+                    <button class="active" data-news-scope="all">全部</button>
+                    <button data-news-scope="cn">中国</button>
+                    <button data-news-scope="global">海外</button>
+                  </div>
+                </div>
+                <div class="news-columns">
+                  <div class="news-column" id="newsCnColumn">
+                    <div class="news-column-title">
+                      中国 <span id="newsCnCount"></span>
+                    </div>
+                    <div class="headline-list" id="newsCnList">
+                      <div class="empty-state">加载中</div>
+                    </div>
+                  </div>
+                  <div class="news-column" id="newsGlobalColumn">
+                    <div class="news-column-title">
+                      海外 <span id="newsGlobalCount"></span>
+                    </div>
+                    <div class="headline-list" id="newsGlobalList">
+                      <div class="empty-state">加载中</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel">
+                <div class="panel-title">主题事件雷达</div>
+                <div class="theme-list" id="themeList">
+                  <div class="empty-state">加载中</div>
+                </div>
+              </div>
+
+              <div class="panel forecast-panel" id="forecastPanel">
+                <div class="empty-state">加载方向观察中</div>
+              </div>
+            </div>
+
+            <!-- ================= 我的自选 ================= -->
+            <div class="tab-panel" id="panelWatch" role="tabpanel" hidden>
+              <div class="panel">
+                <div class="panel-title">
+                  自选监控 <span class="panel-hint" id="watchCount"></span>
+                </div>
+                <div class="watchlist" id="watchlist"></div>
+              </div>
+
+              <section class="panel backtest-panel" id="backtestPanel">
+                <div class="panel-title">
+                  策略回测与表现追踪 <span class="panel-hint" id="backtestStatus"></span>
+                </div>
+                <div class="backtest-controls">
+                  <button class="ghost-button" id="backtestRun">用自选股回测</button>
+                  <label>持有 <input id="backtestHold" type="number" min="1" max="120" value="10" /> 日</label>
+                  <label>持仓 <input id="backtestTopN" type="number" min="1" max="20" value="3" /> 只</label>
+                  <label>样本 <input id="backtestDays" type="number" min="60" max="500" value="250" /> 日</label>
+                </div>
+                <div class="backtest-body" id="backtestBody">
+                  <div class="empty-state">用自选股（或全市场异动股）跑一次动量策略回测，含交易成本、T+1 与涨跌停撮合限制。</div>
+                </div>
+              </section>
             </div>
           </section>
 
@@ -105,79 +308,6 @@
               <div class="signal-list" id="signalList"></div>
             </div>
           </aside>
-        </section>
-
-        <section class="radar-band" id="radarBand">
-          <div class="panel radar-briefing">
-            <div class="panel-title">每日市场简报 <span class="panel-hint" id="briefingTime"></span></div>
-            <div class="briefing-body" id="briefingBody"><div class="empty-state">加载简报中</div></div>
-          </div>
-          <div class="panel radar-themes">
-            <div class="panel-title">主题事件雷达</div>
-            <div class="theme-list" id="themeList"><div class="empty-state">加载中</div></div>
-          </div>
-          <div class="panel radar-industries">
-            <div class="panel-title">行业相对强弱</div>
-            <div class="industry-list" id="industryList"><div class="empty-state">加载中</div></div>
-          </div>
-        </section>
-
-        <section class="panel backtest-panel" id="backtestPanel">
-          <div class="panel-title">策略回测与表现追踪 <span class="panel-hint" id="backtestStatus"></span></div>
-          <div class="backtest-controls">
-            <button class="ghost-button" id="backtestRun">用自选股回测</button>
-            <label>持有 <input id="backtestHold" type="number" min="1" max="120" value="10" /> 日</label>
-            <label>持仓 <input id="backtestTopN" type="number" min="1" max="20" value="3" /> 只</label>
-            <label>样本 <input id="backtestDays" type="number" min="60" max="500" value="250" /> 日</label>
-          </div>
-          <div class="backtest-body" id="backtestBody">
-            <div class="empty-state">用自选股（或全市场异动股）跑一次动量策略回测，含交易成本、T+1 与涨跌停撮合限制。</div>
-          </div>
-        </section>
-
-        <section class="chart-stage panel" id="chartStage" hidden>
-          <div class="chart-head">
-            <div class="chart-identity">
-              <div class="chart-name" id="chartName">—</div>
-              <div class="chart-meta" id="chartMeta"></div>
-            </div>
-            <div class="chart-price">
-              <div class="chart-last" id="chartLast">—</div>
-              <div class="chart-change" id="chartChange"></div>
-            </div>
-            <div class="chart-controls">
-              <div class="segment" id="rangeSegment">
-                <button data-range="5">5日</button>
-                <button data-range="10">10日</button>
-                <button data-range="15">15日</button>
-                <button data-range="30">30日</button>
-                <button data-range="60">60日</button>
-                <button class="active" data-range="120">120日</button>
-                <button data-range="250">250日</button>
-              </div>
-              <div class="segment toggles" id="overlaySegment">
-                <button class="active" data-overlay="ma5">MA5</button>
-                <button class="active" data-overlay="ma10">MA10</button>
-                <button class="active" data-overlay="ma15">MA15</button>
-                <button class="active" data-overlay="ma20">MA20</button>
-                <button class="active" data-overlay="boll">布林带</button>
-                <button class="active" data-overlay="volume">成交量</button>
-              </div>
-              <button class="icon-button" id="chartClose" title="关闭图表" aria-label="关闭图表">✕</button>
-            </div>
-          </div>
-          <div class="chart-body">
-            <div class="chart-canvas-wrap">
-              <canvas id="priceChart" width="960" height="420"></canvas>
-              <div class="chart-empty" id="chartEmpty" hidden>正在加载 K 线…</div>
-            </div>
-            <div class="chart-side">
-              <div class="panel-title">交易计划</div>
-              <div class="plan-block" id="planBlock"><div class="empty-state">—</div></div>
-              <div class="panel-title">相关事件</div>
-              <div class="event-block" id="eventBlock"><div class="empty-state">暂无相关事件</div></div>
-            </div>
-          </div>
         </section>
       </main>
 

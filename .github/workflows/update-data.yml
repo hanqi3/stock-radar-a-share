@@ -39,12 +39,16 @@ jobs:
         continue-on-error: true
         run: npm run news
 
+      - name: Sync money flow
+        continue-on-error: true
+        run: npm run flow
+
       - name: API smoke test
         run: npm run check:api
 
       - name: Commit updated data
         run: |
-          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json"
+          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/flow.json"
           TRACKED=""
           for f in $FILES; do
             if [ -f "$f" ]; then TRACKED="$TRACKED $f"; fi

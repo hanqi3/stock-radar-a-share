@@ -1,6 +1,7 @@
 import { drawPriceChart } from "./chart.js";
 
 const state = {
+  tab: localStorage.getItem("stockradar-tab") || "stocks",
   query: "",
   exchange: "ALL",
   board: "ALL",
@@ -19,12 +20,28 @@ const state = {
   chart: {
     code: null,
     range: Number(localStorage.getItem("stockradar-chart-range") || 120),
+    type: localStorage.getItem("stockradar-chart-type") || "candle",
     overlays: new Set(
       (localStorage.getItem("stockradar-chart-overlays") || "ma5,ma10,ma15,ma20,boll,volume").split(",")
     ),
     payload: null,
     token: 0,
     hover: null
+  },
+  news: {
+    query: "",
+    scope: "all",
+    items: [],
+    index: [],
+    overseas: null,
+    loaded: false,
+    loading: false
+  },
+  flow: {
+    scope: localStorage.getItem("stockradar-flow-scope") || "stock",
+    side: localStorage.getItem("stockradar-flow-side") || "inflow",
+    data: null,
+    token: 0
   }
 };
 
@@ -32,6 +49,7 @@ const els = {
   overview: document.querySelector("#overview"),
   boardList: document.querySelector("#boardList"),
   watchlist: document.querySelector("#watchlist"),
+  watchCount: document.querySelector("#watchCount"),
   stockRows: document.querySelector("#stockRows"),
   resultCount: document.querySelector("#resultCount"),
   loadMoreButton: document.querySelector("#loadMoreButton"),
@@ -57,14 +75,37 @@ const els = {
   eventBlock: document.querySelector("#eventBlock"),
   rangeSegment: document.querySelector("#rangeSegment"),
   overlaySegment: document.querySelector("#overlaySegment"),
+  chartTypeSegment: document.querySelector("#chartTypeSegment"),
   chartClose: document.querySelector("#chartClose"),
   briefingTime: document.querySelector("#briefingTime"),
   briefingBody: document.querySelector("#briefingBody"),
+  overseasTime: document.querySelector("#overseasTime"),
+  overseasBriefingBody: document.querySelector("#overseasBriefingBody"),
+  overseasThemeChips: document.querySelector("#overseasThemeChips"),
+  indexCount: document.querySelector("#indexCount"),
   themeList: document.querySelector("#themeList"),
   industryList: document.querySelector("#industryList"),
   backtestRun: document.querySelector("#backtestRun"),
   backtestBody: document.querySelector("#backtestBody"),
-  backtestStatus: document.querySelector("#backtestStatus")
+  backtestStatus: document.querySelector("#backtestStatus"),
+  tabRail: document.querySelector("#tabRail"),
+  panelFlow: document.querySelector("#panelFlow"),
+  panelStocks: document.querySelector("#panelStocks"),
+  panelNews: document.querySelector("#panelNews"),
+  panelWatch: document.querySelector("#panelWatch"),
+  flowBody: document.querySelector("#flowBody"),
+  flowSummary: document.querySelector("#flowSummary"),
+  flowTime: document.querySelector("#flowTime"),
+  flowScopeSegment: document.querySelector("#flowScopeSegment"),
+  flowSideSegment: document.querySelector("#flowSideSegment"),
+  globalIndexList: document.querySelector("#globalIndexList"),
+  newsSearchInput: document.querySelector("#newsSearchInput"),
+  newsScopeSegment: document.querySelector("#newsScopeSegment"),
+  newsCnList: document.querySelector("#newsCnList"),
+  newsGlobalList: document.querySelector("#newsGlobalList"),
+  newsCnCount: document.querySelector("#newsCnCount"),
+  newsGlobalCount: document.querySelector("#newsGlobalCount"),
+  newsCount: document.querySelector("#newsCount")
 };
 
 const moneyFormatter = new Intl.NumberFormat("zh-CN", {
@@ -325,10 +366,36 @@ function renderSignals(data) {
 
 async function selectStock(code) {
   state.selectedCode = code;
+  showTab("stocks");
   renderRows();
   loadChart(code);
   const stock = await api(`/api/stocks/${code}`);
   renderDetail(stock);
+}
+
+// --- tab rail ---------------------------------------------------------------
+
+const TAB_IDS = { flow: "panelFlow", stocks: "panelStocks", news: "panelNews", watch: "panelWatch" };
+
+function showTab(name) {
+  if (!TAB_IDS[name]) name = "stocks";
+  state.tab = name;
+  localStorage.setItem("stockradar-tab", name);
+  for (const [key, id] of Object.entries(TAB_IDS)) {
+    const panel = document.getElementById(id);
+    if (panel) panel.hidden = key !== name;
+    const button = els.tabRail?.querySelector(`[data-tab="${key}"]`);
+    if (button) {
+      button.classList.toggle("active", key === name);
+      button.setAttribute("aria-selected", key === name ? "true" : "false");
+    }
+  }
+  if (name === "flow" && !state.flow.data) reloadFlow();
+  if (name === "news" && !state.news.loaded) reloadNews();
+  if (name === "watch") refreshWatchlist();
+  if (name === "stocks") {
+    requestAnimationFrame(() => paintChart());
+  }
 }
 
 // --- TradingView-style chart stage ------------------------------------------
@@ -433,7 +500,8 @@ function paintChart() {
   const result = drawPriceChart(els.priceChart, state.chart.payload, {
     range: state.chart.range,
     overlays: state.chart.overlays,
-    hover: state.chart.hover
+    hover: state.chart.hover,
+    type: state.chart.type
   });
   state.chart.geometry = result
     ? { slot: result.slot, offsetLeft: result.offsetLeft, count: result.count }
@@ -807,6 +875,323 @@ async function reloadRadar() {
   }
 }
 
+// --- capital flow -----------------------------------------------------------
+
+async function reloadFlow() {
+  if (!els.flowBody) return;
+  const token = (state.flow.token += 1);
+  els.flowBody.innerHTML = `<div class="empty-state">加载资金流数据中</div>`;
+  try {
+    const data = await api(
+      `/api/flow?scope=${encodeURIComponent(state.flow.scope)}&side=${encodeURIComponent(state.flow.side)}&limit=60`
+    );
+    if (token !== state.flow.token) return;
+    state.flow.data = data;
+    renderFlow(data);
+  } catch (error) {
+    if (token !== state.flow.token) return;
+    state.flow.data = null;
+    if (els.flowSummary) els.flowSummary.innerHTML = "";
+    els.flowBody.innerHTML = `<div class="empty-state">资金流数据暂不可用：${escapeHtml(error.message)}</div>`;
+  }
+}
+
+function signedMoney(value) {
+  if (!Number.isFinite(value)) return "暂无";
+  const sign = value > 0 ? "+" : value < 0 ? "-" : "";
+  return `${sign}${money(Math.abs(value))}`;
+}
+
+function renderFlowSummary(data) {
+  if (!els.flowSummary) return;
+  const market = data?.market;
+  if (!market) {
+    els.flowSummary.innerHTML = "";
+    return;
+  }
+  const total = (market.inflows || 0) + (market.outflows || 0);
+  const inflowPct = total ? Math.round(((market.inflows || 0) / total) * 100) : 0;
+  els.flowSummary.innerHTML = `
+    <div class="flow-stat">
+      <span class="flow-stat-label">全市场主力净额</span>
+      <span class="flow-stat-value ${toneClass(market.mainNet)}">${signedMoney(market.mainNet)}</span>
+    </div>
+    <div class="flow-stat">
+      <span class="flow-stat-label">主力净流入 / 净流出</span>
+      <span class="flow-stat-value"><b class="positive">${market.inflows ?? 0}</b> / <b class="negative">${market.outflows ?? 0}</b> 家</span>
+    </div>
+    <div class="flow-stat">
+      <span class="flow-stat-label">流入占比</span>
+      <span class="flow-stat-value">${inflowPct}%</span>
+    </div>
+    <div class="flow-stat">
+      <span class="flow-stat-label">口径</span>
+      <span class="flow-stat-value flow-stat-note">${escapeHtml(data.definition || "主力 = 超大单 + 大单")} · ${escapeHtml(data.date || "—")}</span>
+    </div>`;
+}
+
+function renderFlow(data) {
+  if (!els.flowBody) return;
+  const items = data?.items || [];
+  if (els.flowTime) {
+    const stamp = data?.date || (data?.generatedAt ? String(data.generatedAt).slice(0, 10) : "");
+    els.flowTime.textContent = stamp ? `${stamp}${data?.sourceLabel ? ` · ${data.sourceLabel}` : ""}` : "";
+  }
+  renderFlowSummary(data);
+  if (!items.length) {
+    els.flowBody.innerHTML = `<div class="empty-state">暂无资金流数据</div>`;
+    return;
+  }
+
+  const industry = data.scope === "industry";
+  const columnLabel = industry ? "行业主力净额" : "个股主力净额";
+  const max = Math.max(...items.map((item) => Math.abs(item.mainNet || 0)), 1);
+  const rows = items
+    .map((item, index) => {
+      const net = item.mainNet ?? 0;
+      const width = Math.max(Math.round((Math.abs(net) / max) * 100), 2);
+      const title = industry
+        ? escapeHtml(item.name || "—")
+        : `${escapeHtml(item.name || "—")} <span class="flow-code">${escapeHtml(item.code || "")}</span>`;
+      const sub = industry
+        ? `${item.count ?? 0} 只成分 · 平均涨跌 ${Number.isFinite(item.avgChangePct) ? signed(item.avgChangePct, "%") : "—"} · 成交 ${money(item.amount)}`
+        : `${escapeHtml(item.industry || "—")} · ${Number.isFinite(item.changePct) ? signed(item.changePct, "%") : "—"} · 成交 ${money(item.amount)}`;
+      const trend = industry
+        ? `<div class="flow-side-value">${money(item.amount)}</div><div class="flow-side-label">成交额合计</div>`
+        : `<div class="flow-side-value ${toneClass(item.main5)}">${signedMoney(item.main5)}</div><div class="flow-side-label">近 ${item.sessions || data.days || 5} 日</div>`;
+      const detail = industry
+        ? `${item.name}：主力净额 ${signedMoney(net)}（${item.count ?? 0} 只成分）`
+        : `${item.name} ${item.code}\n主力净额 ${signedMoney(net)}（占比 ${Number.isFinite(item.mainRatio) ? signed(item.mainRatio, "%") : "—"}）\n超大单 ${signedMoney(item.superNet)} · 大单 ${signedMoney(item.bigNet)}\n中单 ${signedMoney(item.midNet)} · 小单 ${signedMoney(item.smallNet)}\n成交额 ${money(item.amount)}`;
+      return `
+        <div class="flow-row" ${item.code ? `data-code="${escapeHtml(item.code)}"` : ""} title="${escapeHtml(detail)}">
+          <div class="flow-rank">${index + 1}</div>
+          <div class="flow-main">
+            <div class="flow-name">${title}</div>
+            <div class="flow-sub">${sub}</div>
+          </div>
+          <div class="flow-side">
+            ${trend}
+          </div>
+          <div class="flow-net ${toneClass(net)}">
+            <div class="flow-net-value">${signedMoney(net)}</div>
+            <div class="flow-net-ratio">${Number.isFinite(item.mainRatio) ? `占比 ${signed(item.mainRatio, "%")}` : columnLabel}</div>
+          </div>
+          <div class="flow-bar"><i class="${net >= 0 ? "up" : "down"}" style="width:${width}%"></i></div>
+        </div>`;
+    })
+    .join("");
+
+  els.flowBody.innerHTML = `
+    <div class="flow-head">
+      <div class="flow-rank">#</div>
+      <div class="flow-main">${industry ? "行业" : "个股 / 行业 / 成交额"}</div>
+      <div class="flow-side">${industry ? "成交额" : `近 ${data.days || 5} 日`}</div>
+      <div class="flow-net">${columnLabel}</div>
+      <div class="flow-bar-head"></div>
+    </div>
+    ${rows}`;
+}
+
+// --- news + policy ----------------------------------------------------------
+
+async function reloadNews() {
+  state.news.loading = true;
+  try {
+    const [data, overseas] = await Promise.all([
+      api("/api/news?limit=900"),
+      api("/api/briefing/overseas").catch(() => null)
+    ]);
+    state.news.items = data.items || [];
+    state.news.index = data.indices || [];
+    state.news.overseas = overseas;
+    state.news.loaded = true;
+  } catch {
+    state.news.items = [];
+    state.news.index = [];
+    state.news.overseas = null;
+    state.news.loaded = true;
+  } finally {
+    state.news.loading = false;
+  }
+  renderGlobalIndices();
+  renderOverseasBriefing();
+  renderNews();
+}
+
+// 35 instruments across five desks; the group heading keeps the board legible.
+function renderGlobalIndices() {
+  if (!els.globalIndexList) return;
+  const list = state.news.index || [];
+  if (!list.length) {
+    els.globalIndexList.innerHTML = `<div class="empty-state">暂无全球指数数据</div>`;
+    if (els.indexCount) els.indexCount.textContent = "";
+    return;
+  }
+  const groups = new Map();
+  for (const item of list) {
+    const key = item.group || "其他";
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(item);
+  }
+  els.globalIndexList.innerHTML = [...groups.entries()]
+    .map(([group, items]) => {
+      const cells = items
+        .map(
+          (item) => `
+          <div class="index-cell">
+            <div class="index-name">${escapeHtml(item.name || item.symbol || "")}</div>
+            <div class="index-value">${Number.isFinite(item.price) ? item.price.toFixed(indexDigits(item.price, item.digits)) : "—"}</div>
+            <div class="index-change ${toneClass(item.changePct)}">${signed(item.changePct, "%")}</div>
+          </div>`
+        )
+        .join("");
+      return `<div class="index-group"><div class="index-group-title">${escapeHtml(group)}</div><div class="index-group-body">${cells}</div></div>`;
+    })
+    .join("");
+  if (els.indexCount) els.indexCount.textContent = `${list.length} 个标的 · 新浪行情`;
+}
+
+function indexDigits(price, digits) {
+  if (Number.isInteger(digits)) return digits;
+  return Math.abs(Number(price) || 0) >= 100 ? 2 : 4;
+}
+
+function renderOverseasBriefing() {
+  const data = state.news.overseas;
+  if (els.overseasTime) {
+    els.overseasTime.textContent = data?.generatedAt ? timeLabel(data.generatedAt) : "";
+  }
+  if (els.overseasBriefingBody) {
+    const lines = data?.narrative || [];
+    const headlines = (data?.headlines || [])
+      .slice(0, 5)
+      .map(
+        (item) => `
+        <div class="headline" data-sentiment="${escapeHtml(item.sentiment || "neutral")}">
+          <div class="headline-title">${escapeHtml(item.title)}</div>
+          <div class="headline-meta">${escapeHtml(item.source || "")} · ${timeLabel(item.publishedAt)}</div>
+        </div>`
+      )
+      .join("");
+    els.overseasBriefingBody.innerHTML = lines.length
+      ? `<ul class="briefing-lines">${lines.map((text) => `<li>${escapeHtml(text)}</li>`).join("")}</ul>
+         <div class="briefing-subtitle">海外要闻</div>
+         <div class="headline-list">${headlines || '<div class="empty-state">暂无海外新闻</div>'}</div>`
+      : `<div class="empty-state">暂无海外数据</div>`;
+  }
+  if (els.overseasThemeChips) {
+    const themes = (data?.themes || []).slice(0, 8);
+    els.overseasThemeChips.innerHTML = themes.length
+      ? themes
+          .map((entry) => `<span class="chip chip-overseas">${escapeHtml(entry.theme)} ${entry.count}</span>`)
+          .join("")
+      : "";
+  }
+}
+
+function regionOf(item) {
+  return item.region === "global" ? "global" : "cn";
+}
+
+function newsMatches(item, query) {
+  if (!query) return true;
+  const haystack = `${item.title || ""} ${item.summary || ""} ${item.source || ""} ${(item.themes || []).join(" ")} ${(item.codes || []).join(" ")}`;
+  return haystack.toLowerCase().includes(query);
+}
+
+function highlightKeyword(text, query) {
+  const safe = escapeHtml(text || "");
+  if (!query) return safe;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return safe.replace(new RegExp(escaped, "gi"), (match) => `<mark class="keyword">${match}</mark>`);
+}
+
+function newsCard(item, query) {
+  const themes = (item.themes || []).slice(0, 3).map((theme) => `<span class="chip">${escapeHtml(theme)}</span>`).join("");
+  return `
+    <div class="headline" data-sentiment="${escapeHtml(item.sentiment || "neutral")}">
+      <div class="headline-title">
+        ${item.url
+          ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${highlightKeyword(item.title, query)}</a>`
+          : highlightKeyword(item.title, query)}
+      </div>
+      <div class="headline-meta">
+        ${escapeHtml(item.category || "资讯")} · ${escapeHtml(item.source || "")} · ${timeLabel(item.publishedAt)}
+      </div>
+      ${themes ? `<div class="chip-row">${themes}</div>` : ""}
+    </div>`;
+}
+
+// Corporate filings arrive in bursts: one issuer can file eleven documents in a
+// minute and bury the actual news. Two guards keep a column readable — at most
+// two items per issuer, and filings limited to roughly a third of the column.
+// Recency alone still puts a wall of 16:00 filings above the day's reporting,
+// so the two streams are interleaved two-for-one instead of concatenated.
+const FILING_SOURCES = new Set(["东方财富公告", "巨潮资讯"]);
+const FILING_CATEGORIES = new Set(["公告", "财报"]);
+const MAX_PER_ISSUER = 2;
+const FILING_SHARE = 0.34;
+
+function isFiling(item) {
+  return item.kind === "announcement" || FILING_SOURCES.has(item.source) || FILING_CATEGORIES.has(item.category);
+}
+
+function composeColumn(items, limit) {
+  const perIssuer = new Map();
+  const filings = [];
+  const reporting = [];
+  const filingQuota = Math.max(8, Math.round(limit * FILING_SHARE));
+
+  for (const item of items) {
+    const match = String(item.title || "").match(/^([^:：]{2,12})[:：]/);
+    if (match) {
+      const seen = perIssuer.get(match[1]) ?? 0;
+      if (seen >= MAX_PER_ISSUER) continue;
+      perIssuer.set(match[1], seen + 1);
+    }
+    if (isFiling(item)) {
+      if (filings.length < filingQuota) filings.push(item);
+    } else {
+      reporting.push(item);
+    }
+  }
+
+  const out = [];
+  let fi = 0;
+  let ri = 0;
+  while (out.length < limit && (ri < reporting.length || fi < filings.length)) {
+    for (let n = 0; n < 2 && ri < reporting.length; n += 1) out.push(reporting[ri++]);
+    if (fi < filings.length) out.push(filings[fi++]);
+  }
+  return out.slice(0, limit);
+}
+
+function renderNews() {
+  if (!els.newsCnList || !els.newsGlobalList) return;
+  const query = state.news.query.trim().toLowerCase();
+  const scope = state.news.scope;
+  const all = state.news.items || [];
+  const matched = all.filter((item) => newsMatches(item, query));
+  const cn = matched.filter((item) => regionOf(item) === "cn");
+  const global = matched.filter((item) => regionOf(item) === "global");
+
+  const cnShown = scope === "global" ? [] : composeColumn(cn, 80);
+  const globalShown = scope === "cn" ? [] : composeColumn(global, 80);
+
+  els.newsCnList.innerHTML = cnShown.length
+    ? cnShown.map((item) => newsCard(item, query)).join("")
+    : `<div class="empty-state">${scope === "global" ? "已筛选到海外视图" : "没有匹配的中国资讯"}</div>`;
+  els.newsGlobalList.innerHTML = globalShown.length
+    ? globalShown.map((item) => newsCard(item, query)).join("")
+    : `<div class="empty-state">${scope === "cn" ? "已筛选到中国视图" : "没有匹配的海外资讯"}</div>`;
+
+  if (els.newsCnCount) els.newsCnCount.textContent = `${cn.length} 条`;
+  if (els.newsGlobalCount) els.newsGlobalCount.textContent = `${global.length} 条`;
+  if (els.newsCount) {
+    els.newsCount.textContent = query ? `匹配 ${matched.length} / ${all.length} 条` : `共 ${all.length} 条`;
+  }
+}
+
 async function refreshWatchlist() {
   if (!els.watchlist) return;
   const codes = [...state.watchlist];
@@ -827,6 +1212,7 @@ async function refreshWatchlist() {
 function renderWatchlist() {
   if (!els.watchlist) return;
   const items = state.watchItems || [];
+  if (els.watchCount) els.watchCount.textContent = state.watchlist.size ? `${state.watchlist.size} 只` : "";
   if (!items.length && !state.watchlist.size) {
     els.watchlist.innerHTML = `<div class="empty-state">暂无自选</div>`;
     return;
@@ -1174,6 +1560,18 @@ function bindEvents() {
     if (state.selectedCode) selectStock(state.selectedCode);
   });
 
+  // --- chart type controls ---
+  els.chartTypeSegment?.querySelectorAll("button").forEach((button) => {
+    button.classList.toggle("active", button.dataset.chartType === state.chart.type);
+    button.addEventListener("click", () => {
+      els.chartTypeSegment.querySelectorAll("button").forEach((item) => item.classList.remove("active"));
+      button.classList.add("active");
+      state.chart.type = button.dataset.chartType;
+      localStorage.setItem("stockradar-chart-type", state.chart.type);
+      paintChart();
+    });
+  });
+
   // --- chart stage controls ---
   els.rangeSegment?.querySelectorAll("button").forEach((button) => {
     button.classList.toggle("active", Number(button.dataset.range) === state.chart.range);
@@ -1225,13 +1623,70 @@ function bindEvents() {
   });
 
   window.addEventListener("resize", debounce(() => paintChart(), 160));
+
+  // --- vertical tab rail ---
+  els.tabRail?.querySelectorAll("[data-tab]").forEach((button) => {
+    button.addEventListener("click", () => showTab(button.dataset.tab));
+  });
+
+  // --- capital flow controls ---
+  const bindSegment = (segment, attribute, onChange) => {
+    segment?.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => {
+        segment.querySelectorAll("button").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        onChange(button.dataset[attribute]);
+      });
+    });
+  };
+
+  bindSegment(els.flowScopeSegment, "flowScope", (value) => {
+    state.flow.scope = value;
+    localStorage.setItem("stockradar-flow-scope", value);
+    state.flow.data = null;
+    reloadFlow();
+  });
+
+  bindSegment(els.flowSideSegment, "flowSide", (value) => {
+    state.flow.side = value;
+    localStorage.setItem("stockradar-flow-side", value);
+    state.flow.data = null;
+    reloadFlow();
+  });
+
+  els.flowBody?.addEventListener("click", (event) => {
+    const row = event.target.closest("[data-code]");
+    if (row) selectStock(row.dataset.code);
+  });
+
+  // --- news + keyword search ---
+  bindSegment(els.newsScopeSegment, "newsScope", (value) => {
+    state.news.scope = value;
+    renderNews();
+  });
+
+  const runNewsSearch = debounce((value) => {
+    state.news.query = value;
+    renderNews();
+  }, 160);
+
+  els.newsSearchInput?.addEventListener("input", (event) => runNewsSearch(event.target.value));
+  els.newsSearchInput?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      els.newsSearchInput.value = "";
+      runNewsSearch("");
+    }
+  });
 }
 
 async function init() {
   els.dataStatus.textContent = "加载市场数据中";
   applyTheme(state.theme);
+  showTab(state.tab || "stocks");
   await Promise.all([reloadOverview(), reloadForecast(), reloadSignals(), reloadStocks(), reloadRadar()]);
   refreshWatchlist();
+  if (state.tab === "flow") reloadFlow();
+  if (state.tab === "news") reloadNews();
   if (!state.selectedCode && state.rows[0]) {
     await selectStock(state.rows[0].code);
   }

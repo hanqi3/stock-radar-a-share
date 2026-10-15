@@ -10,6 +10,7 @@ import { computeIndicators } from "./lib/indicators.js";
 import { buildEventImpacts, classifyEvent, THEME_KEYWORDS } from "./lib/events.js";
 import { createHistoryCache } from "./lib/history-cache.js";
 import { runBacktest, summarize, walkForwardValidation } from "./lib/backtest.js";
+import { classifyRegion } from "./lib/news-region.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 5173);
@@ -22,6 +23,8 @@ const META_FILE = path.join(DATA_DIR, "meta.json");
 const INDICATORS_FILE = path.join(DATA_DIR, "indicators.json");
 const EVENTS_FILE = path.join(DATA_DIR, "events.json");
 const SECTORS_FILE = path.join(DATA_DIR, "sectors.json");
+const INDICES_FILE = path.join(DATA_DIR, "indices.json");
+const FLOW_FILE = path.join(DATA_DIR, "flow.json");
 const PINYIN_INDEX_FILE = path.join(__dirname, "lib", "pinyin-index.json");
 const HISTORY_CACHE_DIR = process.env.HISTORY_CACHE_DIR || path.join(__dirname, ".cache", "history");
 const historyCache = createHistoryCache(HISTORY_CACHE_DIR, { days: 250 });
@@ -121,6 +124,38 @@ async function loadEvents() {
   } catch {
     return [];
   }
+}
+
+async function loadIndices() {
+  try {
+    const payload = await readJson(INDICES_FILE);
+    if (Array.isArray(payload)) return payload;
+    if (payload && Array.isArray(payload.items)) return payload.items;
+  } catch {
+    /* indices.json is optional until the nightly news sync has run once */
+  }
+  return [];
+}
+
+/**
+ * Capital-flow snapshot from scripts/sync-flow.js. It is ~1 MB, so it is read
+ * once per 15 s instead of once per request.
+ */
+const flowCache = { payload: null, loadedAt: 0 };
+
+async function loadFlow() {
+  if (flowCache.payload && Date.now() - flowCache.loadedAt < 15_000) return flowCache.payload;
+  try {
+    const payload = await readJson(FLOW_FILE);
+    if (payload && Array.isArray(payload.stocks)) {
+      flowCache.payload = payload;
+      flowCache.loadedAt = Date.now();
+      return payload;
+    }
+  } catch {
+    /* flow.json is optional until the nightly flow sync has run once */
+  }
+  return { generatedAt: null, date: null, stocks: [], industries: [], market: null };
 }
 
 async function loadSectors() {
@@ -1221,6 +1256,55 @@ async function runBacktestEndpoint(params, stocks) {
   };
 }
 
+/**
+ * The "新闻/政策" tab feed: every collected event, classified once, tagged with
+ * a region so the UI can render the China and overseas columns side by side.
+ */
+function buildNewsFeed(events, indices, { limit = 400, q = "" } = {}) {
+  const classified = [];
+  for (const item of events) {
+    if (!item || !item.title) continue;
+    const analysis = classifyEvent(item);
+    const themes = (analysis.themes || []).map((entry) => entry.theme);
+    const haystack = `${item.title} ${item.summary ?? ""} ${themes.join(" ")} ${
+      Array.isArray(item.codes) ? item.codes.join(" ") : ""
+    }`.toLowerCase();
+    if (q && !haystack.includes(q)) continue;
+    classified.push({
+      id: item.id ?? null,
+      kind: item.kind ?? null,
+      title: item.title,
+      summary: item.summary ?? null,
+      url: item.url ?? null,
+      source: item.source ?? null,
+      publishedAt: item.publishedAt ?? null,
+      category: analysis.category,
+      sentiment: analysis.sentiment,
+      magnitude: analysis.magnitude,
+      themes,
+      policy: analysis.policy ?? null,
+      codes: Array.isArray(item.codes) ? item.codes : [],
+      region: classifyRegion(item)
+    });
+  }
+
+  classified.sort((a, b) => String(b.publishedAt ?? "").localeCompare(String(a.publishedAt ?? "")));
+  const items = classified.slice(0, limit);
+  const counts = { cn: 0, global: 0 };
+  for (const item of classified) counts[item.region] += 1;
+
+  return {
+    generatedAt: new Date().toISOString(),
+    count: items.length,
+    total: classified.length,
+    limit,
+    query: q,
+    counts,
+    indices: indices || [],
+    items
+  };
+}
+
 function buildBriefing(stocks, meta, events, now = new Date()) {
   const overview = buildOverview(stocks, meta);
   const forecast = buildForecast(stocks, meta);
@@ -1247,11 +1331,30 @@ function buildBriefing(stocks, meta, events, now = new Date()) {
 
   const timestamp = now.toISOString();
   const medianChangePct = round2(median(priced.map((stock) => stock.changePct)));
+  const topSectors = sectors.slice(0, 3);
+  const weakSectors = sectors.slice(-3).reverse();
+  const describeSectors = (list) => list.map((s) => `${s.name}(${s.avgChangePct}%)`).join("、");
+  // "领涨" only makes sense when the leader is actually up. On a broad down day the
+  // best sector is merely the most resilient one, and calling it 领涨 is misleading.
+  const sectorLines = [];
+  if (topSectors.length) {
+    sectorLines.push(
+      topSectors[0].avgChangePct > 0
+        ? `领涨板块：${describeSectors(topSectors)}。`
+        : `抗跌板块（全市场普跌，无一板块收红）：${describeSectors(topSectors)}。`
+    );
+  }
+  if (weakSectors.length) {
+    sectorLines.push(
+      weakSectors[0].avgChangePct < 0
+        ? `领跌板块：${describeSectors(weakSectors)}。`
+        : `相对偏弱板块：${describeSectors(weakSectors)}。`
+    );
+  }
   const lines = [
     `${timestamp.slice(0, 10)} 市场简报：可交易 ${overview.tradable} 只，上涨 ${overview.advancers} 家 / 下跌 ${overview.decliners} 家 / 平盘 ${overview.flat} 家。`,
     `涨停 ${limitUps.length} 家、跌停 ${limitDowns.length} 家；中位涨跌幅 ${medianChangePct}%。`,
-    `领涨板块：${sectors.slice(0, 3).map((s) => `${s.name}(${s.avgChangePct}%)`).join("、")}。`,
-    `领跌板块：${sectors.slice(-3).map((s) => `${s.name}(${s.avgChangePct}%)`).join("、")}。`,
+    ...sectorLines,
     forecast.summary ? `明日方向：${forecast.summary}` : null,
     view.themeImpacts.length ? `事件主题：${view.themeImpacts.slice(0, 3).map((t) => t.theme).join("、")}。` : null
   ].filter(Boolean);
@@ -1279,6 +1382,79 @@ function buildBriefing(stocks, meta, events, now = new Date()) {
       themes: entry.themes
     })),
     narrative: lines
+  };
+}
+
+const OVERSEAS_GROUPS = ["美洲", "美股龙头", "亚太欧洲", "外汇", "商品"];
+
+function formatIndexQuote(item) {
+  if (!Number.isFinite(item?.price)) return null;
+  const pct = Number.isFinite(item.changePct) ? `（${item.changePct > 0 ? "+" : ""}${item.changePct}%）` : "";
+  return `${item.name} ${item.price}${pct}`;
+}
+
+// The 海外 board needs its own narrative: the A-share briefing says nothing about
+// New York, Frankfurt or the dollar. All 35 quotes ride on a single Sina batch.
+function buildGlobalBriefing(indices, events, now = new Date()) {
+  const timestamp = now.toISOString();
+  const grouped = new Map();
+  for (const item of indices) {
+    if (!grouped.has(item.group)) grouped.set(item.group, []);
+    grouped.get(item.group).push(item);
+  }
+  const pick = (group, symbols, limit) => {
+    const pool = grouped.get(group) ?? [];
+    const chosen = symbols ? pool.filter((item) => symbols.includes(item.symbol)) : limit ? pool.slice(0, limit) : pool;
+    return chosen.map(formatIndexQuote).filter(Boolean);
+  };
+  const line = (label, quotes) => (quotes.length ? `${label}：${quotes.join("、")}。` : null);
+
+  const overseas = events.filter((entry) => classifyRegion(entry) === "global");
+  overseas.sort((a, b) => new Date(b.publishedAt ?? 0) - new Date(a.publishedAt ?? 0));
+
+  const themeCounts = new Map();
+  const classified = new Map();
+  for (const entry of overseas) {
+    const result = classifyEvent(entry);
+    classified.set(entry, result);
+    for (const theme of result.themes ?? []) {
+      const name = theme.theme ?? theme;
+      themeCounts.set(name, (themeCounts.get(name) ?? 0) + 1);
+    }
+  }
+  const themes = [...themeCounts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([theme, count]) => ({ theme, count }));
+
+  const narrative = [
+    line("美股三大指数", pick("美洲", ["gb_dji", "gb_inx", "gb_ixic"])),
+    line("科技与半导体", pick("美洲", ["gb_ndx", "gb_sox"])),
+    line("美股龙头", pick("美股龙头", null, 4)),
+    line("亚太与欧洲", pick("亚太欧洲", null, 4)),
+    line("外汇", pick("外汇", null, 5)),
+    line("大宗商品", pick("商品", null, 6)),
+    themes.length ? `海外事件主题：${themes.slice(0, 4).map((entry) => entry.theme).join("、")}。` : null
+  ].filter(Boolean);
+
+  return {
+    generatedAt: timestamp,
+    count: indices.length,
+    groups: OVERSEAS_GROUPS.map((group) => ({ group, items: grouped.get(group) ?? [] })).filter((entry) => entry.items.length),
+    themes,
+    newsCount: overseas.length,
+    headlines: overseas.slice(0, 14).map((entry) => {
+      const result = classified.get(entry) ?? classifyEvent(entry);
+      return {
+        title: entry.title,
+        source: entry.source ?? null,
+        publishedAt: entry.publishedAt ?? null,
+        category: result.category,
+        sentiment: result.sentiment,
+        themes: (result.themes || []).map((theme) => theme.theme ?? theme)
+      };
+    }),
+    narrative
   };
 }
 
@@ -1340,6 +1516,96 @@ async function handleApi(req, res, pathname, params) {
     });
   }
 
+  if (pathname === "/api/indices") {
+    return json(res, 200, { items: await loadIndices() });
+  }
+
+  if (pathname === "/api/news") {
+    const limit = parsePositiveInt(params.get("limit"), 400, 2000);
+    const q = normalizeText(params.get("q")).toLowerCase();
+    const indices = await loadIndices();
+    return json(res, 200, { ...buildNewsFeed(events, indices, { limit, q }), meta });
+  }
+
+  if (pathname === "/api/flow") {
+    // `scope` accepts 个股/行业 in either spelling (stock|stocks, industry|industries).
+    const scope = String(params.get("scope") || "").toLowerCase().startsWith("ind") ? "industry" : "stock";
+    const side = params.get("side") === "outflow" ? "outflow" : "inflow";
+    const limit = parsePositiveInt(params.get("limit"), 60, 500);
+    const q = normalizeText(params.get("q"));
+    const flow = await loadFlow();
+    const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
+    const head = {
+      generatedAt: flow.generatedAt ?? null,
+      date: flow.date ?? null,
+      sessions: flow.sessions ?? null,
+      days: flow.days ?? null,
+      source: flow.source ?? null,
+      sourceLabel: flow.sourceLabel ?? null,
+      definition: flow.definition ?? null,
+      note: flow.note ?? null,
+      market: flow.market ?? null,
+      scope,
+      side,
+      query: q,
+      limit,
+      meta
+    };
+
+    if (scope === "industry") {
+      const rows = (flow.industries || []).filter((row) => !q || String(row.name || "").includes(q));
+      // industries are sorted by net inflow descending, so the outflow side is the tail
+      const picked = side === "outflow" ? rows.slice(-limit).reverse() : rows.slice(0, limit);
+      return json(res, 200, { ...head, count: picked.length, total: rows.length, items: picked });
+    }
+
+    const needle = q.toLowerCase();
+    // The flow file only carries the first 申万 industry, so keyword hits are
+    // widened with the live row's name / industry / concept tags.
+    const rows = (flow.stocks || []).filter((row) => {
+      if (!needle) return true;
+      const stock = byCode.get(String(row.code));
+      const haystack = [
+        row.name,
+        row.code,
+        row.industry,
+        stock?.name,
+        stock?.industry,
+        ...(stock?.industries || []),
+        ...(stock?.concepts || [])
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      return haystack.includes(needle);
+    });
+    const picked = side === "outflow" ? rows.slice(-limit).reverse() : rows.slice(0, limit);
+    const items = picked.map((row) => {
+      const stock = byCode.get(String(row.code));
+      const sector = stock?.industry && stock.industry !== stock.board ? stock.industry : row.industry;
+      return {
+        code: row.code,
+        name: stock?.name ?? row.name ?? null,
+        exchange: stock?.exchange ?? row.exchange ?? null,
+        board: stock?.board ?? row.board ?? null,
+        industry: sector ?? null,
+        price: stock?.price ?? row.price ?? null,
+        changePct: stock?.changePct ?? row.changePct ?? null,
+        mainNet: row.mainNet ?? null,
+        mainRatio: row.mainRatio ?? null,
+        superNet: row.superNet ?? null,
+        bigNet: row.bigNet ?? null,
+        midNet: row.midNet ?? null,
+        smallNet: row.smallNet ?? null,
+        amount: row.amount ?? null,
+        main5: row.main5 ?? null,
+        amount5: row.amount5 ?? null,
+        sessions: row.sessions ?? null
+      };
+    });
+    return json(res, 200, { ...head, count: items.length, total: rows.length, items });
+  }
+
   if (pathname === "/api/watchlist") {
     const codes = String(params.get("codes") || "")
       .split(",")
@@ -1364,7 +1630,12 @@ async function handleApi(req, res, pathname, params) {
   }
 
   if (pathname === "/api/briefing") {
-    return json(res, 200, buildBriefing(stocks, meta, events));
+    const indices = await loadIndices();
+    return json(res, 200, { ...buildBriefing(stocks, meta, events), overseas: buildGlobalBriefing(indices, events) });
+  }
+
+  if (pathname === "/api/briefing/overseas") {
+    return json(res, 200, { ...buildGlobalBriefing(await loadIndices(), events), meta });
   }
 
   if (pathname === "/api/backtest") {
