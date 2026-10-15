@@ -1375,6 +1375,22 @@ tbody tr.selected {
   background: rgba(127, 127, 127, 0.14);
 }
 
+.anomaly-chip {
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #b3382c;
+  background: rgba(229, 72, 77, 0.14);
+}
+
+html[data-theme="dark"] .anomaly-chip {
+  color: #ff8f86;
+  background: rgba(229, 72, 77, 0.24);
+}
+
 .theme-name,
 .industry-name {
   font-weight: 600;

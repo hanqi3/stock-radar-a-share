@@ -784,10 +784,12 @@ function renderIndustries(sectors) {
     .map((sector) => {
       const value = sector.avgChangePct ?? 0;
       const width = Math.round((Math.abs(value) / max) * 100);
+      const flag = (sector.flags || [])[0];
       return `
         <div class="industry-row clickable" data-industry="${escapeHtml(sector.name)}" title="点击筛选 ${escapeHtml(sector.name)} 板块成分股">
           <span class="industry-name">${escapeHtml(sector.name)}</span>
           <span class="industry-bar"><i class="${value >= 0 ? "up" : "down"}" style="width:${width}%"></i></span>
+          ${flag ? `<span class="anomaly-chip" title="${escapeHtml((sector.flags || []).join(" · "))}">${escapeHtml(flag)}</span>` : ""}
           <span class="industry-value ${toneClass(value)}">${signed(value, "%")}</span>
         </div>`;
     })

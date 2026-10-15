@@ -220,6 +220,17 @@ try {
       (sector) => typeof sector.name === "string" && Number.isFinite(sector.avgChangePct) && "relativeStrength" in sector
     )
   );
+  check(
+    "GET /api/sectors -> industries carry breadth and an anomaly score",
+    (sectors.body?.sectors || []).every(
+      (sector) => Number.isFinite(sector.breadth) && Number.isFinite(sector.anomalyScore) && Array.isArray(sector.flags)
+    )
+  );
+  check(
+    "GET /api/sectors -> anomaly screen lists flagged sectors",
+    Array.isArray(sectors.body?.anomalies) &&
+      (sectors.body.anomalies.length === 0 || sectors.body.anomalies.every((row) => row.flags.length > 0 && Number.isFinite(row.anomalyScore)))
+  );
 
   const events = await get("/api/events?limit=5");
   check(
@@ -236,6 +247,11 @@ try {
     "GET /api/briefing -> 200 with narrative and overview",
     briefing.status === 200 && Array.isArray(briefing.body?.narrative) && briefing.body.narrative.length > 0 &&
       briefing.body?.overview?.total > 0
+  );
+  check(
+    "GET /api/briefing -> carries the sector anomaly screen",
+    Array.isArray(briefing.body?.sectorAnomalies) &&
+      briefing.body.sectorAnomalies.every((row) => typeof row.name === "string" && Array.isArray(row.flags))
   );
 
   const watch = await get("/api/watchlist?codes=600519,000001,999999");

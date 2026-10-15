@@ -1003,8 +1003,52 @@ function buildSectors(stocks) {
   for (const sector of sectors) {
     sector.relativeStrength = Number.isFinite(sector.avgChangePct) ? round2(sector.avgChangePct - marketAvg) : null;
   }
+
+  // Sector anomaly screen: a board is "moving abnormally" when its move is a
+  // cross-sectional outlier, when its internal breadth is lopsided, or when it
+  // is hosting a cluster of limit moves. All three are computed from today's
+  // own snapshot so the flag needs no stored history to stay honest.
+  const strengths = sectors.map((s) => s.relativeStrength).filter(Number.isFinite);
+  const meanStrength = strengths.reduce((a, b) => a + b, 0) / (strengths.length || 1);
+  const variance =
+    strengths.reduce((total, value) => total + (value - meanStrength) ** 2, 0) / (strengths.length || 1);
+  const sdStrength = Math.sqrt(variance) || 1;
+
+  for (const sector of sectors) {
+    const z = Number.isFinite(sector.relativeStrength) ? (sector.relativeStrength - meanStrength) / sdStrength : 0;
+    const limitMoves = sector.limitUp + sector.limitDown;
+    const limitDensity = sector.tradable ? limitMoves / sector.tradable : 0;
+    const breadth = sector.tradable ? sector.advancers / sector.tradable : 0.5;
+
+    sector.breadth = round2(breadth * 100);
+    sector.anomalyScore = Math.round(
+      Math.min(100, Math.abs(z) * 32 + limitDensity * 400 + Math.abs(breadth - 0.5) * 60)
+    );
+
+    const flags = [];
+    const strengthText = `${sector.relativeStrength >= 0 ? "+" : ""}${sector.relativeStrength}pp`;
+    if (Math.abs(z) >= 1.4) flags.push(z > 0 ? `逆势领涨 ${strengthText}` : `显著承压 ${strengthText}`);
+    if (sector.limitUp >= 3) flags.push(`涨停 ${sector.limitUp} 家`);
+    if (sector.limitDown >= 3) flags.push(`跌停 ${sector.limitDown} 家`);
+    if (breadth >= 0.8) flags.push(`普涨 ${Math.round(breadth * 100)}%`);
+    if (breadth <= 0.2) flags.push(`普跌 ${Math.round((1 - breadth) * 100)}%`);
+    sector.flags = flags;
+  }
+
+  const anomalies = sectors
+    .filter((sector) => sector.flags.length > 0)
+    .sort((a, b) => b.anomalyScore - a.anomalyScore)
+    .slice(0, 8)
+    .map((sector) => ({
+      name: sector.name,
+      anomalyScore: sector.anomalyScore,
+      avgChangePct: sector.avgChangePct,
+      relativeStrength: sector.relativeStrength,
+      flags: sector.flags
+    }));
+
   sectors.sort((a, b) => (b.avgChangePct ?? -Infinity) - (a.avgChangePct ?? -Infinity));
-  return { count: sectors.length, marketAvg: round2(marketAvg), sectors };
+  return { count: sectors.length, marketAvg: round2(marketAvg), sectors, anomalies };
 }
 
 function eventView(stocks, events, now = new Date()) {
@@ -1180,7 +1224,7 @@ async function runBacktestEndpoint(params, stocks) {
 function buildBriefing(stocks, meta, events, now = new Date()) {
   const overview = buildOverview(stocks, meta);
   const forecast = buildForecast(stocks, meta);
-  const { sectors } = buildSectors(stocks);
+  const { sectors, anomalies } = buildSectors(stocks);
   const view = eventView(stocks, events, now);
   const priced = stocks.filter((stock) => Number.isFinite(stock.price) && Number.isFinite(stock.changePct));
 
@@ -1220,6 +1264,7 @@ function buildBriefing(stocks, meta, events, now = new Date()) {
     forecast,
     sectors: sectors.slice(0, 12),
     laggards: sectors.slice(-6),
+    sectorAnomalies: anomalies,
     limitUpCount: limitUps.length,
     limitDownCount: limitDowns.length,
     limitUpSamples: limitUps.slice(0, 12).map((stock) => ({ code: stock.code, name: stock.name, board: stock.board, limitLabel: stock.limitLabel })),
