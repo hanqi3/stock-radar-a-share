@@ -1025,13 +1025,13 @@ function buildSectors(stocks) {
       Math.min(100, Math.abs(z) * 32 + limitDensity * 400 + Math.abs(breadth - 0.5) * 60)
     );
 
+    // Breadth feeds the score but is deliberately not a standalone flag: on a
+    // broad market day nearly every board is one-sided, which would flag them all.
     const flags = [];
     const strengthText = `${sector.relativeStrength >= 0 ? "+" : ""}${sector.relativeStrength}pp`;
-    if (Math.abs(z) >= 1.4) flags.push(z > 0 ? `逆势领涨 ${strengthText}` : `显著承压 ${strengthText}`);
+    if (Math.abs(z) >= 1.8) flags.push(z > 0 ? `逆势领涨 ${strengthText}` : `显著承压 ${strengthText}`);
     if (sector.limitUp >= 3) flags.push(`涨停 ${sector.limitUp} 家`);
     if (sector.limitDown >= 3) flags.push(`跌停 ${sector.limitDown} 家`);
-    if (breadth >= 0.8) flags.push(`普涨 ${Math.round(breadth * 100)}%`);
-    if (breadth <= 0.2) flags.push(`普跌 ${Math.round((1 - breadth) * 100)}%`);
     sector.flags = flags;
   }
 

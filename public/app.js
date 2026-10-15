@@ -784,7 +784,7 @@ function renderIndustries(sectors) {
     .map((sector) => {
       const value = sector.avgChangePct ?? 0;
       const width = Math.round((Math.abs(value) / max) * 100);
-      const flag = (sector.flags || [])[0];
+      const flag = sector.anomalyScore >= 70 ? (sector.flags || [])[0] : null;
       return `
         <div class="industry-row clickable" data-industry="${escapeHtml(sector.name)}" title="点击筛选 ${escapeHtml(sector.name)} 板块成分股">
           <span class="industry-name">${escapeHtml(sector.name)}</span>
