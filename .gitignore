@@ -7,3 +7,6 @@ coverage/
 dist/
 .idea/
 .vscode/
+.cache/
+.tmp-*/
+tmp-*.mjs

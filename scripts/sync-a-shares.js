@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { inferBoard, inferExchange } from "../lib/boards.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -50,24 +51,10 @@ function toPositiveNumber(value) {
   return number === null || number <= 0 ? null : number;
 }
 
-function inferExchange(code) {
-  if (/^(600|601|603|605|688|689)/.test(code)) return "SH";
-  if (/^(000|001|002|003|300|301|302)/.test(code)) return "SZ";
-  if (/^(4|8|9)/.test(code)) return "BJ";
-  return "CN";
-}
-
-function inferBoard(code) {
-  if (/^(688|689)/.test(code)) return "科创板";
-  if (/^(300|301)/.test(code)) return "创业板";
-  if (/^(4|8|9)/.test(code)) return "北交所";
-  if (/^(600|601|603|605)/.test(code)) return "沪市主板";
-  if (/^(000|001|002|003|302)/.test(code)) return "深市主板";
-  return "未分类";
-}
-
 /**
  * The on-disk contract consumed by server.js and public/app.js.
+ * Exchange and board come from lib/boards.js so the sync script and the API
+ * can never disagree about how a code is classified.
  * All money is in CNY yuan, turnover in percent, volume in lots (手).
  */
 function normalizeStock(partial) {

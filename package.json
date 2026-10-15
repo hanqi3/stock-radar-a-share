@@ -8,9 +8,15 @@
     "start": "node server.js",
     "dev": "node server.js",
     "sync": "node scripts/sync-a-shares.js",
+    "news": "node scripts/sync-news.js",
+    "history": "node scripts/sync-history.js",
+    "sectors": "node scripts/sync-sectors.js",
     "check": "node scripts/check-data.js",
     "check:api": "node scripts/check-api.js",
-    "update": "node scripts/sync-a-shares.js && node scripts/check-data.js"
+    "test": "node --test tests/",
+    "index:pinyin": "node scripts/build-pinyin-index.js",
+    "update": "node scripts/sync-a-shares.js && node scripts/check-data.js",
+    "enrich": "node scripts/sync-sectors.js && node scripts/sync-history.js && node scripts/sync-news.js"
   },
   "keywords": [
     "a-share",

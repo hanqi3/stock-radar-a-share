@@ -142,6 +142,55 @@ try {
   const noMatch = await get("/api/stocks?q=zzzzzznotacompany");
   check("GET /api/stocks?q=<junk> -> 0 hits, limit still 100", noMatch.body?.total === 0 && noMatch.body?.limit === 100);
 
+  // Pinyin search: code, Chinese name, full pinyin and initials must all reach
+  // the same row.
+  const byCode = await get("/api/stocks?q=600519&limit=5");
+  const byName = await get("/api/stocks?q=%E8%B4%B5%E5%B7%9E%E8%8C%85%E5%8F%B0&limit=5");
+  const byPinyin = await get("/api/stocks?q=guizhoumaotai&limit=5");
+  const byInitials = await get("/api/stocks?q=gzmt&limit=5");
+  check(
+    "GET /api/stocks?q=600519 -> the same row as q=贵州茅台",
+    byCode.body?.total === 1 && byName.body?.total === 1 && byName.body?.items?.[0]?.code === byCode.body?.items?.[0]?.code
+  );
+  check(
+    "GET /api/stocks?q=guizhoumaotai -> the same row",
+    byPinyin.body?.total === 1 && byPinyin.body?.items?.[0]?.code === byCode.body?.items?.[0]?.code
+  );
+  check(
+    "GET /api/stocks?q=gzmt -> the same row",
+    byInitials.body?.total === 1 && byInitials.body?.items?.[0]?.code === byCode.body?.items?.[0]?.code
+  );
+
+  const banks = await get("/api/stocks?q=yinhang&limit=500");
+  check(
+    "GET /api/stocks?q=yinhang -> several bank rows",
+    banks.body?.total >= 2 && banks.body.items.every((item) => typeof item.code === "string")
+  );
+
+  const suggestHit = await get("/api/search?q=gzmt");
+  check(
+    "GET /api/search?q=gzmt -> first suggestion is 600519",
+    suggestHit.status === 200 && suggestHit.body?.items?.[0]?.code === byCode.body?.items?.[0]?.code,
+    `items=${JSON.stringify(suggestHit.body?.items?.slice(0, 1))}`
+  );
+  check("GET /api/search suggestion carries pinyin", typeof suggestHit.body?.items?.[0]?.pinyin === "string");
+
+  const suggestBlank = await get("/api/search?q=");
+  check("GET /api/search?q= (blank) -> empty list", suggestBlank.body?.count === 0 && suggestBlank.body?.items?.length === 0);
+
+  const suggestCapped = await get("/api/search?q=600&limit=3");
+  check("GET /api/search?q=600&limit=3 -> 3 suggestions", suggestCapped.body?.items?.length === 3);
+
+  const suggestOverCap = await get("/api/search?q=a&limit=999");
+  check("GET /api/search?limit=999 -> capped at 50", suggestOverCap.body?.limit === 50);
+
+  const polyphone = await get("/api/search?q=chongqing&limit=10");
+  check(
+    "GET /api/search?q=chongqing -> a 重庆 name (polyphone resolved)",
+    polyphone.body?.items?.some((item) => String(item.name).startsWith("重庆")),
+    `names=${polyphone.body?.items?.map((item) => item.name).join(",")}`
+  );
+
   for (const sort of ["score", "change", "decline", "amount", "turnover", "cap", "code"]) {
     const sorted = await get(`/api/stocks?sort=${sort}&limit=5`);
     check(`GET /api/stocks?sort=${sort} -> 5 items`, sorted.status === 200 && sorted.body?.items?.length === 5);
@@ -158,6 +207,77 @@ try {
 
   const unknown = await get("/api/nope");
   check("GET /api/nope -> 404", unknown.status === 404);
+
+  const sectors = await get("/api/sectors");
+  check(
+    "GET /api/sectors -> 200 with industry groups",
+    sectors.status === 200 && Array.isArray(sectors.body?.sectors) && sectors.body.sectors.length > 0 &&
+      Number.isFinite(sectors.body?.marketAvg)
+  );
+  check(
+    "GET /api/sectors -> industries carry relative strength",
+    (sectors.body?.sectors || []).every(
+      (sector) => typeof sector.name === "string" && Number.isFinite(sector.avgChangePct) && "relativeStrength" in sector
+    )
+  );
+
+  const events = await get("/api/events?limit=5");
+  check(
+    "GET /api/events?limit=5 -> 200 and honours the limit",
+    events.status === 200 && Array.isArray(events.body?.items) && events.body.items.length <= 5
+  );
+  check(
+    "GET /api/events -> classified entries carry category and sentiment",
+    (events.body?.items || []).every((item) => typeof item.title === "string" && typeof item.category === "string" && typeof item.sentiment === "string")
+  );
+
+  const briefing = await get("/api/briefing");
+  check(
+    "GET /api/briefing -> 200 with narrative and overview",
+    briefing.status === 200 && Array.isArray(briefing.body?.narrative) && briefing.body.narrative.length > 0 &&
+      briefing.body?.overview?.total > 0
+  );
+
+  const watch = await get("/api/watchlist?codes=600519,000001,999999");
+  check("GET /api/watchlist -> 200 with one item per code", watch.status === 200 && watch.body?.items?.length === 3);
+  check(
+    "GET /api/watchlist -> unknown codes are flagged missing",
+    watch.body?.items?.find((item) => item.code === "999999")?.missing === true
+  );
+  check(
+    "GET /api/watchlist -> known codes carry alerts",
+    (watch.body?.items || []).filter((item) => !item.missing).every((item) => Array.isArray(item.alerts))
+  );
+
+  const junkWatch = await get("/api/watchlist?codes=abc,12,600519");
+  check(
+    "GET /api/watchlist -> non 6-digit codes are dropped",
+    junkWatch.status === 200 && junkWatch.body?.items?.length === 1 && junkWatch.body.items[0].code === "600519"
+  );
+
+  const analysis = await get("/api/stocks/600519/analysis");
+  check(
+    "GET /api/stocks/600519/analysis -> 200 or 502 when history is unreachable",
+    analysis.status === 200 || analysis.status === 502
+  );
+  if (analysis.status === 200) {
+    check(
+      "GET /api/stocks/600519/analysis -> board-aware limit metadata",
+      typeof analysis.body?.limitLabel === "string" && "limitUp" in (analysis.body || {})
+    );
+  }
+
+  const history = await get("/api/stocks/600519/history?days=30");
+  check(
+    "GET /api/stocks/600519/history -> 200 or 502 when history is unreachable",
+    history.status === 200 || history.status === 502
+  );
+
+  const badBacktest = await get("/api/backtest?codes=notacode&sessions=1");
+  check(
+    "GET /api/backtest -> 200/422/502 rather than 500",
+    [200, 422, 502].includes(badBacktest.status)
+  );
 
   const index = await fetch(`${BASE}/`);
   const html = await index.text();

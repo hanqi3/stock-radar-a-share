@@ -3,6 +3,14 @@ import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { buildSearchIndex, matchesQuery, suggest, EMPTY_LOOKUP } from "./lib/search.js";
+import { inferBoard, inferExchange, isRiskWarned, isSt, limitLabel, limitState } from "./lib/boards.js";
+import { computeFactorTable, directionalScore } from "./lib/factors.js";
+import { computeIndicators } from "./lib/indicators.js";
+import { buildEventImpacts, classifyEvent, THEME_KEYWORDS } from "./lib/events.js";
+import { createHistoryCache } from "./lib/history-cache.js";
+import { runBacktest, summarize, walkForwardValidation } from "./lib/backtest.js";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 5173);
 const HOST = process.env.HOST || "localhost";
@@ -11,6 +19,12 @@ const DATA_DIR = path.join(__dirname, "data");
 const FULL_DATA_FILE = path.join(DATA_DIR, "all-a-shares.json");
 const SAMPLE_DATA_FILE = path.join(DATA_DIR, "sample-a-shares.json");
 const META_FILE = path.join(DATA_DIR, "meta.json");
+const INDICATORS_FILE = path.join(DATA_DIR, "indicators.json");
+const EVENTS_FILE = path.join(DATA_DIR, "events.json");
+const SECTORS_FILE = path.join(DATA_DIR, "sectors.json");
+const PINYIN_INDEX_FILE = path.join(__dirname, "lib", "pinyin-index.json");
+const HISTORY_CACHE_DIR = process.env.HISTORY_CACHE_DIR || path.join(__dirname, ".cache", "history");
+const historyCache = createHistoryCache(HISTORY_CACHE_DIR, { days: 250 });
 
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -26,8 +40,23 @@ let cache = {
   stocks: [],
   meta: {},
   loadedAt: 0,
-  sourceFile: null
+  sourceFile: null,
+  searchIndex: new Map(),
+  events: []
 };
+
+let pinyinLookup = null;
+
+async function loadPinyinLookup() {
+  if (pinyinLookup) return pinyinLookup;
+  try {
+    pinyinLookup = JSON.parse(await fs.readFile(PINYIN_INDEX_FILE, "utf8"));
+  } catch {
+    // Search still works on codes and Chinese names without the pinyin table.
+    pinyinLookup = EMPTY_LOOKUP;
+  }
+  return pinyinLookup;
+}
 
 function isFresh() {
   return Date.now() - cache.loadedAt < 15_000 && cache.stocks.length > 0;
@@ -36,6 +65,117 @@ function isFresh() {
 async function readJson(file) {
   const content = await fs.readFile(file, "utf8");
   return JSON.parse(content);
+}
+
+/**
+ * Merge the nightly indicator snapshot into a quote row and add the exchange /
+ * board / price-limit facts that every downstream view needs.
+ */
+function decorateStock(stock, indicators = {}, sector = null) {
+  const exchange = stock.exchange || inferExchange(stock.code);
+  const board = stock.board || inferBoard(stock.code, exchange);
+  const merged = {
+    ...stock,
+    ...indicators,
+    code: stock.code,
+    name: stock.name,
+    exchange,
+    board,
+    // Real 申万 industry plus concept tags come from data/sectors.json. Until the
+    // nightly sector sync has run we fall back to the exchange board so the
+    // grouping views keep working.
+    industry: sector?.industry || board,
+    industries: sector?.industries ?? [],
+    concepts: sector?.concepts ?? []
+  };
+  const state = limitState(merged);
+  return {
+    ...merged,
+    limitPct: state.pct,
+    limitLabel: state.pct === null ? "无限制" : `±${state.pct}%`,
+    limitUpPrice: state.limitUpPrice ?? null,
+    limitDownPrice: state.limitDownPrice ?? null,
+    limitUp: state.limitUp,
+    limitDown: state.limitDown,
+    st: isSt(stock.name),
+    riskWarned: isRiskWarned(stock.name)
+  };
+}
+
+async function loadIndicators() {
+  try {
+    const payload = await readJson(INDICATORS_FILE);
+    if (payload && payload.items && typeof payload.items === "object") return payload.items;
+    return {};
+  } catch {
+    return {};
+  }
+}
+
+async function loadEvents() {
+  try {
+    const payload = await readJson(EVENTS_FILE);
+    if (Array.isArray(payload)) return payload;
+    if (payload && Array.isArray(payload.items)) return payload.items;
+    return [];
+  } catch {
+    return [];
+  }
+}
+
+async function loadSectors() {
+  try {
+    const payload = await readJson(SECTORS_FILE);
+    if (payload && typeof payload === "object") {
+      return {
+        industries: Array.isArray(payload.industries) ? payload.industries : [],
+        concepts: Array.isArray(payload.concepts) ? payload.concepts : [],
+        membership: payload.membership && typeof payload.membership === "object" ? payload.membership : {}
+      };
+    }
+  } catch {
+    /* sectors.json is optional until the nightly sync has run once */
+  }
+  return { industries: [], concepts: [], membership: {} };
+}
+
+/** Board id -> display name, plus the per-stock membership map. */
+function sectorLookupFor(sectors) {
+  const industryNames = new Map();
+  const conceptNames = new Map();
+  for (const board of sectors.industries) {
+    if (board && board.id) industryNames.set(board.id, board.name);
+  }
+  for (const board of sectors.concepts) {
+    if (board && board.id) conceptNames.set(board.id, board.name);
+  }
+  return { industryNames, conceptNames, membership: sectors.membership };
+}
+
+function sectorInfoFor(code, lookup) {
+  const entry = lookup.membership[String(code)];
+  if (!entry) return null;
+  const industries = (entry.industries || []).map((id) => lookup.industryNames.get(id)).filter(Boolean);
+  const concepts = (entry.concepts || []).map((id) => lookup.conceptNames.get(id)).filter(Boolean);
+  if (!industries.length && !concepts.length) return null;
+  return { industry: industries[0] || null, industries, concepts };
+}
+
+/**
+ * theme -> member codes, so a policy headline about e.g. 半导体 can propagate to
+ * the actual constituents instead of only to companies named in the text.
+ */
+function buildThemeIndex(stocks) {
+  const index = new Map();
+  for (const [theme, keywords] of Object.entries(THEME_KEYWORDS)) {
+    const codes = [];
+    for (const stock of stocks) {
+      const haystack = `${stock.name || ""} ${stock.industry || ""} ${(stock.concepts || []).join(" ")}`;
+      if (keywords.some((keyword) => haystack.includes(keyword))) codes.push(stock.code);
+    }
+    if (codes.length) index.set(theme, codes);
+  }
+  return index;
 }
 
 async function loadData() {
@@ -48,15 +188,39 @@ async function loadData() {
     sourceFile = SAMPLE_DATA_FILE;
   }
 
-  const stocks = await readJson(sourceFile);
-  const meta = await readJson(META_FILE).catch(() => ({}));
+  const [rawStocks, meta, indicators, events, lookup, sectors] = await Promise.all([
+    readJson(sourceFile),
+    readJson(META_FILE).catch(() => ({})),
+    loadIndicators(),
+    loadEvents(),
+    loadPinyinLookup(),
+    loadSectors()
+  ]);
+  const sectorLookup = sectorLookupFor(sectors);
+
+  // The factor table ranks the whole universe at once, so it must be rebuilt
+  // from the fully decorated rows rather than per request.
+  const stocks = computeFactorTable(
+    rawStocks.map((stock) =>
+      decorateStock(stock, indicators[String(stock.code)] || {}, sectorInfoFor(stock.code, sectorLookup))
+    )
+  );
+  const withTrend = stocks.filter((stock) => Number.isFinite(stock.momentum20)).length;
+
   cache = {
     stocks,
     meta: {
       ...meta,
-      mode: sourceFile === FULL_DATA_FILE ? "full" : "sample"
+      mode: sourceFile === FULL_DATA_FILE ? "full" : "sample",
+      indicatorCoverage: withTrend,
+      eventCount: events.length,
+      industryCount: sectors.industries.length,
+      conceptCount: sectors.concepts.length
     },
     sourceFile,
+    searchIndex: buildSearchIndex(stocks, lookup),
+    events,
+    themeIndex: buildThemeIndex(stocks),
     loadedAt: Date.now()
   };
   return cache;
@@ -105,19 +269,30 @@ function normalizeText(value) {
   return String(value || "").trim().toLowerCase();
 }
 
+/**
+ * 0-100 anomaly score. Rank based (see lib/factors.js) whenever the nightly
+ * indicator snapshot covers the stock; a legacy absolute formula otherwise, so
+ * the endpoint stays useful before the first indicator sync.
+ */
 function getStockScore(stock) {
+  if (Number.isFinite(stock.anomalyScore)) return stock.anomalyScore;
   const absChange = Math.abs(stock.changePct || 0);
   const turnover = stock.turnover || 0;
   const amountScore = Math.log10(Math.max(stock.amount || 1, 1));
   const capPenalty = stock.marketCap ? Math.min(Math.log10(stock.marketCap) / 20, 1) : 0.3;
-  return absChange * 2.2 + turnover * 0.9 + amountScore * 0.7 - capPenalty;
+  const legacy = absChange * 2.2 + turnover * 0.9 + amountScore * 0.7 - capPenalty;
+  return Number(Math.max(0, Math.min(100, legacy * 3.2)).toFixed(2));
 }
 
+/** Board-aware signal label: a 20% board must not be judged with a 10% ruler. */
 function getSignalType(stock) {
-  if ((stock.changePct || 0) >= 9.8) return "涨停附近";
-  if ((stock.changePct || 0) <= -9.8) return "跌停附近";
-  if ((stock.changePct || 0) >= 6) return "强势拉升";
-  if ((stock.changePct || 0) <= -6) return "快速回撤";
+  const changePct = stock.changePct || 0;
+  if (stock.limitUp) return "涨停";
+  if (stock.limitDown) return "跌停";
+  const limit = Number.isFinite(stock.limitPct) && stock.limitPct > 0 ? stock.limitPct : 10;
+  const ratio = Math.abs(changePct) / limit;
+  if (ratio >= 0.6) return changePct > 0 ? "涨停附近" : "跌停附近";
+  if (ratio >= 0.35) return changePct > 0 ? "强势拉升" : "快速回撤";
   if ((stock.turnover || 0) >= 8) return "换手放大";
   if ((stock.amount || 0) >= 5_000_000_000) return "成交活跃";
   return "异动关注";
@@ -134,6 +309,9 @@ function getSignalReason(stock) {
   if (stock.amount) {
     parts.push(`成交额 ${formatMoney(stock.amount)}`);
   }
+  if (Number.isFinite(stock.trendScore)) {
+    parts.push(`趋势分 ${stock.trendScore.toFixed(0)}`);
+  }
   return parts.join(" · ");
 }
 
@@ -144,7 +322,7 @@ function buildSignals(stocks, limit = 60) {
       ...stock,
       signalType: getSignalType(stock),
       reason: getSignalReason(stock),
-      score: Number(getStockScore(stock).toFixed(2)),
+      score: getStockScore(stock),
       sentiment: (stock.changePct || 0) >= 0 ? "positive" : "negative"
     }))
     .filter((stock) => Math.abs(stock.changePct || 0) >= 4 || (stock.turnover || 0) >= 6 || (stock.amount || 0) >= 3_000_000_000)
@@ -157,8 +335,9 @@ function buildOverview(stocks, meta) {
   const advancers = tradable.filter((stock) => (stock.changePct || 0) > 0).length;
   const decliners = tradable.filter((stock) => (stock.changePct || 0) < 0).length;
   const flat = tradable.length - advancers - decliners;
-  const limitUp = tradable.filter((stock) => (stock.changePct || 0) >= 9.8).length;
-  const limitDown = tradable.filter((stock) => (stock.changePct || 0) <= -9.8).length;
+  // Board-aware: a 20% board must not be counted with a 10% ruler.
+  const limitUp = tradable.filter((stock) => stock.limitUp).length;
+  const limitDown = tradable.filter((stock) => stock.limitDown).length;
   const totalAmount = tradable.reduce((sum, stock) => sum + (stock.amount || 0), 0);
 
   const byExchange = groupCount(stocks, "exchange");
@@ -227,8 +406,9 @@ function buildForecast(stocks, meta) {
   const changes = tradable.map((stock) => stock.changePct || 0);
   const advancers = tradable.filter((stock) => (stock.changePct || 0) > 0).length;
   const decliners = tradable.filter((stock) => (stock.changePct || 0) < 0).length;
-  const limitUp = tradable.filter((stock) => (stock.changePct || 0) >= 9.8).length;
-  const limitDown = tradable.filter((stock) => (stock.changePct || 0) <= -9.8).length;
+  // Board-aware: a 20% board must not be counted with a 10% ruler.
+  const limitUp = tradable.filter((stock) => stock.limitUp).length;
+  const limitDown = tradable.filter((stock) => stock.limitDown).length;
   const strongUp = tradable.filter((stock) => (stock.changePct || 0) >= 6).length;
   const strongDown = tradable.filter((stock) => (stock.changePct || 0) <= -6).length;
   const highTurnover = tradable.filter((stock) => (stock.turnover || 0) >= 8).length;
@@ -386,8 +566,8 @@ function getStockOutlook(stock, allStocks, meta) {
   const turnover = stock.turnover || 0;
   const amount = stock.amount || 0;
   const relativeToBoard = change - board.avgChangePct;
-  const isLimitUp = change >= 9.8;
-  const isLimitDown = change <= -9.8;
+  const isLimitUp = stock.limitUp === true;
+  const isLimitDown = stock.limitDown === true;
   const highVolatility = Math.abs(change) >= 6 || turnover >= 10;
   const liquidityScore = amount >= 3_000_000_000 ? 8 : amount >= 800_000_000 ? 4 : amount < 50_000_000 ? -8 : 0;
   const turnoverScore = turnover >= 10 ? 8 : turnover >= 5 ? 5 : turnover < 0.8 ? -5 : 0;
@@ -600,7 +780,7 @@ function groupCount(stocks, key) {
   }, {});
 }
 
-function filterStocks(stocks, params) {
+function filterStocks(stocks, params, searchIndex = null) {
   const query = normalizeText(params.get("q"));
   const exchange = params.get("exchange");
   const board = params.get("board");
@@ -611,6 +791,8 @@ function filterStocks(stocks, params) {
 
   if (query) {
     result = result.filter((stock) => {
+      const entry = searchIndex?.get(String(stock.code));
+      if (entry) return matchesQuery(entry, query);
       const haystack = `${stock.code} ${stock.name} ${stock.exchange} ${stock.board}`.toLowerCase();
       return haystack.includes(query);
     });
@@ -669,20 +851,419 @@ function getStockDetail(stock, allStocks, meta) {
 function buildNarrative(stock) {
   const pct = stock.changePct ?? 0;
   const absPct = Math.abs(pct);
+  const limitPct = Number.isFinite(stock.limitPct) && stock.limitPct > 0 ? stock.limitPct : 10;
+  const limitRatio = absPct / limitPct;
   const tone = pct >= 0 ? "偏强" : "偏弱";
   const attention =
-    absPct >= 9.8 ? "接近涨跌停阈值，适合重点核验公告、板块消息和资金流。"
-      : absPct >= 6 ? "日内波动显著，建议结合成交额、换手率和同板块表现确认是否为事件驱动。"
+    stock.limitUp ? "今日已封涨停，重点核验封单强度、公告事项与板块联动。"
+      : stock.limitDown ? "今日已封跌停，注意流动性风险与次日承接情况。"
+      : limitRatio >= 0.75 ? `已接近 ${stock.limitLabel || `±${limitPct}%`} 涨跌停阈值，适合重点核验公告、板块消息和资金流。`
+      : limitRatio >= 0.4 ? "日内波动显著，建议结合成交额、换手率和同板块表现确认是否为事件驱动。"
       : (stock.turnover || 0) >= 8 ? "换手率较高，说明筹码交换活跃，需要观察次日延续性。"
       : "波动未达到强异动阈值，可作为普通跟踪对象。";
   return `${stock.name} 当前信号为${tone}，${attention}`;
 }
 
+function round2(value, digits = 2) {
+  return Number.isFinite(value) ? Number(value.toFixed(digits)) : null;
+}
+
+/** Candlestick + overlay series, aligned bar-for-bar with the returned bars. */
+function chartIndicators(indicators, barCount) {
+  if (!indicators) return null;
+  const tail = (series, map) => {
+    if (!Array.isArray(series)) return null;
+    const out = series.slice(-barCount).map(map);
+    return out.some((value) => value !== null) ? out : null;
+  };
+  const ma = {};
+  for (const period of [5, 10, 15, 20, 60]) {
+    ma[period] = tail(indicators.maSeries?.[period], (value) => round2(value));
+  }
+  const boll = indicators.bollSeries;
+  return {
+    ma,
+    boll: boll
+      ? {
+          upper: tail(boll, (item) => round2(item?.upper)),
+          middle: tail(boll, (item) => round2(item?.mid)),
+          lower: tail(boll, (item) => round2(item?.lower))
+        }
+      : null,
+    macd: indicators.macdSeries
+      ? {
+          dif: tail(indicators.macdSeries, (item) => round2(item?.dif, 3)),
+          dea: tail(indicators.macdSeries, (item) => round2(item?.dea, 3)),
+          hist: tail(indicators.macdSeries, (item) => round2(item?.hist, 3))
+        }
+      : null,
+    rsi: tail(indicators.rsiSeries, (value) => round2(value)),
+    atr: round2(indicators.atr),
+    atrPct: round2(indicators.atrPct),
+    volatility20: round2(indicators.volatility20),
+    volumeRatio: round2(indicators.volumeRatio),
+    momentum: indicators.momentum
+  };
+}
+
+/**
+ * Explainable entry/exit plan. Every number here comes from a named indicator so
+ * the UI can show the reasoning instead of a black-box arrow.
+ */
+function buildTradePlan(stock, indicators, bars) {
+  if (!indicators || bars.length < 30) return null;
+  const last = (series) => (Array.isArray(series) && series.length ? series[series.length - 1] : null);
+  const ma5 = last(indicators.maSeries?.[5]);
+  const ma10 = last(indicators.maSeries?.[10]);
+  const ma15 = last(indicators.maSeries?.[15]);
+  const ma20 = last(indicators.maSeries?.[20]);
+  const ma60 = last(indicators.maSeries?.[60]);
+  const upper = indicators.boll?.upper ?? null;
+  const lower = indicators.boll?.lower ?? null;
+  const close = bars[bars.length - 1].close;
+  const recent = bars.slice(-20);
+  const swingLow = recent.reduce((min, bar) => Math.min(min, bar.low), Infinity);
+  const swingHigh = recent.reduce((max, bar) => Math.max(max, bar.high), 0);
+
+  const finite = (value) => Number.isFinite(value);
+  const bullish = finite(ma5) && finite(ma10) && finite(ma20) && ma5 >= ma10 && ma10 >= ma20;
+  const bearish = finite(ma5) && finite(ma10) && finite(ma20) && ma5 < ma10 && ma10 < ma20;
+
+  const buyZones = [];
+  if (finite(ma10)) buyZones.push({ price: round2(ma10), reason: "回踩 MA10 支撑" });
+  if (finite(ma20)) buyZones.push({ price: round2(ma20), reason: "回踩 MA20 支撑" });
+  if (finite(lower)) buyZones.push({ price: round2(lower), reason: "布林带下轨超卖区" });
+  if (finite(upper)) buyZones.push({ price: round2(upper), reason: "突破布林上轨放量确认" });
+
+  const notes = [];
+  if (bullish) notes.push("均线多头排列：回踩 MA10 不破可分批建仓");
+  if (bearish) notes.push("均线空头排列：反弹到 MA10/MA20 减仓为主");
+  if (finite(indicators.rsi) && indicators.rsi >= 70) notes.push(`RSI ${round2(indicators.rsi)} 超买，追高风险大`);
+  if (finite(indicators.rsi) && indicators.rsi <= 30) notes.push(`RSI ${round2(indicators.rsi)} 超卖，等待企稳信号`);
+  if (finite(indicators.volumeRatio) && indicators.volumeRatio >= 1.8) notes.push(`成交量为 20 日均量 ${round2(indicators.volumeRatio)} 倍，放量`);
+  if (finite(indicators.macd?.hist) && indicators.macd.hist > 0) notes.push("MACD 柱翻红");
+  if (finite(indicators.macd?.hist) && indicators.macd.hist < 0) notes.push("MACD 柱翻绿");
+  if (stock.limitUp) notes.push("今日涨停：明日观察能否连板及封单变化");
+  if (stock.limitDown) notes.push("今日跌停：注意流动性风险与次日承接");
+  if (stock.st) notes.push(`${stock.name} 为风险警示股，涨跌幅限制 ${limitLabel(stock)}`);
+
+  const stopBase = Math.min(
+    finite(swingLow) ? swingLow : close,
+    finite(lower) ? lower : close
+  );
+
+  return {
+    asOf: bars[bars.length - 1].date,
+    trend: bullish ? "多头排列" : bearish ? "空头排列" : "均线纠缠",
+    trendScore: Number.isFinite(stock.trendScore) ? stock.trendScore : null,
+    anomalyScore: Number.isFinite(stock.anomalyScore) ? stock.anomalyScore : null,
+    ma: { 5: round2(ma5), 10: round2(ma10), 15: round2(ma15), 20: round2(ma20), 60: round2(ma60) },
+    distanceFromMa20Pct: finite(ma20) && ma20 ? round2(((close / ma20) - 1) * 100) : null,
+    support: round2(swingLow),
+    resistance: round2(swingHigh),
+    bollUpper: round2(upper),
+    bollLower: round2(lower),
+    buyZones: buyZones.slice(0, 4),
+    stopLoss: round2(stopBase * 0.98),
+    target: round2(finite(upper) ? Math.max(upper, swingHigh) : swingHigh),
+    notes
+  };
+}
+
+/** Industry (or board) aggregation with a relative-strength column. */
+function buildSectors(stocks) {
+  const groups = new Map();
+  for (const stock of stocks) {
+    const key = stock.industry || stock.board || "未分类";
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(stock);
+  }
+
+  const sectors = [...groups.entries()].map(([name, members]) => {
+    const priced = members.filter((s) => Number.isFinite(s.price) && Number.isFinite(s.changePct));
+    const changes = priced.map((s) => s.changePct);
+    const sum = changes.reduce((a, b) => a + b, 0);
+    return {
+      name,
+      count: members.length,
+      tradable: priced.length,
+      avgChangePct: round2(sum / (changes.length || 1)),
+      medianChangePct: round2(median(changes)),
+      advancers: changes.filter((c) => c > 0).length,
+      limitUp: priced.filter((s) => s.limitUp).length,
+      limitDown: priced.filter((s) => s.limitDown).length,
+      amount: priced.reduce((total, s) => total + (s.amount || 0), 0),
+      momentum20: round2(median(priced.map((s) => s.momentum20).filter(Number.isFinite))),
+      topStock: priced.slice().sort((a, b) => (b.changePct || 0) - (a.changePct || 0))[0]?.name ?? null
+    };
+  });
+
+  const rated = sectors.filter((s) => Number.isFinite(s.avgChangePct));
+  const marketAvg = rated.reduce((a, s) => a + s.avgChangePct, 0) / (rated.length || 1);
+  for (const sector of sectors) {
+    sector.relativeStrength = Number.isFinite(sector.avgChangePct) ? round2(sector.avgChangePct - marketAvg) : null;
+  }
+  sectors.sort((a, b) => (b.avgChangePct ?? -Infinity) - (a.avgChangePct ?? -Infinity));
+  return { count: sectors.length, marketAvg: round2(marketAvg), sectors };
+}
+
+function eventView(stocks, events, now = new Date()) {
+  if (!events.length) return { impacts: new Map(), themeImpacts: [], classified: [] };
+  return buildEventImpacts(events, stocks, { now, themeIndex: cache.themeIndex || new Map() });
+}
+
+function eventsForCode(code, view, limit = 8) {
+  const impact = view.impacts.get(code);
+  if (!impact) return { eventScore: 0, eventBias: 0, items: [] };
+  return {
+    eventScore: impact.eventScore,
+    eventBias: impact.eventBias,
+    items: impact.items.slice(0, limit)
+  };
+}
+
+/**
+ * Rule-based alert tags for a single stock, combining price action, the limit
+ * rules of its board, its indicator snapshot and any matched events.
+ */
+function buildAlerts(stock, events = { eventScore: 0, eventBias: 0, items: [] }) {
+  const alerts = [];
+  if (stock.limitUp) alerts.push({ kind: "limit-up", level: "high", label: "涨停" });
+  if (stock.limitDown) alerts.push({ kind: "limit-down", level: "high", label: "跌停" });
+  if (Number.isFinite(stock.volumeRatio) && stock.volumeRatio >= 2) {
+    alerts.push({ kind: "volume", level: "medium", label: `放量 ${round2(stock.volumeRatio)}×` });
+  }
+  if (Number.isFinite(stock.anomalyScore) && stock.anomalyScore >= 90) {
+    alerts.push({ kind: "anomaly", level: "medium", label: `异动分 ${round2(stock.anomalyScore)}` });
+  }
+  if (Number.isFinite(stock.rsi14)) {
+    if (stock.rsi14 >= 80) alerts.push({ kind: "rsi", level: "medium", label: `RSI 超买 ${round2(stock.rsi14)}` });
+    else if (stock.rsi14 <= 20) alerts.push({ kind: "rsi", level: "medium", label: `RSI 超卖 ${round2(stock.rsi14)}` });
+  }
+  if (stock.st) alerts.push({ kind: "st", level: "high", label: "ST 风险警示" });
+  else if (stock.riskWarned) alerts.push({ kind: "risk", level: "medium", label: "退市风险警示" });
+  if (events.items.length) {
+    const bias = events.eventBias;
+    alerts.push({
+      kind: "event",
+      level: Math.abs(bias) >= 2 ? "high" : "low",
+      label: `相关事件 ${events.items.length} 条${bias > 0 ? "（偏多）" : bias < 0 ? "（偏空）" : ""}`
+    });
+  }
+  return alerts;
+}
+
+async function historyFor(codes, stocks, days) {
+  const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
+  const history = new Map();
+  const failures = [];
+  const sources = new Set();
+  await Promise.all(
+    codes.map(async (code) => {
+      const stock = byCode.get(String(code));
+      if (!stock) {
+        failures.push({ code, error: "unknown symbol" });
+        return;
+      }
+      try {
+        const record = await historyCache.get(stock.code, stock.exchange, { days });
+        if (!record?.bars?.length) {
+          failures.push({ code, error: "empty history" });
+          return;
+        }
+        history.set(stock.code, record.bars.slice(-days));
+        sources.add(record.source);
+      } catch (error) {
+        failures.push({ code, error: String(error?.message || error) });
+      }
+    })
+  );
+  return { history, failures, sources: [...sources] };
+}
+
+/** Momentum + trend signal, evaluated with only the bars visible at that time. */
+function momentumSignal(code, bars, index) {
+  if (index < 60) return null;
+  const closes = bars.map((bar) => bar.close);
+  const close = closes[index];
+  const past20 = closes[index - 20];
+  const past60 = closes[index - 60];
+  if (!past20 || !past60) return null;
+  const mom20 = (close / past20 - 1) * 100;
+  const mom60 = (close / past60 - 1) * 100;
+  let sum = 0;
+  for (let i = index - 19; i <= index; i += 1) sum += closes[i];
+  const ma20 = sum / 20;
+  const gap = (close / ma20 - 1) * 100;
+  const volume = bars[index].volume || 0;
+  let volumeSum = 0;
+  for (let i = index - 19; i <= index; i += 1) volumeSum += bars[i].volume || 0;
+  const volumeRatio = volumeSum ? (volume / (volumeSum / 20)) : 1;
+  return mom20 * 0.8 + mom60 * 0.35 + gap * 1.4 + (volumeRatio - 1) * 2;
+}
+
+function selectBacktestUniverse(stocks, codesParam, limit) {
+  if (codesParam) {
+    return codesParam
+      .split(",")
+      .map((code) => code.trim())
+      .filter(Boolean)
+      .slice(0, 60);
+  }
+  return stocks
+    .filter((stock) => Number.isFinite(stock.price) && Number.isFinite(stock.amount) && stock.amount > 0)
+    .sort((a, b) => (b.amount || 0) - (a.amount || 0))
+    .slice(0, Math.min(limit, 40))
+    .map((stock) => stock.code);
+}
+
+function backtestQuery(params) {
+  const num = (key, fallback, min, max) => {
+    const parsed = parseNumber(params.get(key), fallback);
+    return Math.min(Math.max(parsed, min), max);
+  };
+  return {
+    topN: Math.trunc(num("topN", 10, 1, 50)),
+    minScore: num("minScore", 5, -100, 100),
+    holdDays: Math.trunc(num("holdDays", 10, 1, 120)),
+    stopLossPct: num("stopLossPct", 0.08, 0.005, 0.5),
+    takeProfitPct: num("takeProfitPct", 0.2, 0.01, 3),
+    rebalanceDays: Math.trunc(num("rebalanceDays", 1, 1, 30)),
+    days: Math.trunc(num("days", 250, 120, 1023)),
+    startDate: params.get("startDate") || undefined,
+    endDate: params.get("endDate") || undefined
+  };
+}
+
+async function runBacktestEndpoint(params, stocks) {
+  const options = backtestQuery(params);
+  const codes = selectBacktestUniverse(stocks, params.get("codes"), options.topN * 2);
+  if (codes.length === 0) {
+    return { error: "no symbols with history capacity were selected", options };
+  }
+  const { history, failures, sources } = await historyFor(codes, stocks, options.days);
+  if (history.size === 0) {
+    return { error: "history unavailable for every requested symbol", failures, options };
+  }
+
+  const config = {
+    history,
+    signal: momentumSignal,
+    topN: options.topN,
+    minScore: options.minScore,
+    holdDays: options.holdDays,
+    stopLossPct: options.stopLossPct,
+    takeProfitPct: options.takeProfitPct,
+    rebalanceDays: options.rebalanceDays,
+    startDate: options.startDate,
+    endDate: options.endDate
+  };
+
+  const result = runBacktest(config);
+  const validation = walkForwardValidation(config, 0.7);
+  return {
+    options,
+    universe: [...history.keys()],
+    sources,
+    failures,
+    summary: summarize(result, { label: "全周期" }),
+    walkForward: {
+      splitDate: validation.splitDate,
+      inSample: validation.inSample,
+      outOfSample: validation.outOfSample
+    },
+    curve: result.curve,
+    trades: result.trades.slice(-50)
+  };
+}
+
+function buildBriefing(stocks, meta, events, now = new Date()) {
+  const overview = buildOverview(stocks, meta);
+  const forecast = buildForecast(stocks, meta);
+  const { sectors } = buildSectors(stocks);
+  const view = eventView(stocks, events, now);
+  const priced = stocks.filter((stock) => Number.isFinite(stock.price) && Number.isFinite(stock.changePct));
+
+  const limitUps = priced.filter((stock) => stock.limitUp);
+  const limitDowns = priced.filter((stock) => stock.limitDown);
+  const strong = priced
+    .filter((stock) => Number.isFinite(stock.anomalyScore))
+    .sort((a, b) => b.anomalyScore - a.anomalyScore)
+    .slice(0, 10)
+    .map((stock) => ({
+      code: stock.code,
+      name: stock.name,
+      board: stock.board,
+      price: stock.price,
+      changePct: stock.changePct,
+      anomalyScore: stock.anomalyScore,
+      trendScore: stock.trendScore,
+      signalType: getSignalType(stock)
+    }));
+
+  const timestamp = now.toISOString();
+  const medianChangePct = round2(median(priced.map((stock) => stock.changePct)));
+  const lines = [
+    `${timestamp.slice(0, 10)} 市场简报：可交易 ${overview.tradable} 只，上涨 ${overview.advancers} 家 / 下跌 ${overview.decliners} 家 / 平盘 ${overview.flat} 家。`,
+    `涨停 ${limitUps.length} 家、跌停 ${limitDowns.length} 家；中位涨跌幅 ${medianChangePct}%。`,
+    `领涨板块：${sectors.slice(0, 3).map((s) => `${s.name}(${s.avgChangePct}%)`).join("、")}。`,
+    `领跌板块：${sectors.slice(-3).map((s) => `${s.name}(${s.avgChangePct}%)`).join("、")}。`,
+    forecast.summary ? `明日方向：${forecast.summary}` : null,
+    view.themeImpacts.length ? `事件主题：${view.themeImpacts.slice(0, 3).map((t) => t.theme).join("、")}。` : null
+  ].filter(Boolean);
+
+  return {
+    generatedAt: timestamp,
+    dataUpdatedAt: meta.updatedAt ?? null,
+    source: meta.source ?? null,
+    overview,
+    forecast,
+    sectors: sectors.slice(0, 12),
+    laggards: sectors.slice(-6),
+    limitUpCount: limitUps.length,
+    limitDownCount: limitDowns.length,
+    limitUpSamples: limitUps.slice(0, 12).map((stock) => ({ code: stock.code, name: stock.name, board: stock.board, limitLabel: stock.limitLabel })),
+    anomalies: strong,
+    themes: view.themeImpacts.slice(0, 10),
+    headlines: view.classified.slice(0, 10).map((entry) => ({
+      title: entry.title,
+      source: entry.source ?? null,
+      publishedAt: entry.publishedAt ?? null,
+      category: entry.category,
+      sentiment: entry.sentiment,
+      themes: entry.themes
+    })),
+    narrative: lines
+  };
+}
+
 async function handleApi(req, res, pathname, params) {
-  const { stocks, meta } = await loadData();
+  const { stocks, meta, searchIndex, events } = await loadData();
 
   if (pathname === "/api/health") {
     return json(res, 200, { ok: true, stocks: stocks.length, mode: meta.mode });
+  }
+
+  if (pathname === "/api/search") {
+    const q = normalizeText(params.get("q"));
+    const limit = parsePositiveInt(params.get("limit"), 10, 50);
+    if (!q) return json(res, 200, { query: "", items: [], count: 0, limit });
+    const hits = suggest(searchIndex, q, limit);
+    const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
+    const items = hits.map((hit) => {
+      const stock = byCode.get(hit.code);
+      return {
+        code: hit.code,
+        name: hit.name,
+        exchange: stock?.exchange ?? null,
+        board: stock?.board ?? null,
+        price: stock?.price ?? null,
+        changePct: stock?.changePct ?? null,
+        pinyin: hit.pinyin,
+        initials: hit.initials
+      };
+    });
+    return json(res, 200, { query: q, items, count: items.length, limit });
   }
 
   if (pathname === "/api/overview") {
@@ -693,6 +1274,149 @@ async function handleApi(req, res, pathname, params) {
     return json(res, 200, buildForecast(stocks, meta));
   }
 
+  if (pathname === "/api/sectors") {
+    return json(res, 200, { ...buildSectors(stocks), meta });
+  }
+
+  if (pathname === "/api/events") {
+    const limit = parsePositiveInt(params.get("limit"), 30, 200);
+    const view = eventView(stocks, events);
+    const classified = view.classified
+      .slice()
+      .sort((a, b) => String(b.publishedAt ?? "").localeCompare(String(a.publishedAt ?? "")))
+      .slice(0, limit);
+    return json(res, 200, {
+      count: classified.length,
+      total: view.classified.length,
+      limit,
+      themes: view.themeImpacts.slice(0, 20),
+      items: classified,
+      meta
+    });
+  }
+
+  if (pathname === "/api/watchlist") {
+    const codes = String(params.get("codes") || "")
+      .split(",")
+      .map((code) => code.trim())
+      .filter((code) => /^\d{6}$/.test(code))
+      .slice(0, 60);
+    const view = eventView(stocks, events);
+    const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
+    const items = codes.map((code) => {
+      const stock = byCode.get(code);
+      if (!stock) return { code, missing: true, alerts: [] };
+      const matched = eventsForCode(code, view, 4);
+      return {
+        ...stock,
+        events: matched.items,
+        eventScore: matched.eventScore,
+        eventBias: matched.eventBias,
+        alerts: buildAlerts(stock, matched)
+      };
+    });
+    return json(res, 200, { count: items.length, items, meta });
+  }
+
+  if (pathname === "/api/briefing") {
+    return json(res, 200, buildBriefing(stocks, meta, events));
+  }
+
+  if (pathname === "/api/backtest") {
+    const result = await runBacktestEndpoint(params, stocks);
+    return json(res, result.error ? 422 : 200, result);
+  }
+
+  const historyMatch = pathname.match(/^\/api\/stocks\/([0-9]{6})\/history$/);
+  if (historyMatch) {
+    const stock = stocks.find((item) => item.code === historyMatch[1]);
+    if (!stock) return notFound(res);
+    const requested = parsePositiveInt(params.get("days"), 250, 1023);
+    try {
+      const record = await historyCache.get(stock.code, stock.exchange, { days: requested });
+      const bars = record.bars.slice(-requested);
+      const indicators = computeIndicators(bars);
+      return json(res, 200, {
+        code: stock.code,
+        name: stock.name,
+        exchange: stock.exchange,
+        board: stock.board,
+        source: record.source,
+        updatedAt: record.updatedAt,
+        requestedDays: requested,
+        days: bars.length,
+        bars,
+        indicators: chartIndicators(indicators, bars.length),
+        plan: buildTradePlan(stock, indicators, bars)
+      });
+    } catch (error) {
+      return json(res, 502, {
+        error: "history unavailable",
+        code: stock.code,
+        detail: String(error?.message || error)
+      });
+    }
+  }
+
+  const analysisMatch = pathname.match(/^\/api\/stocks\/([0-9]{6})\/analysis$/);
+  if (analysisMatch) {
+    const stock = stocks.find((item) => item.code === analysisMatch[1]);
+    if (!stock) return notFound(res);
+    const view = eventView(stocks, events);
+    const detail = getStockDetail(stock, stocks, meta);
+    const related = eventsForCode(stock.code, view);
+    let history = null;
+    try {
+      const record = await historyCache.get(stock.code, stock.exchange, { days: 250 });
+      const bars = record.bars;
+      const indicators = computeIndicators(bars);
+      history = {
+        source: record.source,
+        updatedAt: record.updatedAt,
+        days: bars.length,
+        bars,
+        indicators: chartIndicators(indicators, bars.length),
+        plan: buildTradePlan(stock, indicators, bars)
+      };
+    } catch (error) {
+      history = { error: String(error?.message || error) };
+    }
+    return json(res, 200, {
+      ...detail,
+      node: {
+        code: stock.code,
+        name: stock.name,
+        board: stock.board,
+        limitLabel: limitLabel(stock),
+        st: stock.st,
+        factors: stock.factors ?? null,
+        anomalyScore: stock.anomalyScore ?? null,
+        trendScore: stock.trendScore ?? null,
+        directional: directionalScore(stock, 0)
+      },
+      history,
+      events: related
+    });
+  }
+
+  const stockMatch = pathname.match(/^\/api\/stocks\/([0-9]{6})$/);
+  if (stockMatch) {
+    const stock = stocks.find((item) => item.code === stockMatch[1]);
+    if (!stock) return notFound(res);
+    const view = eventView(stocks, events);
+    return json(res, 200, {
+      ...getStockDetail(stock, stocks, meta),
+      node: {
+        limitPct: stock.limitPct,
+        limitLabel: limitLabel(stock),
+        st: stock.st,
+        anomalyScore: stock.anomalyScore ?? null,
+        trendScore: stock.trendScore ?? null
+      },
+      events: eventsForCode(stock.code, view, 5)
+    });
+  }
+
   if (pathname === "/api/signals") {
     const limit = parsePositiveInt(params.get("limit"), 60, 200);
     return json(res, 200, { items: buildSignals(stocks, limit), count: stocks.length, limit, meta });
@@ -701,7 +1425,7 @@ async function handleApi(req, res, pathname, params) {
   if (pathname === "/api/stocks") {
     const limit = parsePositiveInt(params.get("limit"), 100, 500);
     const offset = Math.max(Math.trunc(parseNumber(params.get("offset"), 0)), 0);
-    const result = filterStocks(stocks, params);
+    const result = filterStocks(stocks, params, searchIndex);
     return json(res, 200, {
       items: result.slice(offset, offset + limit),
       total: result.length,
@@ -709,13 +1433,6 @@ async function handleApi(req, res, pathname, params) {
       offset,
       meta
     });
-  }
-
-  const stockMatch = pathname.match(/^\/api\/stocks\/([0-9]{6})$/);
-  if (stockMatch) {
-    const stock = stocks.find((item) => item.code === stockMatch[1]);
-    if (!stock) return notFound(res);
-    return json(res, 200, getStockDetail(stock, stocks, meta));
   }
 
   return notFound(res);
