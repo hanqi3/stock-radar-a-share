@@ -40,6 +40,7 @@ const state = {
   flow: {
     scope: localStorage.getItem("stockradar-flow-scope") || "stock",
     side: localStorage.getItem("stockradar-flow-side") || "inflow",
+    w: Number(localStorage.getItem("stockradar-flow-window")) || 1,
     data: null,
     token: 0
   }
@@ -95,9 +96,11 @@ const els = {
   panelWatch: document.querySelector("#panelWatch"),
   flowBody: document.querySelector("#flowBody"),
   flowSummary: document.querySelector("#flowSummary"),
+  flowTrend: document.querySelector("#flowTrend"),
   flowTime: document.querySelector("#flowTime"),
   flowScopeSegment: document.querySelector("#flowScopeSegment"),
   flowSideSegment: document.querySelector("#flowSideSegment"),
+  flowWindowSegment: document.querySelector("#flowWindowSegment"),
   globalIndexList: document.querySelector("#globalIndexList"),
   newsSearchInput: document.querySelector("#newsSearchInput"),
   newsScopeSegment: document.querySelector("#newsScopeSegment"),
@@ -883,7 +886,7 @@ async function reloadFlow() {
   els.flowBody.innerHTML = `<div class="empty-state">加载资金流数据中</div>`;
   try {
     const data = await api(
-      `/api/flow?scope=${encodeURIComponent(state.flow.scope)}&side=${encodeURIComponent(state.flow.side)}&limit=60`
+      `/api/flow?scope=${encodeURIComponent(state.flow.scope)}&side=${encodeURIComponent(state.flow.side)}&w=${encodeURIComponent(state.flow.w)}&limit=60`
     );
     if (token !== state.flow.token) return;
     state.flow.data = data;
@@ -892,6 +895,7 @@ async function reloadFlow() {
     if (token !== state.flow.token) return;
     state.flow.data = null;
     if (els.flowSummary) els.flowSummary.innerHTML = "";
+    if (els.flowTrend) els.flowTrend.hidden = true;
     els.flowBody.innerHTML = `<div class="empty-state">资金流数据暂不可用：${escapeHtml(error.message)}</div>`;
   }
 }
@@ -900,6 +904,38 @@ function signedMoney(value) {
   if (!Number.isFinite(value)) return "暂无";
   const sign = value > 0 ? "+" : value < 0 ? "-" : "";
   return `${sign}${money(Math.abs(value))}`;
+}
+
+function flowWindowLabel(w) {
+  return w > 1 ? `近 ${w} 日` : "当日";
+}
+
+function renderFlowTrend(data) {
+  if (!els.flowTrend) return;
+  const history = Array.isArray(data?.history) ? data.history : [];
+  if (history.length < 3) {
+    els.flowTrend.hidden = true;
+    els.flowTrend.innerHTML = "";
+    return;
+  }
+  const ordered = history.slice().reverse(); // oldest -> newest
+  const max = Math.max(...ordered.map((day) => Math.abs(day.mainNet || 0)), 1);
+  const bars = ordered
+    .map((day) => {
+      const net = day.mainNet || 0;
+      const height = Math.max(Math.round((Math.abs(net) / max) * 100), 3);
+      const tip = `${day.date}　主力净额 ${signedMoney(net)}　流入/流出 ${day.inflows}/${day.outflows} 家`;
+      return `<i class="${net >= 0 ? "up" : "down"}" style="height:${height}%" title="${escapeHtml(tip)}"></i>`;
+    })
+    .join("");
+  const span = `${ordered[0].date} → ${ordered[ordered.length - 1].date}`;
+  els.flowTrend.hidden = false;
+  els.flowTrend.innerHTML = `
+    <div class="flow-trend-head">
+      <span>市场主力净额走势 · ${escapeHtml(span)}</span>
+      <span class="flow-trend-legend">${ordered.length} 个交易日 · 柱高按当日净额绝对值</span>
+    </div>
+    <div class="flow-trend-bars">${bars}</div>`;
 }
 
 function renderFlowSummary(data) {
@@ -925,9 +961,10 @@ function renderFlowSummary(data) {
       <span class="flow-stat-value">${inflowPct}%</span>
     </div>
     <div class="flow-stat">
-      <span class="flow-stat-label">口径</span>
-      <span class="flow-stat-value flow-stat-note">${escapeHtml(data.definition || "主力 = 超大单 + 大单")} · ${escapeHtml(data.date || "—")}</span>
+      <span class="flow-stat-label">口径 / 窗口</span>
+      <span class="flow-stat-value flow-stat-note">${escapeHtml(data.definition || "主力 = 超大单 + 大单")} · 当日 ${escapeHtml(data.date || "—")} · 共 ${data.days ?? "—"} 个交易日</span>
     </div>`;
+  renderFlowTrend(data);
 }
 
 function renderFlow(data) {
@@ -944,24 +981,29 @@ function renderFlow(data) {
   }
 
   const industry = data.scope === "industry";
-  const columnLabel = industry ? "行业主力净额" : "个股主力净额";
-  const max = Math.max(...items.map((item) => Math.abs(item.mainNet || 0)), 1);
+  const w = data.w || 1;
+  const windowLabel = flowWindowLabel(w);
+  const columnLabel = industry ? `${windowLabel}行业净额` : `${windowLabel}个股净额`;
+  const valueOf = (item) => (Number.isFinite(item.flow) ? item.flow : item.mainNet) || 0;
+  const max = Math.max(...items.map((item) => Math.abs(valueOf(item))), 1);
   const rows = items
     .map((item, index) => {
-      const net = item.mainNet ?? 0;
+      const net = valueOf(item);
       const width = Math.max(Math.round((Math.abs(net) / max) * 100), 2);
       const title = industry
         ? escapeHtml(item.name || "—")
         : `${escapeHtml(item.name || "—")} <span class="flow-code">${escapeHtml(item.code || "")}</span>`;
       const sub = industry
-        ? `${item.count ?? 0} 只成分 · 平均涨跌 ${Number.isFinite(item.avgChangePct) ? signed(item.avgChangePct, "%") : "—"} · 成交 ${money(item.amount)}`
-        : `${escapeHtml(item.industry || "—")} · ${Number.isFinite(item.changePct) ? signed(item.changePct, "%") : "—"} · 成交 ${money(item.amount)}`;
-      const trend = industry
-        ? `<div class="flow-side-value">${money(item.amount)}</div><div class="flow-side-label">成交额合计</div>`
-        : `<div class="flow-side-value ${toneClass(item.main5)}">${signedMoney(item.main5)}</div><div class="flow-side-label">近 ${item.sessions || data.days || 5} 日</div>`;
+        ? `${item.count ?? 0} 只成分 · 平均涨跌 ${Number.isFinite(item.avgChangePct) ? signed(item.avgChangePct, "%") : "—"} · 当日成交 ${money(item.amount)}`
+        : `${escapeHtml(item.industry || "—")} · ${Number.isFinite(item.changePct) ? signed(item.changePct, "%") : "—"} · 当日成交 ${money(item.amount)}`;
+      const compare = industry
+        ? `${money(item.amount)}`
+        : `${signedMoney(item.main5)}`;
+      const compareLabel = industry ? "当日成交额合计" : "近 5 日主力";
+      const trend = `<div class="flow-side-value ${toneClass(industry ? null : item.main5)}">${compare}</div><div class="flow-side-label">${compareLabel}</div>`;
       const detail = industry
-        ? `${item.name}：主力净额 ${signedMoney(net)}（${item.count ?? 0} 只成分）`
-        : `${item.name} ${item.code}\n主力净额 ${signedMoney(net)}（占比 ${Number.isFinite(item.mainRatio) ? signed(item.mainRatio, "%") : "—"}）\n超大单 ${signedMoney(item.superNet)} · 大单 ${signedMoney(item.bigNet)}\n中单 ${signedMoney(item.midNet)} · 小单 ${signedMoney(item.smallNet)}\n成交额 ${money(item.amount)}`;
+        ? `${item.name}：${windowLabel}净额 ${signedMoney(net)}（${item.count ?? 0} 只成分）`
+        : `${item.name} ${item.code}\n${windowLabel}主力净额 ${signedMoney(net)}\n当日 ${signedMoney(item.mainNet)}（占比 ${Number.isFinite(item.mainRatio) ? signed(item.mainRatio, "%") : "—"}）\n近 5 日 ${signedMoney(item.main5)} · 近 20 日 ${signedMoney(item.main20)} · 近 60 日 ${signedMoney(item.main60)}\n超大单 ${signedMoney(item.superNet)} · 大单 ${signedMoney(item.bigNet)}\n中单 ${signedMoney(item.midNet)} · 小单 ${signedMoney(item.smallNet)}\n成交额 ${money(item.amount)}`;
       return `
         <div class="flow-row" ${item.code ? `data-code="${escapeHtml(item.code)}"` : ""} title="${escapeHtml(detail)}">
           <div class="flow-rank">${index + 1}</div>
@@ -974,7 +1016,7 @@ function renderFlow(data) {
           </div>
           <div class="flow-net ${toneClass(net)}">
             <div class="flow-net-value">${signedMoney(net)}</div>
-            <div class="flow-net-ratio">${Number.isFinite(item.mainRatio) ? `占比 ${signed(item.mainRatio, "%")}` : columnLabel}</div>
+            <div class="flow-net-ratio">${industry ? `${item.count ?? 0} 只成分` : windowLabel}</div>
           </div>
           <div class="flow-bar"><i class="${net >= 0 ? "up" : "down"}" style="width:${width}%"></i></div>
         </div>`;
@@ -985,7 +1027,7 @@ function renderFlow(data) {
     <div class="flow-head">
       <div class="flow-rank">#</div>
       <div class="flow-main">${industry ? "行业" : "个股 / 行业 / 成交额"}</div>
-      <div class="flow-side">${industry ? "成交额" : `近 ${data.days || 5} 日`}</div>
+      <div class="flow-side">${industry ? "成交额" : "近 5 日主力"}</div>
       <div class="flow-net">${columnLabel}</div>
       <div class="flow-bar-head"></div>
     </div>
@@ -1640,6 +1682,14 @@ function bindEvents() {
     });
   };
 
+  // Reflect a persisted choice back onto its segment (segments default to the
+  // first button, so a restored 近 60 日 window would otherwise look unselected).
+  const paintSegment = (segment, attribute, value) => {
+    segment?.querySelectorAll("button").forEach((button) => {
+      button.classList.toggle("active", String(button.dataset[attribute]) === String(value));
+    });
+  };
+
   bindSegment(els.flowScopeSegment, "flowScope", (value) => {
     state.flow.scope = value;
     localStorage.setItem("stockradar-flow-scope", value);
@@ -1654,12 +1704,24 @@ function bindEvents() {
     reloadFlow();
   });
 
+  bindSegment(els.flowWindowSegment, "flowWindow", (value) => {
+    const w = Number(value);
+    state.flow.w = Number.isFinite(w) && w > 0 ? w : 1;
+    localStorage.setItem("stockradar-flow-window", String(state.flow.w));
+    state.flow.data = null;
+    reloadFlow();
+  });
+
   els.flowBody?.addEventListener("click", (event) => {
     const row = event.target.closest("[data-code]");
     if (row) selectStock(row.dataset.code);
   });
 
   // --- news + keyword search ---
+  paintSegment(els.flowScopeSegment, "flowScope", state.flow.scope);
+  paintSegment(els.flowSideSegment, "flowSide", state.flow.side);
+  paintSegment(els.flowWindowSegment, "flowWindow", state.flow.w);
+
   bindSegment(els.newsScopeSegment, "newsScope", (value) => {
     state.news.scope = value;
     renderNews();
@@ -1677,6 +1739,7 @@ function bindEvents() {
       runNewsSearch("");
     }
   });
+  paintSegment(els.newsScopeSegment, "newsScope", state.news.scope);
 }
 
 async function init() {

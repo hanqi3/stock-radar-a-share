@@ -12,7 +12,7 @@ StockRadar 是一个面向 A股市场的行情与事件雷达应用。项目会�
 - 市场概览：统计上涨、下跌、平盘、涨停附近、跌停附近、成交额和交易所分布
 - 异动信号：识别涨停、跌停、涨停附近、跌停附近、强势拉升、快速回撤、换手放大、成交活跃、异动关注
 - 个股画像：现价、涨跌幅、成交额、市值、异动原因、走势概览、同板块对比和相关事件
-- 主力资金：`data/flow.json` 按东方财富口径记录「主力净额 = 超大单净额 + 大单净额」的近 5 个交易日序列，个股榜与申万行业榜都从同一份数据聚合，可切净流入 / 净流出
+- 主力资金：`data/flow.json` 按东方财富口径记录「主力净额 = 超大单净额 + 大单净额」的最近 60 个交易日，个股榜与申万行业榜都从同一份数据聚合，可切净流入 / 净流出，并可按 当日 / 近 5 日 / 近 10 日 / 近 20 日 / 近 60 日 重排；顶部柱状图是这 60 个交易日的全市场净额走势
 - K 线图：原生 canvas 绘制日 K（`public/chart.js`），**蜡烛图 / 线图可切换**（线图带渐变面积与最新价标签），支持 5 / 10 / 15 / 30 / 60 / 120 / 250 日区间切换，可开关 MA5 / MA10 / MA15 / MA20、布林带和成交量副图，带十字光标与买点 / 止损 / 目标标记
 - 交易计划：历史行情接口同时返回买点区间、止损价、目标和失效条件，图表右侧展示
 - 双板块简报：`/api/briefing` 同时给出「中国 · A股简报」和「海外 · 全球市场简报」，海外板块覆盖美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品五组共 35 个标的，并附海外事件主题与要闻
@@ -103,7 +103,7 @@ data/sectors.json         板块节点树 + 成员关系（已提交）
 data/indicators.json      全市场个股指标快照（已提交）
 data/events.json           新闻与公告事件（已提交）
 data/indices.json         全球指数、外汇与大宗商品报价（已提交）
-data/flow.json            全市场主力资金流近 5 个交易日（已提交）
+data/flow.json            全市场主力资金流最近 60 个交易日（已提交）
 .cache/history/           日线磁盘缓存（git 忽略，不提交）
 ```
 
@@ -144,7 +144,15 @@ note           说明文字
 
 `data/indices.json` 顶层为 `{generatedAt, source, count, note, items}`，`source` 固定为 `sina-hq`。单条为 `{symbol, name, group, digits, price, change, changePct, updatedAt}`，`group` 取 `美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品`，`digits` 是该标的的合理小数位（美元指数 3 位、汇率 4 位、指数 2 位），前端按它格式化。35 个标的由一次新浪批量行情请求取回，指数抓取失败不会影响事件同步。
 
-`data/flow.json` 顶层为 `{generatedAt, source, definition, days, sessions, coverage, count, industries, items}`，`source` 为 `eastmoney`，`definition` 写明「主力净额 = 超大单净额 + 大单净额（东方财富口径）」。`items` 以 6 位代码为键，值为 `{name, industry, price, changePct, sessions, amount, mainNet, mainRatio, superNet, bigNet, midNet, smallNet, main5, amount5}`，金额单位为元；`industries` 用 `data/sectors.json` 的申万行业成员聚合出每个行业的净额。脚本要求最近一个交易日覆盖率不低于 90%，否则拒绝写盘。
+`data/flow.json` 顶层为 `{generatedAt, date, sessions, windows, window, days, source, definition, coverage, market, history, industries, stocks}`，`source` 为 `eastmoney`，`definition` 写明「主力净额 = 超大单净额 + 大单净额（东方财富口径）」。
+
+- `windows` = `[1, 5, 10, 20, 60]`，`window` = `{start, end}`，`days` = 实际取到的交易日数（默认 60，约一个季度）。
+- `stocks` 每条为 `{code, name, exchange, board, industry, date, sessions, price, changePct, amount, mainNet, mainRatio, superNet, bigNet, midNet, smallNet}` 加上每个窗口的 `main1/main5/main10/main20/main60` 与 `amount1/…/amount60`（累计净额，单位元）。`mainNet` 即 `main1`（最新交易日）。
+- `history` 是**市场层面**的逐日序列 `{date, mainNet, amount, inflows, outflows, count}`，整段窗口都保留，用于资金流 tab 顶部的走势柱。
+- `industries` 用 `data/sectors.json` 的申万行业成员聚合出每个行业的净额，同样带全部窗口。
+- 同一只股票若上市不足 60 个交易日，`sessions` 会小于 `days`，各窗口是该股实际存在的天数之和（不会补零）。
+
+脚本要求覆盖率不低于 90%，否则拒绝写盘。窗口长度用 `npm run flow -- --days=<n>` 调整，上限 250（约一年）：60 个交易日约 12 s（冷启动 50 s）、约 2.6 MB；250 个交易日约 5.4 min、约 2.7 MB（5 万行/页的下页开销是主要成本）。
 
 > 新浪与东方财富对同一只股票的主力净额可能给出相反的符号（实测新易盛：成交额与价格一致，净额一个 −19.25 亿、一个 +12.92 亿）。本项目统一采用东方财富口径，整个榜单不得混用两家数据。
 
@@ -291,7 +299,7 @@ GET /api/watchlist?codes=600519,000001
 | `/api/events` | `limit` | 30 | 200 |
 | `/api/indices` | 无 | 返回 `data/indices.json` 的全部标的 | — |
 | `/api/news` | `limit`、`q` | `limit=400` | `limit` 1000；`q` 匹配标题 / 摘要 / 来源 / 主题 / 代码，`counts` 与 `total` 都是筛选后的口径 |
-| `/api/flow` | `scope`、`side`、`limit` | `scope=stock`、`side=inflow`、`limit=60` | `limit` 500；`scope` 取 `stock` / `industry`，`side` 取 `inflow` / `outflow`，非法值回退默认 |
+| `/api/flow` | `scope`、`side`、`w`、`limit` | `scope=stock`、`side=inflow`、`w=1`、`limit=60` | `limit` 500；`scope` 取 `stock` / `industry`，`side` 取 `inflow` / `outflow`，`w` 取 `windows` 里的值（不支持时回退 `1`），非法值回退默认 |
 | `/api/watchlist` | `codes` | 空 | 最多 60 个 6 位代码，非 6 位直接丢弃；未知代码返回 `{code, missing:true, alerts:[]}` |
 | `/api/backtest` | 见下方「策略回测」 | — | 参数越界会被钳制到区间内，无历史时返回 422 |
 
@@ -397,7 +405,7 @@ GET /api/backtest?codes=600519,000001&topN=10&minScore=5&holdDays=10
 我的自选   自选监控与告警 + 策略回测与表现追踪
 ```
 
-当前 tab 存在 `localStorage` 的 `stockradar-tab`，刷新后保持；图表类型存在 `stockradar-chart-type`，资金流的范围和方向分别存在 `stockradar-flow-scope` / `stockradar-flow-side`。
+当前 tab 存在 `localStorage` 的 `stockradar-tab`，刷新后保持；图表类型存在 `stockradar-chart-type`，资金流的范围、方向和净额窗口分别存在 `stockradar-flow-scope` / `stockradar-flow-side` / `stockradar-flow-window`。
 
 新闻政策栏的两列内容来自同一份事件池，按 `lib/news-region.js` 的区域判定拆分。公告披露会成串到达（实测某公司一分钟内提交 11 份文件），因此每列做了两道限制：同一发行人最多 2 条，公告类不超过整栏的三分之一，并把「报道」与「公告」两股流按 2:1 交错排列，避免收盘公告把当天报道整段压到底部。
 

@@ -1,9 +1,16 @@
 // Nightly capital-flow snapshot (主力资金流入流出).
 //
 // The 资金流 tab ranks the whole market by net inflow. Eastmoney's datacenter
-// report RPT_DMSK_TS_FUNDFLOW already carries one row per stock per session with
-// the full 4-tier breakdown and a server-side sort, so the whole market costs a
-// handful of HTTP calls (~5 s) instead of one request per symbol.
+// report RPT_DMSK_TS_FUNDFLOW carries one row per stock per session with the full
+// 4-tier breakdown, a server-side sort and a server-side *date range* filter, so
+// the whole market over a long window costs a dozen paged requests instead of one
+// request per symbol per day.
+//
+// Window size: the report holds per-session rows back to 2010-01-04, so the only
+// real limit is transfer size. At pageSize 20000 a session is ~6500 rows, i.e. one
+// page per three sessions; 60 sessions is ~344k rows / ~12 pages / ~25 s. Each
+// symbol keeps rolling sums for 1 / 5 / 10 / 20 / 60 sessions, and the market-level
+// per-session series is kept whole so the tab can show the window's own trend.
 //
 // Why Eastmoney and not Sina: the two providers disagree in *sign* for the same
 // session. On 2026-10-15 the market-wide total was -637.5亿 from Eastmoney
@@ -12,8 +19,8 @@
 // yet Eastmoney said -19.25亿 and Sina said +12.92亿. A ranking column may only
 // ever use one definition, so this script is Eastmoney-only.
 //
-//   node scripts/sync-flow.js [--days=5] [--limit=100] [--codes=600519,000001]
-//                             [--out=data/flow.json] [--page-size=5000]
+//   node scripts/sync-flow.js [--days=60] [--limit=100] [--codes=600519,000001]
+//                             [--out=data/flow.json] [--page-size=20000]
 //                             [--timeout-ms=20000] [--max-attempts=3]
 //                             [--min-coverage=0.9] [--allow-partial]
 import fs from "node:fs/promises";
@@ -39,10 +46,28 @@ const HEADERS = {
 const WAN = 10_000;
 /** 600519 (贵州茅台) is used only to read back the most recent trading dates. */
 const CALENDAR_CODE = "600519";
+/** Only the columns this script reads; trims each page from ~5.8 KB/row to ~0.3 KB/row. */
+const COLUMNS = [
+  "SECURITY_CODE",
+  "SECURITY_NAME_ABBR",
+  "TRADE_DATE",
+  "CLOSE_PRICE",
+  "CHANGE_RATE",
+  "DEAL_AMOUNT",
+  "NET_INFLOW",
+  "NET_INFLOW_RATIO",
+  "SUPERDEAL_NET",
+  "BIGDEAL_NET",
+  "MIDDEAL_NET",
+  "SMALLDEAL_NET"
+].join(",");
+/** Rolling net-inflow windows kept per symbol, in trading sessions. */
+export const WINDOWS = [1, 5, 10, 20, 60];
 
 export const DEFAULTS = {
-  days: 5,
-  pageSize: 5000,
+  days: 60,
+  maxDays: 250,
+  pageSize: 20000,
   minCoverage: 0.9,
   timeoutMs: 20000,
   maxAttempts: 3
@@ -60,7 +85,7 @@ function parseArgs(argv) {
       continue;
     }
     if (rawValue === undefined) continue;
-    if (["days", "pageSize", "limit", "timeoutMs", "maxAttempts"].includes(key)) options[key] = Number(rawValue);
+    if (["days", "maxDays", "pageSize", "limit", "timeoutMs", "maxAttempts"].includes(key)) options[key] = Number(rawValue);
     else if (key === "minCoverage") options.minCoverage = Number(rawValue);
     else if (key === "codes") options.codes = rawValue.split(",").map((c) => c.trim()).filter(Boolean);
     else options[key] = rawValue;
@@ -110,9 +135,10 @@ async function fetchReport(url, options) {
 
 /** The report has no date index, so the recent sessions are read off one liquid stock. */
 export async function fetchTradeDates(options, code = CALENDAR_CODE) {
+  const wanted = Math.max(Math.min(options.days || 1, options.maxDays || 250), 1);
   const result = await fetchReport(
     reportUrl({
-      pageSize: Math.max(options.days, 1),
+      pageSize: wanted,
       sortColumns: "TRADE_DATE",
       sortTypes: "-1",
       filter: `(SECURITY_CODE="${code}")`,
@@ -128,16 +154,25 @@ export async function fetchTradeDates(options, code = CALENDAR_CODE) {
   return dates;
 }
 
-export async function fetchDay(date, options) {
+/**
+ * Every stock/session row between two dates, newest session first.
+ *
+ * The report honours a two-sided TRADE_DATE range filter, which is what makes a
+ * long window affordable: one paged scan instead of one scan per session.
+ */
+export async function fetchWindow(start, end, options) {
   const rows = [];
-  for (let page = 1; page <= 4; page += 1) {
+  const sessions = options.windowSessions || options.days || 1;
+  const maxPages = Math.ceil((sessions * 6500) / options.pageSize) + 4;
+  for (let page = 1; page <= maxPages; page += 1) {
     const result = await fetchReport(
       reportUrl({
         pageNumber: page,
         pageSize: options.pageSize,
         sortColumns: "TRADE_DATE,SECURITY_CODE",
         sortTypes: "-1,1",
-        filter: `(TRADE_DATE='${date}')`
+        filter: `(TRADE_DATE>='${start}')(TRADE_DATE<='${end}')`,
+        columns: COLUMNS
       }),
       options
     );
@@ -168,6 +203,19 @@ export function summarizeFlow(row) {
   };
 }
 
+/** Sum the newest `count` entries of a session series. */
+function windowSum(series, count, field) {
+  let total = 0;
+  let seen = 0;
+  for (let i = 0; i < series.length && seen < count; i += 1) {
+    const value = series[i][field];
+    if (!Number.isFinite(value)) continue;
+    total += value;
+    seen += 1;
+  }
+  return round(total, 0);
+}
+
 function industryMap(sectors) {
   const byId = new Map((sectors?.industries || []).map((item) => [item.id, item.name]));
   const byCode = new Map();
@@ -182,27 +230,35 @@ function aggregateIndustries(stocks) {
   const groups = new Map();
   for (const stock of stocks) {
     const name = stock.industry || stock.board || "未分类";
-    if (!groups.has(name)) groups.set(name, { name, count: 0, mainNet: 0, amount: 0, changes: [] });
+    if (!groups.has(name)) {
+      const fresh = { name, count: 0, amount: 0, changes: [] };
+      for (const window of WINDOWS) fresh[`main${window}`] = 0;
+      groups.set(name, fresh);
+    }
     const group = groups.get(name);
     group.count += 1;
-    group.mainNet += stock.mainNet || 0;
     group.amount += stock.amount || 0;
+    for (const window of WINDOWS) group[`main${window}`] += stock[`main${window}`] || 0;
     if (Number.isFinite(stock.changePct)) group.changes.push(stock.changePct);
   }
   return [...groups.values()]
-    .map((group) => ({
-      name: group.name,
-      count: group.count,
-      mainNet: round(group.mainNet, 0),
-      amount: round(group.amount, 0),
-      avgChangePct: group.changes.length ? round(group.changes.reduce((a, b) => a + b, 0) / group.changes.length, 2) : null
-    }))
-    .sort((a, b) => b.mainNet - a.mainNet);
+    .map((group) => {
+      const row = {
+        name: group.name,
+        count: group.count,
+        amount: round(group.amount, 0),
+        avgChangePct: group.changes.length ? round(group.changes.reduce((a, b) => a + b, 0) / group.changes.length, 2) : null
+      };
+      for (const window of WINDOWS) row[`main${window}`] = round(group[`main${window}`], 0);
+      return row;
+    })
+    .sort((a, b) => b.main1 - a.main1);
 }
 
 export async function main(argv = process.argv.slice(2)) {
   const options = parseArgs(argv);
   const started = Date.now();
+  options.days = Math.max(Math.min(options.days || 1, options.maxDays), 1);
 
   const stocks = JSON.parse(await fs.readFile(FULL_DATA_FILE, "utf8"));
   const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
@@ -219,78 +275,107 @@ export async function main(argv = process.argv.slice(2)) {
   if (options.codes) universe = options.codes.map((code) => byCode.get(String(code))).filter(Boolean);
   else if (options.limit) universe = stocks.slice().sort((a, b) => (b.amount || 0) - (a.amount || 0)).slice(0, options.limit);
   if (universe.length === 0) throw new Error("no symbols selected for the flow snapshot");
+  const universeCodes = new Set(universe.map((stock) => String(stock.code)));
 
   const dates = await fetchTradeDates(options);
   if (dates.length === 0) throw new Error("could not resolve any trading session from the datacenter report");
   const sessions = dates.slice(0, options.days);
-  console.log(`Snapshotting capital flow for ${universe.length} symbols over ${sessions.length} session(s): ${sessions.join(", ")}`);
+  const start = sessions[sessions.length - 1];
+  const end = sessions[0];
+  console.log(`Snapshotting capital flow for ${universe.length} symbols over ${sessions.length} session(s): ${start}..${end}`);
 
+  options.windowSessions = sessions.length;
   const failures = [];
-  const byCodeFlow = new Map();
-  for (const date of sessions) {
-    let rows = [];
-    try {
-      rows = await fetchDay(date, options);
-    } catch (error) {
-      failures.push({ date, error: String(error?.message || error) });
-      continue;
-    }
-    let matched = 0;
+  const series = new Map(); // code -> newest-first per-session rows
+  const byDate = new Map(); // session -> market aggregate
+
+  let matched = 0;
+  let scanned = 0;
+  try {
+    const rows = await fetchWindow(start, end, options);
+    scanned = rows.length;
     for (const row of rows) {
       const code = String(row.SECURITY_CODE || "");
-      const stock = byCode.get(code);
-      if (!stock) continue;
+      if (!universeCodes.has(code)) continue;
       const summary = summarizeFlow(row);
       if (!summary) continue;
+      const date = String(row.TRADE_DATE || "").slice(0, 10);
       matched += 1;
-      if (!byCodeFlow.has(code)) {
-        byCodeFlow.set(code, {
-          code,
-          name: stock.name || row.SECURITY_NAME_ABBR || null,
-          exchange: stock.exchange || inferExchange(code),
-          board: stock.board || null,
-          industry: industries.get(code) || stock.industry || null,
-          date,
-          session: true
-        });
-      }
-      const record = byCodeFlow.get(code);
-      if (date === sessions[0]) {
-        Object.assign(record, summary);
-        record.date = date;
-      }
-      record.main5 = round((record.main5 || 0) + summary.mainNet, 0);
-      record.amount5 = round((record.amount5 || 0) + (summary.amount || 0), 0);
-      record.sessions = (record.sessions || 0) + 1;
+      if (!series.has(code)) series.set(code, []);
+      series.get(code).push({ date, name: row.SECURITY_NAME_ABBR || null, ...summary });
+      if (!byDate.has(date)) byDate.set(date, { date, mainNet: 0, amount: 0, inflows: 0, outflows: 0, count: 0 });
+      const bucket = byDate.get(date);
+      bucket.mainNet += summary.mainNet || 0;
+      bucket.amount += summary.amount || 0;
+      if (summary.mainNet > 0) bucket.inflows += 1;
+      else if (summary.mainNet < 0) bucket.outflows += 1;
+      bucket.count += 1;
     }
-    console.log(`  ${date}: ${rows.length} rows from the report, ${matched} matched the A-share universe`);
+    console.log(`  ${scanned} rows over ${sessions.length} sessions, ${matched} matched the A-share universe`);
+  } catch (error) {
+    failures.push({ window: `${start}..${end}`, error: String(error?.message || error) });
   }
 
-  const records = [...byCodeFlow.values()].sort((a, b) => (b.mainNet || 0) - (a.mainNet || 0));
-  const market = records.reduce(
-    (total, record) => ({
-      mainNet: total.mainNet + (record.mainNet || 0),
-      amount: total.amount + (record.amount || 0)
-    }),
-    { mainNet: 0, amount: 0 }
-  );
-  const inflows = records.filter((record) => (record.mainNet || 0) > 0).length;
-  const outflows = records.filter((record) => (record.mainNet || 0) < 0).length;
+  const records = [];
+  for (const [code, entries] of series) {
+    entries.sort((a, b) => (a.date < b.date ? 1 : -1));
+    const stock = byCode.get(code);
+    const latest = entries[0];
+    const record = {
+      code,
+      name: stock?.name || latest.name || null,
+      exchange: stock?.exchange || inferExchange(code),
+      board: stock?.board || null,
+      industry: industries.get(code) || stock?.industry || null,
+      date: latest.date,
+      sessions: entries.length,
+      price: latest.price,
+      changePct: latest.changePct,
+      mainNet: latest.mainNet,
+      mainRatio: latest.mainRatio,
+      superNet: latest.superNet,
+      bigNet: latest.bigNet,
+      midNet: latest.midNet,
+      smallNet: latest.smallNet,
+      amount: latest.amount
+    };
+    for (const window of WINDOWS) {
+      record[`main${window}`] = windowSum(entries, window, "mainNet");
+      record[`amount${window}`] = windowSum(entries, window, "amount");
+    }
+    records.push(record);
+  }
+  records.sort((a, b) => (b.mainNet || 0) - (a.mainNet || 0));
 
+  const history = [...byDate.values()]
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .map((bucket) => ({
+      date: bucket.date,
+      mainNet: round(bucket.mainNet, 0),
+      amount: round(bucket.amount, 0),
+      inflows: bucket.inflows,
+      outflows: bucket.outflows,
+      count: bucket.count
+    }));
+
+  const today = history[0] || { mainNet: 0, amount: 0, inflows: 0, outflows: 0 };
   const coverage = universe.length ? records.length / universe.length : 0;
   const payload = {
     generatedAt: new Date().toISOString(),
-    date: sessions[0],
+    date: end,
     sessions,
     source: "eastmoney",
     sourceLabel: "东方财富资金流向",
     definition: "主力净额 = 超大单净额 + 大单净额（东方财富口径）",
     days: sessions.length,
+    windows: WINDOWS,
+    window: { start, end },
     requested: universe.length,
     succeeded: records.length,
     failed: failures.length,
     coverage: Number(coverage.toFixed(4)),
-    market: { mainNet: round(market.mainNet, 0), amount: round(market.amount, 0), inflows, outflows },
+    market: { mainNet: round(today.mainNet, 0), amount: round(today.amount, 0), inflows: today.inflows, outflows: today.outflows },
+    history,
     note: "One row per stock and session from datacenter RPT_DMSK_TS_FUNDFLOW. 东财资金流口径与新浪不同（同一日全市场合计可能反号），本文件不可与新浪数据混用；单位元。",
     failures: failures.slice(0, 50),
     industries: aggregateIndustries(records),
@@ -298,11 +383,11 @@ export async function main(argv = process.argv.slice(2)) {
   };
 
   const seconds = ((Date.now() - started) / 1000).toFixed(1);
-  console.log(`Flow ready: ${payload.succeeded}/${payload.requested} (coverage ${(coverage * 100).toFixed(1)}%) in ${seconds}s, session ${sessions[0]}`);
+  console.log(`Flow ready: ${payload.succeeded}/${payload.requested} (coverage ${(coverage * 100).toFixed(1)}%) in ${seconds}s, ${sessions.length} sessions`);
 
   if (coverage < options.minCoverage && !options.allowPartial) {
     console.error(`Refusing to write ${options.out}: coverage ${(coverage * 100).toFixed(1)}% is below the ${(options.minCoverage * 100).toFixed(0)}% floor.`);
-    if (failures.length) console.error(`First failures: ${failures.slice(0, 5).map((f) => `${f.date} ${f.error}`).join("; ")}`);
+    if (failures.length) console.error(`First failures: ${failures.slice(0, 5).map((f) => `${f.window} ${f.error}`).join("; ")}`);
     process.exitCode = 1;
     return { ...payload, written: false };
   }

@@ -408,6 +408,59 @@ try {
     `scope=${flowJunk.body?.scope} side=${flowJunk.body?.side}`
   );
 
+  check(
+    "GET /api/flow -> exposes the rolling windows it was built with",
+    Array.isArray(flowIn.body?.windows) &&
+      flowIn.body.windows.length >= 4 &&
+      flowIn.body.days > 20 &&
+      typeof flowIn.body?.window?.start === "string" &&
+      typeof flowIn.body?.window?.end === "string",
+    `windows=${(flowIn.body?.windows || []).join(",")} days=${flowIn.body?.days}`
+  );
+  check(
+    "GET /api/flow -> history covers the whole stored window regardless of w",
+    Array.isArray(flowIn.body?.history) &&
+      flowIn.body.history.length === flowIn.body.days &&
+      flowIn.body.history.every((day) => typeof day.date === "string" && Number.isFinite(day.mainNet)),
+    `history=${flowIn.body?.history?.length} days=${flowIn.body?.days}`
+  );
+  check(
+    "GET /api/flow -> every row carries a number for each rolling window",
+    (flowIn.body?.items || []).every((item) =>
+      (flowIn.body.windows || []).every((w) => Number.isFinite(item[`main${w}`]) && Number.isFinite(item[`amount${w}`]))
+    )
+  );
+
+  const flow60 = await get("/api/flow?scope=stock&side=inflow&w=60&limit=8");
+  const nets60 = (flow60.body?.items || []).map((item) => item.flow);
+  check(
+    "GET /api/flow?w=60 -> ranks by the 60-session sum",
+    flow60.status === 200 &&
+      flow60.body?.w === 60 &&
+      nets60.length === 8 &&
+      nets60.every((value, index) => index === 0 || nets60[index - 1] >= value) &&
+      (flow60.body?.items || []).every((item) => item.flow === item.main60),
+    `nets=${nets60.map((v) => Math.round(v / 1e8)).join(",")}亿`
+  );
+  check(
+    "GET /api/flow?w=60 -> w actually changes the ordering",
+    JSON.stringify(nets60) !== JSON.stringify(flowNets.slice(0, 8)) ||
+      JSON.stringify((flow60.body?.items || []).map((i) => i.code)) !== JSON.stringify((flowIn.body?.items || []).map((i) => i.code))
+  );
+  const flowIndustry60 = await get("/api/flow?scope=industry&side=inflow&w=60&limit=5");
+  check(
+    "GET /api/flow?scope=industry&w=60 -> industries carry the same windows",
+    flowIndustry60.status === 200 &&
+      flowIndustry60.body?.w === 60 &&
+      flowIndustry60.body.items.every((item) => Number.isFinite(item.flow) && item.flow === item.main60)
+  );
+  const flowBadW = await get("/api/flow?w=999&limit=2");
+  check(
+    "GET /api/flow?w=<unsupported> -> falls back to the one-session window",
+    flowBadW.status === 200 && flowBadW.body?.w === 1,
+    `w=${flowBadW.body?.w}`
+  );
+
   const watch = await get("/api/watchlist?codes=600519,000001,999999");
   check("GET /api/watchlist -> 200 with one item per code", watch.status === 200 && watch.body?.items?.length === 3);
   check(

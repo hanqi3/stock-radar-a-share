@@ -1674,6 +1674,19 @@ html[data-theme="dark"] .anomaly-chip {
   border-bottom: 1px solid var(--line);
 }
 
+/* The shared .segment is a fixed 4-column grid; a segment with a different
+   button count (the flow window picker) must size to its own labels instead. */
+.segment-auto {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, auto);
+}
+
+.segment-auto button {
+  padding: 0 11px;
+  white-space: nowrap;
+}
+
 .flow-summary {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1715,6 +1728,46 @@ html[data-theme="dark"] .anomaly-chip {
 .flow-body {
   padding: 0 0 8px;
 }
+
+.flow-trend {
+  padding: 10px 16px 4px;
+}
+
+.flow-trend-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--text-dim, #8a93a6);
+  margin-bottom: 6px;
+}
+
+.flow-trend-legend {
+  opacity: 0.72;
+}
+
+.flow-trend-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 54px;
+  padding: 0 1px;
+  border-bottom: 1px solid var(--border, #242a36);
+}
+
+.flow-trend-bars i {
+  flex: 1 1 0;
+  min-width: 2px;
+  border-radius: 1px 1px 0 0;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.flow-trend-bars i.up { color: var(--red); }
+.flow-trend-bars i.down { color: var(--green); }
+
+.flow-trend-bars i:hover { opacity: 1; }
 
 .flow-head,
 .flow-row {

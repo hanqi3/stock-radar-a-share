@@ -1542,16 +1542,29 @@ async function handleApi(req, res, pathname, params) {
     const q = normalizeText(params.get("q"));
     const flow = await loadFlow();
     const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
+    const windows = Array.isArray(flow.windows) && flow.windows.length ? flow.windows : [1, 5, 10, 20, 60];
+    // `w` picks which rolling window the ranking is sorted and labelled by.
+    const requested = parsePositiveInt(params.get("w"), 1, 250);
+    const window = windows.includes(requested) ? requested : 1;
+    const key = `main${window}`;
+    const windowKey = `amount${window}`;
+    const metric = (row) => row[key] ?? row.mainNet ?? null;
     const head = {
       generatedAt: flow.generatedAt ?? null,
       date: flow.date ?? null,
       sessions: flow.sessions ?? null,
       days: flow.days ?? null,
+      window: flow.window ?? null,
+      windows,
+      w: window,
       source: flow.source ?? null,
       sourceLabel: flow.sourceLabel ?? null,
       definition: flow.definition ?? null,
       note: flow.note ?? null,
       market: flow.market ?? null,
+      // The market trend strip always shows the whole stored window, not just the
+      // selected rolling window, so `w=1` still draws 60 sessions.
+      history: Array.isArray(flow.history) ? flow.history : [],
       scope,
       side,
       query: q,
@@ -1562,8 +1575,15 @@ async function handleApi(req, res, pathname, params) {
     if (scope === "industry") {
       const rows = (flow.industries || []).filter((row) => !q || String(row.name || "").includes(q));
       // industries are sorted by net inflow descending, so the outflow side is the tail
-      const picked = side === "outflow" ? rows.slice(-limit).reverse() : rows.slice(0, limit);
-      return json(res, 200, { ...head, count: picked.length, total: rows.length, items: picked });
+      const ordered = rows.slice().sort((a, b) => (metric(b) || 0) - (metric(a) || 0));
+      const picked = side === "outflow" ? ordered.slice(-limit).reverse() : ordered.slice(0, limit);
+      const items = picked.map((row) => ({
+        ...row,
+        mainNet: metric(row),
+        flow: metric(row),
+        amountWindow: row[windowKey] ?? row.amount ?? null
+      }));
+      return json(res, 200, { ...head, count: items.length, total: rows.length, items });
     }
 
     const needle = q.toLowerCase();
@@ -1586,11 +1606,12 @@ async function handleApi(req, res, pathname, params) {
         .toLowerCase();
       return haystack.includes(needle);
     });
-    const picked = side === "outflow" ? rows.slice(-limit).reverse() : rows.slice(0, limit);
+    const ordered = rows.slice().sort((a, b) => (metric(b) || 0) - (metric(a) || 0));
+    const picked = side === "outflow" ? ordered.slice(-limit).reverse() : ordered.slice(0, limit);
     const items = picked.map((row) => {
       const stock = byCode.get(String(row.code));
       const sector = stock?.industry && stock.industry !== stock.board ? stock.industry : row.industry;
-      return {
+      const item = {
         code: row.code,
         name: stock?.name ?? row.name ?? null,
         exchange: stock?.exchange ?? row.exchange ?? null,
@@ -1599,16 +1620,21 @@ async function handleApi(req, res, pathname, params) {
         price: stock?.price ?? row.price ?? null,
         changePct: stock?.changePct ?? row.changePct ?? null,
         mainNet: row.mainNet ?? null,
+        flow: metric(row),
         mainRatio: row.mainRatio ?? null,
         superNet: row.superNet ?? null,
         bigNet: row.bigNet ?? null,
         midNet: row.midNet ?? null,
         smallNet: row.smallNet ?? null,
         amount: row.amount ?? null,
-        main5: row.main5 ?? null,
-        amount5: row.amount5 ?? null,
+        amountWindow: row[windowKey] ?? null,
         sessions: row.sessions ?? null
       };
+      for (const candidate of windows) {
+        item[`main${candidate}`] = row[`main${candidate}`] ?? null;
+        item[`amount${candidate}`] = row[`amount${candidate}`] ?? null;
+      }
+      return item;
     });
     return json(res, 200, { ...head, count: items.length, total: rows.length, items });
   }

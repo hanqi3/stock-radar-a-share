@@ -59,8 +59,16 @@
                     <button class="active" data-flow-side="inflow">净流入</button>
                     <button data-flow-side="outflow">净流出</button>
                   </div>
+                  <div class="segment segment-auto" id="flowWindowSegment">
+                    <button class="active" data-flow-window="1">当日</button>
+                    <button data-flow-window="5">近 5 日</button>
+                    <button data-flow-window="10">近 10 日</button>
+                    <button data-flow-window="20">近 20 日</button>
+                    <button data-flow-window="60">近 60 日</button>
+                  </div>
                 </div>
                 <div class="flow-summary" id="flowSummary"></div>
+                <div class="flow-trend" id="flowTrend" hidden></div>
                 <div class="flow-body" id="flowBody">
                   <div class="empty-state">加载资金流数据中</div>
                 </div>
