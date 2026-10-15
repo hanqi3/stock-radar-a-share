@@ -126,15 +126,21 @@ async function loadEvents() {
   }
 }
 
-async function loadIndices() {
+async function loadIndicesPayload() {
   try {
     const payload = await readJson(INDICES_FILE);
-    if (Array.isArray(payload)) return payload;
-    if (payload && Array.isArray(payload.items)) return payload.items;
+    if (Array.isArray(payload)) return { generatedAt: null, items: payload };
+    if (payload && Array.isArray(payload.items)) {
+      return { generatedAt: payload.generatedAt ?? null, items: payload.items };
+    }
   } catch {
     /* indices.json is optional until the nightly news sync has run once */
   }
-  return [];
+  return { generatedAt: null, items: [] };
+}
+
+async function loadIndices() {
+  return (await loadIndicesPayload()).items;
 }
 
 /**
@@ -1395,7 +1401,7 @@ function formatIndexQuote(item) {
 
 // The 海外 board needs its own narrative: the A-share briefing says nothing about
 // New York, Frankfurt or the dollar. All 35 quotes ride on a single Sina batch.
-function buildGlobalBriefing(indices, events, now = new Date()) {
+function buildGlobalBriefing(indices, events, quotesUpdatedAt = null, now = new Date()) {
   const timestamp = now.toISOString();
   const grouped = new Map();
   for (const item of indices) {
@@ -1439,6 +1445,7 @@ function buildGlobalBriefing(indices, events, now = new Date()) {
 
   return {
     generatedAt: timestamp,
+    dataUpdatedAt: quotesUpdatedAt,
     count: indices.length,
     groups: OVERSEAS_GROUPS.map((group) => ({ group, items: grouped.get(group) ?? [] })).filter((entry) => entry.items.length),
     themes,
@@ -1630,12 +1637,19 @@ async function handleApi(req, res, pathname, params) {
   }
 
   if (pathname === "/api/briefing") {
-    const indices = await loadIndices();
-    return json(res, 200, { ...buildBriefing(stocks, meta, events), overseas: buildGlobalBriefing(indices, events) });
+    const indicesPayload = await loadIndicesPayload();
+    return json(res, 200, {
+      ...buildBriefing(stocks, meta, events),
+      overseas: buildGlobalBriefing(indicesPayload.items, events, indicesPayload.generatedAt)
+    });
   }
 
   if (pathname === "/api/briefing/overseas") {
-    return json(res, 200, { ...buildGlobalBriefing(await loadIndices(), events), meta });
+    const indicesPayload = await loadIndicesPayload();
+    return json(res, 200, {
+      ...buildGlobalBriefing(indicesPayload.items, events, indicesPayload.generatedAt),
+      meta
+    });
   }
 
   if (pathname === "/api/backtest") {

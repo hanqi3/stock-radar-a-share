@@ -275,6 +275,15 @@ try {
       ),
     `groups=${(briefing.body?.overseas?.groups || []).map((entry) => entry.group).join(",")}`
   );
+  check(
+    "GET /api/briefing -> both boards expose the data timestamp, not the request time",
+    typeof briefing.body?.dataUpdatedAt === "string" &&
+      !Number.isNaN(Date.parse(briefing.body.dataUpdatedAt)) &&
+      typeof briefing.body?.overseas?.dataUpdatedAt === "string" &&
+      !Number.isNaN(Date.parse(briefing.body.overseas.dataUpdatedAt)) &&
+      briefing.body.overseas.dataUpdatedAt <= briefing.body.overseas.generatedAt,
+    `china=${briefing.body?.dataUpdatedAt} overseas=${briefing.body?.overseas?.dataUpdatedAt}`
+  );
 
   const indices = await get("/api/indices");
   check(

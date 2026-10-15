@@ -811,7 +811,7 @@ function renderBriefing(data) {
     <ul class="briefing-lines">${lines}</ul>
     <div class="headline-list">${headlines || '<div class="empty-state">暂无新闻</div>'}</div>
   `;
-  if (els.briefingTime) els.briefingTime.textContent = timeLabel(data.generatedAt);
+  if (els.briefingTime) els.briefingTime.textContent = timeLabel(data.dataUpdatedAt || data.generatedAt);
 }
 
 function renderThemes(themes) {
@@ -1059,7 +1059,7 @@ function indexDigits(price, digits) {
 function renderOverseasBriefing() {
   const data = state.news.overseas;
   if (els.overseasTime) {
-    els.overseasTime.textContent = data?.generatedAt ? timeLabel(data.generatedAt) : "";
+    els.overseasTime.textContent = data?.dataUpdatedAt ? timeLabel(data.dataUpdatedAt) : "";
   }
   if (els.overseasBriefingBody) {
     const lines = data?.narrative || [];
