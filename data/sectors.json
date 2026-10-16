@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T14:24:12.521Z",
+  "generatedAt": "2026-10-16T12:38:59.700Z",
   "source": "sina",
   "sourceLabel": "Sina Finance market centre node tree",
   "sourceUrl": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodes",
@@ -4590,7 +4590,7 @@
     {
       "id": "sw_spyl",
       "name": "食品饮料",
-      "count": 126,
+      "count": 127,
       "members": [
         "000529",
         "000568",
@@ -4714,6 +4714,7 @@
         "605388",
         "605499",
         "605567",
+        "920196",
         "920429",
         "920726",
         "920786",
@@ -49856,6 +49857,12 @@
     "920195": {
       "industries": [
         "sw_qc"
+      ],
+      "concepts": []
+    },
+    "920196": {
+      "industries": [
+        "sw_spyl"
       ],
       "concepts": []
     },
