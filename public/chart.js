@@ -395,7 +395,19 @@ export function drawPriceChart(canvas, payload, options = {}) {
     ctx.textBaseline = "alphabetic";
   };
   if (plan) {
-    for (const zone of (plan.buyZones || []).slice(0, 3)) marker(zone.price, "#3f8cff", "买点", [5, 4]);
+    // "回踩 MA10 支撑" → "MA10", "布林带下轨超卖区" → "下轨": three buy zones at
+    // three different levels read as one label otherwise.
+    const zoneTag = (reason) => {
+      const ma = /MA(\d+)/i.exec(reason || "");
+      if (ma) return `MA${ma[1]}`;
+      if (/下轨/.test(reason || "")) return "下轨";
+      if (/上轨/.test(reason || "")) return "上轨";
+      return "";
+    };
+    for (const zone of (plan.buyZones || []).slice(0, 3)) {
+      const tag = zoneTag(zone.reason);
+      marker(zone.price, "#3f8cff", tag ? `买点·${tag}` : "买点", [5, 4]);
+    }
     marker(plan.stopLoss, DOWN, "止损", [2, 3]);
     marker(plan.target, UP, "目标", [2, 3]);
   }
