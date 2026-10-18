@@ -5,6 +5,7 @@
 // `Number(null) === 0`, so `GET /api/signals` and `GET /api/stocks` returned an
 // empty list whenever the caller omitted the parameter.
 import { spawn } from "node:child_process";
+import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -284,6 +285,25 @@ try {
       briefing.body.overseas.dataUpdatedAt <= briefing.body.overseas.generatedAt,
     `china=${briefing.body?.dataUpdatedAt} overseas=${briefing.body?.overseas?.dataUpdatedAt}`
   );
+  const digest = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "alert-digest.json"), "utf8"));
+  check(
+    "GET /api/briefing -> records the digest that scripts/notify-alerts.js pushes",
+    typeof digest.date === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(digest.date) &&
+      Array.isArray(digest.items) &&
+      digest.items.length > 0 &&
+      digest.items.length <= 8 &&
+      digest.items.every(
+        (item) =>
+          typeof item.code === "string" &&
+          typeof item.name === "string" &&
+          Number.isFinite(item.changePct) &&
+          Number.isFinite(item.anomalyScore)
+      ) &&
+      Number.isFinite(digest.limitUpCount) &&
+      (digest.previous === null || typeof digest.previous === "object"),
+    `date=${digest.date} items=${digest.items?.length}`
+  );
 
   const macro = await get("/api/macro");
   check(
@@ -292,14 +312,15 @@ try {
     `items=${macro.body?.items?.length} updatedAt=${macro.body?.updatedAt}`
   );
   check(
-    "GET /api/macro -> each yield carries value, change and basis-point move",
+    "GET /api/macro -> every series carries value, change and the move in its own unit",
     (macro.body?.items || []).every(
       (item) =>
         typeof item.symbol === "string" &&
         typeof item.name === "string" &&
         Number.isFinite(item.value) &&
         Number.isFinite(item.change) &&
-        Number.isFinite(item.changeBp)
+        // Yields move in basis points; an index level moves in percent.
+        (item.kind === "level" ? Number.isFinite(item.changePct) : Number.isFinite(item.changeBp))
     ),
     `symbols=${(macro.body?.items || []).map((item) => item.symbol).join(",")}`
   );
@@ -319,6 +340,14 @@ try {
       typeof outlook.body?.bias === "string" &&
       outlook.body.bias.length > 0,
     `score=${outlook.body?.score} bias=${outlook.body?.bias} confidence=${outlook.body?.confidence}`
+  );
+  check(
+    "GET /api/outlook -> dates the next session off the exchange calendar",
+    /^\d{4}-\d{2}-\d{2}$/.test(outlook.body?.forDate || "") &&
+      typeof outlook.body?.forDateExact === "boolean" &&
+      // A weekend is never a session, whatever the calendar says.
+      ![0, 6].includes(new Date(`${outlook.body.forDate}T00:00:00Z`).getUTCDay()),
+    `forDate=${outlook.body?.forDate} exact=${outlook.body?.forDateExact}`
   );
   check(
     "GET /api/outlook -> weights of the available drivers sum to at most 100",
@@ -371,6 +400,24 @@ try {
       Array.isArray(outlook.body?.watch) &&
       outlook.body.watch.length >= 1 &&
       /09:25/.test(outlook.body.watch[0])
+  );
+  check(
+    "GET /api/outlook -> carries its own track record, not just today's call",
+    Number.isFinite(outlook.body?.history?.total) &&
+      outlook.body.history.total >= 1 &&
+      Number.isFinite(outlook.body.history.neutralBand) &&
+      outlook.body.history.neutralBand > 0 &&
+      Array.isArray(outlook.body.history.buckets) &&
+      outlook.body.history.buckets.length === 5 &&
+      // Nothing can be graded before the next session closes.
+      Number.isFinite(outlook.body.history.pending) &&
+      (outlook.body.history.hitRate === null || Number.isFinite(outlook.body.history.hitRate)),
+    `total=${outlook.body?.history?.total} scored=${outlook.body?.history?.scored} hitRate=${outlook.body?.history?.hitRate}`
+  );
+  check(
+    "GET /api/outlook -> ships the track record as aggregates, not the raw ledger",
+    outlook.body?.history && outlook.body.history.records === undefined && typeof outlook.body.history.note === "string",
+    `keys=${Object.keys(outlook.body?.history || {}).join(",")}`
   );
 
   const sectorNews = await get("/api/sector-news?limit=31&samples=3");

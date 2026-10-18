@@ -88,7 +88,7 @@ export async function syncMacro(options = {}) {
     ...buildMacroPayload({
       seriesBySymbol,
       source: "fred",
-      sourceLabel: "FRED 美国国债收益率",
+      sourceLabel: "FRED 美债与波动率",
       now
     }),
     requested: MACRO_DEFINITIONS.length,

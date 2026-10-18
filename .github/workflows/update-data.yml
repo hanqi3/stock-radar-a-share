@@ -49,18 +49,50 @@ jobs:
         continue-on-error: true
         run: npm run flow
 
+      # New listings and ex-dividend days (XD/XR prefixes) change the names in
+      # the universe, so the committed pinyin index has to follow. pinyin-pro is
+      # installed only here and never becomes a runtime dependency.
+      - name: Rebuild pinyin index
+        continue-on-error: true
+        run: |
+          npm install --no-save --no-audit --no-fund pinyin-pro
+          npm run index:pinyin
+
+      # The flow snapshot records which sessions actually happened, so it doubles
+      # as the trading calendar. Rebuilding it here keeps "下一交易日" honest.
+      - name: Rebuild trading calendar
+        continue-on-error: true
+        run: npm run index:calendar
+
       - name: API smoke test
         run: npm run check:api
 
+      # The smoke test is what serves /api/outlook, which records tonight's call.
+      # Grading it here keeps the hit rate anchored to what was actually shown.
+      - name: Grade the previous outlook calls
+        continue-on-error: true
+        run: npm run outlook:history
+
+      # Optional egress: without the ALERT_WEBHOOK_URL secret this just prints the
+      # digest into the job log, which is still useful and never fails the run.
+      - name: Push the alert digest
+        continue-on-error: true
+        env:
+          ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+          ALERT_WEBHOOK_FORMAT: ${{ vars.ALERT_WEBHOOK_FORMAT }}
+        run: npm run notify
+
       - name: Commit updated data
         run: |
-          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/macro.json data/flow.json"
+          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/macro.json data/flow.json data/outlook-history.json data/alert-digest.json lib/pinyin-index.json lib/trading-days.json"
           TRACKED=""
           for f in $FILES; do
             if [ -f "$f" ]; then TRACKED="$TRACKED $f"; fi
           done
 
-          if git diff --quiet -- $TRACKED; then
+          # `git diff` only sees tracked files; status also catches the two
+          # snapshots that may be created for the very first time.
+          if [ -z "$(git status --porcelain -- $TRACKED)" ]; then
             echo "No data changes."
             exit 0
           fi

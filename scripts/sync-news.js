@@ -356,15 +356,71 @@ export const PROVIDERS = [
   { id: "em-announcement", label: "东方财富公告", run: fetchEastmoneyAnnouncements }
 ];
 
+// The same story lands in several feeds with different framing: 新浪 writes
+// 「东海证券：预计10月美联储暂停加息」 and 东方财富 republishes it with its own
+// punctuation and a source suffix. Comparing ids never matches those, so the
+// board showed the same headline twice, side by side.
+//
+// The key below is deliberately blunt: strip punctuation and spacing, drop a
+// trailing attribution, lowercase. It only ever merges items whose remaining
+// text is identical, so two genuinely different stories cannot collide.
+const TITLE_NOISE = /[\s\u3000，。、；：！？,.;:!?…·~|/\\'"“”‘’()（）【】\[\]《》〈〉<>—–-]/g;
+const TRAILING_SOURCE = /(?:[-—|｜_]\s*(?:新浪财经|东方财富|证券时报|财联社|格隆汇|界面新闻|第一财经|澎湃新闻)[\w·]*)$/;
+
+export function eventTitleKey(title) {
+  const text = String(title || "")
+    .replace(TRAILING_SOURCE, "")
+    .replace(TITLE_NOISE, "")
+    .toLowerCase();
+  return text.length >= 6 ? text : "";
+}
+
+/** Feed family, so "新浪财经7x24·政策" and "新浪财经7x24·国际" count as one. */
+function sourceFamily(item) {
+  return String(item?.source || "").split("·")[0].trim();
+}
+
 export function dedupeEvents(items) {
-  const seen = new Set();
+  const byId = new Set();
+  const groups = new Map(); // titleKey -> merged item
   const out = [];
   for (const item of items) {
-    const key = item.id || `${item.title}|${item.publishedAt}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(item);
+    const idKey = item.id || `${item.title}|${item.publishedAt}`;
+    if (byId.has(idKey)) continue;
+    byId.add(idKey);
+
+    const titleKey = eventTitleKey(item.title);
+    if (!titleKey) {
+      out.push(item);
+      continue;
+    }
+    const existing = groups.get(titleKey);
+    if (!existing) {
+      const entry = { ...item, codes: [...(item.codes || [])], alsoIn: [] };
+      groups.set(titleKey, entry);
+      out.push(entry);
+      continue;
+    }
+
+    // Same story from another feed: keep the fuller/earlier copy, but never lose
+    // the stock tags or the fact that a second outlet carried it.
+    const existingAt = new Date(existing.publishedAt || 0).getTime();
+    const incomingAt = new Date(item.publishedAt || 0).getTime();
+    const richer = String(item.summary || "").length > String(existing.summary || "").length;
+    if (item.publishedAt && (!existing.publishedAt || incomingAt < existingAt || (incomingAt === existingAt && richer))) {
+      existing.title = item.title;
+      existing.summary = item.summary;
+      existing.url = item.url || existing.url;
+      existing.source = item.source;
+      existing.publishedAt = item.publishedAt;
+    }
+    const union = new Set([...(existing.codes || []), ...(item.codes || [])]);
+    existing.codes = [...union];
+    const family = sourceFamily(item);
+    const ownFamily = sourceFamily(existing);
+    if (family && family !== ownFamily && !existing.alsoIn.includes(family)) existing.alsoIn.push(family);
   }
+  for (const item of out) if (item.alsoIn && item.alsoIn.length === 0) delete item.alsoIn;
   return out;
 }
 

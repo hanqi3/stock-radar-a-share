@@ -13,7 +13,26 @@ function quote(symbol, name, price, changePct, extra = {}) {
 function yieldItem(symbol, name, value, prevValue) {
   // data/macro.json keeps `change` in percentage points and `changeBp` in basis points.
   const change = Number((value - prevValue).toFixed(4));
-  return { symbol, name, group: "美债", digits: 3, unit: "%", value, prevValue, change, changeBp: Math.round(change * 100), updatedAt: "2026-10-15" };
+  return { symbol, name, group: "美债", kind: "rate", digits: 3, unit: "%", value, prevValue, change, changeBp: Math.round(change * 100), changePct: null, updatedAt: "2026-10-15" };
+}
+
+function levelItem(symbol, name, value, prevValue) {
+  // A level series (VIX) reports a percentage change, never basis points.
+  const change = Number((value - prevValue).toFixed(4));
+  return {
+    symbol,
+    name,
+    group: "风险",
+    kind: "level",
+    digits: 2,
+    unit: "",
+    value,
+    prevValue,
+    change,
+    changeBp: null,
+    changePct: Number(((change / prevValue) * 100).toFixed(2)),
+    updatedAt: "2026-10-15"
+  };
 }
 
 /** A fully-populated, internally consistent input set. */
@@ -51,7 +70,11 @@ function baseInput(overrides = {}) {
     ],
     macro: {
       updatedAt: "2026-10-15",
-      items: [yieldItem("us10y", "美国10年期国债", 5.1, 5.19), yieldItem("us2y", "美国2年期国债", 4.77, 4.82)]
+      items: [
+        yieldItem("us10y", "美国10年期国债", 5.1, 5.19),
+        yieldItem("us2y", "美国2年期国债", 4.77, 4.82),
+        levelItem("vix", "VIX 波动率指数", 21.5, 20.0)
+      ]
     },
     sectorNews: [],
     ...overrides
@@ -82,7 +105,8 @@ test("a fully-populated day puts every weight on the table", () => {
 test("score drops when a driver is missing but the scale does not break", () => {
   const outlook = buildOutlook({
     ...baseInput(),
-    macro: { updatedAt: null, items: [] }
+    // Drop just the 10Y leg; everything else, VIX included, is still on the table.
+    macro: { updatedAt: null, items: [levelItem("vix", "VIX 波动率指数", 21.5, 20.0)] }
   });
   assert.equal(outlook.availableWeight, 100 - DRIVER_WEIGHTS.us10y);
   assert.deepEqual(

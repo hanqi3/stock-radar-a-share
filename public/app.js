@@ -144,7 +144,10 @@ const els = {
   outlookWatch: document.querySelector("#outlookWatch"),
   outlookInputs: document.querySelector("#outlookInputs"),
   outlookInputsTime: document.querySelector("#outlookInputsTime"),
-  outlookNote: document.querySelector("#outlookNote")
+  outlookNote: document.querySelector("#outlookNote"),
+  outlookHistoryStats: document.querySelector("#outlookHistoryStats"),
+  outlookHistoryBuckets: document.querySelector("#outlookHistoryBuckets"),
+  outlookHistoryNote: document.querySelector("#outlookHistoryNote")
 };
 
 const moneyFormatter = new Intl.NumberFormat("zh-CN", {
@@ -535,7 +538,7 @@ function renderEventBlock(analysis) {
             <div class="event-title">${link}</div>
             <div class="event-meta">${escapeHtml(item.source || "")} · ${escapeHtml(item.category || "")} · ${escapeHtml(
               (item.publishedAt || "").slice(0, 16).replace("T", " ")
-            )}</div>
+            )}${escapeHtml(alsoInLabel(item))}</div>
           </div>
         </li>`;
     })
@@ -898,7 +901,7 @@ function renderBriefing(data) {
       (item) => `
         <div class="headline" data-sentiment="${escapeHtml(item.sentiment || "neutral")}">
           <div class="headline-title">${escapeHtml(item.title)}</div>
-          <div class="headline-meta">${escapeHtml(item.category || "资讯")} · ${escapeHtml(item.source || "")} · ${timeLabel(item.publishedAt)}</div>
+          <div class="headline-meta">${escapeHtml(item.category || "资讯")} · ${escapeHtml(item.source || "")} · ${timeLabel(item.publishedAt)}${escapeHtml(alsoInLabel(item))}</div>
         </div>`
     )
     .join("");
@@ -1197,6 +1200,17 @@ function renderMarketIndexStrip(items) {
         </div>`;
     })
     .join("");
+  syncIndexStripOverflow();
+}
+
+/**
+ * On a narrow window the strip scrolls sideways. Fade the right edge only while
+ * there is more to scroll to, so a clipped cell reads as "scrollable" rather than
+ * as a layout bug.
+ */
+function syncIndexStripOverflow() {
+  if (!els.indexStrip) return;
+  els.indexStrip.classList.toggle("is-scrollable", els.indexStrip.scrollWidth > els.indexStrip.clientWidth + 1);
 }
 
 function renderGlobalIndices() {
@@ -1251,7 +1265,7 @@ function renderOverseasBriefing() {
         (item) => `
         <div class="headline" data-sentiment="${escapeHtml(item.sentiment || "neutral")}">
           <div class="headline-title">${escapeHtml(item.title)}</div>
-          <div class="headline-meta">${escapeHtml(item.source || "")} · ${timeLabel(item.publishedAt)}</div>
+          <div class="headline-meta">${escapeHtml(item.source || "")} · ${timeLabel(item.publishedAt)}${escapeHtml(alsoInLabel(item))}</div>
         </div>`
       )
       .join("");
@@ -1288,6 +1302,13 @@ function highlightKeyword(text, query) {
   return safe.replace(new RegExp(escaped, "gi"), (match) => `<mark class="keyword">${match}</mark>`);
 }
 
+// A story carried by several feeds is stored once (see dedupeEvents in
+// scripts/sync-news.js); `alsoIn` names the other outlets that ran it.
+function alsoInLabel(item) {
+  const others = Array.isArray(item?.alsoIn) ? item.alsoIn.filter(Boolean) : [];
+  return others.length ? ` · 另见 ${others.join("/")}` : "";
+}
+
 function newsCard(item, query) {
   const themes = (item.themes || []).slice(0, 3).map((theme) => `<span class="chip">${escapeHtml(theme)}</span>`).join("");
   return `
@@ -1298,7 +1319,7 @@ function newsCard(item, query) {
           : highlightKeyword(item.title, query)}
       </div>
       <div class="headline-meta">
-        ${escapeHtml(item.category || "资讯")} · ${escapeHtml(item.source || "")} · ${timeLabel(item.publishedAt)}
+        ${escapeHtml(item.category || "资讯")} · ${escapeHtml(item.source || "")} · ${timeLabel(item.publishedAt)}${escapeHtml(alsoInLabel(item))}
       </div>
       ${themes ? `<div class="chip-row">${themes}</div>` : ""}
     </div>`;
@@ -1583,6 +1604,77 @@ function renderOutlook() {
     }
   }
   if (els.outlookNote) els.outlookNote.textContent = data.note || "";
+  renderOutlookHistory(data.history);
+}
+
+/**
+ * 「历史战绩」 is the only place on the page that grades itself, so it shows the
+ * sample count next to every number. A hit rate over three nights is displayed,
+ * but it is labelled as such.
+ */
+function renderOutlookHistory(history) {
+  if (!els.outlookHistoryStats || !els.outlookHistoryBuckets) return;
+  const pct = (value) => (Number.isFinite(value) ? `${(value * 100).toFixed(0)}%` : "—");
+  const signedPct = (value) => (Number.isFinite(value) ? `${value > 0 ? "+" : ""}${value.toFixed(2)}%` : "—");
+
+  if (!history) {
+    els.outlookHistoryStats.innerHTML = `<div class="empty-state small">暂无历史记录</div>`;
+    els.outlookHistoryBuckets.innerHTML = "";
+    if (els.outlookHistoryNote) els.outlookHistoryNote.textContent = "";
+    return;
+  }
+
+  const scored = history.scored ?? 0;
+  if (scored === 0) {
+    els.outlookHistoryStats.innerHTML = [
+      `<div class="history-stat"><div class="k">已记录</div><div class="v">${history.total ?? 0} 个交易日</div><div class="d">等收盘后才有分数</div></div>`,
+      `<div class="history-stat"><div class="k">待计分</div><div class="v">${history.pending ?? 0}</div><div class="d">次日收盘价出来后自动补</div></div>`
+    ].join("");
+    els.outlookHistoryBuckets.innerHTML = "";
+    if (els.outlookHistoryNote) {
+      els.outlookHistoryNote.textContent = "还没有可验证的样本：每晚打开本页会记录一次判断，下一个交易日收盘后由数据流水线补上实际涨跌。";
+    }
+    return;
+  }
+
+  const stats = [
+    ["方向命中率", pct(history.hitRate), `${history.hits}/${history.directional} 次方向判断`],
+    ["已计分 / 记录", `${scored} / ${history.total ?? scored}`, `待计分 ${history.pending ?? 0}`],
+    ["score 相关性", Number.isFinite(history.correlation) ? history.correlation.toFixed(2) : "—", "皮尔逊，样本 ≥3 才算"],
+    [
+      "次日平均涨跌",
+      signedPct(history.avgChangePct),
+      `看多 ${signedPct(history.avgWhenBullish)} · 看空 ${signedPct(history.avgWhenBearish)}`
+    ]
+  ];
+  els.outlookHistoryStats.innerHTML = stats
+    .map(
+      ([key, value, detail]) => `
+      <div class="history-stat">
+        <div class="k">${escapeHtml(key)}</div>
+        <div class="v">${escapeHtml(value)}</div>
+        <div class="d">${escapeHtml(detail)}</div>
+      </div>`
+    )
+    .join("");
+
+  els.outlookHistoryBuckets.innerHTML = (history.buckets || [])
+    .map((bucket) => {
+      const tone = !bucket.count || !Number.isFinite(bucket.avgChangePct) ? "" : bucket.avgChangePct > 0 ? "positive" : bucket.avgChangePct < 0 ? "negative" : "";
+      return `
+      <div class="history-bucket">
+        <span class="label">${escapeHtml(bucket.label)}</span>
+        <span class="n">${bucket.count ? `${bucket.count} 次` : "无样本"}</span>
+        <span class="avg ${tone}">${bucket.count ? signedPct(bucket.avgChangePct) : "—"}</span>
+        <span class="up">${bucket.count ? `上涨 ${pct(bucket.upRate)}` : ""}</span>
+      </div>`;
+    })
+    .join("");
+
+  if (els.outlookHistoryNote) {
+    const span = history.span ? `样本区间 ${history.span.from} → ${history.span.to}。` : "";
+    els.outlookHistoryNote.textContent = `${span}${history.note || ""}`;
+  }
 }
 
 async function refreshWatchlist() {
@@ -2128,7 +2220,13 @@ function bindEvents() {
     paintChart();
   });
 
-  window.addEventListener("resize", debounce(() => paintChart(), 160));
+  window.addEventListener(
+    "resize",
+    debounce(() => {
+      paintChart();
+      syncIndexStripOverflow();
+    }, 160)
+  );
 
   // --- vertical tab rail ---
   els.tabRail?.querySelectorAll("[data-tab]").forEach((button) => {

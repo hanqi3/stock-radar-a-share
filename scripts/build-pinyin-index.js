@@ -16,6 +16,7 @@ import { fileURLToPath } from "node:url";
 import { pinyin } from "pinyin-pro";
 
 import { THEME_KEYWORDS } from "../lib/events.js";
+import { stripNamePrefix } from "../lib/search.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_FILE = path.join(ROOT, "data", "all-a-shares.json");
@@ -60,11 +61,20 @@ async function main() {
 
   // Exact entries: pinyin-pro resolves polyphones with full-name context, which
   // a per-character table cannot (银行 → yinhang, 长江 → changjiang).
+  //
+  // The key is the *bare* name: 片仔癀 is listed as XD片仔癀 on its ex-dividend
+  // day and as C联亚 during a debut week, and those decorations change daily.
+  // Indexing them verbatim used to make phonetics depend on which day the file
+  // was generated. The decorated spelling is kept as an alias so an exact lookup
+  // by the name as it appears in the table still hits.
   const names = {};
   for (const stock of stocks) {
     const name = String(stock.name || "").trim();
     if (!name || !HAN.test(name)) continue;
-    names[name] = [fullPinyin(name), initials(name)];
+    const bare = stripNamePrefix(name);
+    const entry = [fullPinyin(bare), initials(bare)];
+    names[bare] = entry;
+    if (name !== bare) names[name] = entry;
   }
 
   const charMap = {};
@@ -73,10 +83,29 @@ async function main() {
     if (p) charMap[ch] = p;
   }
 
+  // Keep the committed file stable: `generatedAt` only moves when the content
+  // does, otherwise every CI run would churn a 200 KB blob for nothing.
+  let previous = null;
+  try {
+    previous = JSON.parse(await fs.readFile(OUT_FILE, "utf8"));
+  } catch {
+    previous = null;
+  }
+  const unchanged =
+    previous &&
+    JSON.stringify(previous.names) === JSON.stringify(names) &&
+    JSON.stringify(previous.chars) === JSON.stringify(charMap);
+  if (unchanged) {
+    console.log(
+      `${path.relative(ROOT, OUT_FILE)} already current: ${Object.keys(names).length} names, ${Object.keys(charMap).length} chars`
+    );
+    return;
+  }
+
   const payload = {
     generatedAt: new Date().toISOString(),
     generator: "pinyin-pro",
-    note: "Exact name entries plus a per-character fallback. Regenerate with: npm install --no-save pinyin-pro && npm run index:pinyin",
+    note: "Exact bare-name entries plus a per-character fallback. Regenerate with: npm install --no-save pinyin-pro && npm run index:pinyin",
     chars: charMap,
     names
   };

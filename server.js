@@ -1,6 +1,8 @@
 import fs from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
+import zlib from "node:zlib";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 import { buildSearchIndex, matchesQuery, suggest, EMPTY_LOOKUP } from "./lib/search.js";
@@ -12,7 +14,9 @@ import { createHistoryCache } from "./lib/history-cache.js";
 import { runBacktest, summarize, walkForwardValidation } from "./lib/backtest.js";
 import { classifyRegion } from "./lib/news-region.js";
 import { buildSectorNews } from "./lib/sector-news.js";
+import { buildDigest, digestChanged, mergeDigest } from "./lib/alert-digest.js";
 import { buildOutlook } from "./lib/outlook.js";
+import { attachActuals, summarizeHistory, toRecord, upsertRecord } from "./lib/outlook-history.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 5173);
@@ -28,6 +32,8 @@ const SECTORS_FILE = path.join(DATA_DIR, "sectors.json");
 const INDICES_FILE = path.join(DATA_DIR, "indices.json");
 const FLOW_FILE = path.join(DATA_DIR, "flow.json");
 const MACRO_FILE = path.join(DATA_DIR, "macro.json");
+const OUTLOOK_HISTORY_FILE = path.join(DATA_DIR, "outlook-history.json");
+const ALERT_DIGEST_FILE = path.join(DATA_DIR, "alert-digest.json");
 const PINYIN_INDEX_FILE = path.join(__dirname, "lib", "pinyin-index.json");
 const HISTORY_CACHE_DIR = process.env.HISTORY_CACHE_DIR || path.join(__dirname, ".cache", "history");
 const historyCache = createHistoryCache(HISTORY_CACHE_DIR, { days: 250 });
@@ -172,6 +178,72 @@ async function loadMacro() {
 }
 
 /**
+ * 「明日参考」self-grading. A record is written from the *served* outlook, and
+ * `actual` is attached from the index closes that scripts/sync-outlook-history.js
+ * commits. Writing happens only when the day's call is new or a grade lands, so
+ * a page refresh does not churn the file.
+ */
+const OUTLOOK_HISTORY_EMPTY = { generatedAt: null, source: null, closes: {}, records: [] };
+
+async function loadOutlookHistory() {
+  try {
+    const payload = await readJson(OUTLOOK_HISTORY_FILE);
+    return {
+      ...OUTLOOK_HISTORY_EMPTY,
+      ...payload,
+      closes: payload.closes && typeof payload.closes === "object" ? payload.closes : {},
+      records: Array.isArray(payload.records) ? payload.records : []
+    };
+  } catch {
+    /* The history file does not exist until the first outlook is served. */
+    return { ...OUTLOOK_HISTORY_EMPTY };
+  }
+}
+
+async function saveOutlookHistory(payload) {
+  await fs.mkdir(DATA_DIR, { recursive: true });
+  await fs.writeFile(OUTLOOK_HISTORY_FILE, JSON.stringify(payload, null, 1), "utf8");
+}
+
+async function recordOutlook(outlook) {
+  const store = await loadOutlookHistory();
+  const record = toRecord(outlook);
+  if (!record) return summarizeHistory(store.records);
+  const merged = upsertRecord(attachActuals(store.records, store.closes), record);
+  if (JSON.stringify(merged) !== JSON.stringify(store.records)) {
+    try {
+      await saveOutlookHistory({ ...store, generatedAt: new Date().toISOString(), records: merged });
+    } catch {
+      /* A read-only checkout still shows the grade, it just cannot persist it. */
+    }
+  }
+  return summarizeHistory(merged);
+}
+
+/**
+ * The 异动信号 ranking, written out so scripts/notify-alerts.js can push it to a
+ * chat webhook. Written only when it changes, so a refresh does not dirty the tree.
+ */
+async function recordAlertDigest(briefing) {
+  const digest = buildDigest(briefing);
+  if (!digest) return;
+  let store = null;
+  try {
+    store = JSON.parse(await fs.readFile(ALERT_DIGEST_FILE, "utf8"));
+  } catch {
+    /* First run: there is nothing to diff against yet. */
+  }
+  const merged = mergeDigest(store, digest);
+  if (!digestChanged(store, merged)) return;
+  try {
+    await fs.mkdir(DATA_DIR, { recursive: true });
+    await fs.writeFile(ALERT_DIGEST_FILE, JSON.stringify(merged, null, 1), "utf8");
+  } catch {
+    /* Same as above: a read-only checkout just cannot persist the digest. */
+  }
+}
+
+/**
  * Capital-flow snapshot from scripts/sync-flow.js. It is ~1 MB, so it is read
  * once per 15 s instead of once per request.
  */
@@ -295,13 +367,55 @@ async function loadData() {
   return cache;
 }
 
+// --- response plumbing -------------------------------------------------------
+//
+// The dashboard pulls two multi-megabyte JSON payloads on load (/api/stocks and
+// /api/flow), so both compression and revalidation are worth the ten lines:
+//   * gzip cuts the big boards by roughly an order of magnitude;
+//   * the ETag lets the browser skip the body entirely on reload, which is the
+//     common case since the data only changes once a day after the close.
+
+const COMPRESSIBLE_TYPE = /^(?:application\/json|application\/javascript|text\/|image\/svg)/;
+const GZIP_MIN_BYTES = 1024;
+
+function etagOf(buffer) {
+  return `"${createHash("sha1").update(buffer).digest("base64url").slice(0, 22)}"`;
+}
+
+/**
+ * Write one response, negotiating gzip and conditional requests.
+ *
+ * `req` is optional so the existing call sites keep working; without it the
+ * response is simply sent uncompressed.
+ */
+function writeResponse(req, res, statusCode, contentType, body, cacheControl = "no-cache") {
+  const buffer = Buffer.isBuffer(body) ? body : Buffer.from(String(body));
+  const etag = etagOf(buffer);
+
+  if (req) {
+    const ifNoneMatch = String(req.headers["if-none-match"] || "");
+    if (ifNoneMatch.split(",").some((entry) => entry.trim() === etag || entry.trim() === "*")) {
+      res.writeHead(304, { etag, "cache-control": cacheControl, vary: "accept-encoding" });
+      res.end();
+      return;
+    }
+  }
+
+  const acceptsGzip = req && /\bgzip\b/i.test(String(req.headers["accept-encoding"] || ""));
+  const headers = { "content-type": contentType, "cache-control": cacheControl, etag };
+  let payload = buffer;
+  if (acceptsGzip && buffer.length >= GZIP_MIN_BYTES && COMPRESSIBLE_TYPE.test(contentType)) {
+    payload = zlib.gzipSync(buffer, { level: 6 });
+    headers["content-encoding"] = "gzip";
+    headers.vary = "accept-encoding";
+  }
+  headers["content-length"] = payload.length;
+  res.writeHead(statusCode, headers);
+  res.end(req && req.method === "HEAD" ? undefined : payload);
+}
+
 function json(res, statusCode, body) {
-  const payload = JSON.stringify(body);
-  res.writeHead(statusCode, {
-    "content-type": "application/json; charset=utf-8",
-    "cache-control": "no-store"
-  });
-  res.end(payload);
+  writeResponse(res.req, res, statusCode, "application/json; charset=utf-8", JSON.stringify(body));
 }
 
 function badRequest(res, message) {
@@ -1601,7 +1715,8 @@ async function handleApi(req, res, pathname, params) {
       briefing: buildBriefing(stocks, meta, events),
       sectors: sectorView
     });
-    return json(res, 200, { ...outlook, meta });
+    const history = await recordOutlook(outlook);
+    return json(res, 200, { ...outlook, history, meta });
   }
 
   if (pathname === "/api/flow") {
@@ -1737,8 +1852,10 @@ async function handleApi(req, res, pathname, params) {
 
   if (pathname === "/api/briefing") {
     const indicesPayload = await loadIndicesPayload();
+    const briefing = buildBriefing(stocks, meta, events);
+    await recordAlertDigest(briefing);
     return json(res, 200, {
-      ...buildBriefing(stocks, meta, events),
+      ...briefing,
       overseas: buildGlobalBriefing(indicesPayload.items, events, indicesPayload.generatedAt)
     });
   }
@@ -1877,11 +1994,7 @@ async function serveStatic(res, pathname) {
   try {
     const content = await fs.readFile(filePath);
     const ext = path.extname(filePath);
-    res.writeHead(200, {
-      "content-type": MIME_TYPES[ext] || "application/octet-stream",
-      "cache-control": "no-cache"
-    });
-    res.end(content);
+    writeResponse(res.req, res, 200, MIME_TYPES[ext] || "application/octet-stream", content);
   } catch {
     notFound(res);
   }

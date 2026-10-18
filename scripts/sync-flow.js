@@ -74,14 +74,14 @@ export const DEFAULTS = {
 };
 
 function parseArgs(argv) {
-  const options = { ...DEFAULTS, allowPartial: false, out: DEFAULT_OUT, codes: null, limit: null };
+  const options = { ...DEFAULTS, allowPartial: false, force: false, out: DEFAULT_OUT, codes: null, limit: null };
   for (const arg of argv) {
     const match = /^--([a-zA-Z-]+)(?:=(.*))?$/.exec(arg);
     if (!match) continue;
     const [, rawKey, rawValue] = match;
     const key = rawKey.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-    if (key === "allowPartial") {
-      options.allowPartial = true;
+    if (key === "allowPartial" || key === "force") {
+      options[key] = true;
       continue;
     }
     if (rawValue === undefined) continue;
@@ -255,6 +255,27 @@ function aggregateIndustries(stocks) {
     .sort((a, b) => b.main1 - a.main1);
 }
 
+/**
+ * True when `file` already holds a complete snapshot ending on `end`.
+ *
+ * Coverage matters: a partial run leaves a file whose `date` looks current but
+ * whose symbol list is short, and skipping that would freeze the gap in place.
+ */
+export async function flowAlreadyCurrent(file, end, wantedSessions, minCoverage = 0.98) {
+  let existing;
+  try {
+    existing = JSON.parse(await fs.readFile(file, "utf8"));
+  } catch {
+    return false;
+  }
+  if (!existing || existing.date !== end) return false;
+  if (!Array.isArray(existing.sessions) || existing.sessions.length < wantedSessions) return false;
+  const requested = Number(existing.requested) || 0;
+  const succeeded = Number(existing.succeeded) || 0;
+  if (!requested) return false;
+  return succeeded / requested >= minCoverage;
+}
+
 export async function main(argv = process.argv.slice(2)) {
   const options = parseArgs(argv);
   const started = Date.now();
@@ -282,6 +303,15 @@ export async function main(argv = process.argv.slice(2)) {
   const sessions = dates.slice(0, options.days);
   const start = sessions[sessions.length - 1];
   const end = sessions[0];
+
+  // A holiday, a weekend or a re-run would otherwise repull ~250 sessions for
+  // data we already have. The whole sync costs ten minutes in CI, so this check
+  // is worth the extra branch.
+  if (!options.force && (await flowAlreadyCurrent(options.out, end, sessions.length))) {
+    console.log(`Flow snapshot already covers ${end} (${sessions.length} sessions); skipping. Pass --force to rebuild.`);
+    return null;
+  }
+
   console.log(`Snapshotting capital flow for ${universe.length} symbols over ${sessions.length} session(s): ${start}..${end}`);
 
   options.windowSessions = sessions.length;

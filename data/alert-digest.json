@@ -1,0 +1,78 @@
+{
+ "date": "2026-10-18",
+ "generatedAt": "2026-10-18T08:34:29.864Z",
+ "limitUpCount": 71,
+ "limitDownCount": 15,
+ "advancers": 3301,
+ "decliners": 2127,
+ "items": [
+  {
+   "code": "920196",
+   "name": "N南乳",
+   "changePct": 58.76,
+   "anomalyScore": 99.99,
+   "trendScore": 81.51,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301569",
+   "name": "C联亚",
+   "changePct": -28.33,
+   "anomalyScore": 99.94,
+   "trendScore": 12.61,
+   "signalType": "跌停"
+  },
+  {
+   "code": "920162",
+   "name": "莫森泰克",
+   "changePct": -29.97,
+   "anomalyScore": 99.31,
+   "trendScore": 12.74,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "300006",
+   "name": "莱美药业",
+   "changePct": 19.93,
+   "anomalyScore": 99.28,
+   "trendScore": 99.74,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "920006",
+   "name": "晟楠科技",
+   "changePct": 29.98,
+   "anomalyScore": 99.26,
+   "trendScore": 98.5,
+   "signalType": "涨停"
+  },
+  {
+   "code": "920690",
+   "name": "捷众科技",
+   "changePct": 30,
+   "anomalyScore": 99.11,
+   "trendScore": 98.6,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301345",
+   "name": "涛涛车业",
+   "changePct": -18.83,
+   "anomalyScore": 97.94,
+   "trendScore": 0.52,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "601091",
+   "name": "沈鼓集团",
+   "changePct": -6.11,
+   "anomalyScore": 97.92,
+   "trendScore": 6.62,
+   "signalType": "跌停附近"
+  }
+ ],
+ "previous": {
+  "date": null,
+  "codes": []
+ }
+}
