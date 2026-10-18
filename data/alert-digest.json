@@ -1,6 +1,6 @@
 {
  "date": "2026-10-18",
- "generatedAt": "2026-10-18T08:34:29.864Z",
+ "generatedAt": "2026-10-18T08:57:33.130Z",
  "limitUpCount": 71,
  "limitDownCount": 15,
  "advancers": 3301,
@@ -71,6 +71,7 @@
    "signalType": "跌停附近"
   }
  ],
+ "watch": [],
  "previous": {
   "date": null,
   "codes": []

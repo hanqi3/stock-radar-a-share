@@ -17,6 +17,7 @@ import { buildSectorNews } from "./lib/sector-news.js";
 import { buildDigest, digestChanged, mergeDigest } from "./lib/alert-digest.js";
 import { buildOutlook } from "./lib/outlook.js";
 import { attachActuals, summarizeHistory, toRecord, upsertRecord } from "./lib/outlook-history.js";
+import { emptyWatchlist, normalizeCodes, parseWatchlist } from "./lib/watchlist.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 5173);
@@ -34,6 +35,7 @@ const FLOW_FILE = path.join(DATA_DIR, "flow.json");
 const MACRO_FILE = path.join(DATA_DIR, "macro.json");
 const OUTLOOK_HISTORY_FILE = path.join(DATA_DIR, "outlook-history.json");
 const ALERT_DIGEST_FILE = path.join(DATA_DIR, "alert-digest.json");
+const WATCHLIST_FILE = path.join(DATA_DIR, "watchlist.json");
 const PINYIN_INDEX_FILE = path.join(__dirname, "lib", "pinyin-index.json");
 const HISTORY_CACHE_DIR = process.env.HISTORY_CACHE_DIR || path.join(__dirname, ".cache", "history");
 const historyCache = createHistoryCache(HISTORY_CACHE_DIR, { days: 250 });
@@ -221,11 +223,63 @@ async function recordOutlook(outlook) {
 }
 
 /**
+ * The persisted 自选 list. The browser is authoritative while it is open; this
+ * file is the copy the scheduled job can read.
+ */
+async function loadWatchlist() {
+  try {
+    return parseWatchlist(JSON.parse(await fs.readFile(WATCHLIST_FILE, "utf8")));
+  } catch {
+    return emptyWatchlist();
+  }
+}
+
+async function saveWatchlist(codes) {
+  const current = await loadWatchlist();
+  // Idempotent: the browser republishes its list on every edit and on boot, so
+  // an unchanged list must not bump `updatedAt` and dirty the committed file.
+  const same = current.codes.length === codes.length && current.codes.every((code, index) => code === codes[index]);
+  if (same) return current;
+  const payload = { updatedAt: new Date().toISOString(), codes };
+  await fs.mkdir(DATA_DIR, { recursive: true });
+  await fs.writeFile(WATCHLIST_FILE, JSON.stringify(payload, null, 1), "utf8");
+  return payload;
+}
+
+/** Read and parse a JSON request body. Bodies are tiny, so the cap is small. */
+function readBody(req, limit = 32 * 1024) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let size = 0;
+    req.on("data", (chunk) => {
+      size += chunk.length;
+      if (size > limit) {
+        reject(new Error("Request body too large"));
+        req.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+    req.on("end", () => {
+      const text = Buffer.concat(chunks).toString("utf8").trim();
+      if (!text) return resolve(null);
+      try {
+        resolve(JSON.parse(text));
+      } catch {
+        reject(new Error("Request body is not valid JSON"));
+      }
+    });
+    req.on("error", reject);
+  });
+}
+
+/**
  * The 异动信号 ranking, written out so scripts/notify-alerts.js can push it to a
  * chat webhook. Written only when it changes, so a refresh does not dirty the tree.
  */
-async function recordAlertDigest(briefing) {
-  const digest = buildDigest(briefing);
+async function recordAlertDigest(briefing, stocks) {
+  const { codes } = await loadWatchlist();
+  const digest = buildDigest(briefing, { watchCodes: codes, stocks });
   if (!digest) return;
   let store = null;
   try {
@@ -1828,7 +1882,30 @@ async function handleApi(req, res, pathname, params) {
   }
 
   if (pathname === "/api/watchlist") {
-    const codes = String(params.get("codes") || "")
+    if (req.method === "PUT" || req.method === "POST") {
+      let body;
+      try {
+        body = await readBody(req);
+      } catch (error) {
+        return json(res, 400, { error: error.message });
+      }
+      const input = Array.isArray(body) ? body : body?.codes;
+      const { codes, rejected, truncated } = normalizeCodes(input);
+      if (!codes.length && rejected) {
+        return json(res, 400, { error: "codes must be six-digit A-share codes", rejected });
+      }
+      try {
+        const saved = await saveWatchlist(codes);
+        return json(res, 200, { ...saved, rejected, truncated, meta });
+      } catch {
+        return json(res, 500, { error: "Could not persist the watchlist" });
+      }
+    }
+    const query = String(params.get("codes") || "").trim();
+    // `?codes=` is the live check of an ad-hoc list; without it, hand back the
+    // persisted 自选 the scheduled job reads.
+    if (!query) return json(res, 200, { ...(await loadWatchlist()), meta });
+    const codes = query
       .split(",")
       .map((code) => code.trim())
       .filter((code) => /^\d{6}$/.test(code))
@@ -1853,7 +1930,7 @@ async function handleApi(req, res, pathname, params) {
   if (pathname === "/api/briefing") {
     const indicesPayload = await loadIndicesPayload();
     const briefing = buildBriefing(stocks, meta, events);
-    await recordAlertDigest(briefing);
+    await recordAlertDigest(briefing, stocks);
     return json(res, 200, {
       ...briefing,
       overseas: buildGlobalBriefing(indicesPayload.items, events, indicesPayload.generatedAt)

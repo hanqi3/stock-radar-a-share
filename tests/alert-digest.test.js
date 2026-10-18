@@ -100,3 +100,41 @@ test("digestChanged ignores the timestamp but sees a new ranking", () => {
   assert.equal(digestChanged(first, buildDigest(briefing({ limitUpCount: 80 }))), true);
   assert.equal(digestChanged(null, first), true);
 });
+
+test("buildDigest carries the persisted 自选 list even outside the top movers", () => {
+  const stocks = [
+    { code: "920196", name: "N南乳", changePct: 58.76 },
+    { code: "600519", name: "贵州茅台", changePct: 1.24 },
+    { code: "000001", name: "平安银行", changePct: -0.8 }
+  ];
+  const digest = buildDigest(briefing(), { watchCodes: ["600519", "000001", "999999"], stocks });
+  // 999999 is not in the universe any more, so it is dropped rather than echoed.
+  assert.deepEqual(digest.watch.map((item) => item.code), ["600519", "000001"]);
+  assert.equal(digest.watch[0].name, "贵州茅台");
+  assert.equal(digest.watch[0].changePct, 1.24);
+  assert.equal(digest.watch[0].anomalyScore, null);
+});
+
+test("a tracked name that also ranks keeps its anomaly score and signal", () => {
+  const stocks = [{ code: "920196", name: "N南乳", changePct: 58.76 }];
+  const [item] = buildDigest(briefing(), { watchCodes: ["920196"], stocks }).watch;
+  assert.equal(item.name, "N南乳");
+  assert.equal(item.anomalyScore, 99.99);
+  assert.equal(item.signalType, "涨停");
+});
+
+test("formatDigest renders the 自选 block and omits it when the list is empty", () => {
+  const stocks = [{ code: "600519", name: "贵州茅台", changePct: 1.24 }];
+  const withWatch = mergeDigest(null, buildDigest(briefing(), { watchCodes: ["600519"], stocks }));
+  const text = formatDigest(withWatch);
+  assert.match(text, /自选：/);
+  assert.match(text, /贵州茅台 600519 \+1\.24%/);
+  assert.equal(formatDigest(mergeDigest(null, buildDigest(briefing()))).includes("自选："), false);
+});
+
+test("editing 自选 counts as a digest change worth pushing", () => {
+  const stocks = [{ code: "600519", name: "贵州茅台", changePct: 1.24 }];
+  const before = buildDigest(briefing(), { stocks });
+  const after = buildDigest(briefing(), { watchCodes: ["600519"], stocks });
+  assert.equal(digestChanged(before, after), true);
+});

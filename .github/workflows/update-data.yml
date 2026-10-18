@@ -84,7 +84,7 @@ jobs:
 
       - name: Commit updated data
         run: |
-          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/macro.json data/flow.json data/outlook-history.json data/alert-digest.json lib/pinyin-index.json lib/trading-days.json"
+          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/macro.json data/flow.json data/outlook-history.json data/alert-digest.json data/watchlist.json lib/pinyin-index.json lib/trading-days.json"
           TRACKED=""
           for f in $FILES; do
             if [ -f "$f" ]; then TRACKED="$TRACKED $f"; fi

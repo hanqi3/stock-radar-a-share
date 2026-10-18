@@ -41,6 +41,8 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
        其中 buildOutlook(...)     把当日结构 + 隔夜/海外输入合成次日倾向评分
        其中 recordOutlook(...)    --写--> data/outlook-history.json（当天评分落盘）
        其中 recordAlertDigest(...)--写--> data/alert-digest.json（当天异动摘要落盘）
+       其中 PUT /api/watchlist    --写--> data/watchlist.json（浏览器同步过来的自选）
+       其中 recordAlertDigest(...) --读--> data/watchlist.json（把自选并进摘要）
   -> public/index.html + public/app.js + public/chart.js
 ```
 
@@ -136,9 +138,15 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
 
 ### Alert Digest
 
-`lib/alert-digest.js` 把当天异动榜压成一条可推送的摘要：`buildDigest(briefing, {limit: 8})` 取涨停 / 跌停 / 涨跌家数与前 8 只异动股（`{code, name, changePct, anomalyScore, trendScore, signalType}`），`mergeDigest` 每天保留一份并记住前一天在榜的代码，`newCodes` 据此算 🆕，`digestChanged` 比较时剔除 `generatedAt` 所以内容没变就不重复推送，`formatDigest` 输出纯文本。
+`lib/alert-digest.js` 把当天异动榜压成一条可推送的摘要：`buildDigest(briefing, {limit: 8, watchCodes, stocks})` 取涨停 / 跌停 / 涨跌家数与前 8 只异动股（`{code, name, changePct, anomalyScore, trendScore, signalType}`），再把 `data/watchlist.json` 里的自选代码解析成 `watch` 块（排名之外的个股也保留，已退市的代码丢弃），`mergeDigest` 每天保留一份并记住前一天在榜的代码，`newCodes` 据此算 🆕，`digestChanged` 比较时剔除 `generatedAt` 所以内容没变就不重复推送，`formatDigest` 输出纯文本（含「自选：」段）。
 
 `/api/briefing` 在处理请求时落盘 `data/alert-digest.json`（同样是内容变了才写）。`scripts/notify-alerts.js`（`npm run notify`）读它并推到 `ALERT_WEBHOOK_URL`，支持 `wecom` / `feishu` / `json` 三种载荷；没配 webhook 就只打印。注意聊天机器人常用 HTTP 200 包业务错误码，所以脚本除了状态码还会检查响应体的 `errcode` / `code`。
+
+### Watchlist
+
+自选列表是唯一需要用户写入的状态，因此也是唯一有 `PUT` 的接口。`lib/watchlist.js` 的 `normalizeCodes` 负责 trim / 去重 / 排序 / 截断（上限 200）并统计 `rejected`；`server.js` 的 `saveWatchlist(codes)` 在列表未变时直接返回旧对象、不 bump `updatedAt`，这样浏览器每次开机重发都不会弄脏 `data/watchlist.json`。前端 `saveWatchlist()` 先写 `localStorage` 再 400ms 防抖 `PUT`；`syncWatchlist()` 在启动时 `GET` 一次——服务端非空就以服务端为准，服务端还是 `updatedAt: null` 时把本地列表向上迁移一次。
+
+`GET /api/watchlist?codes=...` 保留原来的临时监控视图（不落盘），`GET /api/watchlist` 无参数才返回持久化列表。
 
 ### API Server
 
@@ -153,6 +161,8 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
 所有响应统一走 `writeResponse(req, res, statusCode, contentType, body, cacheControl)`：可压缩类型（JSON / JS / CSS / HTML / SVG）超过 1 KB 时按 `Accept-Encoding` 协商 gzip，并附上基于内容 sha1 的 `ETag`；带 `If-None-Match` 命中时直接回 304。实测 `/api/stocks` 从 135 KB 压到 28 KB（4.8×）、`/api/flow` 3.5×、`/styles.css` 5.8×。因为 ETag 需要浏览器回源校验，JSON 的 `cache-control` 从 `no-store` 改成 `no-cache`——`no-store` 会让浏览器连条件请求都不发，ETag 就白设了。
 
 `/api/outlook` 与 `/api/briefing` 除了返回数据，还会顺带写落盘文件（`data/outlook-history.json` / `data/alert-digest.json`），所以这两个 GET 是有副作用的；好消息是它们有内容比对，重复请求不会产生 diff。`/api/outlook` 的 `history` 只回聚合指标，不回原始账本。
+
+`PUT /api/watchlist` 是唯一真正接受客户端写入的接口（其余都只写自己有内容比对的快照）。`readBody` 带 32 KB 上限，`normalizeCodes` 拒绝一切非六位数字并以 `rejected` 计数回报，全部非法时返回 400 而不是静默清空列表——静默清空会让用户一次误操作就丢掉整份自选。
 
 ### Dashboard
 
@@ -227,10 +237,10 @@ data/events.json
 
 ## Testing
 
-`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 11 个文件 138 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪六种行情族（含 A 股的 `s_*`）解析与公告解析器的 `kind` 标记，`tests/news-dedupe.test.js` 覆盖跨源标题归一化与合并，`tests/outlook.test.js` 覆盖明日参考的驱动权重、缺失因子的归一化、**传导方向必须读原始变动而不是市场影响符号**、利好利空互斥与中位涨跌幅回退，以及板块消息面的归因规则，`tests/trading-calendar.test.js` 覆盖节假日与跨年推算，`tests/outlook-history.test.js` 覆盖评分落盘、计分口径与五档统计，`tests/alert-digest.test.js` 覆盖摘要截断、新进榜标记与推送格式，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中 `/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/outlook`、`/api/briefing`、`/api/flow` 的断言覆盖分组完整性、筛选口径、榜单排序方向、窗口存储、「明日参考」各项结构与它的 `history` 聚合块，以及 `/api/briefing` 是否真的把异动摘要落了盘。
+`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 12 个文件 148 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪六种行情族（含 A 股的 `s_*`）解析与公告解析器的 `kind` 标记，`tests/news-dedupe.test.js` 覆盖跨源标题归一化与合并，`tests/outlook.test.js` 覆盖明日参考的驱动权重、缺失因子的归一化、**传导方向必须读原始变动而不是市场影响符号**、利好利空互斥与中位涨跌幅回退，以及板块消息面的归因规则，`tests/trading-calendar.test.js` 覆盖节假日与跨年推算，`tests/outlook-history.test.js` 覆盖评分落盘、重复服务不改写首次记录时间、计分口径与五档统计，`tests/alert-digest.test.js` 覆盖摘要截断、新进榜标记、自选块与推送格式，`tests/watchlist.test.js` 覆盖代码归一化、拒绝计数与上限截断，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中 `/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/outlook`、`/api/briefing`、`/api/flow`、`/api/watchlist` 的断言覆盖分组完整性、筛选口径、榜单排序方向、窗口存储、「明日参考」各项结构与它的 `history` 聚合块、`/api/briefing` 是否真的把异动摘要落了盘，以及 `PUT /api/watchlist` 重发同一份列表是否幂等、全非法码是否返回 400。
 
 ## Production Upgrade
 
 后续可以将 JSON 文件替换为 PostgreSQL，将高频读取结果放入 Redis，并把 `.github/workflows/update-data.yml` 的定时任务迁移到常驻调度器。日线缓存目前落在本地磁盘，多实例部署时需要换成共享存储。此外还可以继续扩充事件源（龙虎榜、财报、北向资金）并复用现有的分类与扩散管线。资金流已滚动保留 250 个交易日（约一年），要做更长周期的资金趋势需要改为按年归档；美债与商品目前只取 FRED 的国家级日频序列，若需要盘中实时收益率曲线需引入付费行情源。
 
-几条已知的边界：交易日历的 2027 年部分是按农历推算后人工维护的，国务院公布次年安排后需要复核 `lib/market-holidays.js` 里的 `FORWARD_CLOSURES` 与 `VERIFIED_THROUGH`；自选股存在浏览器 `localStorage`，所以 webhook 推的是全市场异动摘要而不是「我的自选」名单，按名单推送需要先把自选搬到服务端；「明日参考」的历史账本才刚开始积累，等样本够了才能给不同 score 区间标历史胜率。
+几条已知的边界：交易日历的 2027 年部分是按农历推算后人工维护的，国务院公布次年安排后需要复核 `lib/market-holidays.js` 里的 `FORWARD_CLOSURES` 与 `VERIFIED_THROUGH`；自选已经搬到服务端 `data/watchlist.json`，但目前只有一份列表、没有多用户隔离，同一份部署上的所有人共享同一份自选；「明日参考」的历史账本才刚开始积累，等样本够了才能给不同 score 区间标历史胜率。

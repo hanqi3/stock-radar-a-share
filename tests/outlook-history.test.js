@@ -48,6 +48,15 @@ test("upsertRecord replaces the same evening instead of appending", () => {
   assert.equal(second[0].score, -10);
 });
 
+test("re-serving the same evening keeps the moment the call was first shown", () => {
+  // Every page load rebuilds the outlook with a fresh generatedAt. Restamping
+  // recordedAt would rewrite data/outlook-history.json on every refresh.
+  const first = upsertRecord([], toRecord(outlook({ generatedAt: "2026-10-16T08:01:00.000Z" })));
+  const again = upsertRecord(first, toRecord(outlook({ generatedAt: "2026-10-18T08:52:00.000Z" })));
+  assert.equal(again[0].recordedAt, "2026-10-16T08:01:00.000Z");
+  assert.equal(JSON.stringify(again), JSON.stringify(first));
+});
+
 test("upsertRecord never overwrites a grade that was already attached", () => {
   const graded = attachActuals(upsertRecord([], toRecord(outlook())), { "2026-10-16": 3716.28, "2026-10-19": 3750 });
   assert.equal(graded[0].actual.hit, true);

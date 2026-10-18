@@ -201,8 +201,51 @@ async function api(path) {
   return response.json();
 }
 
+// --- Persisted 自选 ---------------------------------------------------------
+// localStorage is what this tab uses; data/watchlist.json is the copy the
+// nightly job can read, so the pushed digest covers the names a user tracks and
+// not just the day's top movers. The file wins on boot when it has entries.
+let watchlistPushTimer = null;
+
+async function pushWatchlist() {
+  try {
+    await fetch("/api/watchlist", {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ codes: [...state.watchlist].sort() })
+    });
+  } catch {
+    /* Offline or a read-only checkout: the local list keeps working. */
+  }
+}
+
+async function syncWatchlist() {
+  try {
+    const response = await fetch("/api/watchlist");
+    if (!response.ok) return;
+    const payload = await response.json();
+    const remote = Array.isArray(payload.codes) ? payload.codes : [];
+    if (remote.length) {
+      const same = remote.length === state.watchlist.size && remote.every((code) => state.watchlist.has(code));
+      if (!same) {
+        state.watchlist = new Set(remote);
+        localStorage.setItem("stockradar-watchlist", JSON.stringify(remote));
+        renderRows();
+        refreshWatchlist();
+      }
+      return;
+    }
+    // Nothing persisted yet: migrate whatever this browser already had.
+    if (!payload.updatedAt && state.watchlist.size) await pushWatchlist();
+  } catch {
+    /* No API (static hosting): localStorage only. */
+  }
+}
+
 function saveWatchlist() {
   localStorage.setItem("stockradar-watchlist", JSON.stringify([...state.watchlist]));
+  clearTimeout(watchlistPushTimer);
+  watchlistPushTimer = setTimeout(pushWatchlist, 400);
 }
 
 function isWatched(code) {
@@ -2310,6 +2353,7 @@ async function init() {
   showTab(state.tab || "stocks");
   await Promise.all([reloadOverview(), reloadForecast(), reloadSignals(), reloadStocks(), reloadRadar(), reloadMarketIndices()]);
   refreshWatchlist();
+  syncWatchlist();
   if (state.tab === "flow") reloadFlow();
   if (state.tab === "news") reloadNews();
   if (!state.selectedCode && state.rows[0]) {

@@ -36,6 +36,21 @@ async function get(pathname) {
   return { status: response.status, body };
 }
 
+async function put(pathname, payload) {
+  const response = await fetch(`${BASE}${pathname}`, {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+  let body = null;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+  return { status: response.status, body };
+}
+
 async function waitForServer(timeoutMs = 20000) {
   const deadline = Date.now() + timeoutMs;
   while (Date.now() < deadline) {
@@ -706,6 +721,27 @@ try {
   check(
     "GET /api/watchlist -> non 6-digit codes are dropped",
     junkWatch.status === 200 && junkWatch.body?.items?.length === 1 && junkWatch.body.items[0].code === "600519"
+  );
+
+  const persisted = await get("/api/watchlist");
+  check(
+    "GET /api/watchlist -> returns the persisted 自选 list the nightly job reads",
+    persisted.status === 200 &&
+      Array.isArray(persisted.body?.codes) &&
+      persisted.body.codes.every((code) => /^\d{6}$/.test(code)) &&
+      (persisted.body.updatedAt === null || typeof persisted.body.updatedAt === "string")
+  );
+  // Republishing the identical list must be a no-op, otherwise every boot would
+  // rewrite data/watchlist.json and the CI bot would commit timestamp churn.
+  const republished = await put("/api/watchlist", { codes: persisted.body?.codes || [] });
+  check(
+    "PUT /api/watchlist -> republishing the same list keeps the stored timestamp",
+    republished.status === 200 && republished.body?.updatedAt === (persisted.body?.updatedAt ?? null)
+  );
+  const rejectedWatch = await put("/api/watchlist", { codes: ["abc", "12"] });
+  check(
+    "PUT /api/watchlist -> rejects a list with no valid code",
+    rejectedWatch.status === 400 && rejectedWatch.body?.rejected === 2
   );
 
   const analysis = await get("/api/stocks/600519/analysis");
