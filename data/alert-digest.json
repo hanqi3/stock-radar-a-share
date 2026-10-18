@@ -1,6 +1,6 @@
 {
  "date": "2026-10-18",
- "generatedAt": "2026-10-18T08:57:33.130Z",
+ "generatedAt": "2026-10-18T10:21:59.903Z",
  "limitUpCount": 71,
  "limitDownCount": 15,
  "advancers": 3301,
@@ -13,30 +13,6 @@
    "anomalyScore": 99.99,
    "trendScore": 81.51,
    "signalType": "涨停"
-  },
-  {
-   "code": "301569",
-   "name": "C联亚",
-   "changePct": -28.33,
-   "anomalyScore": 99.94,
-   "trendScore": 12.61,
-   "signalType": "跌停"
-  },
-  {
-   "code": "920162",
-   "name": "莫森泰克",
-   "changePct": -29.97,
-   "anomalyScore": 99.31,
-   "trendScore": 12.74,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "300006",
-   "name": "莱美药业",
-   "changePct": 19.93,
-   "anomalyScore": 99.28,
-   "trendScore": 99.74,
-   "signalType": "涨停附近"
   },
   {
    "code": "920006",
@@ -55,20 +31,44 @@
    "signalType": "涨停"
   },
   {
+   "code": "300006",
+   "name": "莱美药业",
+   "changePct": 19.93,
+   "anomalyScore": 98.47,
+   "trendScore": 99.74,
+   "signalType": "涨停附近"
+  },
+  {
    "code": "301345",
    "name": "涛涛车业",
    "changePct": -18.83,
-   "anomalyScore": 97.94,
+   "anomalyScore": 97.92,
    "trendScore": 0.52,
    "signalType": "跌停附近"
   },
   {
-   "code": "601091",
-   "name": "沈鼓集团",
-   "changePct": -6.11,
-   "anomalyScore": 97.92,
-   "trendScore": 6.62,
-   "signalType": "跌停附近"
+   "code": "000530",
+   "name": "冰山冷热",
+   "changePct": 9.96,
+   "anomalyScore": 97.64,
+   "trendScore": 99.25,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002343",
+   "name": "慈文传媒",
+   "changePct": 4.71,
+   "anomalyScore": 97.51,
+   "trendScore": 99.64,
+   "signalType": "强势拉升"
+  },
+  {
+   "code": "301586",
+   "name": "佳力奇",
+   "changePct": 20,
+   "anomalyScore": 97.32,
+   "trendScore": 93.22,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
