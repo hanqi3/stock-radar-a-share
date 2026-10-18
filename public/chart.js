@@ -350,6 +350,9 @@ export function drawPriceChart(canvas, payload, options = {}) {
   ctx.fillText(tagText, padLeft + plotW + 9, lastY);
 
   // --- buy / stop / target markers -----------------------------------------
+  // Every line carries its own price: three 买点 lines differ only by the level
+  // they sit on, so "买点" alone leaves the reader guessing which is which.
+  const labelYs = [];
   const marker = (price, color, label, dash) => {
     if (!Number.isFinite(price)) return;
     const y = Math.round(yFor(price)) + 0.5;
@@ -364,10 +367,32 @@ export function drawPriceChart(canvas, payload, options = {}) {
     ctx.stroke();
     ctx.setLineDash([]);
     ctx.globalAlpha = 1;
-    ctx.font = `10.5px ${font}`;
+    const text = `${label} ${price.toFixed(2)}`;
+    ctx.font = `600 10.5px ${font}`;
+    const textW = ctx.measureText(text).width;
+    const x = padLeft + plotW - 6;
+    // Stack labels that would otherwise be drawn on top of each other: prefer
+    // sitting just above the line, drop below it when that spot is taken.
+    let labelY = y - 6;
+    for (const offset of [-6, 13, -19, 26]) {
+      const candidate = y + offset;
+      if (labelYs.every((used) => Math.abs(used - candidate) >= 11)) {
+        labelY = candidate;
+        break;
+      }
+    }
+    labelYs.push(labelY);
+    // A faint pill keeps the number readable where it crosses the candles.
+    ctx.fillStyle = colors.bg;
+    ctx.globalAlpha = 0.72;
+    roundRect(ctx, x - textW - 4, labelY - 9, textW + 6, 13, 3);
+    ctx.fill();
+    ctx.globalAlpha = 1;
     ctx.fillStyle = color;
     ctx.textAlign = "right";
-    ctx.fillText(label, padLeft + plotW - 6, y - 7);
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, x, labelY - 2);
+    ctx.textBaseline = "alphabetic";
   };
   if (plan) {
     for (const zone of (plan.buyZones || []).slice(0, 3)) marker(zone.price, "#3f8cff", "买点", [5, 4]);
