@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T02:47:43.143Z",
+  "generatedAt": "2026-10-18T03:05:22.140Z",
   "source": "sina-hq",
   "count": 36,
   "note": "Overseas benchmarks and commodities quoted by Sina hq.sinajs.cn.",
@@ -102,7 +102,7 @@
       "price": 44946.64,
       "change": -408.35,
       "changePct": -0.9,
-      "updatedAt": "2026-10-18T02:47:43.878Z"
+      "updatedAt": "2026-10-18T03:05:22.753Z"
     },
     {
       "symbol": "rt_hkHSI",
@@ -132,7 +132,7 @@
       "price": 9284.83,
       "change": 70.85,
       "changePct": 0.77,
-      "updatedAt": "2026-10-18T02:47:43.878Z"
+      "updatedAt": "2026-10-18T03:05:22.753Z"
     },
     {
       "symbol": "hf_CHA50CFD",

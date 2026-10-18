@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T02:47:43.143Z",
+  "generatedAt": "2026-10-18T03:05:22.140Z",
   "providers": [
     {
       "id": "sina-live",
@@ -27,9 +27,68 @@
       "count": 100
     }
   ],
-  "count": 891,
+  "count": 881,
   "note": "Public policy/market news and exchange announcements, classified at read time by lib/events.js.",
   "items": [
+    {
+      "id": "sina-live-5152155",
+      "title": "涉嫌严重职务违法 广西壮族自治区政协原副主席黄日波被查",
+      "summary": "广西壮族自治区政协原副主席黄日波涉嫌严重职务违法，目前正接受国家监委监察调查。（央视新闻）",
+      "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivrert7893483.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-10-18T11:00:36.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5152154",
+      "title": "加拿大军事基地爆炸起火多人伤亡",
+      "summary": "加拿大国防部长麦坚迪当地时间10月17日晚证实，在阿尔伯塔省的加拿大武装部队温赖特基地发生严重事故，造成了人员伤亡。据加拿大媒体资深军事记者称，就其个人过去20年直接负责军事报道的经历来看，在训练演习中“从未发生过此类重大事故”。有消息称，事发时该基地正在进行实弹射击演习，引发火灾，火借风势蔓延至存放有大量弹药的区域。 加拿大总理卡尼当晚称，温赖特基地发生“严重事故”，并引发大火。另据一位代表阿尔伯塔省选区的国会议员表示，据他了解，这处基地发生爆炸并起火，造成了严重伤亡。（CCTV国际时讯）",
+      "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivrers1118206.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-10-18T10:56:43.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5152153",
+      "title": "广汽埃安Ray7预售2 小时，订单6817辆。",
+      "summary": "广汽埃安Ray7预售2 小时，订单6817辆。",
+      "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivrers1117763.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-10-18T10:56:03.000Z",
+      "codes": [
+        "601238"
+      ]
+    },
+    {
+      "id": "sina-live-5152152",
+      "title": "医用外骨骼康复纳入多地医保",
+      "summary": "扣好绑带、固定腿部支架、按下开机键，不到一分钟时间，老人就能穿好新装备——外骨骼机器人。老人告诉央视财经记者，借助外骨骼机器人每天走2万步没问题。 北京一家外骨骼机器人企业的工作人员介绍，根据不同用户的需求，目前我们的产品有适合户外运动、术后康复还有家庭日常出行的，价格在几千元到2万元不等。现在外骨骼机器人已经从专业设备转型到日常家庭消费级产品。 国家医保局印发的《全民医疗保障“十五五”规划》提出，积极将新技术、新药品、新器械应用纳入商业健康保险保障范围‌。目前北京、上海、江苏、浙江等多地，已将“医用外骨骼康复训练”项目纳入医保或长护险试点。 （央视财经）",
+      "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivrert7887906.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-10-18T10:52:15.000Z",
+      "codes": [
+        "300024",
+        "159530"
+      ]
+    },
+    {
+      "id": "sina-live-5152151",
+      "title": "黄渤海水域迎来大风 多地海事部门发布海上重大风险信息提醒",
+      "summary": "记者从交通运输部海事局了解到，今天黄渤海水域迎来大风，部分航线停航，多地海事部门联合发布海上重大风险信息提醒，及时启动应急响应，全力保障水上交通安全。受大风影响，辽鲁省际客运航线已全线停航，辽宁辖区陆岛运输航线全线停航，山东沿海游艇、陆岛运输船、海上施工船舶全部暂停作业。天津、河北、山东、辽宁等地联合发布海上重大风险信息提醒，增派执法人员驻点值守，现场核查船舶系固、动力及救生设备状况。同时依托智慧海事监管平台对海上船舶实施动态监控，提醒在航船舶调整航行计划，前往安全水域锚泊避风。海事部门将实时跟踪气象变化，待大风影响结束后，将有序恢复船舶通航并科学管控海上交通流量。（央视新闻）",
+      "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivrert7887396.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-10-18T10:51:38.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5152150",
+      "title": "加拿大国防部长确认阿尔伯塔省基地事故出现遇难者。",
+      "summary": "加拿大国防部长确认阿尔伯塔省基地事故出现遇难者。",
+      "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivrerm6785301.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-10-18T10:48:48.000Z",
+      "codes": []
+    },
     {
       "id": "em-kuaixun-202610183899108656",
       "title": "17级！超强台风“蔷琵”继续加强并向台湾以东靠近",
@@ -1220,17 +1279,8 @@
       "title": "美国中央司令部司令：海上封锁使伊朗损失了250亿美元的原油收入，施压运动正在取得成效，德黑兰开始扣发工作人员的薪资和养老",
       "summary": "美国中央司令部司令：海上封锁使伊朗损失了250亿美元的原油收入，施压运动正在取得成效，德黑兰开始扣发工作人员的薪资和养老金。",
       "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivqtzx7915576.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-10-18T05:11:50.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5152049",
-      "title": "沙特民防部门：利雅得、艾卜哈和哈米斯穆谢特发布预警警报。",
-      "summary": "沙特民防部门：利雅得、艾卜哈和哈米斯穆谢特发布预警警报。",
-      "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivqtzx7914553.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-10-18T05:10:05.000Z",
       "codes": []
     },
     {
@@ -1254,7 +1304,7 @@
       "title": "安全消息人士：周六，有无人机袭击了位于伊拉克北部埃尔比勒的伊朗库尔德反对派组织总部。",
       "summary": "安全消息人士：周六，有无人机袭击了位于伊拉克北部埃尔比勒的伊朗库尔德反对派组织总部。",
       "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivqptz8033003.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-10-18T04:45:10.000Z",
       "codes": []
     },
@@ -1263,7 +1313,7 @@
       "title": "欧洲外交官遭以色列定居者袭击",
       "summary": "10月17日，法国北部欧努瓦艾姆里市市长贝尔纳·博杜及多名欧洲外交官在约旦河西岸地区遭到以色列犹太人定居者袭击。贝尔纳·博杜说，他们当时正在巴勒斯坦村庄泰拜附近采摘橄榄，以声援当地社区，随后遭到了蒙面定居者的“猛烈攻击”，他本人被摔倒在地。犹太人定居者包围了外交官的车辆，不仅要求查看外交官的身份证件，还砸碎了属于比利时领事馆一辆汽车的车窗。 比利时外交大臣称，遇袭者中包括比利时的巴勒斯坦被占领土总领事、法国和波兰外交官等。 以色列外长萨尔谴责了这次袭击，称肇事者为暴徒。他还暗示，欧洲外交官们本应提前与以色列军方协调此次访问。 以色列总理办公室发表声明称，针对外交官的暴力行为是“不可接受的”。但声明同时称现有视频画面无法确定完整事实，得出结论还为时过早。（CCTV国际时讯）",
       "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivqpty1255037.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-10-18T04:34:12.000Z",
       "codes": []
     },
@@ -1276,23 +1326,11 @@
       "publishedAt": "2026-10-18T04:30:06.000Z"
     },
     {
-      "id": "sina-live-5152046",
-      "title": "马斯克：承认在政治事务中“有些偏离正轨”",
-      "summary": "马斯克承认其在政治事务中“有些偏离正轨”，远离旗下公司的时间超出了应有程度。马斯克表示，他本应扮演一个不那么高调的角色，其政府事务参与时间不应超过一两个月，而实际上他在白宫度过了约四个月。马斯克指出，他本应更早一些回归专注于人工智能领域。",
-      "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivqptz8023425.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-10-18T04:25:47.000Z",
-      "codes": [
-        "931071",
-        "159363"
-      ]
-    },
-    {
       "id": "sina-live-5152045",
       "title": "美国防长赫格塞思谈伊朗：我们不能生活在一个疯狂之人拥有世界上最具破坏性炸弹和武器的世界里。",
       "summary": "美国防长赫格塞思谈伊朗：我们不能生活在一个疯狂之人拥有世界上最具破坏性炸弹和武器的世界里。",
       "url": "https://finance.sina.cn/7x24/2026-10-18/detail-inivqpty1248686.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-10-18T04:22:39.000Z",
       "codes": []
     },
@@ -1536,6 +1574,14 @@
       "codes": []
     },
     {
+      "id": "sina-roll-comos:nivrers1119874",
+      "title": "信银理财总裁贺晋：理财底层资产正向高等级信用债为底、权益与REITs增弹性、多元策略控波动的新结构演进",
+      "summary": "10月18日金融一线消息，全球财富管理论坛·2026上海苏河湾大会于2026年10月16日至17日在上海市举办。信银理财总裁贺晋出席大会并发言。",
+      "url": "https://finance.sina.com.cn/jryx/bank/2026-10-18/doc-inivrers1119874.shtml",
+      "source": "新浪财经·财经",
+      "publishedAt": "2026-10-18T02:59:12.000Z"
+    },
+    {
       "id": "sina-live-5152001",
       "title": "特朗普：我可以站在这里胡说八道两个小时。",
       "summary": "特朗普：我可以站在这里胡说八道两个小时。",
@@ -1661,7 +1707,7 @@
     {
       "id": "sina-roll-comos:nivrerv6709121",
       "title": "今年前三季度全国铁路发送旅客37.1亿人次 创历史同期新高",
-      "summary": "记者今天从国铁集团获悉，今年前三季度，全国铁路累计发送旅客37.1亿人次，同比增长4.8%，创历史同期新高。前三季度，京港高铁雄安至商丘段、西渝高铁西安至安康段...",
+      "summary": "记者今天从国铁集团获悉，今年前三季度，全国铁路累计发送旅客37.1亿人次，同比增长4.8%，创历史同期新高。 前三季度，京港高铁雄安至商丘段、西渝高铁西安至安康段...",
       "url": "https://finance.sina.com.cn/jjxw/2026-10-18/doc-inivrerv6709121.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-10-18T02:31:56.000Z"
@@ -1753,6 +1799,14 @@
       "source": "新浪财经7x24·国际",
       "publishedAt": "2026-10-18T02:04:45.000Z",
       "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nivrers1097581",
+      "title": "生益科技，预计净利翻倍！A股龙头公司，业绩利好",
+      "summary": "多家A股龙头公司，业绩预告密集报喜。 10月16日晚间，多家上市公司披露2026年前三季度业绩预告。其中，包括长鑫科技（688825）在内，多家存储上市公司普遍大幅预喜。",
+      "url": "https://finance.sina.com.cn/stock/relnews/cn/2026-10-18/doc-inivrers1097581.shtml",
+      "source": "新浪财经·要闻",
+      "publishedAt": "2026-10-18T02:03:00.000Z"
     },
     {
       "id": "sina-roll-comos:nivrers1079102",
@@ -3119,22 +3173,6 @@
       "publishedAt": "2026-10-17T10:12:00.000Z"
     },
     {
-      "id": "sina-roll-comos:nivpsqc7124460",
-      "title": "2-氟苯胺商品报价动态（2026-10-17）",
-      "summary": "生意社10月17日讯交易商品牌/产地交货地最新报价2-氟苯胺 纯度99%以上山东艾特化工有限公司国产山东省12000元/吨 （文章来源：生意社）",
-      "url": "https://finance.sina.com.cn/money/future/nyzx/2026-10-17/doc-inivpsqc7124460.shtml",
-      "source": "新浪财经·财经",
-      "publishedAt": "2026-10-17T10:12:00.000Z"
-    },
-    {
-      "id": "sina-roll-comos:nivpsqc7124495",
-      "title": "对氯苯甲腈商品报价动态（2026-10-17）",
-      "summary": "生意社10月17日讯交易商品牌/产地交货地最新报价对氯苯甲腈 纯度99%以上山东艾特化工有限公司国产山东省22000元/吨 （文章来源：生意社）",
-      "url": "https://finance.sina.com.cn/money/future/nyzx/2026-10-17/doc-inivpsqc7124495.shtml",
-      "source": "新浪财经·财经",
-      "publishedAt": "2026-10-17T10:12:00.000Z"
-    },
-    {
       "id": "em-kuaixun-202610173899012140",
       "title": "斯里兰卡人民币清算行揭牌运行",
       "summary": "【斯里兰卡人民币清算行揭牌运行】当地时间15日，由中国银行举办的斯里兰卡人民币清算行揭牌仪式在斯里兰卡科伦坡举行。当天，来自斯里兰卡政府部门及中斯两国企业、金融机构的200余位代表参加了揭牌仪式。",
@@ -3333,14 +3371,6 @@
       "url": "https://finance.sina.com.cn/world/2026-10-17/doc-inivpfyr8177344.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-10-17T06:01:21.000Z"
-    },
-    {
-      "id": "sina-roll-comos:nivpfyf6487350",
-      "title": "日赚约4.8亿元！长鑫科技预告三季报，朱一明火速提议巨额回购",
-      "summary": "21世纪经济报道记者 张赛男 10月16日晚间，国产存储芯片龙头长鑫科技（688825.SH）连发两份重磅公告，一份是堪称“炸裂”的三季报业绩预告...",
-      "url": "https://finance.sina.com.cn/roll/2026-10-17/doc-inivpfyf6487350.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-10-17T05:55:06.000Z"
     },
     {
       "id": "sina-roll-comos:nivpfyi7214566",
@@ -5596,6 +5626,19 @@
       "category": ""
     },
     {
+      "id": "cninfo-1225607995",
+      "kind": "announcement",
+      "title": "重庆路桥关于对外出租自有物业的公告",
+      "summary": "重庆路桥",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225607995.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "600106"
+      ],
+      "category": ""
+    },
+    {
       "id": "cninfo-1225607853",
       "kind": "announcement",
       "title": "2026年前三季度业绩预增的提示性公告",
@@ -5674,19 +5717,6 @@
       "category": ""
     },
     {
-      "id": "cninfo-1225607855",
-      "kind": "announcement",
-      "title": "江苏江阴农村商业银行股份有限公司注册资本变更获核准的公告",
-      "summary": "江阴银行",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225607855.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "002807"
-      ],
-      "category": ""
-    },
-    {
       "id": "cninfo-1225607863",
       "kind": "announcement",
       "title": "第六届董事会第十一次会议决议公告",
@@ -5739,15 +5769,28 @@
       "category": ""
     },
     {
-      "id": "cninfo-1225607995",
+      "id": "cninfo-1225607855",
       "kind": "announcement",
-      "title": "重庆路桥关于对外出租自有物业的公告",
-      "summary": "重庆路桥",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225607995.PDF",
+      "title": "江苏江阴农村商业银行股份有限公司注册资本变更获核准的公告",
+      "summary": "江阴银行",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225607855.PDF",
       "source": "巨潮资讯",
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
-        "600106"
+        "002807"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225607986",
+      "kind": "announcement",
+      "title": "福建海通发展股份有限公司关于举办2026年第三季度业绩说明会的公告",
+      "summary": "海通发展",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225607986.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "603162"
       ],
       "category": ""
     },
@@ -5839,19 +5882,6 @@
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
         "603833"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225607986",
-      "kind": "announcement",
-      "title": "福建海通发展股份有限公司关于举办2026年第三季度业绩说明会的公告",
-      "summary": "海通发展",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225607986.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "603162"
       ],
       "category": ""
     },
@@ -6246,201 +6276,6 @@
       "category": ""
     },
     {
-      "id": "cninfo-1225608432",
-      "kind": "announcement",
-      "title": "上海合合信息科技股份有限公司第三届董事会第五次会议决议公告",
-      "summary": "合合信息",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608432.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "688615"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608435",
-      "kind": "announcement",
-      "title": "嘉华股份第七届董事会第三次会议决议公告",
-      "summary": "嘉华股份",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608435.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "603182"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608440",
-      "kind": "announcement",
-      "title": "关于可转债投资者适当性要求的风险提示性公告",
-      "summary": "鼎通科技",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608440.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "688668"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608442",
-      "kind": "announcement",
-      "title": "2026年股票期权激励计划激励对象名单（截止授予日）",
-      "summary": "极米科技",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608442.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "688696"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608443",
-      "kind": "announcement",
-      "title": "董事会薪酬与考核委员会关于调整2026年股票期权激励计划有关事项及首次授予激励对象名单的核查意见（截至授予日）",
-      "summary": "极米科技",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608443.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "688696"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608471",
-      "kind": "announcement",
-      "title": "独立董事提名人声明与承诺-冷军",
-      "summary": "维科技术",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608471.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600152"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608475",
-      "kind": "announcement",
-      "title": "德才股份关于股份性质变更暨2026年股票期权与限制性股票激励计划限制性股票授予进展的公告",
-      "summary": "德才股份",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608475.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "605287"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608510",
-      "kind": "announcement",
-      "title": "上海市天宸股份有限公司关于召开2026年第二次临时股东会的通知",
-      "summary": "天宸股份",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608510.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600620"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608512",
-      "kind": "announcement",
-      "title": "关于重大资产出售的进展公告",
-      "summary": "*ST闻泰",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608512.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600745"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608526",
-      "kind": "announcement",
-      "title": "一拖股份H股公告",
-      "summary": "一拖股份",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608526.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "601038"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608529",
-      "kind": "announcement",
-      "title": "大唐电信科技股份有限公司2026年第六次临时股东会决议公告",
-      "summary": "大唐电信",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608529.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600198"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608530",
-      "kind": "announcement",
-      "title": "上海市天宸股份有限公司关于续聘会计师事务所公告",
-      "summary": "天宸股份",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608530.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600620"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608532",
-      "kind": "announcement",
-      "title": "上海市天宸股份有限公司第十二届董事会第三次会议决议公告",
-      "summary": "天宸股份",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608532.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600620"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608598",
-      "kind": "announcement",
-      "title": "新疆天阳律师事务所关于新疆众和股份有限公司2026年第二次临时股东会法律意见书",
-      "summary": "新疆众和",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608598.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600888"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608599",
-      "kind": "announcement",
-      "title": "江苏华海诚科新材料股份有限公司关于2024年限制性股票激励计划预留授予部分第一个归属期归属结果公告",
-      "summary": "华海诚科",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608599.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "688535"
-      ],
-      "category": ""
-    },
-    {
       "id": "cninfo-1225608437",
       "kind": "announcement",
       "title": "维科技术对外担保管理制度（2026年10月)",
@@ -6506,58 +6341,6 @@
       "category": ""
     },
     {
-      "id": "cninfo-1225608481",
-      "kind": "announcement",
-      "title": "关于公司新增直营门店情况简报的公告",
-      "summary": "金一文化",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608481.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "002721"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608581",
-      "kind": "announcement",
-      "title": "中信建投证券股份有限公司关于上海外高桥集团股份有限公司向特定对象发行股票部分限售股份解除限售上市流通的核查意见",
-      "summary": "外高桥",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608581.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600648"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608595",
-      "kind": "announcement",
-      "title": "关于召开2026年第三季度业绩说明会的公告",
-      "summary": "博隆技术",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608595.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "603325"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608631",
-      "kind": "announcement",
-      "title": "立霸股份：参与出资设立投资基金暨关联交易的公告",
-      "summary": "立霸股份",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608631.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "603519"
-      ],
-      "category": ""
-    },
-    {
       "id": "cninfo-1225608299",
       "kind": "announcement",
       "title": "中国铁建关于召开2026年第三季度业绩说明会的公告",
@@ -6571,67 +6354,171 @@
       "category": ""
     },
     {
-      "id": "cninfo-1225608665",
+      "id": "cninfo-1225608650",
       "kind": "announcement",
-      "title": "第十三届董事会第四次会议决议公告",
-      "summary": "国城矿业",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608665.PDF",
+      "title": "江苏三六五网络股份有限公司关于召开2026年第一次临时股东会的通知",
+      "summary": "*ST三六五",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608650.PDF",
       "source": "巨潮资讯",
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
-        "000688"
+        "300295"
       ],
       "category": ""
     },
     {
-      "id": "cninfo-1225608707",
+      "id": "cninfo-1225608721",
       "kind": "announcement",
-      "title": "关于本次回购股份注销完成不调整可转债转股价格的公告",
-      "summary": "优彩资源",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608707.PDF",
+      "title": "2026年第二次临时股东会决议公告",
+      "summary": "盛景微",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608721.PDF",
       "source": "巨潮资讯",
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
-        "002998"
+        "603375"
       ],
       "category": ""
     },
     {
-      "id": "cninfo-1225608805",
+      "id": "cninfo-1225608724",
       "kind": "announcement",
-      "title": "普元信息技术股份有限公司独立董事提名人声明与承诺（刘海峰）",
-      "summary": "普元信息",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608805.PDF",
+      "title": "厦门空港2026年第三次临时股东会决议公告",
+      "summary": "厦门空港",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608724.PDF",
       "source": "巨潮资讯",
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
-        "688118"
+        "600897"
       ],
       "category": ""
     },
     {
-      "id": "cninfo-1225608809",
+      "id": "cninfo-1225608734",
       "kind": "announcement",
-      "title": "普元信息技术股份有限公司独立董事候选人声明与承诺（刘海峰）",
-      "summary": "普元信息",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608809.PDF",
+      "title": "渝农商行H股公告",
+      "summary": "渝农商行",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608734.PDF",
       "source": "巨潮资讯",
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
-        "688118"
+        "601077"
       ],
       "category": ""
     },
     {
-      "id": "cninfo-1225608811",
+      "id": "cninfo-1225608738",
       "kind": "announcement",
-      "title": "关于召开2026年第三季度业绩说明会的公告",
-      "summary": "中复神鹰",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608811.PDF",
+      "title": "航宇科技关于不提前赎回“航宇转债”的公告",
+      "summary": "航宇科技",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608738.PDF",
       "source": "巨潮资讯",
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
-        "688295"
+        "688239"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608633",
+      "kind": "announcement",
+      "title": "关于股份回购的进展公告",
+      "summary": "老百姓",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608633.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "603883"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608641",
+      "kind": "announcement",
+      "title": "关于增加设立募集资金专项账户并签署募集资金专户存储三方监管协议的公告",
+      "summary": "威迈斯",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608641.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688612"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608598",
+      "kind": "announcement",
+      "title": "新疆天阳律师事务所关于新疆众和股份有限公司2026年第二次临时股东会法律意见书",
+      "summary": "新疆众和",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608598.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "600888"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608599",
+      "kind": "announcement",
+      "title": "江苏华海诚科新材料股份有限公司关于2024年限制性股票激励计划预留授予部分第一个归属期归属结果公告",
+      "summary": "华海诚科",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608599.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688535"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608622",
+      "kind": "announcement",
+      "title": "关于日常经营合同签订补充协议的公告",
+      "summary": "湖南发展",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608622.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "000722"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608691",
+      "kind": "announcement",
+      "title": "2026年第二次临时股东会决议公告",
+      "summary": "盟升电子",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608691.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688311"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608823",
+      "kind": "announcement",
+      "title": "安琪酵母股份有限公司关于非公开发行股票募投项目结项、节余募集资金永久补充流动资金及注销募集资金专户的公告",
+      "summary": "安琪酵母",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608823.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "600298"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608745",
+      "kind": "announcement",
+      "title": "关于参与认购投资基金份额的进展公告",
+      "summary": "华宝新能",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608745.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "301327"
       ],
       "category": ""
     },
@@ -6658,6 +6545,19 @@
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
         "601868"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608706",
+      "kind": "announcement",
+      "title": "优彩环保资源科技股份有限公司回购股份注销完成暨股份变动的公告",
+      "summary": "优彩资源",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608706.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "002998"
       ],
       "category": ""
     },
@@ -6740,149 +6640,6 @@
       "category": ""
     },
     {
-      "id": "cninfo-1225608823",
-      "kind": "announcement",
-      "title": "安琪酵母股份有限公司关于非公开发行股票募投项目结项、节余募集资金永久补充流动资金及注销募集资金专户的公告",
-      "summary": "安琪酵母",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608823.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600298"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608868",
-      "kind": "announcement",
-      "title": "关于参与认购基金份额的进展公告",
-      "summary": "鱼跃医疗",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608868.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "002223"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608882",
-      "kind": "announcement",
-      "title": "关于使用暂时闲置募集资金进行现金管理的公告",
-      "summary": "常青科技",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608882.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "603125"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608894",
-      "kind": "announcement",
-      "title": "北京大成律师事务所关于凯盛新能源股份有限公司2026年第二次临时股东会的法律意见书",
-      "summary": "凯盛新能",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608894.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "600876"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608901",
-      "kind": "announcement",
-      "title": "宁波均普智能制造股份有限公司关于开立募集资金专项账户并签订募集资金专户存储监管协议的公告",
-      "summary": "均普智能",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608901.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "688306"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608706",
-      "kind": "announcement",
-      "title": "优彩环保资源科技股份有限公司回购股份注销完成暨股份变动的公告",
-      "summary": "优彩资源",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608706.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "002998"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608746",
-      "kind": "announcement",
-      "title": "关于注销部分募集资金专项账户的公告",
-      "summary": "华宝新能",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608746.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "301327"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608783",
-      "kind": "announcement",
-      "title": "北京市时代九和律师事务所关于苏宁环球股份有限公司2026年第二次临时股东会的法律意见书",
-      "summary": "苏宁环球",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608783.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "000718"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608883",
-      "kind": "announcement",
-      "title": "国浩律师（上海）事务所关于宁波均普智能制造股份有限公司2025年度向特定对象发行股票之发行过程及认购对象合规性的法律意见书",
-      "summary": "均普智能",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608883.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "688306"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608889",
-      "kind": "announcement",
-      "title": "甬兴证券有限公司及国泰海通证券股份有限公司关于宁波均普智能制造股份有限公司2025年度向特定对象发行股票发行过程和认购对象合规性的报告",
-      "summary": "均普智能",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608889.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "688306"
-      ],
-      "category": ""
-    },
-    {
-      "id": "cninfo-1225608745",
-      "kind": "announcement",
-      "title": "关于参与认购投资基金份额的进展公告",
-      "summary": "华宝新能",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608745.PDF",
-      "source": "巨潮资讯",
-      "publishedAt": "2026-10-16T16:00:00.000Z",
-      "codes": [
-        "301327"
-      ],
-      "category": ""
-    },
-    {
       "id": "cninfo-1225608860",
       "kind": "announcement",
       "title": "新疆天业股份有限公司持股5%以上的股东权益变动触及1%刻度整数倍的提示性公告",
@@ -6896,15 +6653,119 @@
       "category": ""
     },
     {
-      "id": "cninfo-1225608932",
+      "id": "cninfo-1225609038",
       "kind": "announcement",
-      "title": "关于公司董事会完成换届选举暨聘任高级管理人员及证券事务代表的公告",
-      "summary": "常青科技",
-      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608932.PDF",
+      "title": "国浩律师（南京）事务所关于常州银河世纪微电子股份有限公司发行股份购买资产并募集配套资金暨关联交易之法律意见书",
+      "summary": "银河微电",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225609038.PDF",
       "source": "巨潮资讯",
       "publishedAt": "2026-10-16T16:00:00.000Z",
       "codes": [
-        "603125"
+        "688689"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225609065",
+      "kind": "announcement",
+      "title": "三孚股份：第六届董事会第一次会议决议公告",
+      "summary": "三孚股份",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225609065.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "603938"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225609069",
+      "kind": "announcement",
+      "title": "上市公司发行股份购买资产并募集配套资金暨关联交易报告书（草案）与预案差异对比表",
+      "summary": "银河微电",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225609069.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688689"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225609074",
+      "kind": "announcement",
+      "title": "国浩律师（南京）事务所关于常州银河世纪微电子股份有限公司内幕信息知情人登记制度制定和执行情况的专项核查意见",
+      "summary": "银河微电",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225609074.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688689"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225608945",
+      "kind": "announcement",
+      "title": "关于拟为控股子公司湖南华数申请银行授信提供担保的公告",
+      "summary": "华中数控",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225608945.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "300161"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225609079",
+      "kind": "announcement",
+      "title": "前次募集资金使用情况专项报告",
+      "summary": "银河微电",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225609079.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688689"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225609083",
+      "kind": "announcement",
+      "title": "中信建投证券股份有限公司关于公司内幕信息知情人登记制度的制定和执行情况的核查意见",
+      "summary": "银河微电",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225609083.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688689"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225609087",
+      "kind": "announcement",
+      "title": "董事会关于本次交易摊薄即期回报的情况及填补措施的说明",
+      "summary": "银河微电",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225609087.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688689"
+      ],
+      "category": ""
+    },
+    {
+      "id": "cninfo-1225609095",
+      "kind": "announcement",
+      "title": "董事会关于本次交易符合《上市公司监管指引第9号——上市公司筹划和实施重大资产重组的监管要求》第四条规定的说明",
+      "summary": "银河微电",
+      "url": "http://static.cninfo.com.cn/finalpage/2026-10-17/1225609095.PDF",
+      "source": "巨潮资讯",
+      "publishedAt": "2026-10-16T16:00:00.000Z",
+      "codes": [
+        "688689"
       ],
       "category": ""
     },
