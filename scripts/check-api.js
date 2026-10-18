@@ -424,6 +424,29 @@ try {
     `groups=${[...indexGroups].join(",")}`
   );
 
+  // The top strip needs real A-share index levels, and the 海外 board must not
+  // count them as overseas quotes.
+  const domesticIndices = (indices.body?.items || []).filter((item) => item.group === "A股指数");
+  const shanghai = domesticIndices.find((item) => item.symbol === "s_sh000001");
+  check(
+    "GET /api/indices -> carries the A-share benchmarks for the top strip",
+    domesticIndices.length >= 6 &&
+      domesticIndices.every((item) => Number.isFinite(item.price) && Number.isFinite(item.changePct)),
+    `domestic=${domesticIndices.length}`
+  );
+  check(
+    "GET /api/indices -> 上证指数 is an index level, not a stock count",
+    Number.isFinite(shanghai?.price) && shanghai.price > 1000,
+    `sh000001=${shanghai?.price}`
+  );
+  const overseasBoard = await get("/api/briefing/overseas");
+  check(
+    "GET /api/briefing/overseas -> the overseas count excludes the A-share strip",
+    overseasBoard.status === 200 &&
+      overseasBoard.body?.count === (indices.body?.items || []).filter((item) => item.group !== "A股指数").length,
+    `count=${overseasBoard.body?.count} overseas=${(indices.body?.items || []).filter((item) => item.group !== "A股指数").length}`
+  );
+
   const news = await get("/api/news?limit=15");
   check(
     "GET /api/news?limit=15 -> 200 and honours the limit",

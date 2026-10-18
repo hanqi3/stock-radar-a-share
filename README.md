@@ -17,7 +17,8 @@ StockRadar 是一个面向 A股市场的行情与事件雷达应用。项目会�
 - 板块消息面：`/api/sector-news` 把当天 900 条标题归因到 31 个申万行业，逐板块统计利好 / 利空 / 中立条数与方向净值；归因只认两件事——标题里点名的 A 股代码（权重 1.0）和命中的主题词（权重 0.45、最多取 2 个），归不到任何板块的标题直接丢弃而不是摊到全市场
 - 明日参考：`/api/outlook` 把当日结构（涨跌家数、涨跌停、主力资金、个股中位涨跌幅）和隔夜/海外输入（富时中国 A50 期货、美股三大指数、费城半导体、美元指数、离岸人民币、美债 10 年期、布伦特原油）合成一个 **-100 ~ +100 的「证据一致性」评分**，并给出判断逻辑链、宏观传导表（一个变量落到哪些板块）、利好 / 利空清单、风险点和次日盯盘清单；每个驱动因子都有权重与原始读数，缺数据就报缺而不是填中性值
 - 交易计划：历史行情接口同时返回买点区间、止损价、目标和失效条件，图表右侧展示
-- 双板块简报：`/api/briefing` 同时给出「中国 · A股简报」和「海外 · 全球市场简报」，海外板块覆盖美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品五组共 35 个标的，并附海外事件主题与要闻
+- 双板块简报：`/api/briefing` 同时给出「中国 · A股简报」和「海外 · 全球市场简报」，海外板块覆盖美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品五组共 36 个标的，并附海外事件主题与要闻
+- 顶部指数条：上证指数 / 深证成指 / 创业板指 / 科创50 / 沪深300 / 上证50 / 中证500 / 北证50 的点位与涨跌幅常驻页面顶部（与全球指数共用同一次新浪批量行情请求，不额外发请求）
 - 新闻政策：`/api/news` 把 900 条事件按区域分「中国 / 海外」两栏，支持关键词搜索（标题、摘要、来源、主题、代码）与命中高亮，公告类按发行人限流，避免同一公司的公告刷屏
 - 主题雷达：`/api/briefing` 生成市场简报文字、主题事件雷达和行业相对强弱
 - 板块异动监测：每个行业输出宽度（`breadth`）与 `anomalyScore`，对横截面相对强弱离群、涨跌停扎堆、宽度极端的板块打 `flags` 标签，并在雷达带行业行上显示异动 chip；`/api/briefing` 附 `sectorAnomalies`
@@ -146,7 +147,7 @@ note           说明文字
 
 `data/events.json` 顶层为 `{generatedAt, providers, count, note, items}`，`providers` 是每个来源的 `{id, label, count, error?}`，单条事件为 `{id, kind, title, summary, url, source, publishedAt, codes[]}`。`kind` 只有公告披露类来源（巨潮资讯、东方财富公告）会写成 `"announcement"`，区域分类和前端「公告 / 报道」配比都依赖它；缺失时全部事件会退化成按正文关键词评分。
 
-`data/indices.json` 顶层为 `{generatedAt, source, count, note, items}`，`source` 固定为 `sina-hq`。单条为 `{symbol, name, group, digits, price, change, changePct, updatedAt}`，`group` 取 `美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品`，`digits` 是该标的的合理小数位（美元指数 3 位、汇率 4 位、指数 2 位），前端按它格式化。36 个标的由一次新浪批量行情请求取回，指数抓取失败不会影响事件同步。其中 `hf_CHA50CFD`（富时中国 A50 期货）是「明日参考」最重要的领先输入——A 股收盘后仍在交易，是唯一还在给次日开盘定价的品种。
+`data/indices.json` 顶层为 `{generatedAt, source, count, note, items}`，`source` 固定为 `sina-hq`。单条为 `{symbol, name, group, digits, price, change, changePct, updatedAt}`，`group` 取 `美洲 / 美股龙头 / 亚太欧洲 / 外汇 / 商品`（海外板块，36 个）或 `A股指数`（顶部指数条，8 个：上证指数 / 深证成指 / 创业板指 / 科创50 / 沪深300 / 上证50 / 中证500 / 北证50），`digits` 是该标的的合理小数位（美元指数 3 位、汇率 4 位、指数 2 位），前端按它格式化。44 个标的由一次新浪批量行情请求取回（`gb_*`/`int_*`/`rt_hk*`/`hf_*`/`fx_*`/`DINIW` 与 A 股的 `s_*` 同批），指数抓取失败不会影响事件同步。`A股指数` 组只进顶部指数条，不进「海外」板块——`/api/briefing/overseas` 的 `count` 按海外组统计。其中 `hf_CHA50CFD`（富时中国 A50 期货）是「明日参考」最重要的领先输入——A 股收盘后仍在交易，是唯一还在给次日开盘定价的品种。
 
 `data/macro.json` 顶层为 `{generatedAt, updatedAt, source, sourceLabel, count, items, series, note}`，`source` 固定为 `fred`。单条为 `{symbol, name, group, digits, unit, value, prevValue, change, changeBp, updatedAt}`：`us10y / us2y / us30y` 是美债收益率（`change` 单位为百分点，`changeBp` 为基点），`fedfunds` 是联邦基金有效利率，另有一条 `us10y2y` 是 10Y−2Y 期限利差（单位 `pp`）。数据取自 FRED 公开 CSV（`https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10`，无需 API key），`series` 保留最近 30 个观测点用于画走势。注意：新浪与东财的行情接口都拿不到美债收益率（实测全部返回空），所以这条链路只能走 FRED；美债缺失时「明日参考」会把该因子标为缺失并相应缩小可用权重，而不是填 0。
 
@@ -272,7 +273,7 @@ Updated at: 2026-10-14T07:36:19.254Z
 npm run test
 ```
 
-等价于 `node --test tests/`，不依赖任何第三方测试框架。当前 7 个文件共 93 个用例，全部通过：
+等价于 `node --test tests/`，不依赖任何第三方测试框架。当前 7 个文件共 94 个用例，全部通过：
 
 | 文件 | 覆盖内容 |
 | --- | --- |
@@ -319,7 +320,7 @@ GET /api/watchlist?codes=600519,000001
 | `/api/stocks/:code/history` | `days` | 250 | 1023；历史不可用时返回 502 `{"error":"history unavailable"}` |
 | `/api/stocks/:code/analysis` | 无 | 固定取 250 天 | 历史失败时 `history` 字段变成 `{error}`，接口仍返回 200 |
 | `/api/events` | `limit` | 30 | 200 |
-| `/api/indices` | 无 | 返回 `data/indices.json` 的全部标的 | — |
+| `/api/indices` | 无 | 返回 `data/indices.json` 的全部标的（海外 36 + A股指数 8） | — |
 | `/api/news` | `limit`、`q` | `limit=400` | `limit` 1000；`q` 匹配标题 / 摘要 / 来源 / 主题 / 代码，`counts` 与 `total` 都是筛选后的口径 |
 | `/api/sector-news` | `limit`、`samples` | `limit=12`、`samples=3` | `limit` 40、`samples` 8；按方向净值绝对值倒序 |
 | `/api/macro` | 无 | 返回 `data/macro.json` 的全部序列 | — |
@@ -431,7 +432,7 @@ GET /api/backtest?codes=600519,000001&topN=10&minScore=5&holdDays=10
 
 ## 工作台布局
 
-页面分三栏：最左是竖直 tab 栏，中间是随 tab 切换的主舞台，右侧常驻个股详情与异动信号。
+页面分三栏：最左是竖直 tab 栏，中间是随 tab 切换的主舞台，右侧常驻个股详情与异动信号。三栏之上是 A 股指数条，之下是概览条（股票池 / 涨跌家数 / 涨跌停 / 成交额 / 沪深北只数 / 可交易只数）；概览里的「沪深北」是三个交易所的**股票只数**，不是指数点位，点位看最上方的指数条。
 
 ```text
 主力资金   全市场主力净额汇总 + 个股 / 行业榜单（净流入 / 净流出）+ 市场结构 + 行业相对强弱

@@ -433,6 +433,27 @@ export const GLOBAL_INDEX_SYMBOLS = [
 
 const SINA_QUOTE_HOST = "https://hq.sinajs.cn/list=";
 
+// A-share benchmarks ride the SAME batch call as the overseas tape, so showing
+// the index levels on the dashboard costs no extra request. The `s_` prefix is
+// Sina's simplified quote: 名称,最新,涨跌额,涨跌幅%,成交量,成交额.
+export const A_SHARE_INDEX_SYMBOLS = [
+  { symbol: "s_sh000001", name: "上证指数", group: "A股指数" },
+  { symbol: "s_sz399001", name: "深证成指", group: "A股指数" },
+  { symbol: "s_sz399006", name: "创业板指", group: "A股指数" },
+  { symbol: "s_sh000688", name: "科创50", group: "A股指数" },
+  { symbol: "s_sh000300", name: "沪深300", group: "A股指数" },
+  { symbol: "s_sh000016", name: "上证50", group: "A股指数" },
+  { symbol: "s_sz399905", name: "中证500", group: "A股指数" },
+  { symbol: "s_bj899050", name: "北证50", group: "A股指数" }
+];
+
+// Everything fetched in the one batch request, overseas and domestic together.
+const ALL_INDEX_SYMBOLS = [...A_SHARE_INDEX_SYMBOLS, ...GLOBAL_INDEX_SYMBOLS];
+
+// Groups that belong to the 海外 board; anything else (e.g. A股指数) is shown
+// in the domestic index strip instead.
+export const OVERSEAS_INDEX_GROUPS = ["美洲", "美股龙头", "亚太欧洲", "外汇", "商品"];
+
 function num(value) {
   const parsed = Number(String(value ?? "").trim());
   return Number.isFinite(parsed) ? parsed : null;
@@ -455,7 +476,7 @@ function sinoStamp(date, time) {
 }
 
 export function parseGlobalQuotes(text, now = new Date()) {
-  const symbols = new Map(GLOBAL_INDEX_SYMBOLS.map((entry) => [entry.symbol, entry]));
+  const symbols = new Map(ALL_INDEX_SYMBOLS.map((entry) => [entry.symbol, entry]));
   const items = [];
   for (const line of String(text ?? "").split("\n")) {
     const match = line.match(/var hq_str_(\w+)="([^"]*)"/);
@@ -484,7 +505,8 @@ export function parseGlobalQuotes(text, now = new Date()) {
       change = num(parts[7]);
       changePct = num(parts[8]);
       updatedAt = sinoStamp(parts[17], parts[18]) || updatedAt;
-    } else if (match[1].startsWith("int_")) {
+    } else if (match[1].startsWith("int_") || match[1].startsWith("s_")) {
+      // Both families are 名称,最新,涨跌额,涨跌幅%[,量[,额]] with no timestamp.
       price = num(parts[1]);
       change = num(parts[2]);
       changePct = num(parts[3]);
@@ -529,7 +551,7 @@ export function parseGlobalQuotes(text, now = new Date()) {
 }
 
 export async function fetchGlobalIndices(settings = DEFAULTS, fetchImpl = fetch) {
-  const url = SINA_QUOTE_HOST + GLOBAL_INDEX_SYMBOLS.map((entry) => entry.symbol).join(",");
+  const url = SINA_QUOTE_HOST + ALL_INDEX_SYMBOLS.map((entry) => entry.symbol).join(",");
   const { timeoutMs = DEFAULTS.timeoutMs, maxAttempts = DEFAULTS.maxAttempts } = settings;
   let lastError = null;
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {

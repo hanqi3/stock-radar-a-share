@@ -101,6 +101,7 @@ const els = {
   overseasBriefingBody: document.querySelector("#overseasBriefingBody"),
   overseasThemeChips: document.querySelector("#overseasThemeChips"),
   indexCount: document.querySelector("#indexCount"),
+  indexStrip: document.querySelector("#indexStrip"),
   themeList: document.querySelector("#themeList"),
   industryList: document.querySelector("#industryList"),
   backtestRun: document.querySelector("#backtestRun"),
@@ -224,9 +225,9 @@ function renderOverview(data) {
     ["涨停附近", data.limitUp, `跌停附近 ${data.limitDown}`, false],
     ["成交额", money(data.totalAmount), "全市场合计", false],
     [
-      "沪深北",
+      "沪深北 · 只数",
       `${data.byExchange.SH || 0}${seps}${data.byExchange.SZ || 0}${seps}${data.byExchange.BJ || 0}`,
-      `SH / SZ / BJ · 合计 ${data.total}`,
+      `沪 ${data.byExchange.SH || 0} · 深 ${data.byExchange.SZ || 0} · 北 ${data.byExchange.BJ || 0}`,
       true
     ],
     ["可交易", data.tradable, "有价格记录", false]
@@ -1163,9 +1164,45 @@ async function reloadNews() {
 }
 
 // 35 instruments across five desks; the group heading keeps the board legible.
+const A_SHARE_INDEX_GROUP = "A股指数";
+
+// The top strip is chrome, not part of any tab: it loads once at boot from the
+// same /api/indices payload the 海外 board uses.
+async function reloadMarketIndices() {
+  try {
+    const data = await api("/api/indices");
+    renderMarketIndexStrip(data?.items || []);
+  } catch (error) {
+    if (els.indexStrip) els.indexStrip.innerHTML = "";
+    console.warn("index strip failed", error);
+  }
+}
+
+function renderMarketIndexStrip(items) {
+  if (!els.indexStrip) return;
+  const list = (items || []).filter((item) => item.group === A_SHARE_INDEX_GROUP);
+  if (!list.length) {
+    els.indexStrip.innerHTML = "";
+    return;
+  }
+  els.indexStrip.innerHTML = list
+    .map((item) => {
+      const value = Number.isFinite(item.price) ? item.price.toFixed(indexDigits(item.price, item.digits)) : "—";
+      return `
+        <div class="index-strip-cell">
+          <div class="index-strip-name">${escapeHtml(item.name || item.symbol || "")}</div>
+          <div class="index-strip-value ${toneClass(item.changePct)}">${value}</div>
+          <div class="index-strip-change ${toneClass(item.changePct)}">${signed(item.changePct, "%")}</div>
+        </div>`;
+    })
+    .join("");
+}
+
 function renderGlobalIndices() {
   if (!els.globalIndexList) return;
-  const list = state.news.index || [];
+  // The domestic benchmarks live in the top strip; the 海外 board shows only
+  // the overseas groups.
+  const list = (state.news.index || []).filter((item) => item.group !== A_SHARE_INDEX_GROUP);
   if (!list.length) {
     els.globalIndexList.innerHTML = `<div class="empty-state">暂无全球指数数据</div>`;
     if (els.indexCount) els.indexCount.textContent = "";
@@ -2138,7 +2175,7 @@ async function init() {
   els.dataStatus.textContent = "加载市场数据中";
   applyTheme(state.theme);
   showTab(state.tab || "stocks");
-  await Promise.all([reloadOverview(), reloadForecast(), reloadSignals(), reloadStocks(), reloadRadar()]);
+  await Promise.all([reloadOverview(), reloadForecast(), reloadSignals(), reloadStocks(), reloadRadar(), reloadMarketIndices()]);
   refreshWatchlist();
   if (state.tab === "flow") reloadFlow();
   if (state.tab === "news") reloadNews();

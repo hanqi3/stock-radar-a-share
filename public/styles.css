@@ -148,6 +148,55 @@ button {
   flex: 1;
 }
 
+/* A-share benchmarks strip. Eight indices ride the same Sina batch as the
+   overseas tape, so this costs no extra request; it scrolls sideways rather
+   than wrapping so the top chrome keeps a fixed height. */
+.index-strip {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.index-strip:empty {
+  display: none;
+}
+
+.index-strip-cell {
+  flex: 1 1 0;
+  min-width: 116px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.index-strip-name {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.index-strip-value {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.index-strip-change {
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
 .overview-band {
   display: grid;
   grid-template-columns: repeat(6, minmax(140px, 1fr));

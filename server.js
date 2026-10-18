@@ -1431,8 +1431,11 @@ function formatIndexQuote(item) {
 // New York, Frankfurt or the dollar. All 35 quotes ride on a single Sina batch.
 function buildGlobalBriefing(indices, events, quotesUpdatedAt = null, now = new Date()) {
   const timestamp = now.toISOString();
+  // indices.json also carries the domestic benchmarks for the top strip; the
+  // 海外 board must not count them as overseas quotes.
+  const overseasIndices = indices.filter((item) => OVERSEAS_GROUPS.includes(item.group));
   const grouped = new Map();
-  for (const item of indices) {
+  for (const item of overseasIndices) {
     if (!grouped.has(item.group)) grouped.set(item.group, []);
     grouped.get(item.group).push(item);
   }
@@ -1474,7 +1477,7 @@ function buildGlobalBriefing(indices, events, quotesUpdatedAt = null, now = new 
   return {
     generatedAt: timestamp,
     dataUpdatedAt: quotesUpdatedAt,
-    count: indices.length,
+    count: overseasIndices.length,
     groups: OVERSEAS_GROUPS.map((group) => ({ group, items: grouped.get(group) ?? [] })).filter((entry) => entry.items.length),
     themes,
     newsCount: overseas.length,

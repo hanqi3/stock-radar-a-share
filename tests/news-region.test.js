@@ -9,7 +9,9 @@ import {
   tagRegions
 } from "../lib/news-region.js";
 import {
+  A_SHARE_INDEX_SYMBOLS,
   GLOBAL_INDEX_SYMBOLS,
+  OVERSEAS_INDEX_GROUPS,
   parseCninfo,
   parseEastmoneyAnnouncements,
   parseGlobalQuotes
@@ -162,12 +164,41 @@ test("parseGlobalQuotes ignores unknown symbols and blank payloads", () => {
   assert.deepEqual(parseGlobalQuotes(text), []);
 });
 
-test("every configured global symbol has a display name and group", () => {
-  const groups = new Set(["美洲", "美股龙头", "亚太欧洲", "外汇", "商品"]);
-  for (const entry of GLOBAL_INDEX_SYMBOLS) {
+// The domestic benchmarks ride the same Sina batch as the overseas tape and are
+// what the top strip shows. They use the `s_` family, which is
+// 名称,最新,涨跌额,涨跌幅%,量,额 — same shape as `int_*` but a different prefix.
+test("parseGlobalQuotes reads the A-share index family", () => {
+  const text = [
+    'var hq_str_s_sh000001="上证指数,3716.2842,8.8082,0.24,4726321,73247519";',
+    'var hq_str_s_sz399001="深证成指,11802.46,-14.329,-0.12,550782708,82293909";',
+    'var hq_str_s_bj899050="北证50,949.995,-17.510,-1.810,719091949,13811611941.000";'
+  ].join("\n");
+
+  const items = parseGlobalQuotes(text, new Date("2026-10-15T12:00:00Z"));
+  const bySymbol = new Map(items.map((item) => [item.symbol, item]));
+  assert.equal(items.length, 3);
+
+  const sh = bySymbol.get("s_sh000001");
+  assert.equal(sh.name, "上证指数");
+  assert.equal(sh.group, "A股指数");
+  assert.equal(sh.price, 3716.28);
+  assert.equal(sh.change, 8.81);
+  assert.equal(sh.changePct, 0.24);
+
+  const bj = bySymbol.get("s_bj899050");
+  assert.equal(bj.price, 950);
+  assert.equal(bj.changePct, -1.81);
+});
+
+test("every configured symbol has a display name and a known group", () => {
+  const groups = new Set(["美洲", "美股龙头", "亚太欧洲", "外汇", "商品", "A股指数"]);
+  for (const entry of [...GLOBAL_INDEX_SYMBOLS, ...A_SHARE_INDEX_SYMBOLS]) {
     assert.ok(entry.name && entry.name.length >= 2, entry.symbol);
     assert.ok(groups.has(entry.group), `${entry.symbol} -> ${entry.group}`);
   }
+  // The overseas board must never count the domestic strip.
+  assert.equal(A_SHARE_INDEX_SYMBOLS.every((entry) => entry.group === "A股指数"), true);
+  assert.deepEqual(OVERSEAS_INDEX_GROUPS, ["美洲", "美股龙头", "亚太欧洲", "外汇", "商品"]);
 });
 
 // The region rules and the reader's filing/news split both key off

@@ -22,7 +22,7 @@ scripts/sync-a-shares.js  --写-->  data/all-a-shares.json + data/meta.json
 
 新闻与公告（新浪 7x24 / 新浪滚动 / 东财快讯 / 巨潮公告 / 东财公告）
   -> scripts/sync-news.js         --写-->  data/events.json
-                                  --写-->  data/indices.json（一次批量行情取 36 个海外标的，含 A50 期货）
+                                  --写-->  data/indices.json（一次批量行情取 36 个海外标的 + 8 个 A 股指数，含 A50 期货）
 
 美债收益率（FRED 公开 CSV，无需 key：DGS10 / DGS2 / DGS30 / DFF / DCOILBRENTEU）
   -> scripts/sync-macro.js        --写-->  data/macro.json
@@ -65,7 +65,7 @@ data/*.json + lib/pinyin-index.json
 
 `scripts/sync-news.js` 聚合 5 个免鉴权来源：新浪 7x24 快讯（tag 0 公司 / 1 政策 / 2 数据 / 102 国际）、新浪滚动新闻、东财快讯（含美联储 / 欧洲央行 / 日本央行 / 期货商品 / 外汇债券 / 宏观等 desk）、巨潮公告（POST `www.cninfo.com.cn/new/hisAnnouncement/query`，`pageSize` 上限 30）、东财公告。各来源独立解析（`parseSinaLive` / `parseSinaRoll` / `parseKuaixun` / `parseCninfo` / `parseEastmoneyAnnouncements`），经 `dedupeEvents` 与 `isUsableEvent` 去重过滤后写入 `data/events.json`，按时间倒序截断到 900 条。顶层为 `{generatedAt, providers, count, note, items}`，`providers` 记录每个来源的条数或错误，便于区分「当天没消息」和「来源挂了」。公告类来源会写 `kind: "announcement"`，这是区域判定与前端「公告 / 报道」配比的唯一依据。
 
-同一次运行还会把 36 个海外标的（道指 / 纳指 / 标普 / 费半 / 美股龙头 4 只 / 日经 / 恒指 / 恒生国企 / 富时 / 富时中国 A50 期货 / 美元指数 / 8 个汇率 / 12 个商品）合成**一次** `hq.sinajs.cn/list=` 批量请求，GBK 解码后写入 `data/indices.json`。字段布局按前缀分派（`gb_*` / `int_*` / `rt_hk*` / `hf_*` / `fx_*` 与 `DINIW` 各不相同），美元指数没有涨跌幅字段，只能由昨收推导。指数抓取失败只记进 `errors`，不影响事件同步。其中 `hf_CHA50CFD`（富时中国 A50 期货）是「明日参考」最关键的领先输入——A 股收盘后只有它还在给次日开盘定价。
+同一次运行还会把 36 个海外标的（道指 / 纳指 / 标普 / 费半 / 美股龙头 4 只 / 日经 / 恒指 / 恒生国企 / 富时 / 富时中国 A50 期货 / 美元指数 / 8 个汇率 / 12 个商品）与 8 个 A 股指数（上证 / 深证成指 / 创业板指 / 科创50 / 沪深300 / 上证50 / 中证500 / 北证50）合成**一次** `hq.sinajs.cn/list=` 批量请求，GBK 解码后写入 `data/indices.json`。字段布局按前缀分派（`gb_*` / `int_*` / `rt_hk*` / `hf_*` / `fx_*` / `DINIW` / A 股的 `s_*` 各不相同），美元指数没有涨跌幅字段，只能由昨收推导。A 股指数的 `group` 是 `A股指数`，只供页面顶部的指数条使用，`buildGlobalBriefing` 按 `OVERSEAS_GROUPS` 过滤，所以「海外」板块的 `count` 仍是 36。指数抓取失败只记进 `errors`，不影响事件同步。其中 `hf_CHA50CFD`（富时中国 A50 期货）是「明日参考」最关键的领先输入——A 股收盘后只有它还在给次日开盘定价。
 
 `lib/news-region.js` 在读取时把事件分成 `cn` / `global`：显式 `region` 优先，其次带 A股 `codes` 且只命中地理词的判 `cn`，再次 `kind === "announcement"` 且有代码的判 `cn`，然后才看强海外信号词与地理词，最后默认 `cn`。600 条真实事件的分布约为 509 / 91。
 
@@ -116,7 +116,7 @@ data/*.json + lib/pinyin-index.json
 
 ### Dashboard
 
-`public/app.js` 负责调用 API、维护页面状态、处理筛选排序、即时检索、自选股和个股详情渲染。页面是三栏工作台：左侧竖直 tab 栏（`showTab`，共 `flow` / `stocks` / `news` / `watch` / `outlook` 五栏）驱动中间主舞台，右侧个股详情与异动信号常驻。`public/chart.js` 是独立的 `drawPriceChart(canvas, payload, options)`，用原生 canvas 绘制日 K、均线、布林带、成交量副图和十字光标，并渲染买点 / 止损 / 目标标记，不引入任何图表库。看盘台支持 `options.from` / `options.to` 指定可视窗口，返回值带 `{from, to, total}` 供调用方维护缩放状态；`options.hover` 是可视窗口内的整数 bar 索引，触发十字线、右侧价格标签和 OHLC 读数条。`options.type` 取 `"candle"`（默认）或 `"line"`，线图模式画收盘折线加渐变面积，两种模式都带 TradingView 式最新价标签。滚轮缩放以光标位置为锚点、拖动平移用 Pointer Events、双击复位，最小可视跨度 12 根。检索的四个维度（代码 / 名称 / 全拼 / 首字母）统一走 `/api/search`。
+`public/app.js` 负责调用 API、维护页面状态、处理筛选排序、即时检索、自选股和个股详情渲染。页面是三栏工作台：左侧竖直 tab 栏（`showTab`，共 `flow` / `stocks` / `news` / `watch` / `outlook` 五栏）驱动中间主舞台，右侧个股详情与异动信号常驻。三栏之上是 A 股指数条（`reloadMarketIndices` → `renderMarketIndexStrip`，只取 `group === "A股指数"` 的 8 个标的），它在启动时加载一次、不属于任何 tab；概览条里的「沪深北 · 只数」是三个交易所的股票数量，与指数点位无关，用 `is-dense` 字号避免三组数字被裁切。`public/chart.js` 是独立的 `drawPriceChart(canvas, payload, options)`，用原生 canvas 绘制日 K、均线、布林带、成交量副图和十字光标，并渲染买点 / 止损 / 目标标记，不引入任何图表库。看盘台支持 `options.from` / `options.to` 指定可视窗口，返回值带 `{from, to, total}` 供调用方维护缩放状态；`options.hover` 是可视窗口内的整数 bar 索引，触发十字线、右侧价格标签和 OHLC 读数条。`options.type` 取 `"candle"`（默认）或 `"line"`，线图模式画收盘折线加渐变面积，两种模式都带 TradingView 式最新价标签。滚轮缩放以光标位置为锚点、拖动平移用 Pointer Events、双击复位，最小可视跨度 12 根。检索的四个维度（代码 / 名称 / 全拼 / 首字母）统一走 `/api/search`。
 
 新闻栏的两列内容来自同一份事件池，`composeColumn` 对每列做三件事：同一发行人最多 2 条、公告类不超过整栏三分之一、报道与公告两股流按 2:1 交错，避免收盘公告把当天报道整段压到底部。
 
@@ -181,7 +181,7 @@ data/events.json
 
 ## Testing
 
-`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 7 个文件 93 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪五种行情族解析与公告解析器的 `kind` 标记，`tests/outlook.test.js` 覆盖明日参考的驱动权重、缺失因子的归一化、**传导方向必须读原始变动而不是市场影响符号**、利好利空互斥与中位涨跌幅回退，以及板块消息面的归因规则，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中 `/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/outlook`、`/api/flow` 的断言覆盖分组完整性、筛选口径、榜单排序方向、窗口存储与「明日参考」各项结构。
+`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 7 个文件 94 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪六种行情族（含 A 股的 `s_*`）解析与公告解析器的 `kind` 标记，`tests/outlook.test.js` 覆盖明日参考的驱动权重、缺失因子的归一化、**传导方向必须读原始变动而不是市场影响符号**、利好利空互斥与中位涨跌幅回退，以及板块消息面的归因规则，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中 `/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/outlook`、`/api/flow` 的断言覆盖分组完整性、筛选口径、榜单排序方向、窗口存储与「明日参考」各项结构。
 
 ## Production Upgrade
 
