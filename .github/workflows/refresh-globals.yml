@@ -1,0 +1,62 @@
+name: Refresh overnight backdrop
+
+# The 15:30 Beijing run sees the *previous* US session: at 15:30 CST the current
+# US trading day has not even opened. The 明日参考 board is only actionable if it
+# is refreshed after the US close and before the A-share open, so this second
+# schedule re-reads the global tape and the overnight news without touching the
+# A-share snapshot (running `npm run update` pre-open would overwrite the
+# previous close with stale or zero prices).
+on:
+  workflow_dispatch:
+  schedule:
+    # 21:30 UTC Sun-Thu = 05:30 Asia/Shanghai Mon-Fri, after the US close and
+    # about four hours before the A-share opening auction.
+    - cron: "30 21 * * 0-4"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Writes data/events.json (overnight headlines) and data/indices.json
+      # (fresh US/Europe/Asia closes plus the A50 future).
+      - name: Sync overnight events and global quotes
+        continue-on-error: true
+        run: npm run news
+
+      - name: Sync macro backdrop
+        continue-on-error: true
+        run: npm run macro
+
+      - name: API smoke test
+        run: npm run check:api
+
+      - name: Commit refreshed backdrop
+        run: |
+          FILES="data/events.json data/indices.json data/macro.json"
+          TRACKED=""
+          for f in $FILES; do
+            if [ -f "$f" ]; then TRACKED="$TRACKED $f"; fi
+          done
+
+          if git diff --quiet -- $TRACKED; then
+            echo "No backdrop changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add $TRACKED
+          git commit -m "Refresh overnight backdrop"
+          git push

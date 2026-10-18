@@ -202,14 +202,20 @@ normalize 函数换算，所以换数据源不会改变前端展示。
 
 ```text
 .github/workflows/update-data.yml
+.github/workflows/refresh-globals.yml
 ```
 
 ```yaml
+# update-data.yml
 schedule:
   - cron: "30 7 * * 1-5"   # 07:30 UTC = 15:30 Asia/Shanghai
+
+# refresh-globals.yml
+schedule:
+  - cron: "30 21 * * 0-4"  # 21:30 UTC = 05:30 Asia/Shanghai next morning
 ```
 
-该任务在交易日北京时间 **15:30**（收盘后）依次执行：
+`update-data.yml` 在交易日北京时间 **15:30**（收盘后）依次执行：
 
 ```text
 npm run update      # 同步行情并校验
@@ -223,10 +229,15 @@ npm run check:api   # 接口冒烟测试
 
 五个增量数据来源都是第三方服务，单个源抽风不应该让当天数据提交失败，所以 `sectors` / `history` / `news` / `macro` / `flow` 都标了 `continue-on-error: true`。任务 `timeout-minutes` 为 40。最后如果 `data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/macro.json data/flow.json` 有变化，就用 `github-actions[bot]` 身份提交一次 `Update A-share market data`。
 
+`refresh-globals.yml` 是专为「明日参考」补的一趟：北京时间 **05:30**（美股收盘后、A 股集合竞价前约四小时）只跑 `npm run news` 与 `npm run macro`，刷新 `data/events.json`（隔夜新闻）、`data/indices.json`（美股 / 欧洲 / 亚洲收盘与 A50 期货）和 `data/macro.json`（美债收益率），**不动 A 股行情快照**——05:30 跑 `npm run update` 会把上一交易日收盘写成盘前空值。
+
+这一趟不是可有可无的：15:30 的定时任务看到的其实是**上一个**交易日的美股收盘，因为北京 15:30 时美股当天还没开盘。要让「明日参考」在开盘前真的可读，只能靠隔夜刷新。
+
 也可以在 GitHub 页面手动触发：
 
 ```text
 Actions -> Update A-share data -> Run workflow
+Actions -> Refresh overnight backdrop -> Run workflow
 ```
 
 如果自动提交失败，需要在仓库设置里确认 GitHub Actions 有写入权限：

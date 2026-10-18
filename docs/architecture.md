@@ -37,7 +37,9 @@ data/*.json + lib/pinyin-index.json
   -> public/index.html + public/app.js + public/chart.js
 ```
 
-`.github/workflows/update-data.yml` 是唯一的生产写入方：交易日 15:30（cron `30 7 * * 1-5`，即 07:30 UTC）依次执行 `npm run update`、`npm run sectors`、`npm run history`、`npm run news`、`npm run macro`、`npm run flow`、`npm run check:api`，最后提交有变化的数据文件。五个增量来源都标了 `continue-on-error: true`，单个第三方源失败不会阻断当天的行情提交。
+`.github/workflows/update-data.yml` 是收盘后的主写入方：交易日 15:30（cron `30 7 * * 1-5`，即 07:30 UTC）依次执行 `npm run update`、`npm run sectors`、`npm run history`、`npm run news`、`npm run macro`、`npm run flow`、`npm run check:api`，最后提交有变化的数据文件。五个增量来源都标了 `continue-on-error: true`，单个第三方源失败不会阻断当天的行情提交。
+
+`.github/workflows/refresh-globals.yml` 是盘前的一趟补刷新：05:30（cron `30 21 * * 0-4`，即前一天 21:30 UTC）只跑 `npm run news` 与 `npm run macro`，更新 `events.json` / `indices.json` / `macro.json`，**刻意不跑 `npm run update`**——盘前跑它会用空值覆盖上一交易日收盘。存在的理由很具体：北京 15:30 时美股当天还没开盘，收盘那趟拿到的必然是**前一晚**的美股与美债，「明日参考」要能指导开盘就必须在美股收盘后再刷一次。
 
 ## Modules
 
