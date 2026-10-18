@@ -39,6 +39,12 @@ jobs:
         continue-on-error: true
         run: npm run news
 
+      # US treasury yields come from FRED; without them the 明日参考 board drops
+      # its 美债10年期 driver and says so, rather than inventing a value.
+      - name: Sync macro backdrop
+        continue-on-error: true
+        run: npm run macro
+
       - name: Sync money flow
         continue-on-error: true
         run: npm run flow
@@ -48,7 +54,7 @@ jobs:
 
       - name: Commit updated data
         run: |
-          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/flow.json"
+          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/macro.json data/flow.json"
           TRACKED=""
           for f in $FILES; do
             if [ -f "$f" ]; then TRACKED="$TRACKED $f"; fi

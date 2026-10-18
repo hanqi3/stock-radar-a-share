@@ -285,6 +285,121 @@ try {
     `china=${briefing.body?.dataUpdatedAt} overseas=${briefing.body?.overseas?.dataUpdatedAt}`
   );
 
+  const macro = await get("/api/macro");
+  check(
+    "GET /api/macro -> 200 with US treasury and fed-funds series",
+    macro.status === 200 && Array.isArray(macro.body?.items) && macro.body.items.length >= 4,
+    `items=${macro.body?.items?.length} updatedAt=${macro.body?.updatedAt}`
+  );
+  check(
+    "GET /api/macro -> each yield carries value, change and basis-point move",
+    (macro.body?.items || []).every(
+      (item) =>
+        typeof item.symbol === "string" &&
+        typeof item.name === "string" &&
+        Number.isFinite(item.value) &&
+        Number.isFinite(item.change) &&
+        Number.isFinite(item.changeBp)
+    ),
+    `symbols=${(macro.body?.items || []).map((item) => item.symbol).join(",")}`
+  );
+  check(
+    "GET /api/macro -> the 10Y yield reads in percent, not basis points",
+    (macro.body?.items || []).every((item) => Math.abs(item.value) < 30),
+    `us10y=${(macro.body?.items || []).find((item) => item.symbol === "us10y")?.value}`
+  );
+
+  const outlook = await get("/api/outlook");
+  check(
+    "GET /api/outlook -> 200 with a bounded score and a named bias",
+    outlook.status === 200 &&
+      Number.isFinite(outlook.body?.score) &&
+      outlook.body.score <= 100 &&
+      outlook.body.score >= -100 &&
+      typeof outlook.body?.bias === "string" &&
+      outlook.body.bias.length > 0,
+    `score=${outlook.body?.score} bias=${outlook.body?.bias} confidence=${outlook.body?.confidence}`
+  );
+  check(
+    "GET /api/outlook -> weights of the available drivers sum to at most 100",
+    Number.isFinite(outlook.body?.availableWeight) &&
+      outlook.body.availableWeight > 0 &&
+      outlook.body.availableWeight <= 100,
+    `availableWeight=${outlook.body?.availableWeight} missing=${(outlook.body?.missing || []).map((item) => item.key).join(",")}`
+  );
+  check(
+    "GET /api/outlook -> every driver shows its raw reading and its effect",
+    (outlook.body?.drivers || []).length >= 6 &&
+      (outlook.body.drivers || []).every(
+        (driver) =>
+          typeof driver.label === "string" &&
+          typeof driver.rawText === "string" &&
+          typeof driver.effect === "string" &&
+          Number.isFinite(driver.contribution)
+      ),
+    `drivers=${(outlook.body?.drivers || []).length}`
+  );
+  check(
+    "GET /api/outlook -> the macro transmission legs keep their own direction",
+    (outlook.body?.transmissions || []).length >= 2 &&
+      (outlook.body.transmissions || []).every(
+        (item) =>
+          typeof item.key === "string" &&
+          ["up", "down"].includes(item.direction) &&
+          Number.isFinite(item.weight) &&
+          Array.isArray(item.bullish) &&
+          Array.isArray(item.bearish) &&
+          // A driver moves sectors in ONE direction, never both.
+          !(item.bullish.length && item.bearish.length && item.bullish.some((name) => item.bearish.includes(name)))
+      ),
+    `transmissions=${(outlook.body?.transmissions || []).map((item) => `${item.key}:${item.direction}`).join(",")}`
+  );
+  check(
+    "GET /api/outlook -> 利好 and 利空 never list the same industry",
+    (() => {
+      const bullish = new Set((outlook.body?.bullish || []).map((item) => item.label));
+      return (outlook.body?.bearish || []).every((item) => !bullish.has(item.label));
+    })(),
+    `bullish=${(outlook.body?.bullish || []).length} bearish=${(outlook.body?.bearish || []).length}`
+  );
+  check(
+    "GET /api/outlook -> the narrative cites the evidence it was built from",
+    Array.isArray(outlook.body?.logic) &&
+      outlook.body.logic.length >= 3 &&
+      Array.isArray(outlook.body?.risks) &&
+      outlook.body.risks.length >= 1 &&
+      Array.isArray(outlook.body?.watch) &&
+      outlook.body.watch.length >= 1 &&
+      /09:25/.test(outlook.body.watch[0])
+  );
+
+  const sectorNews = await get("/api/sector-news?limit=31&samples=3");
+  check(
+    "GET /api/sector-news -> 200 with industry-level 利好/利空 counts",
+    sectorNews.status === 200 &&
+      Array.isArray(sectorNews.body?.items) &&
+      sectorNews.body.items.length >= 5,
+    `sectors=${sectorNews.body?.items?.length}`
+  );
+  check(
+    "GET /api/sector-news -> every card has finite counts and at most N samples",
+    (sectorNews.body?.items || []).every(
+      (item) =>
+        typeof item.industry === "string" &&
+        Number.isFinite(item.bullish) &&
+        Number.isFinite(item.bearish) &&
+        Number.isFinite(item.net) &&
+        Array.isArray(item.samples) &&
+        item.samples.length <= 3 &&
+        item.samples.every((sample) => typeof sample.title === "string" && ["code", "theme"].includes(sample.via))
+    )
+  );
+  check(
+    "GET /api/sector-news -> limit and sample caps are honoured",
+    (await get("/api/sector-news?limit=3&samples=1")).body?.items?.length === 3,
+    `limit=3 -> ${(await get("/api/sector-news?limit=3&samples=1")).body?.items?.length}`
+  );
+
   const indices = await get("/api/indices");
   check(
     "GET /api/indices -> 200 with overseas benchmarks",

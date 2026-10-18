@@ -22,17 +22,22 @@ scripts/sync-a-shares.js  --写-->  data/all-a-shares.json + data/meta.json
 
 新闻与公告（新浪 7x24 / 新浪滚动 / 东财快讯 / 巨潮公告 / 东财公告）
   -> scripts/sync-news.js         --写-->  data/events.json
-                                  --写-->  data/indices.json（一次批量行情取 35 个海外标的）
+                                  --写-->  data/indices.json（一次批量行情取 36 个海外标的，含 A50 期货）
+
+美债收益率（FRED 公开 CSV，无需 key：DGS10 / DGS2 / DGS30 / DFF / DCOILBRENTEU）
+  -> scripts/sync-macro.js        --写-->  data/macro.json
 
 主力资金流（东方财富 datacenter-web RPT_DMSK_TS_FUNDFLOW，默认最近 250 个交易日，约一年）
   -> scripts/sync-flow.js         --写-->  data/flow.json
 
 data/*.json + lib/pinyin-index.json
-  -> server.js（读取 + 15s 内存缓存 + 路由）
+  -> server.js（读取 + 内存缓存 + 路由）
+       其中 buildSectorNews(events) 做板块消息面归因
+       其中 buildOutlook(...)     把当日结构 + 隔夜/海外输入合成次日倾向评分
   -> public/index.html + public/app.js + public/chart.js
 ```
 
-`.github/workflows/update-data.yml` 是唯一的生产写入方：交易日 15:30（cron `30 7 * * 1-5`，即 07:30 UTC）依次执行 `npm run update`、`npm run sectors`、`npm run history`、`npm run news`、`npm run flow`、`npm run check:api`，最后提交有变化的数据文件。四个增量来源都标了 `continue-on-error: true`，单个第三方源失败不会阻断当天的行情提交。
+`.github/workflows/update-data.yml` 是唯一的生产写入方：交易日 15:30（cron `30 7 * * 1-5`，即 07:30 UTC）依次执行 `npm run update`、`npm run sectors`、`npm run history`、`npm run news`、`npm run macro`、`npm run flow`、`npm run check:api`，最后提交有变化的数据文件。五个增量来源都标了 `continue-on-error: true`，单个第三方源失败不会阻断当天的行情提交。
 
 ## Modules
 
@@ -58,9 +63,15 @@ data/*.json + lib/pinyin-index.json
 
 `scripts/sync-news.js` 聚合 5 个免鉴权来源：新浪 7x24 快讯（tag 0 公司 / 1 政策 / 2 数据 / 102 国际）、新浪滚动新闻、东财快讯（含美联储 / 欧洲央行 / 日本央行 / 期货商品 / 外汇债券 / 宏观等 desk）、巨潮公告（POST `www.cninfo.com.cn/new/hisAnnouncement/query`，`pageSize` 上限 30）、东财公告。各来源独立解析（`parseSinaLive` / `parseSinaRoll` / `parseKuaixun` / `parseCninfo` / `parseEastmoneyAnnouncements`），经 `dedupeEvents` 与 `isUsableEvent` 去重过滤后写入 `data/events.json`，按时间倒序截断到 900 条。顶层为 `{generatedAt, providers, count, note, items}`，`providers` 记录每个来源的条数或错误，便于区分「当天没消息」和「来源挂了」。公告类来源会写 `kind: "announcement"`，这是区域判定与前端「公告 / 报道」配比的唯一依据。
 
-同一次运行还会把 35 个海外标的（道指 / 纳指 / 标普 / 费半 / 美股龙头 4 只 / 日经 / 恒指 / 恒生国企 / 富时 / 美元指数 / 8 个汇率 / 12 个商品）合成**一次** `hq.sinajs.cn/list=` 批量请求，GBK 解码后写入 `data/indices.json`。字段布局按前缀分派（`gb_*` / `int_*` / `rt_hk*` / `hf_*` / `fx_*` 与 `DINIW` 各不相同），美元指数没有涨跌幅字段，只能由昨收推导。指数抓取失败只记进 `errors`，不影响事件同步。
+同一次运行还会把 36 个海外标的（道指 / 纳指 / 标普 / 费半 / 美股龙头 4 只 / 日经 / 恒指 / 恒生国企 / 富时 / 富时中国 A50 期货 / 美元指数 / 8 个汇率 / 12 个商品）合成**一次** `hq.sinajs.cn/list=` 批量请求，GBK 解码后写入 `data/indices.json`。字段布局按前缀分派（`gb_*` / `int_*` / `rt_hk*` / `hf_*` / `fx_*` 与 `DINIW` 各不相同），美元指数没有涨跌幅字段，只能由昨收推导。指数抓取失败只记进 `errors`，不影响事件同步。其中 `hf_CHA50CFD`（富时中国 A50 期货）是「明日参考」最关键的领先输入——A 股收盘后只有它还在给次日开盘定价。
 
 `lib/news-region.js` 在读取时把事件分成 `cn` / `global`：显式 `region` 优先，其次带 A股 `codes` 且只命中地理词的判 `cn`，再次 `kind === "announcement"` 且有代码的判 `cn`，然后才看强海外信号词与地理词，最后默认 `cn`。600 条真实事件的分布约为 509 / 91。
+
+### Macro Sync
+
+`scripts/sync-macro.js` 从 FRED 公开 CSV（`https://fred.stlouisfed.org/graph/fredgraph.csv?id=<ID>`，无需 API key）取美债收益率与联邦基金利率，写 `data/macro.json`。`lib/macro.js` 负责解析与成形：`parseFredCsv`（`.` 是假期标记要跳过，按日期去重升序）、`buildMacroItem`（`change` 为百分点，`changeBp` 为基点）、`buildTermSpread`（同日对齐求 10Y−2Y）、`buildMacroPayload`（保留最近 30 个观测点画走势）。
+
+这条链路只能走 FRED：实测新浪（`US10Y` / `gb_$tnx` / `znb_UST10Y` 等 9 个符号）与东财（`100.US10Y` / `100.TNX` 等 secid）全部返回空，东财 `RPTA_WEB_TREASURYYIELD` 虽有数据但列名是匿名 `EMM/EMG` 编码、无法安全命名期限，因此不采用。美债缺失时「明日参考」把该因子记进 `missing` 并按可用权重重新归一，不填 0。
 
 ### Money Flow
 
@@ -70,19 +81,40 @@ data/*.json + lib/pinyin-index.json
 
 落盘结构分成两层：`stocks[]` 每只股票保留 `main1/5/10/20/60/120/250` 与 `amount1/…/amount250` 的滚动累计，`history[]` 保留整段窗口的**市场层面**逐日序列（`mainNet` / `amount` / `inflows` / `outflows`），供前端画走势柱。行业榜用 `data/sectors.json` 的申万行业成员聚合，个股榜与行业榜共用同一份数据，避免混用不一致的提供者。上市不足 250 个交易日的股票 `sessions` 会小于 `days`，窗口按实际存在的天数求和。脚本要求覆盖率不低于 90%，否则保留旧文件。
 
+### Sector News
+
+`lib/sector-news.js` 的 `buildSectorNews(events, stocks, options)` 把当天事件归因到 31 个申万一级行业，输出每板块的利好 / 利空 / 中立条数与方向净值。三条设计约束都来自实测踩坑：
+
+1. **只对标题分类**（`classifyEvent({ title })`）。公告正文动辄上万字符，一条文件会把十几个板块同时命中；标题才说明它到底在讲哪个板块。
+2. **两条归因腿带权重**：命中 A 股 `codes` → 该股所属行业（权重 1.0，硬证据）；命中主题 → `THEME_INDUSTRIES` 映射（权重 0.45，最多取最强 2 个主题）。有代码命中时不再用主题重复归因。
+3. **「券商概念」故意不在映射表里**：它的关键词（牛市 / 行情 / 成交量）几乎对每一条行情评论都生效，会把非银金融刷成满屏利好。归不到任何板块的标题直接丢弃，不摊到全市场。
+
+样本按标题去重（同一标题会从多个来源到达），`via: "code"` 的排在前面，供前端展示「这条为什么算这个板块的」。
+
+### Outlook
+
+`lib/outlook.js` 的 `buildOutlook({ now, meta, stocks, briefing, flow, indices, macro, sectorNews })` 是「明日参考」引擎，输出 `{score, bias, tone, confidence, agreement, drivers, missing, availableWeight, logic, bullish, bearish, transmissions, risks, watch, inputs}`。
+
+- **十个驱动因子，权重合计 100**（`DRIVER_WEIGHTS`）：A50 20、美股三大指数 14、费城半导体 6、美元指数 6、离岸人民币 6、美债 10 年期 8、涨跌家数 14、涨停/跌停 8、主力净额占成交额 10、个股中位涨跌幅 8。
+- 每个因子把原始变动归一化到 `-1..1` 再乘权重，`score = Σ贡献 / Σ可用权重 × 100` 截到 `±100`。可用权重做分母意味着**缺一个输入只是把它移出分母并记进 `missing`**，不会把分数往 0 拽，也不拿中性值冒充数据。
+- `score` 是「证据一致性」而不是上涨概率；`confidence` 由分数绝对值与方向一致性（`agreement`）加权得出。
+- **分数与传导读取不同的符号，这是最容易写反的地方**：`z` 表示「对 A 股的净影响」（正=利多），而 `dxy` / `cnh` / `us10y` 的 `z` 与原始变动方向相反。因此 `add(key, label, raw, rawText, z, effectText, macro)` 额外记录原始方向，`TRANSMISSION` 表按 `driver.macro` 查，不按 `driver.z` 查。否则美债收益率下行会套用「上行」的传导表，把电子、计算机打成利空。`tests/outlook.test.js` 专门守这一条。
+- `TRANSMISSION` 的每个键是 `{up: {bullish, bearish, reason}, down: {...}}`，`reason` 必须同时讲两侧（例如原油上涨：利好上游油气煤炭，同时压制交运与化工的成本端），前端用 `dedupeTransmissions` 按 `key:direction` 合并，避免同一句话按板块重复六遍。
+- `risks` 是条件式的：只有美债 ≥4.8%、跌停多于涨停、|A50| ≥0.8%、原油单日 >1%、主力净流出这些条件真的触发时才出现，不预先写死结论。
+
 ### API Server
 
-`server.js` 基于 Node.js 原生 HTTP 模块实现接口和静态资源服务，同时是唯一的数据读取方。启动时读取 `data/all-a-shares.json`（缺失时退回 `data/sample-a-shares.json`），并把 `meta.json` / `indicators.json` / `sectors.json` / `events.json` / `indices.json` / `flow.json` / `lib/pinyin-index.json` 合并成内存数据集，其中 `computeFactorTable` 负责生成截面因子，`loadFlow()` 为资金流单独做 15 秒 TTL 缓存。内存缓存有效期 15 秒（`isFresh()`），所以叠加脚本跑完后最多 15 秒即生效。
+`server.js` 基于 Node.js 原生 HTTP 模块实现接口和静态资源服务，同时是唯一的数据读取方。启动时读取 `data/all-a-shares.json`（缺失时退回 `data/sample-a-shares.json`），并把 `meta.json` / `indicators.json` / `sectors.json` / `events.json` / `indices.json` / `macro.json` / `flow.json` / `lib/pinyin-index.json` 合并成内存数据集，其中 `computeFactorTable` 负责生成截面因子，`loadFlow()` 与 `loadMacroPayload()` 分别对资金流和美债单独做 TTL 缓存（15 秒 / 30 秒）。内存缓存有效期 15 秒（`isFresh()`），所以叠加脚本跑完后最多 15 秒即生效。
 
-路由集中在 `handleApi`：`/api/health`、`/api/search`、`/api/overview`、`/api/forecast`、`/api/sectors`、`/api/events`、`/api/indices`、`/api/news`、`/api/flow`、`/api/watchlist`、`/api/briefing`、`/api/backtest`、`/api/signals`、`/api/stocks`，以及三个正则路由 `/api/stocks/:code`、`/api/stocks/:code/history`、`/api/stocks/:code/analysis`。所有数量参数都经过 `parsePositiveInt(value, fallback, max)` 钳制（默认 `limit=100`/上限 500 的 `/api/stocks`、默认 60/上限 200 的 `/api/signals`、默认 10/上限 50 的 `/api/search`、默认 30/上限 200 的 `/api/events`、默认 400/上限 1000 的 `/api/news`、默认 60/上限 500 的 `/api/flow`、默认 250/上限 1023 的历史 `days`），未知 `sort` 回退到 `score`，未知 `scope` / `side` 回退到 `stock` / `inflow`。`/api/flow` 的 `w` 参数只在 `data/flow.json` 的 `windows` 里取值（默认 `[1, 5, 10, 20, 60, 120, 250]`），不支持时回退 `1`，排序键、返回的 `flow` 字段与表头都跟着它走；`history` 始终返回整段窗口，所以 `w=1` 时顶部走势柱仍然是 250 个交易日。
+路由集中在 `handleApi`：`/api/health`、`/api/search`、`/api/overview`、`/api/forecast`、`/api/sectors`、`/api/events`、`/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/outlook`、`/api/flow`、`/api/watchlist`、`/api/briefing`、`/api/backtest`、`/api/signals`、`/api/stocks`，以及三个正则路由 `/api/stocks/:code`、`/api/stocks/:code/history`、`/api/stocks/:code/analysis`。所有数量参数都经过 `parsePositiveInt(value, fallback, max)` 钳制（默认 `limit=100`/上限 500 的 `/api/stocks`、默认 60/上限 200 的 `/api/signals`、默认 10/上限 50 的 `/api/search`、默认 30/上限 200 的 `/api/events`、默认 400/上限 1000 的 `/api/news`、默认 12/上限 40 的 `/api/sector-news`、默认 60/上限 500 的 `/api/flow`、默认 250/上限 1023 的历史 `days`），未知 `sort` 回退到 `score`，未知 `scope` / `side` 回退到 `stock` / `inflow`。`/api/flow` 的 `w` 参数用 `parsePositiveInt(w, 1, 1024)` 取值后再用 `windows.includes()` 判定，这样**不支持的 `w` 回退到当日而不是被钳到 250**（250 现在是合法窗口）；排序键、返回的 `flow` 字段与表头都跟着它走，`history` 始终返回整段窗口，所以 `w=1` 时顶部走势柱仍然是 250 个交易日。
 
-`buildNewsFeed(events, indices, { limit, q })` 对每条事件跑 `classifyEvent` 与 `classifyRegion`，拼 `title/summary/source/themes/codes` 做关键词过滤，返回 `{generatedAt, count, total, limit, query, counts:{cn,global}, indices, items}`，其中 `counts` 与 `total` 都是筛选后的口径。`buildGlobalBriefing(indices, events)` 生成海外板块的 `{count, groups, themes, newsCount, headlines, narrative}`，挂在 `/api/briefing` 的 `overseas` 字段上。
+`buildNewsFeed(events, indices, { limit, q })` 对每条事件跑 `classifyEvent` 与 `classifyRegion`，拼 `title/summary/source/themes/codes` 做关键词过滤，返回 `{generatedAt, count, total, limit, query, counts:{cn,global}, indices, items}`，其中 `counts` 与 `total` 都是筛选后的口径。`buildGlobalBriefing(indices, events, quotesUpdatedAt, now)` 生成海外板块的 `{count, groups, themes, newsCount, headlines, narrative, dataUpdatedAt}`，挂在 `/api/briefing` 的 `overseas` 字段上；`dataUpdatedAt` 是**行情数据的时间戳**，不是请求时间，两张简报卡都显示它。`/api/outlook` 用 `Promise.all([loadFlow(), loadIndicesPayload(), loadMacroPayload()])` 加 `buildSectors()`、`buildSectorNews()`、`buildBriefing()` 一起喂给 `buildOutlook`。
 
 静态资源从 `public/` 目录读取，`/` 映射到 `/index.html`，并对 `filePath.startsWith(PUBLIC_DIR)` 做路径穿越防护。服务监听 `HOST`（默认 `localhost`）和 `PORT`（默认 5173）。
 
 ### Dashboard
 
-`public/app.js` 负责调用 API、维护页面状态、处理筛选排序、即时检索、自选股和个股详情渲染。页面是三栏工作台：左侧竖直 tab 栏（`showTab`，共 `flow` / `stocks` / `news` / `watch` 四栏）驱动中间主舞台，右侧个股详情与异动信号常驻。`public/chart.js` 是独立的 `drawPriceChart(canvas, payload, options)`，用原生 canvas 绘制日 K、均线、布林带、成交量副图和十字光标，并渲染买点 / 止损 / 目标标记，不引入任何图表库；`options.type` 取 `"candle"`（默认）或 `"line"`，线图模式画收盘折线加渐变面积，两种模式都带 TradingView 式最新价标签。检索的四个维度（代码 / 名称 / 全拼 / 首字母）统一走 `/api/search`。
+`public/app.js` 负责调用 API、维护页面状态、处理筛选排序、即时检索、自选股和个股详情渲染。页面是三栏工作台：左侧竖直 tab 栏（`showTab`，共 `flow` / `stocks` / `news` / `watch` / `outlook` 五栏）驱动中间主舞台，右侧个股详情与异动信号常驻。`public/chart.js` 是独立的 `drawPriceChart(canvas, payload, options)`，用原生 canvas 绘制日 K、均线、布林带、成交量副图和十字光标，并渲染买点 / 止损 / 目标标记，不引入任何图表库。看盘台支持 `options.from` / `options.to` 指定可视窗口，返回值带 `{from, to, total}` 供调用方维护缩放状态；`options.hover` 是可视窗口内的整数 bar 索引，触发十字线、右侧价格标签和 OHLC 读数条。`options.type` 取 `"candle"`（默认）或 `"line"`，线图模式画收盘折线加渐变面积，两种模式都带 TradingView 式最新价标签。滚轮缩放以光标位置为锚点、拖动平移用 Pointer Events、双击复位，最小可视跨度 12 根。检索的四个维度（代码 / 名称 / 全拼 / 首字母）统一走 `/api/search`。
 
 新闻栏的两列内容来自同一份事件池，`composeColumn` 对每列做三件事：同一发行人最多 2 条、公告类不超过整栏三分之一、报道与公告两股流按 2:1 交错，避免收盘公告把当天报道整段压到底部。
 
@@ -143,10 +175,12 @@ data/events.json
 
 个股详情接口会为每只股票生成 `outlook`。该字段基于个股涨跌幅、相对板块表现、换手率、成交额、日线指标和大盘方向观察生成明日走势、观察分、置信度、驱动因子、交易计划、失效条件和情景推演；历史不可用时 `history` 字段降级为 `{error}`，接口仍返回 200。
 
+注意区分两个同名概念：个股的 `outlook` 是**单只股票**的条件化交易计划，而「明日参考」tab 的 `/api/outlook` 是**全市场**的次日倾向评分，两者共用词但数据链路不同（后者见 `lib/outlook.js` 的 Outlook 一节）。
+
 ## Testing
 
-`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 6 个文件 74 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪五种行情族解析与公告解析器的 `kind` 标记，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中新增的 `/api/indices`、`/api/news`、`/api/flow` 断言覆盖分组完整性、筛选口径与榜单排序方向。
+`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 7 个文件 93 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪五种行情族解析与公告解析器的 `kind` 标记，`tests/outlook.test.js` 覆盖明日参考的驱动权重、缺失因子的归一化、**传导方向必须读原始变动而不是市场影响符号**、利好利空互斥与中位涨跌幅回退，以及板块消息面的归因规则，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中 `/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/outlook`、`/api/flow` 的断言覆盖分组完整性、筛选口径、榜单排序方向、窗口存储与「明日参考」各项结构。
 
 ## Production Upgrade
 
-后续可以将 JSON 文件替换为 PostgreSQL，将高频读取结果放入 Redis，并把 `.github/workflows/update-data.yml` 的定时任务迁移到常驻调度器。日线缓存目前落在本地磁盘，多实例部署时需要换成共享存储。此外还可以继续扩充事件源（龙虎榜、财报、北向资金）并复用现有的分类与扩散管线；资金流目前只有 5 个交易日的滚动窗口，做更长周期的资金趋势需要另建历史归档。
+后续可以将 JSON 文件替换为 PostgreSQL，将高频读取结果放入 Redis，并把 `.github/workflows/update-data.yml` 的定时任务迁移到常驻调度器。日线缓存目前落在本地磁盘，多实例部署时需要换成共享存储。此外还可以继续扩充事件源（龙虎榜、财报、北向资金）并复用现有的分类与扩散管线。资金流已滚动保留 250 个交易日（约一年），要做更长周期的资金趋势需要改为按年归档；美债与商品目前只取 FRED 的国家级日频序列，若需要盘中实时收益率曲线需引入付费行情源。`nextTradingDay` 只跳过周末、不认法定节假日，这是当前已知的简化。

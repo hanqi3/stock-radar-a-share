@@ -92,11 +92,21 @@ function roundRect(ctx, x, y, w, h, r) {
 export function drawPriceChart(canvas, payload, options = {}) {
   const colors = theme();
   const { ctx, width, height } = setupCanvas(canvas);
-  const bars = (payload?.bars || []).slice(-Math.max(options.range || 120, 2));
+  const allBars = Array.isArray(payload?.bars) ? payload.bars : [];
   const indicators = payload?.indicators || {};
   const plan = payload?.plan || null;
   const overlays = options.overlays || new Set(["ma5", "ma10", "ma15", "ma20", "boll", "volume"]);
   const chartType = options.type === "line" ? "line" : "candle";
+
+  // The visible slice is [from, to) over the full history, so the caller can
+  // zoom and pan by moving that window instead of re-fetching anything.
+  const total = allBars.length;
+  const range = Math.max(Math.round(options.range || 120), 2);
+  let from = Number.isInteger(options.from) ? options.from : Math.max(total - range, 0);
+  let to = Number.isInteger(options.to) ? options.to : total;
+  from = Math.min(Math.max(from, 0), Math.max(total - 2, 0));
+  to = Math.min(Math.max(to, from + 2), total);
+  const bars = allBars.slice(from, to);
 
   ctx.fillStyle = colors.bg;
   ctx.fillRect(0, 0, width, height);
@@ -115,7 +125,7 @@ export function drawPriceChart(canvas, payload, options = {}) {
   const font = "-apple-system, 'Segoe UI', 'PingFang SC', sans-serif";
 
   // Indicator series arrive tail-aligned to the full history; realign to the window.
-  const offset = (indicators.ma?.[5]?.length || bars.length) - bars.length;
+  const offset = (indicators.ma?.[5]?.length || total) - total + from;
   const at = (series, i) => (Array.isArray(series) ? series[offset + i] ?? null : null);
 
   let min = Infinity;
@@ -419,7 +429,18 @@ export function drawPriceChart(canvas, payload, options = {}) {
     lines.forEach((text, index) => ctx.fillText(text, boxX + 9, boxY + 15 + index * 15));
   }
 
-  return { bars, xFor, slot, offsetLeft: padLeft, count: bars.length, type: chartType };
+  return {
+    bars,
+    xFor,
+    slot,
+    offsetLeft: padLeft,
+    count: bars.length,
+    type: chartType,
+    from,
+    to,
+    total,
+    xToIndex: (x) => Math.min(Math.max(Math.floor((x - padLeft) / slot), 0), bars.length - 1)
+  };
 }
 
 function formatVolume(value) {

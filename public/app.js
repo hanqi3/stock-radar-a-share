@@ -26,7 +26,11 @@ const state = {
     ),
     payload: null,
     token: 0,
-    hover: null
+    hover: null,
+    from: null,
+    to: null,
+    drag: null,
+    geometry: null
   },
   news: {
     query: "",
@@ -34,6 +38,16 @@ const state = {
     items: [],
     index: [],
     overseas: null,
+    loaded: false,
+    loading: false
+  },
+  sectorNews: {
+    data: null,
+    loaded: false,
+    loading: false
+  },
+  outlook: {
+    data: null,
     loaded: false,
     loading: false
   },
@@ -78,6 +92,9 @@ const els = {
   overlaySegment: document.querySelector("#overlaySegment"),
   chartTypeSegment: document.querySelector("#chartTypeSegment"),
   chartClose: document.querySelector("#chartClose"),
+  chartReset: document.querySelector("#chartReset"),
+  chartWrap: document.querySelector("#chartWrap"),
+  chartLegend: document.querySelector("#chartLegend"),
   briefingTime: document.querySelector("#briefingTime"),
   briefingBody: document.querySelector("#briefingBody"),
   overseasTime: document.querySelector("#overseasTime"),
@@ -108,7 +125,25 @@ const els = {
   newsGlobalList: document.querySelector("#newsGlobalList"),
   newsCnCount: document.querySelector("#newsCnCount"),
   newsGlobalCount: document.querySelector("#newsGlobalCount"),
-  newsCount: document.querySelector("#newsCount")
+  newsCount: document.querySelector("#newsCount"),
+  sectorNewsBoard: document.querySelector("#sectorNewsBoard"),
+  sectorNewsCount: document.querySelector("#sectorNewsCount"),
+  panelOutlook: document.querySelector("#panelOutlook"),
+  outlookScore: document.querySelector("#outlookScore"),
+  outlookBias: document.querySelector("#outlookBias"),
+  outlookConfidence: document.querySelector("#outlookConfidence"),
+  outlookForDate: document.querySelector("#outlookForDate"),
+  outlookSummary: document.querySelector("#outlookSummary"),
+  outlookChips: document.querySelector("#outlookChips"),
+  outlookLogic: document.querySelector("#outlookLogic"),
+  outlookTransmissions: document.querySelector("#outlookTransmissions"),
+  outlookBullish: document.querySelector("#outlookBullish"),
+  outlookBearish: document.querySelector("#outlookBearish"),
+  outlookRisks: document.querySelector("#outlookRisks"),
+  outlookWatch: document.querySelector("#outlookWatch"),
+  outlookInputs: document.querySelector("#outlookInputs"),
+  outlookInputsTime: document.querySelector("#outlookInputsTime"),
+  outlookNote: document.querySelector("#outlookNote")
 };
 
 const moneyFormatter = new Intl.NumberFormat("zh-CN", {
@@ -378,7 +413,13 @@ async function selectStock(code) {
 
 // --- tab rail ---------------------------------------------------------------
 
-const TAB_IDS = { flow: "panelFlow", stocks: "panelStocks", news: "panelNews", watch: "panelWatch" };
+const TAB_IDS = {
+  flow: "panelFlow",
+  stocks: "panelStocks",
+  news: "panelNews",
+  watch: "panelWatch",
+  outlook: "panelOutlook"
+};
 
 function showTab(name) {
   if (!TAB_IDS[name]) name = "stocks";
@@ -394,8 +435,12 @@ function showTab(name) {
     }
   }
   if (name === "flow" && !state.flow.data) reloadFlow();
-  if (name === "news" && !state.news.loaded) reloadNews();
+  if (name === "news") {
+    if (!state.news.loaded) reloadNews();
+    if (!state.sectorNews.loaded) loadSectorNews();
+  }
   if (name === "watch") refreshWatchlist();
+  if (name === "outlook" && !state.outlook.loaded) loadOutlook();
   if (name === "stocks") {
     requestAnimationFrame(() => paintChart());
   }
@@ -498,18 +543,68 @@ function renderEventBlock(analysis) {
   `;
 }
 
+function chartWindow() {
+  // The visible slice is kept in state so wheel-zoom and drag-pan only move the
+  // window; the payload itself is never re-fetched.
+  return { from: state.chart.from, to: state.chart.to };
+}
+
+function clampWindow(from, to) {
+  const total = state.chart.payload?.bars?.length || 0;
+  if (!total) return { from: 0, to: 0 };
+  const minSpan = 12;
+  let span = Math.min(Math.max(Math.round(to - from), minSpan), total);
+  let start = Math.round(from);
+  start = Math.min(Math.max(start, 0), Math.max(total - span, 0));
+  return { from: start, to: start + span };
+}
+
+function resetChartWindow() {
+  const total = state.chart.payload?.bars?.length || 0;
+  const range = Math.max(Math.min(state.chart.range, total || state.chart.range), 2);
+  state.chart.from = Math.max(total - range, 0);
+  state.chart.to = total;
+}
+
+/** Default window follows the range segment unless the user has zoomed. */
+function ensureChartWindow() {
+  if (Number.isInteger(state.chart.from) && Number.isInteger(state.chart.to)) return;
+  resetChartWindow();
+}
+
 function paintChart() {
   if (!els.priceChart || !state.chart.payload) return;
+  ensureChartWindow();
   const result = drawPriceChart(els.priceChart, state.chart.payload, {
     range: state.chart.range,
+    from: state.chart.from,
+    to: state.chart.to,
     overlays: state.chart.overlays,
     hover: state.chart.hover,
     type: state.chart.type
   });
-  state.chart.geometry = result
-    ? { slot: result.slot, offsetLeft: result.offsetLeft, count: result.count }
-    : null;
-  els.priceChart.dataset.barCount = result?.bars?.length || 0;
+  if (!result) return;
+  state.chart.from = result.from;
+  state.chart.to = result.to;
+  state.chart.geometry = {
+    slot: result.slot,
+    offsetLeft: result.offsetLeft,
+    count: result.count,
+    from: result.from,
+    to: result.to,
+    total: result.total
+  };
+  els.priceChart.dataset.barCount = result.count;
+  const end = result.bars[result.bars.length - 1];
+  const start = result.bars[0];
+  if (els.chartLegend) {
+    els.chartLegend.innerHTML = end
+      ? `<span>区间 <b>${start.date}</b> → <b>${end.date}</b>（${result.count} / ${result.total} 根）</span>` +
+        `<span>买点 <b>${state.chart.payload.plan?.buyZones?.[0]?.price?.toFixed(2) ?? "—"}</b></span>` +
+        `<span>止损 <b>${state.chart.payload.plan?.stopLoss?.toFixed(2) ?? "—"}</b></span>` +
+        `<span>目标 <b>${state.chart.payload.plan?.target?.toFixed(2) ?? "—"}</b></span>`
+      : "";
+  }
 }
 
 async function loadChart(code) {
@@ -517,10 +612,10 @@ async function loadChart(code) {
   const token = (state.chart.token += 1);
   state.chart.code = code;
   state.chart.hover = null;
-  els.chartStage.hidden = false;
+  state.chart.from = null;
+  state.chart.to = null;
   els.chartEmpty.hidden = false;
   els.chartEmpty.textContent = "加载历史行情…";
-
   let analysis;
   try {
     analysis = await api(`/api/stocks/${code}/analysis`);
@@ -554,31 +649,29 @@ async function loadChart(code) {
   if (els.chartChange) {
     const pct = Number.isFinite(analysis.changePct) ? analysis.changePct : 0;
     els.chartChange.textContent = signed(pct, "%");
-    els.chartChange.className = `chart-change ${toneClass(pct)}`;
+    els.chartChange.className = `tv-change ${toneClass(pct)}`;
   }
+  if (els.chartLast) els.chartLast.className = `tv-last ${toneClass(Number.isFinite(analysis.changePct) ? analysis.changePct : 0)}`;
 
   if (!bars.length) {
     els.chartEmpty.hidden = false;
     els.chartEmpty.textContent = "该股暂无可用历史行情。";
     if (els.planBlock) els.planBlock.innerHTML = "";
     if (els.eventBlock) els.eventBlock.innerHTML = "";
+    if (els.chartLegend) els.chartLegend.innerHTML = "";
     return;
   }
 
   els.chartEmpty.hidden = true;
   els.chartStage.dataset.source = history.source || "";
+  // Reset the zoom window AFTER the payload lands: a tab switch or resize may
+  // repaint with the previous stock's payload while this request is in flight,
+  // which would otherwise leave the new chart stuck on that stale window.
+  state.chart.from = null;
+  state.chart.to = null;
   paintChart();
   renderPlanBlock(analysis);
   renderEventBlock(analysis);
-  scrollStageIntoView();
-}
-
-function scrollStageIntoView() {
-  if (!els.chartStage || els.chartStage.hidden) return;
-  const rect = els.chartStage.getBoundingClientRect();
-  const visible = rect.top < window.innerHeight * 0.7 && rect.bottom > 0;
-  if (visible) return;
-  els.chartStage.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderStockOutlook(outlook) {
@@ -1237,8 +1330,218 @@ function renderNews() {
   }
 }
 
+// --- sector news (板块消息面: 利好 / 利空) ----------------------------------
+
+async function loadSectorNews() {
+  if (!els.sectorNewsBoard || state.sectorNews.loading) return;
+  state.sectorNews.loading = true;
+  if (!state.sectorNews.data) els.sectorNewsBoard.innerHTML = `<div class="empty-state">正在按板块归集当日消息…</div>`;
+  try {
+    const data = await api("/api/sector-news?limit=31&samples=3");
+    state.sectorNews.data = data;
+    state.sectorNews.loaded = true;
+  } catch (error) {
+    els.sectorNewsBoard.innerHTML = `<div class="empty-state">板块消息面不可用：${escapeHtml(error.message)}</div>`;
+  } finally {
+    state.sectorNews.loading = false;
+  }
+  renderSectorNews();
+}
+
+function renderSectorNews() {
+  if (!els.sectorNewsBoard) return;
+  const data = state.sectorNews.data;
+  if (!data) return;
+  const sectors = Array.isArray(data.items) ? data.items : Array.isArray(data.sectors) ? data.sectors : [];
+  const bullish = sectors.reduce((sum, entry) => sum + (Number(entry.bullish) || 0), 0);
+  const bearish = sectors.reduce((sum, entry) => sum + (Number(entry.bearish) || 0), 0);
+  if (els.sectorNewsCount) {
+    const active = sectors.filter((entry) => entry.bullish || entry.bearish).length;
+    els.sectorNewsCount.textContent = `${active} 个板块有信号 · 利好 ${bullish} / 利空 ${bearish}`;
+  }
+  if (!sectors.length) {
+    els.sectorNewsBoard.innerHTML = `<div class="empty-state">今日还没有可归因到板块的消息。</div>`;
+    return;
+  }
+  els.sectorNewsBoard.innerHTML = sectors
+    .map((entry) => {
+      const bull = Number(entry.bullish) || 0;
+      const bear = Number(entry.bearish) || 0;
+      const net = Number(entry.net) || 0;
+      const total = bull + bear;
+      const bullPct = total ? (bull / total) * 100 : 0;
+      const bearPct = total ? 100 - bullPct : 0;
+      const tone = net > 0.05 ? "up" : net < -0.05 ? "down" : "flat";
+      const samples = (entry.samples || [])
+        .map(
+          (sample) => `
+          <a title="${escapeHtml(sample.title || "")}">
+            <span class="via">${escapeHtml(sample.category || "")}</span>${escapeHtml(sample.title || "")}
+          </a>`
+        )
+        .join("");
+      return `
+        <article class="sector-card">
+          <header class="sector-card-head">
+            <span class="sector-card-name">${escapeHtml(entry.industry)}</span>
+            <span class="sector-card-net ${tone}">${net > 0 ? "+" : ""}${net.toFixed(2)}</span>
+          </header>
+          <div class="sector-bar" title="利好 ${bull} · 利空 ${bear}">
+            <i class="bull" style="width:${bullPct.toFixed(1)}%"></i>
+            <i class="bear" style="width:${bearPct.toFixed(1)}%"></i>
+          </div>
+          <div class="sector-card-counts">
+            <span class="sector-chip bull">利好 ${bull}</span>
+            <span class="sector-chip bear">利空 ${bear}</span>
+            ${entry.neutral ? `<span class="sector-chip neutral">中性 ${entry.neutral}</span>` : ""}
+          </div>
+          <div class="sector-samples">${samples || `<span class="via">无消息</span>`}</div>
+        </article>`;
+    })
+    .join("");
+}
+
+// --- tomorrow outlook (明日参考) -------------------------------------------
+
+async function loadOutlook() {
+  if (!els.outlookScore || state.outlook.loading) return;
+  state.outlook.loading = true;
+  if (!state.outlook.data) {
+    els.outlookSummary.textContent = "正在汇总当日新闻、海外市场、美债、商品与主力资金…";
+    els.outlookScore.textContent = "—";
+  }
+  try {
+    const data = await api("/api/outlook");
+    state.outlook.data = data;
+    state.outlook.loaded = true;
+  } catch (error) {
+    els.outlookSummary.textContent = `明日参考不可用：${error.message}`;
+  } finally {
+    state.outlook.loading = false;
+  }
+  renderOutlook();
+}
+
+function signedScore(value) {
+  const number = Number(value) || 0;
+  return `${number > 0 ? "+" : ""}${number.toFixed(0)}`;
+}
+
+function outlookEntries(list, { showEffect = false } = {}) {
+  if (!Array.isArray(list) || !list.length) return `<li class="empty-state small">无</li>`;
+  return list
+    .map((entry) => {
+      if (typeof entry === "string") return `<li>${escapeHtml(entry)}</li>`;
+      const effect = showEffect && entry.effect ? ` <span class="side-reason">${escapeHtml(entry.effect)}</span>` : "";
+      return `<li>${escapeHtml(entry.label || "")}${entry.reason ? ` <span class="side-reason">${escapeHtml(entry.reason)}${effect}</span>` : effect}</li>`;
+    })
+    .join("");
+}
+
+/** 利好/利空 两侧列表：用 side-list 的既有样式（side-item / side-label / side-reason） */
+function outlookSides(list) {
+  if (!Array.isArray(list) || !list.length) return `<div class="empty-state small">无</div>`;
+  return list
+    .map(
+      (entry) => `
+      <div class="side-item">
+        <span class="side-label">${escapeHtml(entry.label || "")}</span>
+        <span class="side-reason">${escapeHtml(entry.reason || "")}</span>
+      </div>`
+    )
+    .join("");
+}
+
+function renderOutlook() {
+  const data = state.outlook.data;
+  if (!data || !els.outlookScore) return;
+  const tone = data.tone || "neutral";
+  els.outlookScore.textContent = signedScore(data.score);
+  els.outlookScore.className = `outlook-score ${tone}`;
+  if (els.outlookBias) {
+    els.outlookBias.textContent = data.bias || "—";
+    els.outlookBias.className = `outlook-bias ${tone}`;
+  }
+  if (els.outlookConfidence) els.outlookConfidence.textContent = `置信度 ${data.confidence ?? "—"} · 一致性 ${((data.agreement ?? 0) * 100).toFixed(0)}%`;
+  if (els.outlookForDate) els.outlookForDate.textContent = `${data.forDate || ""} 交易日参考`;
+  if (els.outlookSummary) els.outlookSummary.textContent = data.note || "";
+
+  if (els.outlookChips) {
+    const chips = [];
+    if (data.dataDate) chips.push(`数据基准 ${data.dataDate}`);
+    if (Array.isArray(data.missing) && data.missing.length) chips.push(`缺 ${data.missing.map((item) => item.label).join("、")}`);
+    els.outlookChips.innerHTML = chips.map((chip) => `<span class="chip">${escapeHtml(chip)}</span>`).join("");
+  }
+
+  if (els.outlookLogic) {
+    els.outlookLogic.innerHTML = (data.logic || [])
+      .map((step) => {
+        const effectTone = step.effect === "利空" ? "down" : step.effect === "利好" ? "up" : "flat";
+        return `
+        <div class="logic-item ${effectTone}">
+          <div class="logic-item-head">
+            <span>${escapeHtml(step.title || "")}</span>
+            <span>${escapeHtml(step.effect || "")}</span>
+          </div>
+          <div class="logic-item-chain">${escapeHtml(step.chain || "")}</div>
+        </div>`;
+      })
+      .join("");
+  }
+
+  if (els.outlookTransmissions) {
+    // The label must describe the effect on A-shares, not the raw move: a falling
+    // dollar ("down") is bullish for metals, so printing 利空 there would be wrong.
+    const moveText = (value) => (value === "up" ? "上行" : value === "down" ? "下行" : "");
+    const rows = (data.transmissions || [])
+      .map((item) => {
+        const bull = item.bullish?.length || 0;
+        const bear = item.bearish?.length || 0;
+        const net = bull - bear;
+        const effect = net > 0 ? "利多" : net < 0 ? "利空" : "中性";
+        const move = moveText(item.direction);
+        const tag = (name, names) => `<div class="row"><span class="tag">${name}</span><span>${names.map(escapeHtml).join("、")}</span></div>`;
+        return `
+          <div class="transmission-item">
+            <div class="transmission-reason">${escapeHtml(item.label || "")}${move ? ` ${move}` : ""}（权重 ${item.weight ?? 0}）· ${effect} — ${escapeHtml(item.reason || "")}</div>
+            <div class="transmission-rows">
+              ${bull ? tag("利好", item.bullish) : ""}
+              ${bear ? tag("利空", item.bearish) : ""}
+            </div>
+          </div>`;
+      })
+      .join("");
+    els.outlookTransmissions.innerHTML = rows || `<div class="empty-state small">数据不足，未形成传导链</div>`;
+  }
+
+  if (els.outlookBullish) els.outlookBullish.innerHTML = outlookSides(data.bullish);
+  if (els.outlookBearish) els.outlookBearish.innerHTML = outlookSides(data.bearish);
+  if (els.outlookRisks) els.outlookRisks.innerHTML = outlookEntries(data.risks);
+  if (els.outlookWatch) {
+    els.outlookWatch.innerHTML = (data.watch || []).map((line) => `<li>${escapeHtml(line)}</li>`).join("") || `<li class="empty-state small">无</li>`;
+  }
+
+  if (els.outlookInputs) {
+    const drivers = Array.isArray(data.drivers) ? data.drivers : [];
+    els.outlookInputs.innerHTML = drivers
+      .map(
+        (driver) => `
+        <div class="input-cell">
+          <div class="k">${escapeHtml(driver.label || "")}</div>
+          <div class="v">${escapeHtml(driver.rawText || "—")}</div>
+          <div class="d">${escapeHtml(driver.effect || "")}</div>
+        </div>`
+      )
+      .join("");
+    if (els.outlookInputsTime) {
+      const inputs = data.inputs || {};
+      els.outlookInputsTime.textContent = inputs.flowDate ? `资金 ${inputs.flowDate} · 生成于 ${timeLabel(data.generatedAt)}` : `生成于 ${timeLabel(data.generatedAt)}`;
+    }
+  }
+  if (els.outlookNote) els.outlookNote.textContent = data.note || "";
+}
+
 async function refreshWatchlist() {
-  if (!els.watchlist) return;
   const codes = [...state.watchlist];
   if (!codes.length) {
     state.watchItems = [];
@@ -1626,6 +1929,8 @@ function bindEvents() {
       state.chart.range = Number(button.dataset.range);
       localStorage.setItem("stockradar-chart-range", String(state.chart.range));
       state.chart.hover = null;
+      state.chart.from = null;
+      state.chart.to = null;
       paintChart();
     });
   });
@@ -1644,26 +1949,104 @@ function bindEvents() {
   });
 
   els.chartClose?.addEventListener("click", () => {
-    els.chartStage.hidden = true;
+    els.chartEmpty.hidden = false;
+    els.chartEmpty.textContent = "从下方列表选择一只股票，或直接搜索代码开始看盘";
     state.chart.payload = null;
     state.chart.code = null;
+    if (els.chartLegend) els.chartLegend.innerHTML = "";
   });
 
+  els.chartReset?.addEventListener("click", () => {
+    state.chart.hover = null;
+    state.chart.from = null;
+    state.chart.to = null;
+    paintChart();
+  });
+
+  // --- crosshair ------------------------------------------------------------
+  let hoverFrame = 0;
   els.priceChart?.addEventListener("mousemove", (event) => {
+    if (state.chart.drag) return;
     const geometry = state.chart.geometry;
     if (!geometry) return;
     const rect = els.priceChart.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const index = Math.floor((x - geometry.offsetLeft) / geometry.slot);
+    const index = Math.floor((event.clientX - rect.left - geometry.offsetLeft) / geometry.slot);
     const clamped = Math.min(Math.max(index, 0), geometry.count - 1);
     if (clamped === state.chart.hover) return;
     state.chart.hover = clamped;
-    paintChart();
+    if (hoverFrame) return;
+    hoverFrame = requestAnimationFrame(() => {
+      hoverFrame = 0;
+      paintChart();
+    });
   });
 
   els.priceChart?.addEventListener("mouseleave", () => {
     if (state.chart.hover === null) return;
     state.chart.hover = null;
+    paintChart();
+  });
+
+  // --- wheel zoom (anchored at the cursor) ----------------------------------
+  els.priceChart?.addEventListener(
+    "wheel",
+    (event) => {
+      if (!state.chart.payload) return;
+      event.preventDefault();
+      const geometry = state.chart.geometry;
+      if (!geometry) return;
+      const rect = els.priceChart.getBoundingClientRect();
+      const ratio = Math.min(
+        Math.max((event.clientX - rect.left - geometry.offsetLeft) / Math.max(geometry.slot * geometry.count, 1), 0),
+        1
+      );
+      const span = geometry.to - geometry.from;
+      const zoom = event.deltaY > 0 ? 1.18 : 1 / 1.18;
+      const nextSpan = Math.min(Math.max(Math.round(span * zoom), 12), geometry.total);
+      const anchor = geometry.from + span * ratio;
+      const next = clampWindow(Math.round(anchor - nextSpan * ratio), Math.round(anchor - nextSpan * ratio) + nextSpan);
+      state.chart.from = next.from;
+      state.chart.to = next.to;
+      state.chart.hover = null;
+      paintChart();
+    },
+    { passive: false }
+  );
+
+  // --- drag to pan ----------------------------------------------------------
+  els.priceChart?.addEventListener("pointerdown", (event) => {
+    if (!state.chart.payload) return;
+    els.priceChart.setPointerCapture?.(event.pointerId);
+    state.chart.drag = { x: event.clientX, from: state.chart.from, to: state.chart.to };
+    els.priceChart.style.cursor = "grabbing";
+  });
+
+  els.priceChart?.addEventListener("pointermove", (event) => {
+    const drag = state.chart.drag;
+    const geometry = state.chart.geometry;
+    if (!drag || !geometry) return;
+    const shift = Math.round((drag.x - event.clientX) / Math.max(geometry.slot, 0.5));
+    if (!shift) return;
+    const span = drag.to - drag.from;
+    const next = clampWindow(drag.from + shift, drag.from + shift + span);
+    state.chart.from = next.from;
+    state.chart.to = next.to;
+    state.chart.hover = null;
+    paintChart();
+  });
+
+  const endDrag = () => {
+    if (!state.chart.drag) return;
+    state.chart.drag = null;
+    if (els.priceChart) els.priceChart.style.cursor = "";
+  };
+  els.priceChart?.addEventListener("pointerup", endDrag);
+  els.priceChart?.addEventListener("pointercancel", endDrag);
+
+  els.priceChart?.addEventListener("dblclick", () => {
+    state.chart.hover = null;
+    state.chart.from = null;
+    state.chart.to = null;
     paintChart();
   });
 

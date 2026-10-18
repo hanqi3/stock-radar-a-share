@@ -41,6 +41,10 @@
               <span class="tab-icon" aria-hidden="true">★</span>
               <span class="tab-label">我的自选</span>
             </button>
+            <button class="tab-button" role="tab" data-tab="outlook" aria-controls="panelOutlook" aria-selected="false" title="明日参考：结合今日新闻、美债、原油与主力资金推演次日">
+              <span class="tab-icon" aria-hidden="true">◎</span>
+              <span class="tab-label">明日参考</span>
+            </button>
           </nav>
 
           <section class="tab-stage">
@@ -91,6 +95,7 @@
             </div>
 
             <!-- ================= 股票 ================= -->
+                        <!-- ================= 股票 / 看盘 ================= -->
             <div class="tab-panel" id="panelStocks" role="tabpanel">
               <div class="toolbar">
                 <div class="search-wrap" id="searchWrap">
@@ -125,53 +130,51 @@
                 </select>
               </div>
 
-              <section class="panel chart-stage" id="chartStage" hidden>
-                <div class="chart-head">
-                  <div class="chart-identity">
-                    <div class="chart-name" id="chartName">—</div>
-                    <div class="chart-meta" id="chartMeta"></div>
+              <section class="panel tv-chart" id="chartStage">
+                <header class="tv-head">
+                  <div class="tv-identity">
+                    <div class="tv-name" id="chartName">—</div>
+                    <div class="tv-meta" id="chartMeta">从下方列表或搜索里选一只股票</div>
                   </div>
-                  <div class="chart-price">
-                    <div class="chart-last" id="chartLast">—</div>
-                    <div class="chart-change" id="chartChange"></div>
+                  <div class="tv-quote">
+                    <div class="tv-last" id="chartLast">—</div>
+                    <div class="tv-change" id="chartChange"></div>
                   </div>
-                  <div class="chart-controls">
+                  <div class="tv-actions">
                     <div class="segment toggles" id="chartTypeSegment">
                       <button class="active" data-chart-type="candle">蜡烛图</button>
                       <button data-chart-type="line">线图</button>
                     </div>
-                    <div class="segment" id="rangeSegment">
-                      <button data-range="5">5日</button>
-                      <button data-range="10">10日</button>
-                      <button data-range="15">15日</button>
-                      <button data-range="30">30日</button>
-                      <button data-range="60">60日</button>
-                      <button class="active" data-range="120">120日</button>
-                      <button data-range="250">250日</button>
-                    </div>
-                    <div class="segment toggles" id="overlaySegment">
-                      <button class="active" data-overlay="ma5">MA5</button>
-                      <button class="active" data-overlay="ma10">MA10</button>
-                      <button class="active" data-overlay="ma15">MA15</button>
-                      <button class="active" data-overlay="ma20">MA20</button>
-                      <button class="active" data-overlay="boll">布林带</button>
-                      <button class="active" data-overlay="volume">成交量</button>
-                    </div>
-                    <button class="icon-button" id="chartClose" title="关闭图表" aria-label="关闭图表">✕</button>
+                    <button class="icon-button" id="chartReset" title="重置视图（双击图表也可）" aria-label="重置视图">⟲</button>
                   </div>
+                </header>
+
+                <div class="tv-toolbar">
+                  <div class="segment" id="rangeSegment">
+                    <button data-range="5">5日</button>
+                    <button data-range="10">10日</button>
+                    <button data-range="15">15日</button>
+                    <button data-range="30">30日</button>
+                    <button data-range="60">60日</button>
+                    <button data-range="120">120日</button>
+                    <button class="active" data-range="250">250日</button>
+                  </div>
+                  <div class="segment toggles" id="overlaySegment">
+                    <button class="active" data-overlay="ma5">MA5</button>
+                    <button class="active" data-overlay="ma10">MA10</button>
+                    <button class="active" data-overlay="ma15">MA15</button>
+                    <button class="active" data-overlay="ma20">MA20</button>
+                    <button class="active" data-overlay="boll">布林带</button>
+                    <button class="active" data-overlay="volume">成交量</button>
+                  </div>
+                  <div class="tv-hint">滚轮缩放 · 拖动平移 · 双击复位</div>
                 </div>
-                <div class="chart-body">
-                  <div class="chart-canvas-wrap">
-                    <canvas id="priceChart" width="960" height="420"></canvas>
-                    <div class="chart-empty" id="chartEmpty" hidden>正在加载 K 线…</div>
-                  </div>
-                  <div class="chart-side">
-                    <div class="panel-title">交易计划</div>
-                    <div class="plan-block" id="planBlock"><div class="empty-state">—</div></div>
-                    <div class="panel-title">相关事件</div>
-                    <div class="event-block" id="eventBlock"><div class="empty-state">暂无相关事件</div></div>
-                  </div>
+
+                <div class="tv-canvas-wrap" id="chartWrap">
+                  <canvas id="priceChart"></canvas>
+                  <div class="tv-empty" id="chartEmpty">从下方列表选择一只股票，或直接搜索代码开始看盘</div>
                 </div>
+                <footer class="tv-legend" id="chartLegend"></footer>
               </section>
 
               <div class="table-shell">
@@ -198,7 +201,7 @@
               </div>
             </div>
 
-            <!-- ================= 新闻政策 ================= -->
+<!-- ================= 新闻政策 ================= -->
             <div class="tab-panel" id="panelNews" role="tabpanel" hidden>
               <div class="briefing-grid">
                 <div class="panel briefing-card" id="briefingCnCard">
@@ -271,6 +274,16 @@
                 </div>
               </div>
 
+              <div class="panel sector-news-panel">
+                <div class="panel-title">
+                  板块消息面 · 利好利空
+                  <span class="panel-hint" id="sectorNewsCount"></span>
+                </div>
+                <div class="sector-news-board" id="sectorNewsBoard">
+                  <div class="empty-state">加载中</div>
+                </div>
+              </div>
+
               <div class="panel">
                 <div class="panel-title">主题事件雷达</div>
                 <div class="theme-list" id="themeList">
@@ -280,6 +293,82 @@
 
               <div class="panel forecast-panel" id="forecastPanel">
                 <div class="empty-state">加载方向观察中</div>
+              </div>
+            </div>
+
+            <!-- ================= 明日参考 ================= -->
+            <div class="tab-panel" id="panelOutlook" role="tabpanel" hidden>
+              <section class="panel outlook-hero" id="outlookHero">
+                <div class="outlook-gauge">
+                  <div class="outlook-score" id="outlookScore">—</div>
+                  <div class="outlook-score-label">次日倾向评分</div>
+                  <div class="outlook-scale"><span>-100 空</span><span>0</span><span>多 +100</span></div>
+                </div>
+                <div class="outlook-verdict">
+                  <div class="outlook-bias-row">
+                    <span class="outlook-bias" id="outlookBias">—</span>
+                    <span class="outlook-badge" id="outlookConfidence">—</span>
+                    <span class="outlook-badge muted" id="outlookForDate">—</span>
+                  </div>
+                  <p class="outlook-summary" id="outlookSummary">加载明日参考中…</p>
+                  <div class="outlook-chips" id="outlookChips"></div>
+                </div>
+              </section>
+
+              <div class="outlook-grid">
+                <section class="panel">
+                  <div class="panel-title">
+                    判断逻辑链 <span class="panel-hint">每条证据的方向与权重</span>
+                  </div>
+                  <div class="logic-list" id="outlookLogic">
+                    <div class="empty-state">加载中</div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="panel-title">
+                    宏观传导 <span class="panel-hint">一个变量落到哪些板块</span>
+                  </div>
+                  <div class="transmission-list" id="outlookTransmissions">
+                    <div class="empty-state">加载中</div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="panel-title">
+                    利好板块 <span class="panel-hint">证据偏多</span>
+                  </div>
+                  <div class="side-list bullish" id="outlookBullish">
+                    <div class="empty-state">加载中</div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="panel-title">
+                    利空板块 <span class="panel-hint">证据偏空</span>
+                  </div>
+                  <div class="side-list bearish" id="outlookBearish">
+                    <div class="empty-state">加载中</div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="panel-title">风险点 <span class="panel-hint">会推翻当前判断的条件</span></div>
+                  <ul class="risk-list" id="outlookRisks"></ul>
+                </section>
+
+                <section class="panel">
+                  <div class="panel-title">明日盯什么 <span class="panel-hint">开盘验证清单</span></div>
+                  <ul class="watch-list" id="outlookWatch"></ul>
+                </section>
+
+                <section class="panel outlook-inputs">
+                  <div class="panel-title">
+                    输入快照 <span class="panel-hint" id="outlookInputsTime"></span>
+                  </div>
+                  <div class="input-grid" id="outlookInputs"></div>
+                  <p class="outlook-note" id="outlookNote"></p>
+                </section>
               </div>
             </div>
 

@@ -11,6 +11,8 @@ import { buildEventImpacts, classifyEvent, THEME_KEYWORDS } from "./lib/events.j
 import { createHistoryCache } from "./lib/history-cache.js";
 import { runBacktest, summarize, walkForwardValidation } from "./lib/backtest.js";
 import { classifyRegion } from "./lib/news-region.js";
+import { buildSectorNews } from "./lib/sector-news.js";
+import { buildOutlook } from "./lib/outlook.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 5173);
@@ -25,6 +27,7 @@ const EVENTS_FILE = path.join(DATA_DIR, "events.json");
 const SECTORS_FILE = path.join(DATA_DIR, "sectors.json");
 const INDICES_FILE = path.join(DATA_DIR, "indices.json");
 const FLOW_FILE = path.join(DATA_DIR, "flow.json");
+const MACRO_FILE = path.join(DATA_DIR, "macro.json");
 const PINYIN_INDEX_FILE = path.join(__dirname, "lib", "pinyin-index.json");
 const HISTORY_CACHE_DIR = process.env.HISTORY_CACHE_DIR || path.join(__dirname, ".cache", "history");
 const historyCache = createHistoryCache(HISTORY_CACHE_DIR, { days: 250 });
@@ -141,6 +144,31 @@ async function loadIndicesPayload() {
 
 async function loadIndices() {
   return (await loadIndicesPayload()).items;
+}
+
+/**
+ * Macro tape from scripts/sync-macro.js (UST yields, DXY, Brent, A50 ...).
+ * ~4 KB, but it only changes once a day, so a short cache is plenty.
+ */
+const macroCache = { payload: null, loadedAt: 0 };
+
+async function loadMacroPayload() {
+  if (macroCache.payload && Date.now() - macroCache.loadedAt < 30_000) return macroCache.payload;
+  try {
+    const payload = await readJson(MACRO_FILE);
+    if (payload && Array.isArray(payload.items)) {
+      macroCache.payload = payload;
+      macroCache.loadedAt = Date.now();
+      return payload;
+    }
+  } catch {
+    /* macro.json is optional until the nightly macro sync has run once */
+  }
+  return { generatedAt: null, risk: null, treasuries: [], quotes: [], items: [] };
+}
+
+async function loadMacro() {
+  return (await loadMacroPayload()).items;
 }
 
 /**
@@ -1532,6 +1560,45 @@ async function handleApi(req, res, pathname, params) {
     const q = normalizeText(params.get("q")).toLowerCase();
     const indices = await loadIndices();
     return json(res, 200, { ...buildNewsFeed(events, indices, { limit, q }), meta });
+  }
+
+  if (pathname === "/api/sector-news") {
+    const limit = parsePositiveInt(params.get("limit"), 12, 40);
+    const samples = parsePositiveInt(params.get("samples"), 3, 8);
+    const { sectors: sectorView } = buildSectors(stocks);
+    return json(res, 200, {
+      generatedAt: new Date().toISOString(),
+      count: sectorView.length,
+      items: buildSectorNews(events, stocks, { limit, samplesPerSector: samples }),
+      meta
+    });
+  }
+
+  if (pathname === "/api/macro") {
+    const payload = await loadMacroPayload();
+    return json(res, 200, { ...payload, meta });
+  }
+
+  if (pathname === "/api/outlook") {
+    const [flow, indicesPayload, macro] = await Promise.all([
+      loadFlow(),
+      loadIndicesPayload(),
+      loadMacroPayload()
+    ]);
+    const { sectors: sectorView } = buildSectors(stocks);
+    const sectorNews = buildSectorNews(events, stocks, { limit: 31, samplesPerSector: 2 });
+    const outlook = buildOutlook({
+      stocks,
+      meta,
+      flow,
+      indices: indicesPayload.items,
+      macro,
+      sectorNews,
+      events,
+      briefing: buildBriefing(stocks, meta, events),
+      sectors: sectorView
+    });
+    return json(res, 200, { ...outlook, meta });
   }
 
   if (pathname === "/api/flow") {

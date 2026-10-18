@@ -403,6 +403,8 @@ export const GLOBAL_INDEX_SYMBOLS = [
   { symbol: "rt_hkHSI", name: "恒生指数", group: "亚太欧洲" },
   { symbol: "rt_hkHSCEI", name: "恒生国企", group: "亚太欧洲" },
   { symbol: "int_ftse", name: "伦敦富时", group: "亚太欧洲" },
+  // 富时中国 A50 期货：A 股休市后仍在交易的唯一「明日开盘」定价，明日参考的核心输入。
+  { symbol: "hf_CHA50CFD", name: "富时中国A50期货", group: "亚太欧洲" },
   // 外汇
   { symbol: "DINIW", name: "美元指数", group: "外汇", digits: 3 },
   { symbol: "fx_susdcnh", name: "离岸人民币", group: "外汇", digits: 4 },
