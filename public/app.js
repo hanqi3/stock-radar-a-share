@@ -217,21 +217,27 @@ function toggleWatch(code) {
 }
 
 function renderOverview(data) {
+  const seps = `<span class="metric-sep">/</span>`;
   const metrics = [
-    ["股票池", data.total, `${data.meta.mode === "full" ? "全量" : "样例"} · ${data.meta.source || "local"}`],
-    ["上涨", data.advancers, `下跌 ${data.decliners} · 平盘 ${data.flat}`],
-    ["涨停附近", data.limitUp, `跌停附近 ${data.limitDown}`],
-    ["成交额", money(data.totalAmount), "全市场合计"],
-    ["沪深北", `${data.byExchange.SH || 0}/${data.byExchange.SZ || 0}/${data.byExchange.BJ || 0}`, "SH / SZ / BJ"],
-    ["可交易", data.tradable, "有价格记录"]
+    ["股票池", data.total, `${data.meta.mode === "full" ? "全量" : "样例"} · ${data.meta.source || "local"}`, false],
+    ["上涨", data.advancers, `下跌 ${data.decliners} · 平盘 ${data.flat}`, false],
+    ["涨停附近", data.limitUp, `跌停附近 ${data.limitDown}`, false],
+    ["成交额", money(data.totalAmount), "全市场合计", false],
+    [
+      "沪深北",
+      `${data.byExchange.SH || 0}${seps}${data.byExchange.SZ || 0}${seps}${data.byExchange.BJ || 0}`,
+      `SH / SZ / BJ · 合计 ${data.total}`,
+      true
+    ],
+    ["可交易", data.tradable, "有价格记录", false]
   ];
 
   els.overview.innerHTML = metrics
     .map(
-      ([label, value, foot]) => `
+      ([label, value, foot, dense]) => `
         <div class="metric">
           <div class="metric-label">${label}</div>
-          <div class="metric-value">${value}</div>
+          <div class="metric-value${dense ? " is-dense" : ""}">${value}</div>
           <div class="metric-foot">${foot}</div>
         </div>
       `

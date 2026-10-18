@@ -156,6 +156,7 @@ button {
 }
 
 .metric {
+  min-width: 0;
   min-height: 92px;
   padding: 16px;
   border: 1px solid var(--line);
@@ -175,6 +176,23 @@ button {
   font-size: 26px;
   line-height: 1.1;
   font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The 沪深北 cell carries three counts ("2319/2906/351") and is the only
+   metric wide enough to be clipped at the default size. */
+.metric-value.is-dense {
+  font-size: clamp(15px, 1.35vw, 18px);
+  letter-spacing: -0.2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-value.is-dense .metric-sep {
+  margin: 0 3px;
+  color: var(--muted);
+  font-weight: 600;
 }
 
 .metric-foot {
