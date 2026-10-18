@@ -617,6 +617,33 @@ try {
     `w=${flowBadW.body?.w}`
   );
 
+  const flowSearch = await get("/api/flow?scope=stock&side=inflow&limit=20&q=茅台");
+  check(
+    "GET /api/flow?q=<name> -> every row matches the keyword",
+    flowSearch.status === 200 &&
+      flowSearch.body?.items?.length >= 1 &&
+      flowSearch.body.items.every((item) => `${item.name}${item.code}${item.industry ?? ""}`.includes("茅台")),
+    `rows=${flowSearch.body?.items?.length}`
+  );
+
+  const flowSearchCode = await get("/api/flow?scope=stock&side=inflow&limit=20&q=600519");
+  check(
+    "GET /api/flow?q=<code> -> matches by code",
+    flowSearchCode.status === 200 && flowSearchCode.body?.items?.some((item) => item.code === "600519")
+  );
+
+  const flowSearchNone = await get("/api/flow?scope=stock&side=inflow&limit=20&q=zzz-no-such-thing");
+  check(
+    "GET /api/flow?q=<junk> -> 200 with an empty ranking instead of an error",
+    flowSearchNone.status === 200 && Array.isArray(flowSearchNone.body?.items) && flowSearchNone.body.items.length === 0
+  );
+
+  const flowIndustrySearch = await get("/api/flow?scope=industry&side=inflow&limit=20&q=电子");
+  check(
+    "GET /api/flow?scope=industry&q=<name> -> narrows the industry board",
+    flowIndustrySearch.status === 200 && flowIndustrySearch.body?.items?.every((item) => item.name.includes("电子"))
+  );
+
   const watch = await get("/api/watchlist?codes=600519,000001,999999");
   check("GET /api/watchlist -> 200 with one item per code", watch.status === 200 && watch.body?.items?.length === 3);
   check(

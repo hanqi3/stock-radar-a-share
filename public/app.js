@@ -11,9 +11,6 @@ const state = {
   total: 0,
   rows: [],
   selectedCode: null,
-  activeSuggestion: -1,
-  suggestions: [],
-  suggestionToken: 0,
   theme: localStorage.getItem("stockradar-theme") || "light",
   watchlist: new Set(JSON.parse(localStorage.getItem("stockradar-watchlist") || "[]")),
   watchItems: [],
@@ -55,6 +52,7 @@ const state = {
     scope: localStorage.getItem("stockradar-flow-scope") || "stock",
     side: localStorage.getItem("stockradar-flow-side") || "inflow",
     w: Number(localStorage.getItem("stockradar-flow-window")) || 1,
+    q: "",
     data: null,
     token: 0
   }
@@ -113,6 +111,8 @@ const els = {
   panelNews: document.querySelector("#panelNews"),
   panelWatch: document.querySelector("#panelWatch"),
   flowBody: document.querySelector("#flowBody"),
+  flowSearchInput: document.querySelector("#flowSearchInput"),
+  flowSearchSuggestions: document.querySelector("#flowSearchSuggestions"),
   flowSummary: document.querySelector("#flowSummary"),
   flowTrend: document.querySelector("#flowTrend"),
   flowTime: document.querySelector("#flowTime"),
@@ -985,8 +985,9 @@ async function reloadFlow() {
   const token = (state.flow.token += 1);
   els.flowBody.innerHTML = `<div class="empty-state">加载资金流数据中</div>`;
   try {
+    const query = String(state.flow.q || "").trim();
     const data = await api(
-      `/api/flow?scope=${encodeURIComponent(state.flow.scope)}&side=${encodeURIComponent(state.flow.side)}&w=${encodeURIComponent(state.flow.w)}&limit=60`
+      `/api/flow?scope=${encodeURIComponent(state.flow.scope)}&side=${encodeURIComponent(state.flow.side)}&w=${encodeURIComponent(state.flow.w)}&limit=60${query ? `&q=${encodeURIComponent(query)}` : ""}`
     );
     if (token !== state.flow.token) return;
     state.flow.data = data;
@@ -1789,134 +1790,168 @@ function escapeHtml(value) {
   });
 }
 
-function closeSuggestions() {
-  state.suggestions = [];
-  state.activeSuggestion = -1;
-  if (els.searchSuggestions) {
-    els.searchSuggestions.hidden = true;
-    els.searchSuggestions.innerHTML = "";
-  }
-  els.searchInput?.setAttribute("aria-expanded", "false");
-}
+/**
+ * One search box with pinyin suggestions, shared by the stocks table and the
+ * capital-flow ranking. Both feed off /api/search, so the four lookup
+ * dimensions (code / name / full pinyin / initials) behave identically.
+ *
+ * @param {object} options
+ * @param {HTMLInputElement} options.input
+ * @param {HTMLElement} options.box suggestion dropdown
+ * @param {(value: string) => void} options.onQuery debounced free-text callback
+ * @param {(code: string, name: string) => void} options.onPick suggestion picked
+ */
+function createSearchBox({ input, box, onQuery, onPick }) {
+  const ctx = { items: [], active: -1, token: 0 };
 
-function highlightSuggestion(nodes) {
-  nodes.forEach((node, index) => {
-    node.classList.toggle("active", index === state.activeSuggestion);
-  });
-  const active = nodes[state.activeSuggestion];
-  if (active) active.scrollIntoView({ block: "nearest" });
-}
+  const close = () => {
+    ctx.items = [];
+    ctx.active = -1;
+    if (box) {
+      box.hidden = true;
+      box.innerHTML = "";
+    }
+    input?.setAttribute("aria-expanded", "false");
+  };
 
-function renderSuggestions(items) {
-  state.suggestions = items;
-  state.activeSuggestion = items.length ? 0 : -1;
-  const box = els.searchSuggestions;
-  if (!box) return;
+  const highlight = (nodes) => {
+    nodes.forEach((node, index) => node.classList.toggle("active", index === ctx.active));
+    const active = nodes[ctx.active];
+    if (active) active.scrollIntoView({ block: "nearest" });
+  };
 
-  if (!items.length) {
-    box.innerHTML = '<div class="suggestion-empty">没有匹配的股票</div>';
-    box.hidden = false;
-    els.searchInput?.setAttribute("aria-expanded", "true");
-    return;
-  }
+  const render = (items) => {
+    ctx.items = items;
+    ctx.active = items.length ? 0 : -1;
+    if (!box) return;
 
-  box.innerHTML = items
-    .map(
-      (item) => `
+    if (!items.length) {
+      box.innerHTML = '<div class="suggestion-empty">没有匹配的股票</div>';
+      box.hidden = false;
+      input?.setAttribute("aria-expanded", "true");
+      return;
+    }
+
+    box.innerHTML = items
+      .map(
+        (item) => `
         <div class="suggestion" role="option" data-code="${escapeHtml(item.code)}" data-name="${escapeHtml(item.name)}">
           <span class="s-name">${escapeHtml(item.name)}</span>
           <span class="s-code">${escapeHtml(item.code)}</span>
           <span class="s-py">${escapeHtml(item.pinyin || "")}${item.initials ? ` · ${escapeHtml(item.initials)}` : ""}</span>
         </div>`
-    )
-    .join("");
-  box.hidden = false;
-  els.searchInput?.setAttribute("aria-expanded", "true");
-  highlightSuggestion([...box.querySelectorAll(".suggestion")]);
+      )
+      .join("");
+    box.hidden = false;
+    input?.setAttribute("aria-expanded", "true");
+    highlight([...box.querySelectorAll(".suggestion")]);
 
-  box.querySelectorAll(".suggestion").forEach((node) => {
-    // mousedown fires before blur, so the list is still alive when picked.
-    node.addEventListener("mousedown", (event) => {
-      event.preventDefault();
-      pickSuggestion(node.dataset.code, node.dataset.name);
+    box.querySelectorAll(".suggestion").forEach((node) => {
+      // mousedown fires before blur, so the list is still alive when picked.
+      node.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+        pick(node.dataset.code, node.dataset.name);
+      });
     });
-  });
-}
+  };
 
-async function loadSuggestions(query) {
-  const trimmed = String(query || "").trim();
-  if (!trimmed) {
-    closeSuggestions();
-    return;
-  }
-  const token = ++state.suggestionToken;
-  try {
-    const data = await api(`/api/search?q=${encodeURIComponent(trimmed)}&limit=8`);
-    if (token !== state.suggestionToken) return;
-    renderSuggestions(data.items || []);
-  } catch {
-    if (token === state.suggestionToken) closeSuggestions();
-  }
-}
+  const load = async (query) => {
+    const trimmed = String(query || "").trim();
+    if (!trimmed) {
+      close();
+      return;
+    }
+    const token = ++ctx.token;
+    try {
+      const data = await api(`/api/search?q=${encodeURIComponent(trimmed)}&limit=8`);
+      if (token !== ctx.token) return;
+      render(data.items || []);
+    } catch {
+      if (token === ctx.token) close();
+    }
+  };
 
-async function pickSuggestion(code, name) {
-  closeSuggestions();
-  els.searchInput.value = code;
-  state.query = code;
-  await reloadStocks();
-  await selectStock(code);
-}
+  const pick = (code, name) => {
+    close();
+    if (input) input.value = code;
+    onPick(code, name);
+  };
 
-/** Clicking a sector row filters the table down to that board. */
-async function filterByIndustry(name) {
-  const industry = String(name || "").trim();
-  if (!industry) return;
-  els.searchInput.value = industry;
-  state.query = industry;
-  closeSuggestions();
-  await reloadStocks();
-  els.stockRows?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
+  const debouncedQuery = debounce((value) => onQuery(value), 220);
 
-function bindEvents() {
-  const runSearch = debounce((value) => {
-    state.query = value;
-    reloadStocks();
-  }, 220);
-
-  els.searchInput.addEventListener("input", (event) => {
+  input?.addEventListener("input", (event) => {
     const value = event.target.value;
-    runSearch(value);
-    loadSuggestions(value);
+    debouncedQuery(value);
+    load(value);
   });
 
-  els.searchInput.addEventListener("keydown", (event) => {
-    if (els.searchSuggestions?.hidden) return;
-    const nodes = [...(els.searchSuggestions?.querySelectorAll(".suggestion") || [])];
+  input?.addEventListener("keydown", (event) => {
+    if (box?.hidden) return;
+    const nodes = [...(box?.querySelectorAll(".suggestion") || [])];
     if (!nodes.length) return;
 
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault();
       const delta = event.key === "ArrowDown" ? 1 : -1;
-      state.activeSuggestion = (state.activeSuggestion + delta + nodes.length) % nodes.length;
-      highlightSuggestion(nodes);
+      ctx.active = (ctx.active + delta + nodes.length) % nodes.length;
+      highlight(nodes);
     } else if (event.key === "Enter") {
       event.preventDefault();
-      const node = nodes[state.activeSuggestion] || nodes[0];
-      pickSuggestion(node.dataset.code, node.dataset.name);
+      const node = nodes[ctx.active] || nodes[0];
+      pick(node.dataset.code, node.dataset.name);
     } else if (event.key === "Escape") {
-      closeSuggestions();
+      close();
     }
   });
 
-  els.industryList?.addEventListener("click", (event) => {
-    const row = event.target.closest("[data-industry]");
-    if (row) filterByIndustry(row.dataset.industry);
+  input?.addEventListener("blur", () => {
+    // Delay so a suggestion mousedown still lands.
+    setTimeout(close, 140);
   });
 
-  els.searchInput.addEventListener("blur", () => {
-    // Delay so a suggestion mousedown still lands.
-    setTimeout(closeSuggestions, 140);  });
+  return { close, load };
+}
+
+function bindEvents() {
+  // The stocks tab filters its table; the flow tab narrows the capital-flow
+  // ranking. Same box, same suggestion feed, different sink.
+  const stockSearch = createSearchBox({
+    input: els.searchInput,
+    box: els.searchSuggestions,
+    onQuery: (value) => {
+      state.query = value;
+      reloadStocks();
+    },
+    onPick: async (code) => {
+      state.query = code;
+      await reloadStocks();
+      await selectStock(code);
+    }
+  });
+
+  const flowSearch = createSearchBox({
+    input: els.flowSearchInput,
+    box: els.flowSearchSuggestions,
+    onQuery: (value) => {
+      state.flow.q = value;
+      reloadFlow();
+    },
+    onPick: (code) => {
+      state.flow.q = code;
+      reloadFlow();
+    }
+  });
+
+  /** Clicking an industry row narrows the flow ranking to that sector. */
+  els.industryList?.addEventListener("click", (event) => {
+    const row = event.target.closest("[data-industry]");
+    if (!row || !els.flowSearchInput) return;
+    const industry = row.dataset.industry;
+    els.flowSearchInput.value = industry;
+    state.flow.q = industry;
+    flowSearch.close();
+    reloadFlow();
+  });
 
   els.sortSelect.addEventListener("change", (event) => {
     state.sort = event.target.value;

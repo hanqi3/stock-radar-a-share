@@ -1749,6 +1749,27 @@ html[data-theme="dark"] .anomaly-chip {
   grid-auto-columns: minmax(0, auto);
 }
 
+/* Same search box as the stocks tab, but it filters the flow ranking instead
+   of the stock table. Lives in the panel header so the toolbar below keeps its
+   two rows of controls. */
+.flow-title {
+  gap: 12px;
+}
+
+.flow-search-wrap {
+  margin-left: auto;
+  flex: 0 1 340px;
+  max-width: 340px;
+}
+
+.flow-search-wrap .search-box {
+  height: 40px;
+}
+
+.flow-search-wrap .search-box input {
+  font-size: 13px;
+}
+
 .segment-auto button {
   padding: 0 11px;
   white-space: nowrap;

@@ -53,8 +53,24 @@
             <!-- ================= 主力资金 ================= -->
             <div class="tab-panel" id="panelFlow" role="tabpanel" hidden>
               <div class="panel">
-                <div class="panel-title">
-                  主力资金流向 <span class="panel-hint" id="flowTime"></span>
+                <div class="panel-title flow-title">
+                  主力资金流向
+                  <div class="search-wrap flow-search-wrap" id="flowSearchWrap">
+                    <label class="search-box">
+                      <span>⌕</span>
+                      <input
+                        id="flowSearchInput"
+                        type="search"
+                        placeholder="搜索代码 / 名称 / 拼音 / 首字母 / 行业"
+                        autocomplete="off"
+                        role="combobox"
+                        aria-expanded="false"
+                        aria-controls="flowSearchSuggestions"
+                      />
+                    </label>
+                    <div class="search-suggestions" id="flowSearchSuggestions" role="listbox" hidden></div>
+                  </div>
+                  <span class="panel-hint" id="flowTime"></span>
                 </div>
                 <div class="flow-toolbar">
                   <div class="segment" id="flowScopeSegment">
