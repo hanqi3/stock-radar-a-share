@@ -457,6 +457,7 @@ async function loadData() {
       profileCoverage: withPe,
       profileCount: Object.keys(profiles.items).length,
       profilesUpdatedAt: profiles.generatedAt,
+      profilesSource: profiles.source,
       eventCount: events.length,
       industryCount: sectors.industries.length,
       conceptCount: sectors.concepts.length

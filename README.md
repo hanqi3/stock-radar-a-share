@@ -19,7 +19,7 @@ StockRadar 是一个面向 A股市场的行情与事件雷达应用。项目会�
 - 历史战绩：每次打开「明日参考」都会把当天那份评分落盘到 `data/outlook-history.json`，下一个交易日收盘后由 `npm run outlook:history` 用上证指数日线收盘价计分，面板上显示方向命中率、已计分 / 记录条数、score 与次日涨跌幅的相关系数、次日平均涨跌（分看多 / 看空），以及强看多 ~ 强看空五档的次日表现。**待计分的记录显示为 pending 而不是当成命中**，`|score| < 20` 的震荡判断不计入对错
 - 告警推送：`/api/briefing` 会把当天的异动摘要落盘到 `data/alert-digest.json`（涨停 / 跌停 / 涨跌家数 + 前 8 只异动股 + 你的自选股），`npm run notify` 把它格式化成一条纯文本推送到 `ALERT_WEBHOOK_URL`（企业微信 / 飞书 / 裸 JSON 三选一），新进榜的股票标 🆕；没有配置 webhook 时只打印不发送，CI 里这一步 `continue-on-error` 不会拖垮整条流水线
 - 交易计划：历史行情接口同时返回买点区间、止损价、目标和失效条件，图表右侧展示；图上的每条买入 / 止损 / 目标线都直接写出价格，买入线还标出它踩的是哪条均线（`买点·MA10 6.86`）
-- 个股专业指标：`data/profiles.json` 每交易日从东方财富 push2 拉一份收盘快照（5576 只全覆盖），个股列表多一列 PE，详情卡顶部是 12 格报价 —— 今开 / 昨收 / 最高 / 最低 / 换手率 / 量比 / 振幅 / PE(动) / PE(TTM) / PB / 总市值 / 流通市值；`npm run profiles` 重跑，`npm run check:data` 会校验覆盖率
+- 个股专业指标：`data/profiles.json` 每交易日拉一份收盘快照（5576 只全覆盖；腾讯行情为主源、东方财富 push2 为备源，任一个能跑通就落盘，文件里的 `source` 字段写明这次用了谁），个股列表多一列 PE，详情卡顶部是 12 格报价 —— 今开 / 昨收 / 最高 / 最低 / 换手率 / 量比 / 振幅 / PE(动) / PE(TTM) / PB / 总市值 / 流通市值；`npm run profiles` 重跑，`npm run check:data` 会校验覆盖率
 - 技术指标分析：`/api/stocks/:code/analysis` 附带 `technicals` 块（`lib/technicals.js`），用 250 根日 K 算均线排列、MACD、RSI、KDJ、布林带位置、量比、20 日区间位置和 ATR，合成 0-100 分与五档结论（强势 / 偏强 / 震荡 / 偏弱 / 弱势），给出支撑、压力、止损、涨停跌停，并把每条加减分理由写出来。标题按时间自动切换：收盘后是「明日走势」，盘前和盘中是「今日分析」
 - 利好利空标注：个股列表每行名称旁有一个利好 / 利空 / 多空旗标，点一下跳到该股详情并展开消息明细 —— 每条带来源、分类、日期、公司级 / 板块级、`逻辑：` 说明和可点击原文链接。判定优先用**公司级**点名消息，没有公司级方向消息时才退回**板块级**，所以白酒新闻不会把银行股标成利空
 - 自选情绪面板：顶部左上「自选情绪」按钮打开，把你的自选股逐个做同样的利好利空归因，只算直接点名或所属板块的消息，并显示每只的条数、方向与逻辑
@@ -99,7 +99,7 @@ HOST=0.0.0.0 PORT=5173 npm start
 | `npm run history` | 同步日线并计算全市场指标（`scripts/sync-history.js`） |
 | `npm run news` | 聚合新闻与公告，并抓取全球指数（`scripts/sync-news.js`） |
 | `npm run flow` | 同步全市场主力资金流（`scripts/sync-flow.js`） |
-| `npm run profiles` | 同步东方财富收盘快照：PE / PB / 换手 / 量比 / 振幅 / 开高低收 / 流通市值（`scripts/sync-profiles.js`） |
+| `npm run profiles` | 同步收盘快照：PE / PB / 换手 / 量比 / 振幅 / 开高低收 / 流通市值（腾讯主源 → 东财备源，`scripts/sync-profiles.js`） |
 | `npm run macro` | 同步美债收益率与联邦基金利率（`scripts/sync-macro.js`，数据来自 FRED） |
 | `npm run update` | `sync` + `check`，即同步行情并校验数据文件 |
 | `npm run enrich` | `sectors` + `history` + `news` + `flow`，即全部增量数据 |
@@ -122,7 +122,7 @@ data/events.json           新闻与公告事件（已提交）
 data/indices.json         全球指数、外汇与大宗商品报价（已提交）
 data/macro.json           美债收益率、联邦基金利率与 VIX（已提交）
 data/flow.json            全市场主力资金流最近 250 个交易日（已提交）
-data/profiles.json        东方财富收盘快照：估值与报价字段，5576 只全覆盖（已提交）
+data/profiles.json        收盘快照：估值与报价字段，5576 只全覆盖（已提交，`source` 写明本次来源）
 data/outlook-history.json 明日参考的历史评分与次日实绩（已提交）
 data/alert-digest.json    当天的异动摘要，供推送脚本读取（已提交）
 data/watchlist.json       服务端持久化的自选列表，供推送脚本与跨设备同步（已提交）
@@ -246,7 +246,7 @@ schedule:
 npm run update            # 同步行情并校验
 npm run sectors           # continue-on-error: true
 npm run history           # continue-on-error: true
-npm run profiles          # continue-on-error: true，东方财富估值 / 报价快照
+npm run profiles          # continue-on-error: true，腾讯主源 / 东财备源的估值与报价快照
 npm run news              # continue-on-error: true，同时写 data/indices.json
 npm run macro             # continue-on-error: true，写 data/macro.json（FRED 美债 + VIX）
 npm run flow              # continue-on-error: true，已是最新交易日时直接跳过（约 2s 而不是 647s）

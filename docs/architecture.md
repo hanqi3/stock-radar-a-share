@@ -20,7 +20,8 @@ scripts/sync-a-shares.js  --写-->  data/all-a-shares.json + data/meta.json
   -> scripts/sync-history.js      --写-->  data/indicators.json
                                   --缓存--> .cache/history/（git 忽略，6h TTL）
 
-估值与报价快照（东方财富 push2/api/qt/clist/get，fltt=2，100/页 × 60 页）
+估值与报价快照（主源：腾讯 qt.gtimg.cn/q=，GBK，60 只/批 × 93 批
+                  备源：东方财富 push2/api/qt/clist/get，fltt=2，100/页 × 60 页）
   -> scripts/sync-profiles.js     --写-->  data/profiles.json（PE / PB / 换手 / 量比 / 振幅 / 开高低收 / 流通市值）
                                   --读--> data/all-a-shares.json（确定要覆盖哪些代码）
 
@@ -86,6 +87,8 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
 `scripts/sync-profiles.js` 补的是行情快照里拿不到的那一半字段：PE、PB、换手率、量比、振幅、今开 / 昨收 / 最高 / 最低、流通市值。数据源是东方财富 `push2/api/qt/clist/get`（`fltt=2` 直接按真实单位返回，不需要自己除 100），`fs` 过滤沪深京三个市场，**`pz` 上限是 100**，所以 5576 只分 60 页拉，每页之间限速。落盘 `data/profiles.json` 为 `{generatedAt, source, count, items: {code: {price, open, high, low, prevClose, changePct, change, volume, amount, amplitudePct, turnoverPct, volumeRatio, peDynamic, peStatic, peTtm, pb, marketCap, floatMarketCap, name}}}`。
 
 上市初期的新股没有量比 / 估值字段，这些位置保留 `null` 而不是 0 —— 前端遇到 `null` 显示 `—`，读者不会把它当成「量比 0 倍」。`scripts/check-data.js` 会顺带校验覆盖率，低于 98% 直接报错，避免半份文件把 PE 列整列刷空。
+
+**两个源，一个口径。** 主源是腾讯 `qt.gtimg.cn/q=`（GBK，一次 60 只，共 93 批；`万元`/`亿元` 换算成元，`0.00` 的量比按 `null` 处理），备源是东财 `push2`（JSON，100 行/页）。顺序不是随手定的：同一 IP 连续跑两次全市场后，东财的 `push2*.eastmoney.com` 会直接拒绝连接（实测 `datacenter-web.eastmoney.com` 仍然正常），而腾讯每次都通。`collectProfiles()` 会在主源抛错、或覆盖不到股票池 90% 时自动切到下一个源；`--source=tencent|eastmoney` 可以手工指定。两个源对同一只票的价、开高低收、涨跌幅、振幅、量比完全一致，PE / PB 有零点几个百分点的差异（各家的 TTM 窗口与每股净资产口径不同），落盘的 `source` 字段会写明这次用了谁，`/api/stocks` 的 `meta.profilesSource` 也透出来。两个源都失败时保留上一份快照并打印警告，不会把文件写空。
 
 ### History Sync
 

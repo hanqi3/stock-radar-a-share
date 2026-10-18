@@ -810,7 +810,7 @@ try {
 
   const quoteRow = stocksDefault.body?.items?.[0];
   check(
-    "GET /api/stocks -> rows carry the eastmoney profile fields",
+    "GET /api/stocks -> rows carry the profile fields",
     Boolean(quoteRow) &&
       "pe" in quoteRow &&
       "pb" in quoteRow &&
@@ -818,6 +818,12 @@ try {
       "prevClose" in quoteRow &&
       "turnover" in quoteRow &&
       "amplitudePct" in quoteRow
+  );
+  check(
+    "GET /api/stocks -> says which vendor supplied the profile snapshot",
+    typeof stocksDefault.body?.meta?.profilesSource === "string" &&
+      stocksDefault.body.meta.profilesSource.length > 0 &&
+      Number.isFinite(stocksDefault.body?.meta?.profileCoverage)
   );
 
   const history = await get("/api/stocks/600519/history?days=30");

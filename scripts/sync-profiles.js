@@ -1,9 +1,14 @@
 // Sync a fundamentals snapshot into data/profiles.json.
 //
-// The 东方财富 push2 list endpoint pages 100 rows at a time, so a full-market
-// snapshot is ~60 requests: cheap enough to refresh on every data run, and it
-// is the only free source we found that carries PE / PB / turnover together for
-// SH, SZ and BJ in one shape.
+// Two free sources carry PE / PB / turnover together for SH, SZ and BJ:
+//
+//   腾讯 qt.gtimg.cn/q=   60 codes per request, ~93 requests, GBK text
+//   东财 push2/api/qt/clist/get  100 rows per request, ~60 requests, JSON
+//
+// 腾讯 goes first because the 东财 quote cluster blocks a shared IP after a
+// couple of full-market runs (observed: only `push2*.eastmoney.com` refused,
+// `datacenter-web.eastmoney.com` kept working). Either way the run prefers
+// whichever source actually answers, and keeps the previous file if none does.
 //
 // Everything here is a *snapshot of the last session*, not a live quote: the
 // dashboard is a post-close research tool, so staleness is fine as long as the
@@ -128,7 +133,109 @@ export async function fetchAllProfiles(options = {}) {
   return rows;
 }
 
-export function buildProfilesPayload(profiles, { universeCodes = null, now = new Date() } = {}) {
+// --- 腾讯 fallback -------------------------------------------------------
+//
+// https://qt.gtimg.cn/q=sh600519,sz000001,... answers with GBK-encoded lines of
+// `v_sh600519="1~name~code~price~prevClose~open~...~";`. The fields we use:
+// 1 name, 2 code, 3 price, 4 prev close, 5 open, 31 change, 32 change %,
+// 33 high, 34 low, 36 volume (lots), 37 amount (万元), 38 turnover %,
+// 39 PE (TTM), 43 amplitude %, 44 float cap (亿元), 45 total cap (亿元),
+// 46 PB, 49 volume ratio, 52 PE (dynamic), 53 PE (static).
+
+const TENCENT_BATCH = 60;
+const TENCENT_HEADERS = {
+  "User-Agent": HEADERS["User-Agent"],
+  Referer: "https://gu.qq.com/",
+  Accept: "text/plain,*/*"
+};
+
+/** Market prefix from the code alone: 6xxxxx=SH, 0/3= SZ, 4/8/9= BJ. */
+function tencentSymbol(code) {
+  if (/^6/.test(code)) return `sh${code}`;
+  if (/^[03]/.test(code)) return `sz${code}`;
+  if (/^[489]/.test(code)) return `bj${code}`;
+  return null;
+}
+
+/**
+ * Parse the batch-quote body into our own vocabulary.
+ * Tencent writes "0.00" for a ratio it has no value for (freshly listed BJ
+ * names), so a non-positive volume ratio is reported as null like 东财 does.
+ */
+export function parseTencentQuote(text) {
+  const profiles = [];
+  for (const line of String(text).split(";")) {
+    const match = line.match(/v_(\w+)="([^"]*)"/);
+    if (!match) continue;
+    const fields = match[2].split("~");
+    const code = String(fields[2] ?? "").trim();
+    if (!/^\d{6}$/.test(code)) continue;
+    const volumeRatio = round(fields[49]);
+    profiles.push({
+      code,
+      name: fields[1] ? fields[1] : null,
+      price: round(fields[3], 3),
+      changePct: round(fields[32]),
+      change: round(fields[31], 3),
+      volume: toNumber(fields[36]),
+      amount: (toNumber(fields[37]) ?? 0) * 1e4 || null,
+      amplitudePct: round(fields[43]),
+      turnoverPct: round(fields[38]),
+      peDynamic: round(fields[52]),
+      volumeRatio: volumeRatio && volumeRatio > 0 ? volumeRatio : null,
+      high: round(fields[33], 3),
+      low: round(fields[34], 3),
+      open: round(fields[5], 3),
+      prevClose: round(fields[4], 3),
+      marketCap: (toNumber(fields[45]) ?? 0) * 1e8 || null,
+      floatMarketCap: (toNumber(fields[44]) ?? 0) * 1e8 || null,
+      pb: round(fields[46]),
+      peStatic: round(fields[53]),
+      peTtm: round(fields[39])
+    });
+  }
+  return profiles;
+}
+
+async function getText(url, options = {}) {
+  const { timeoutMs = DEFAULTS.timeoutMs, maxAttempts = DEFAULTS.maxAttempts } = options;
+  let lastError = null;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, { headers: TENCENT_HEADERS, signal: controller.signal });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const buffer = Buffer.from(await res.arrayBuffer());
+      return new TextDecoder("gbk").decode(buffer);
+    } catch (error) {
+      lastError = error;
+      if (attempt < maxAttempts) await new Promise((resolve) => setTimeout(resolve, 400 * attempt));
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  throw lastError;
+}
+
+/** Fetch the fallback snapshot for an explicit code list (batches of 60). */
+export async function fetchTencentProfiles(codes, options = {}) {
+  const { pageDelayMs = DEFAULTS.pageDelayMs, log = () => {} } = options;
+  const symbols = codes.map(tencentSymbol).filter(Boolean);
+  const profiles = [];
+  for (let index = 0; index < symbols.length; index += TENCENT_BATCH) {
+    const batch = symbols.slice(index, index + TENCENT_BATCH);
+    const text = await getText(`https://qt.gtimg.cn/q=${batch.join(",")}`, options);
+    for (const profile of parseTencentQuote(text)) profiles.push(profile);
+    log(`tencent batch ${Math.floor(index / TENCENT_BATCH) + 1}: ${profiles.length} / ${symbols.length}`);
+    if (index + TENCENT_BATCH < symbols.length && pageDelayMs) {
+      await new Promise((resolve) => setTimeout(resolve, pageDelayMs));
+    }
+  }
+  return profiles;
+}
+
+export function buildProfilesPayload(profiles, { universeCodes = null, now = new Date(), source = "腾讯行情收盘快照" } = {}) {
   const allowed = universeCodes ? new Set(universeCodes) : null;
   const items = {};
   for (const profile of profiles) {
@@ -138,7 +245,7 @@ export function buildProfilesPayload(profiles, { universeCodes = null, now = new
   }
   return {
     generatedAt: now.toISOString(),
-    source: "东方财富 push2 收盘快照",
+    source,
     count: Object.keys(items).length,
     items
   };
@@ -156,15 +263,98 @@ async function readUniverseCodes() {
   return null;
 }
 
+/** Cache the previous snapshot so a total vendor outage keeps the last good read. */
+async function readExistingPayload() {
+  try {
+    const raw = await fs.readFile(OUT_FILE, "utf8");
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed.items === "object" && parsed.items ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Does a source's row list actually cover the universe?
+ * A half-empty page is worse than the previous snapshot, so a source has to
+ * reach `minCoverage` of the expected codes before we accept it.
+ */
+export function coversUniverse(profiles, universeCodes = null, minCoverage = 0.9) {
+  if (!Array.isArray(profiles) || profiles.length === 0) return false;
+  if (!Array.isArray(universeCodes) || universeCodes.length === 0) return true;
+  const seen = new Set(profiles.map((profile) => profile.code));
+  const covered = universeCodes.filter((code) => seen.has(code)).length;
+  return covered >= Math.ceil(universeCodes.length * minCoverage);
+}
+
+/**
+ * Pull the snapshot, preferring 腾讯 and falling back to 东财.
+ *
+ * The order is not arbitrary: share the same IP and the 东财 quote cluster
+ * (`push2*.eastmoney.com`) starts refusing connections — that is exactly what
+ * happened on the dev box after two full-market runs, while
+ * `datacenter-web.eastmoney.com` kept answering. 腾讯's batch endpoint has
+ * served every run since, so it goes first and 东财 stays as the backup.
+ */
+export async function collectProfiles({ universeCodes = null, minCoverage = 0.9, source = "auto", log = () => {} } = {}) {
+  const attempts = [];
+  if (source === "auto" || source === "tencent") {
+    attempts.push({
+      name: "腾讯行情收盘快照",
+      run: () => {
+        if (!universeCodes || universeCodes.length === 0) {
+          throw new Error("the 腾讯 source needs the universe list to batch by code");
+        }
+        return fetchTencentProfiles(universeCodes, { log });
+      }
+    });
+  }
+  if (source === "auto" || source === "eastmoney") {
+    attempts.push({
+      name: "东方财富 push2 收盘快照",
+      run: () => fetchAllProfiles({ log })
+    });
+  }
+
+  const failures = [];
+  for (const attempt of attempts) {
+    try {
+      const profiles = await attempt.run();
+      if (coversUniverse(profiles, universeCodes, minCoverage)) return { profiles, source: attempt.name };
+      failures.push(`${attempt.name}: only ${profiles.length} rows`);
+      log(`${attempt.name} returned too few rows, trying the next source`);
+    } catch (error) {
+      failures.push(`${attempt.name}: ${error.message}`);
+      log(`${attempt.name} failed (${error.message})`);
+    }
+  }
+  return { profiles: null, source: null, failures };
+}
+
 async function main() {
-  const profiles = await fetchAllProfiles({ log: (line) => console.log(line) });
   const universeCodes = await readUniverseCodes();
-  const payload = buildProfilesPayload(profiles, { universeCodes });
+  const requested = (process.argv.find((arg) => arg.startsWith("--source=")) || "").replace("--source=", "") || "auto";
+  const { profiles, source, failures } = await collectProfiles({
+    universeCodes,
+    source: requested,
+    log: (line) => console.log(line)
+  });
+  if (!profiles) {
+    const existing = await readExistingPayload();
+    if (existing && existing.count > 0) {
+      console.warn(
+        `profiles sync failed from every source (${failures.join("; ")}); keeping the previous snapshot from ${existing.generatedAt}`
+      );
+      return;
+    }
+    throw new Error(`profiles sync failed from every source: ${failures.join("; ")}`);
+  }
+  const payload = buildProfilesPayload(profiles, { universeCodes, source });
   await fs.mkdir(path.dirname(OUT_FILE), { recursive: true });
   await fs.writeFile(OUT_FILE, JSON.stringify(payload), "utf8");
   const missing = universeCodes ? universeCodes.filter((code) => !payload.items[code]).length : 0;
   console.log(
-    `Wrote data/profiles.json: ${payload.count} profiles` +
+    `Wrote data/profiles.json: ${payload.count} profiles from ${payload.source}` +
       (universeCodes ? ` (${missing} universe codes missing)` : "")
   );
 }

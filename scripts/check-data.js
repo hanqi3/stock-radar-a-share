@@ -39,8 +39,9 @@ async function main() {
   console.log(`Exchanges: ${JSON.stringify(exchangeCounts)}`);
   console.log(`Updated at: ${meta.updatedAt || "unknown"}`);
 
-  // The eastmoney profile snapshot feeds the PE column and the quote grid; a
-  // partial file silently blanks those fields, so report how much is covered.
+  // The profile snapshot feeds the PE column and the quote grid; a partial file
+  // silently blanks those fields, so report how much is covered — and by which
+  // vendor, because 东财 is the primary source and 腾讯 only serves as fallback.
   const profiles = await readJson(PROFILES_FILE).catch(() => null);
   if (!profiles) {
     console.log("Profiles: missing (run `npm run profiles`)");
@@ -48,7 +49,8 @@ async function main() {
     const covered = Object.keys(profiles.items || {}).filter((code) => codes.has(code)).length;
     const coverage = stocks.length ? covered / stocks.length : 0;
     console.log(
-      `Profiles: ${covered}/${stocks.length} covered (${(coverage * 100).toFixed(1)}%), updated ${profiles.generatedAt || "unknown"}`
+      `Profiles: ${covered}/${stocks.length} covered (${(coverage * 100).toFixed(1)}%), ` +
+        `updated ${profiles.generatedAt || "unknown"} via ${profiles.source || "unknown source"}`
     );
     if (coverage < 0.98) {
       throw new Error(`Profile coverage too low: ${(coverage * 100).toFixed(1)}% < 98%`);
