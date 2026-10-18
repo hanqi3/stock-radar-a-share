@@ -14,11 +14,30 @@
           <div class="subline" id="dataStatus">加载市场数据中</div>
         </div>
         <div class="top-actions">
+          <button class="ghost-button" id="watchNewsButton" title="自选股的利好利空分析" aria-expanded="false" aria-controls="watchNewsPanel">自选情绪</button>
           <button class="icon-button" id="themeToggle" title="切换明暗模式" aria-label="切换明暗模式">◐</button>
           <button class="icon-button" id="refreshButton" title="刷新数据" aria-label="刷新数据">↻</button>
           <a class="ghost-link" href="https://finance.sina.com.cn/stock/" target="_blank" rel="noreferrer">数据源</a>
         </div>
       </header>
+
+      <div class="alert-bar" id="alertBar" hidden>
+        <span class="alert-bar-icon" aria-hidden="true">⚠</span>
+        <div class="alert-bar-body" id="alertBarBody"></div>
+        <button class="alert-bar-action" id="alertBarAction" type="button">看明日参考</button>
+        <button class="alert-bar-close" id="alertBarClose" type="button" aria-label="收起隔夜宏观提醒">×</button>
+      </div>
+
+      <section class="panel watch-news-panel" id="watchNewsPanel" hidden>
+        <div class="panel-title">
+          自选利好利空
+          <span class="panel-hint" id="watchNewsHint">只统计直接点名或所属板块的消息</span>
+          <button class="panel-close" id="watchNewsClose" type="button" aria-label="关闭">×</button>
+        </div>
+        <div class="watch-news-body" id="watchNewsBody">
+          <div class="empty-state">加载中</div>
+        </div>
+      </section>
 
       <main class="dashboard">
         <section class="index-strip" id="indexStrip" aria-label="A股指数"></section>
@@ -195,6 +214,20 @@
                 <footer class="tv-legend" id="chartLegend"></footer>
               </section>
 
+              <section class="panel tech-panel" id="techPanel" hidden>
+                <header class="tech-head">
+                  <div class="tech-title">
+                    <span id="techTitle">技术指标分析</span>
+                    <span class="tech-asof" id="techAsOf"></span>
+                  </div>
+                  <div class="tech-verdict" id="techVerdict"></div>
+                </header>
+                <p class="tech-summary" id="techSummary"></p>
+                <div class="tech-signals" id="techSignals"></div>
+                <div class="tech-levels" id="techLevels"></div>
+                <ul class="tech-reasons" id="techReasons"></ul>
+              </section>
+
               <div class="table-shell">
                 <table>
                   <thead>
@@ -206,6 +239,7 @@
                       <th>涨跌幅</th>
                       <th>成交额</th>
                       <th>换手</th>
+                      <th>PE</th>
                       <th>信号</th>
                       <th></th>
                     </tr>
@@ -334,7 +368,7 @@
               </section>
 
               <div class="outlook-grid">
-                <section class="panel">
+                <section class="panel outlook-logic">
                   <div class="panel-title">
                     判断逻辑链 <span class="panel-hint">每条证据的方向与权重</span>
                   </div>
@@ -343,7 +377,7 @@
                   </div>
                 </section>
 
-                <section class="panel">
+                <section class="panel outlook-transmission">
                   <div class="panel-title">
                     宏观传导 <span class="panel-hint">一个变量落到哪些板块</span>
                   </div>
@@ -352,7 +386,7 @@
                   </div>
                 </section>
 
-                <section class="panel">
+                <section class="panel outlook-side">
                   <div class="panel-title">
                     利好板块 <span class="panel-hint">证据偏多</span>
                   </div>
@@ -361,7 +395,7 @@
                   </div>
                 </section>
 
-                <section class="panel">
+                <section class="panel outlook-side">
                   <div class="panel-title">
                     利空板块 <span class="panel-hint">证据偏空</span>
                   </div>
@@ -370,12 +404,12 @@
                   </div>
                 </section>
 
-                <section class="panel">
+                <section class="panel outlook-side outlook-text">
                   <div class="panel-title">风险点 <span class="panel-hint">会推翻当前判断的条件</span></div>
                   <ul class="risk-list" id="outlookRisks"></ul>
                 </section>
 
-                <section class="panel">
+                <section class="panel outlook-side outlook-text">
                   <div class="panel-title">明日盯什么 <span class="panel-hint">开盘验证清单</span></div>
                   <ul class="watch-list" id="outlookWatch"></ul>
                 </section>

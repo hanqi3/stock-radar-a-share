@@ -19,8 +19,9 @@
     "index:calendar": "node scripts/build-trading-calendar.js",
     "outlook:history": "node scripts/sync-outlook-history.js",
     "update": "node scripts/sync-a-shares.js && node scripts/check-data.js",
-    "enrich": "node scripts/sync-sectors.js && node scripts/sync-history.js && node scripts/sync-news.js && node scripts/sync-macro.js && node scripts/sync-flow.js",
+    "enrich": "node scripts/sync-sectors.js && node scripts/sync-history.js && node scripts/sync-profiles.js && node scripts/sync-news.js && node scripts/sync-macro.js && node scripts/sync-flow.js",
     "macro": "node scripts/sync-macro.js",
+    "profiles": "node scripts/sync-profiles.js",
     "notify": "node scripts/notify-alerts.js"
   },
   "keywords": [

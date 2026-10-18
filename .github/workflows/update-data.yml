@@ -3,8 +3,17 @@ name: Update A-share data
 on:
   workflow_dispatch:
   schedule:
-    # 07:30 UTC = 15:30 Asia/Shanghai, right after the A-share close on weekdays.
-    - cron: "30 7 * * 1-5"
+    # GitHub's scheduler routinely starts a job 5-20 minutes late, so every slot
+    # is pulled forward: the run is meant to be finished by the time the reader
+    # opens the page, not to start then. Asia/Shanghai is UTC+8.
+    # 15:05 CST -> done ~15:25, in time for the post-close review.
+    - cron: "5 7 * * 1-5"
+    # 19:30 CST -> done ~19:50, the evening refresh.
+    - cron: "30 11 * * 1-5"
+    # 08:40 CST -> done ~09:00, after the overnight US session closed.
+    - cron: "40 0 * * 1-5"
+    # Sunday 19:00 CST -> the weekend catch-up, before Monday's open.
+    - cron: "0 11 * * 0"
 
 permissions:
   contents: write
@@ -34,6 +43,13 @@ jobs:
       - name: Sync history and indicators
         continue-on-error: true
         run: npm run history
+
+      # Eastmoney publishes PE / PB / turnover / volume ratio only on its quote
+      # endpoint, not in the Sina universe snapshot. Without this the PE column
+      # and the quote grid have nothing to show.
+      - name: Sync valuation snapshot
+        continue-on-error: true
+        run: npm run profiles
 
       - name: Sync events and news
         continue-on-error: true
@@ -84,7 +100,7 @@ jobs:
 
       - name: Commit updated data
         run: |
-          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/events.json data/indices.json data/macro.json data/flow.json data/outlook-history.json data/alert-digest.json data/watchlist.json lib/pinyin-index.json lib/trading-days.json"
+          FILES="data/all-a-shares.json data/meta.json data/sectors.json data/indicators.json data/profiles.json data/events.json data/indices.json data/macro.json data/flow.json data/outlook-history.json data/alert-digest.json data/watchlist.json lib/pinyin-index.json lib/trading-days.json"
           TRACKED=""
           for f in $FILES; do
             if [ -f "$f" ]; then TRACKED="$TRACKED $f"; fi

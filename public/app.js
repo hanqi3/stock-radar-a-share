@@ -86,6 +86,14 @@ const els = {
   chartEmpty: document.querySelector("#chartEmpty"),
   planBlock: document.querySelector("#planBlock"),
   eventBlock: document.querySelector("#eventBlock"),
+  techPanel: document.querySelector("#techPanel"),
+  techTitle: document.querySelector("#techTitle"),
+  techAsOf: document.querySelector("#techAsOf"),
+  techVerdict: document.querySelector("#techVerdict"),
+  techSummary: document.querySelector("#techSummary"),
+  techSignals: document.querySelector("#techSignals"),
+  techLevels: document.querySelector("#techLevels"),
+  techReasons: document.querySelector("#techReasons"),
   rangeSegment: document.querySelector("#rangeSegment"),
   overlaySegment: document.querySelector("#overlaySegment"),
   chartTypeSegment: document.querySelector("#chartTypeSegment"),
@@ -100,6 +108,15 @@ const els = {
   overseasThemeChips: document.querySelector("#overseasThemeChips"),
   indexCount: document.querySelector("#indexCount"),
   indexStrip: document.querySelector("#indexStrip"),
+  alertBar: document.querySelector("#alertBar"),
+  alertBarBody: document.querySelector("#alertBarBody"),
+  alertBarAction: document.querySelector("#alertBarAction"),
+  alertBarClose: document.querySelector("#alertBarClose"),
+  watchNewsButton: document.querySelector("#watchNewsButton"),
+  watchNewsPanel: document.querySelector("#watchNewsPanel"),
+  watchNewsBody: document.querySelector("#watchNewsBody"),
+  watchNewsClose: document.querySelector("#watchNewsClose"),
+  watchNewsHint: document.querySelector("#watchNewsHint"),
   themeList: document.querySelector("#themeList"),
   industryList: document.querySelector("#industryList"),
   backtestRun: document.querySelector("#backtestRun"),
@@ -385,12 +402,13 @@ function renderRows(append = false, rows = state.rows) {
             <div class="stock-name">${stock.code}</div>
             <div class="stock-code">${stock.exchange}</div>
           </td>
-          <td>${stock.name}</td>
+          <td><span class="stock-name-cell">${sentimentFlag(stock)}<span>${escapeHtml(stock.name)}</span></span></td>
           <td>${stock.board}</td>
           <td>${number(stock.price)}</td>
           <td class="${toneClass(stock.changePct)}">${signed(stock.changePct, "%")}</td>
           <td>${money(stock.amount)}</td>
           <td>${number(stock.turnover)}%</td>
+          <td>${Number.isFinite(stock.pe) ? stock.pe.toFixed(1) : "—"}</td>
           <td><span class="pill ${Math.abs(stock.changePct || 0) >= 6 ? "hot" : ""}">${signalType(stock)}</span></td>
           <td>
             <button class="row-button ${isWatched(stock.code) ? "active" : ""}" data-watch="${stock.code}" title="自选" aria-label="自选">★</button>
@@ -410,6 +428,15 @@ function renderRows(append = false, rows = state.rows) {
     row.addEventListener("click", (event) => {
       if (event.target.closest("[data-watch]")) return;
       selectStock(row.dataset.code);
+    });
+  });
+
+  els.stockRows.querySelectorAll("[data-sentiment-open]").forEach((button) => {
+    button.addEventListener("click", async (event) => {
+      event.stopPropagation();
+      await selectStock(button.dataset.sentimentOpen);
+      toggleSentiment(true);
+      document.querySelector("#sentimentDetail")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
     });
   });
 
@@ -459,9 +486,12 @@ async function selectStock(code) {
   state.selectedCode = code;
   showTab("stocks");
   renderRows();
-  loadChart(code);
+  // Chart and card load in parallel; the caller can await the analysis render
+  // (the 利好/利空 expansion needs it) without serialising the two requests.
+  const chart = loadChart(code);
   const stock = await api(`/api/stocks/${code}`);
   renderDetail(stock);
+  await chart;
 }
 
 // --- tab rail ---------------------------------------------------------------
@@ -596,6 +626,261 @@ function renderEventBlock(analysis) {
   `;
 }
 
+/** The 利好/利空 verdict, read off either a quote row or an analysis payload. */
+function sentimentFacts(source) {
+  if (!source) return null;
+  const events = source.events && !Array.isArray(source.events) ? source.events : null;
+  const sentiment = source.eventSentiment ?? events?.sentiment ?? null;
+  if (!sentiment) return null;
+  const positive = source.eventPositive ?? events?.positive ?? 0;
+  const negative = source.eventNegative ?? events?.negative ?? 0;
+  const scope = source.eventScope ?? events?.scope ?? null;
+  const label = sentiment === "positive" ? "利好" : sentiment === "negative" ? "利空" : "多空";
+  const count = sentiment === "mixed" ? `${positive}/${negative}` : String(sentiment === "positive" ? positive : negative);
+  return { sentiment, positive, negative, scope, label, count };
+}
+
+/** Compact flag for a table row; the full pill goes on the detail card. */
+function sentimentFlag(stock) {
+  const facts = sentimentFacts(stock);
+  if (!facts) return "";
+  const mark = facts.sentiment === "positive" ? "利" : facts.sentiment === "negative" ? "空" : "多空";
+  const title = `${facts.scope === "theme" ? "板块级消息" : "公司级消息"}：利好 ${facts.positive} 条 / 利空 ${facts.negative} 条，点击查看明细与出处`;
+  return `<button class="stock-flag ${facts.sentiment}" data-sentiment-open="${stock.code}" title="${escapeHtml(title)}">${mark}</button>`;
+}
+
+function sentimentBadge(source) {
+  const facts = sentimentFacts(source);
+  if (!facts) return "";
+  const title = `${facts.scope === "theme" ? "板块级消息" : "公司级消息"}：利好 ${facts.positive} 条 / 利空 ${facts.negative} 条，点击展开明细`;
+  return `<button class="sentiment-badge ${facts.sentiment}" id="sentimentToggle" title="${escapeHtml(title)}">${facts.label} ${facts.count}<span class="sentiment-caret">▾</span></button>`;
+}
+
+/** Item-level technical read: score, signals, levels and the reasons behind them. */
+function renderTechnicals(analysis) {
+  if (!els.techPanel) return;
+  const tech = analysis?.technicals;
+  if (!tech) {
+    els.techPanel.hidden = true;
+    return;
+  }
+  els.techPanel.hidden = false;
+  const price = (value) => (Number.isFinite(value) ? value.toFixed(2) : "—");
+  if (els.techTitle) els.techTitle.textContent = tech.title || "技术指标分析";
+  if (els.techAsOf) {
+    els.techAsOf.textContent = tech.asOf ? `数据基准 ${tech.asOf} · ${tech.sampleSize} 根日K` : "";
+  }
+  if (els.techVerdict) {
+    els.techVerdict.innerHTML = `
+      <span class="tech-score ${tech.verdict.tone}">${tech.verdict.score}</span>
+      <span class="tech-band ${tech.verdict.tone}">${escapeHtml(tech.verdict.label)}</span>`;
+  }
+  if (els.techSummary) els.techSummary.textContent = tech.summary || "";
+  if (els.techSignals) {
+    els.techSignals.innerHTML = (tech.signals || [])
+      .map(
+        (signal) => `
+          <div class="tech-signal ${signal.tone}" title="${escapeHtml(signal.note || "")}">
+            <span class="tech-signal-label">${escapeHtml(signal.label)}</span>
+            <span class="tech-signal-value">${escapeHtml(String(signal.value))}</span>
+          </div>`
+      )
+      .join("");
+  }
+  if (els.techLevels) {
+    const levels = tech.levels || {};
+    const cells = [
+      ["支撑", price(levels.support), ""],
+      ["压力", price(levels.resistance), ""],
+      ["止损", price(levels.stop), "down"],
+      ["MA20", price(levels.ma20), ""],
+      ["布林上轨", price(levels.bollUpper), ""],
+      ["布林下轨", price(levels.bollLower), ""],
+      ["涨停", price(levels.limitUp), "up"],
+      ["跌停", price(levels.limitDown), "down"]
+    ];
+    els.techLevels.innerHTML = cells
+      .map(
+        ([label, value, tone]) => `
+          <div class="tech-level">
+            <span>${label}</span>
+            <strong class="${tone}">${value}</strong>
+          </div>`
+      )
+      .join("");
+  }
+  if (els.techReasons) {
+    els.techReasons.innerHTML = (tech.reasons || []).map((reason) => `<li>${escapeHtml(reason)}</li>`).join("");
+  }
+}
+
+/** Expanded 利好/利空 list with the reasoning and a link to the source. */
+function renderSentimentDetail(analysis) {
+  const host = document.querySelector("#sentimentDetail");
+  if (!host) return;
+  const events = analysis?.events;
+  const facts = sentimentFacts(analysis);
+  const items = (events?.items || []).filter((item) => item.sentiment !== "neutral" || item.relevance === "direct");
+  if (!items.length) {
+    host.innerHTML = `<div class="chart-empty-line">暂无匹配到该股的利好利空消息。</div>`;
+    return;
+  }
+  const rows = items
+    .slice(0, 8)
+    .map((item) => {
+      const tone = item.sentiment === "positive" ? "up" : item.sentiment === "negative" ? "down" : "";
+      const tag = item.sentiment === "positive" ? "利好" : item.sentiment === "negative" ? "利空" : "中性";
+      const title = escapeHtml(item.title || "");
+      const link = item.url ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${title}</a>` : title;
+      const meta = [item.source, item.category, (item.publishedAt || "").slice(0, 10), item.relevance === "direct" ? "公司级" : "板块级"]
+        .filter(Boolean)
+        .map((part) => escapeHtml(part))
+        .join(" · ");
+      return `
+        <li class="sentiment-item ${tone}">
+          <div class="sentiment-item-title"><span class="sentiment-item-tag ${tone || "flat"}">${tag}</span>${link}</div>
+          <div class="sentiment-item-meta">${meta}</div>
+          ${item.detail ? `<div class="sentiment-item-why">逻辑：${escapeHtml(item.detail)}</div>` : ""}
+        </li>`;
+    })
+    .join("");
+  host.innerHTML = `
+    <div class="sentiment-detail-head">
+      ${facts ? `${escapeHtml(facts.label)} ${escapeHtml(facts.count)} 条` : "关联消息"}
+      <span class="panel-hint">${facts?.scope === "theme" ? "板块级消息，未直接点名该股" : "公司级消息，直接点名该股"}</span>
+    </div>
+    <ul class="sentiment-list">${rows}</ul>`;
+}
+
+function toggleSentiment(force) {
+  const body = document.querySelector("#sentimentDetail");
+  const button = document.querySelector("#sentimentToggle");
+  if (!body || !button) return;
+  const next = force ?? body.hidden;
+  body.hidden = !next;
+  button.classList.toggle("open", next);
+}
+
+// --- overnight macro alert bar and the watched-name sentiment panel ----------
+
+const ALERT_DISMISS_KEY = "stockradar-alert-dismissed";
+
+function dismissedAlertDate() {
+  try {
+    return localStorage.getItem(ALERT_DISMISS_KEY) || "";
+  } catch {
+    return "";
+  }
+}
+
+/** Top-of-page banner: the few overnight moves big enough to change the open. */
+async function reloadAlerts() {
+  if (!els.alertBar) return;
+  let data;
+  try {
+    data = await api("/api/alerts");
+  } catch {
+    els.alertBar.hidden = true;
+    return;
+  }
+  const items = data.items || [];
+  if (!items.length) {
+    els.alertBar.hidden = true;
+    return;
+  }
+  // One dismissal per trading date: a fresh session re-surfaces the banner.
+  const stamp = data.date || data.generatedAt || "";
+  if (stamp && dismissedAlertDate() === stamp) {
+    els.alertBar.hidden = true;
+    return;
+  }
+  els.alertBar.dataset.date = stamp;
+  els.alertBarBody.innerHTML = items
+    .map(
+      (item) => `
+        <span class="macro-chip ${item.tone}" title="${escapeHtml(item.detail || "")}">
+          ${escapeHtml(item.title)}
+        </span>`
+    )
+    .join("");
+  els.alertBar.hidden = false;
+}
+
+/** Expands the watchlist into per-name 利好/利空 with the reasoning and links. */
+async function loadWatchNews() {
+  if (!els.watchNewsBody) return;
+  els.watchNewsBody.innerHTML = `<div class="empty-state">加载自选股的利好利空…</div>`;
+  let data;
+  try {
+    data = await api("/api/watchlist/news");
+  } catch (error) {
+    els.watchNewsBody.innerHTML = `<div class="empty-state">加载失败：${escapeHtml(error.message)}</div>`;
+    return;
+  }
+  const items = data.items || [];
+  if (!items.length) {
+    els.watchNewsBody.innerHTML = `<div class="empty-state">自选还是空的：在股票列表里点 ★ 加自选，这里会显示每只股票最近的利好利空消息。</div>`;
+    return;
+  }
+  if (els.watchNewsHint) {
+    els.watchNewsHint.textContent = `统计 ${items.length} 只自选 · 只算直接点名或所属板块的消息`;
+  }
+  els.watchNewsBody.innerHTML = items
+    .map((entry) => {
+      const tone = entry.sentiment === "positive" ? "up" : entry.sentiment === "negative" ? "down" : "";
+      const head = `${escapeHtml(entry.name || entry.code)} <span class="wn-code">${escapeHtml(entry.code)}</span>`;
+      const change = Number.isFinite(entry.changePct)
+        ? `<span class="${toneClass(entry.changePct)}">${signed(entry.changePct, "%")}</span>`
+        : "";
+      const label =
+        entry.sentiment === "positive"
+          ? `利好 ${entry.positive} 条`
+          : entry.sentiment === "negative"
+            ? `利空 ${entry.negative} 条`
+            : entry.sentiment === "mixed"
+              ? `多空 ${entry.positive}/${entry.negative}`
+              : "无方向性消息";
+      const rows = (entry.items || [])
+        .map((item) => {
+          const itemTone = item.sentiment === "positive" ? "up" : item.sentiment === "negative" ? "down" : "";
+          const tag = item.sentiment === "positive" ? "利好" : item.sentiment === "negative" ? "利空" : "中性";
+          const title = escapeHtml(item.title || "");
+          const link = item.url
+            ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${title}</a>`
+            : title;
+          const meta = [item.source, item.category, (item.publishedAt || "").slice(0, 10), item.relevance === "direct" ? "公司级" : "板块级"]
+            .filter(Boolean)
+            .map((part) => escapeHtml(part))
+            .join(" · ");
+          return `
+            <li class="sentiment-item ${itemTone}">
+              <div class="sentiment-item-title"><span class="sentiment-item-tag ${itemTone || "flat"}">${tag}</span>${link}</div>
+              <div class="sentiment-item-meta">${meta}</div>
+              ${item.detail ? `<div class="sentiment-item-why">逻辑：${escapeHtml(item.detail)}</div>` : ""}
+            </li>`;
+        })
+        .join("");
+      return `
+        <div class="watch-news-card ${tone}">
+          <div class="watch-news-head">
+            <span class="watch-news-name">${head}</span>
+            <span class="watch-news-meta">${change}<span class="watch-news-label ${tone}">${label}</span></span>
+          </div>
+          ${rows ? `<ul class="sentiment-list">${rows}</ul>` : `<div class="chart-empty-line">暂无匹配到该股的利好利空消息。</div>`}
+        </div>`;
+    })
+    .join("");
+}
+
+function toggleWatchNews(force) {
+  if (!els.watchNewsPanel || !els.watchNewsButton) return;
+  const next = force ?? els.watchNewsPanel.hidden;
+  els.watchNewsPanel.hidden = !next;
+  els.watchNewsButton.setAttribute("aria-expanded", String(next));
+  els.watchNewsButton.classList.toggle("active", next);
+  if (next) loadWatchNews();
+}
+
 function chartWindow() {
   // The visible slice is kept in state so wheel-zoom and drag-pan only move the
   // window; the payload itself is never re-fetched.
@@ -679,6 +964,7 @@ async function loadChart(code) {
     els.chartEmpty.textContent = `历史行情不可用：${error.message}`;
     if (els.planBlock) els.planBlock.innerHTML = "";
     if (els.eventBlock) els.eventBlock.innerHTML = "";
+    if (els.techPanel) els.techPanel.hidden = true;
     return;
   }
   if (token !== state.chart.token) return;
@@ -711,6 +997,7 @@ async function loadChart(code) {
     els.chartEmpty.textContent = "该股暂无可用历史行情。";
     if (els.planBlock) els.planBlock.innerHTML = "";
     if (els.eventBlock) els.eventBlock.innerHTML = "";
+    if (els.techPanel) els.techPanel.hidden = true;
     if (els.chartLegend) els.chartLegend.innerHTML = "";
     return;
   }
@@ -725,6 +1012,8 @@ async function loadChart(code) {
   paintChart();
   renderPlanBlock(analysis);
   renderEventBlock(analysis);
+  renderTechnicals(analysis);
+  renderSentimentDetail(analysis);
 }
 
 function renderStockOutlook(outlook) {
@@ -809,7 +1098,7 @@ function renderDetail(stock) {
     <div class="detail-head">
       <div class="detail-title-row">
         <div>
-          <div class="detail-name">${stock.name}</div>
+          <div class="detail-name">${escapeHtml(stock.name)} ${sentimentBadge(stock)}</div>
           <div class="detail-sub">${stock.code}.${stock.exchange} · ${stock.board}</div>
         </div>
         <button class="row-button ${isWatched(stock.code) ? "active" : ""}" id="detailWatch" title="自选" aria-label="自选">★</button>
@@ -826,7 +1115,22 @@ function renderDetail(stock) {
       </div>
     </div>
     <canvas class="sparkline" id="sparkline" width="720" height="176"></canvas>
+    <div class="sentiment-detail" id="sentimentDetail" hidden></div>
     <div class="detail-body">
+      <div class="quote-grid">
+        ${quoteCell("今开", number(stock.open), toneClass((stock.open ?? 0) - (stock.prevClose ?? 0)))}
+        ${quoteCell("昨收", number(stock.prevClose))}
+        ${quoteCell("最高", number(stock.high), "up")}
+        ${quoteCell("最低", number(stock.low), "down")}
+        ${quoteCell("换手率", Number.isFinite(stock.turnover) ? `${stock.turnover.toFixed(2)}%` : "—")}
+        ${quoteCell("量比", Number.isFinite(stock.volumeRatio) ? stock.volumeRatio.toFixed(2) : "—")}
+        ${quoteCell("振幅", Number.isFinite(stock.amplitudePct) ? `${stock.amplitudePct.toFixed(2)}%` : "—")}
+        ${quoteCell("PE(动)", Number.isFinite(stock.pe) ? stock.pe.toFixed(2) : "—")}
+        ${quoteCell("PE(TTM)", Number.isFinite(stock.peTtm) ? stock.peTtm.toFixed(2) : "—")}
+        ${quoteCell("PB", Number.isFinite(stock.pb) ? stock.pb.toFixed(2) : "—")}
+        ${quoteCell("总市值", money(stock.marketCap))}
+        ${quoteCell("流通市值", money(stock.floatMarketCap))}
+      </div>
       <div class="kv-grid">
         <div class="kv">
           <div class="kv-label">事件信号</div>
@@ -859,7 +1163,14 @@ function renderDetail(stock) {
   `;
 
   document.querySelector("#detailWatch").addEventListener("click", () => toggleWatch(stock.code));
+  document.querySelector("#sentimentToggle")?.addEventListener("click", () => toggleSentiment());
   drawSparkline(stock);
+  renderSentimentDetail({ events: stock.events });
+}
+
+/** One cell of the quote grid. */
+function quoteCell(label, value, tone = "") {
+  return `<div class="quote-cell"><span>${label}</span><strong class="${tone}">${value}</strong></div>`;
 }
 
 function drawSparkline(stock) {
@@ -2121,6 +2432,21 @@ function bindEvents() {
     if (state.selectedCode) selectStock(state.selectedCode);
   });
 
+  els.watchNewsButton?.addEventListener("click", () => toggleWatchNews());
+  els.watchNewsClose?.addEventListener("click", () => toggleWatchNews(false));
+  els.alertBarClose?.addEventListener("click", () => {
+    try {
+      if (els.alertBar.dataset.date) localStorage.setItem(ALERT_DISMISS_KEY, els.alertBar.dataset.date);
+    } catch {
+      /* private mode: just hide it for this session */
+    }
+    els.alertBar.hidden = true;
+  });
+  els.alertBarAction?.addEventListener("click", () => {
+    showTab("outlook");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
   // --- chart type controls ---
   els.chartTypeSegment?.querySelectorAll("button").forEach((button) => {
     button.classList.toggle("active", button.dataset.chartType === state.chart.type);
@@ -2351,7 +2677,15 @@ async function init() {
   els.dataStatus.textContent = "加载市场数据中";
   applyTheme(state.theme);
   showTab(state.tab || "stocks");
-  await Promise.all([reloadOverview(), reloadForecast(), reloadSignals(), reloadStocks(), reloadRadar(), reloadMarketIndices()]);
+  await Promise.all([
+    reloadOverview(),
+    reloadForecast(),
+    reloadSignals(),
+    reloadStocks(),
+    reloadRadar(),
+    reloadMarketIndices(),
+    reloadAlerts()
+  ]);
   refreshWatchlist();
   syncWatchlist();
   if (state.tab === "flow") reloadFlow();
@@ -2365,5 +2699,5 @@ bindEvents();
 init().catch((error) => {
   console.error(error);
   els.dataStatus.textContent = "数据加载失败";
-  els.stockRows.innerHTML = `<tr><td colspan="9">数据加载失败：${error.message}</td></tr>`;
+  els.stockRows.innerHTML = `<tr><td colspan="10">数据加载失败：${error.message}</td></tr>`;
 });

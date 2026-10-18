@@ -754,7 +754,71 @@ try {
       "GET /api/stocks/600519/analysis -> board-aware limit metadata",
       typeof analysis.body?.limitLabel === "string" && "limitUp" in (analysis.body || {})
     );
+    const tech = analysis.body?.technicals;
+    check(
+      "GET /api/stocks/600519/analysis -> ships a technical read for the next session",
+      Boolean(tech) &&
+        ["今日分析", "明日走势"].includes(tech.title) &&
+        Number.isFinite(tech.verdict?.score) &&
+        tech.verdict.score >= 0 &&
+        tech.verdict.score <= 100 &&
+        Array.isArray(tech.signals) &&
+        tech.signals.length >= 5 &&
+        typeof tech.summary === "string" &&
+        tech.summary.length > 0 &&
+        Array.isArray(tech.reasons)
+    );
+    check(
+      "GET /api/stocks/600519/analysis -> quotes the levels the summary talks about",
+      Boolean(tech?.levels) &&
+        Number.isFinite(tech.levels.close) &&
+        Number.isFinite(tech.levels.stop) &&
+        tech.levels.stop < tech.levels.close &&
+        !tech.summary.includes("—") &&
+        !tech.summary.includes("undefined")
+    );
   }
+
+  const alerts = await get("/api/alerts");
+  check(
+    "GET /api/alerts -> lists at most three overnight macro moves",
+    alerts.status === 200 &&
+      Array.isArray(alerts.body?.items) &&
+      alerts.body.items.length <= 3 &&
+      alerts.body.items.every((item) => typeof item.title === "string" && ["positive", "negative", "neutral"].includes(item.tone))
+  );
+  check(
+    "GET /api/alerts -> dates the banner for the next session",
+    alerts.status === 200 &&
+      /^\d{4}-\d{2}-\d{2}$/.test(alerts.body?.date || "") &&
+      typeof alerts.body?.summary === "string"
+  );
+
+  const watchNews = await get("/api/watchlist/news");
+  check(
+    "GET /api/watchlist/news -> every watched code carries its own sentiment bucket",
+    watchNews.status === 200 &&
+      Array.isArray(watchNews.body?.items) &&
+      watchNews.body.items.every(
+        (item) =>
+          /^\d{6}$/.test(item.code) &&
+          typeof item.name === "string" &&
+          Array.isArray(item.items) &&
+          ["positive", "negative", "mixed", null].includes(item.sentiment ?? null)
+      )
+  );
+
+  const quoteRow = stocksDefault.body?.items?.[0];
+  check(
+    "GET /api/stocks -> rows carry the eastmoney profile fields",
+    Boolean(quoteRow) &&
+      "pe" in quoteRow &&
+      "pb" in quoteRow &&
+      "open" in quoteRow &&
+      "prevClose" in quoteRow &&
+      "turnover" in quoteRow &&
+      "amplitudePct" in quoteRow
+  );
 
   const history = await get("/api/stocks/600519/history?days=30");
   check(

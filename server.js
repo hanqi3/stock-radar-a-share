@@ -6,7 +6,7 @@ import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 import { buildSearchIndex, matchesQuery, suggest, EMPTY_LOOKUP } from "./lib/search.js";
-import { inferBoard, inferExchange, isRiskWarned, isSt, limitLabel, limitState } from "./lib/boards.js";
+import { inferBoard, inferExchange, isRiskWarned, isSt, limitLabel, limitPctFor, limitState } from "./lib/boards.js";
 import { computeFactorTable, directionalScore } from "./lib/factors.js";
 import { computeIndicators } from "./lib/indicators.js";
 import { buildEventImpacts, classifyEvent, THEME_KEYWORDS } from "./lib/events.js";
@@ -18,6 +18,9 @@ import { buildDigest, digestChanged, mergeDigest } from "./lib/alert-digest.js";
 import { buildOutlook } from "./lib/outlook.js";
 import { attachActuals, summarizeHistory, toRecord, upsertRecord } from "./lib/outlook-history.js";
 import { emptyWatchlist, normalizeCodes, parseWatchlist } from "./lib/watchlist.js";
+import { buildTechnicalView } from "./lib/technicals.js";
+import { buildAlerts as buildMacroAlerts, formatAlerts } from "./lib/alerts.js";
+import { isTradingDay, nextTradingDayDetail } from "./lib/trading-calendar.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 5173);
@@ -28,6 +31,7 @@ const FULL_DATA_FILE = path.join(DATA_DIR, "all-a-shares.json");
 const SAMPLE_DATA_FILE = path.join(DATA_DIR, "sample-a-shares.json");
 const META_FILE = path.join(DATA_DIR, "meta.json");
 const INDICATORS_FILE = path.join(DATA_DIR, "indicators.json");
+const PROFILES_FILE = path.join(DATA_DIR, "profiles.json");
 const EVENTS_FILE = path.join(DATA_DIR, "events.json");
 const SECTORS_FILE = path.join(DATA_DIR, "sectors.json");
 const INDICES_FILE = path.join(DATA_DIR, "indices.json");
@@ -85,7 +89,7 @@ async function readJson(file) {
  * Merge the nightly indicator snapshot into a quote row and add the exchange /
  * board / price-limit facts that every downstream view needs.
  */
-function decorateStock(stock, indicators = {}, sector = null) {
+function decorateStock(stock, indicators = {}, sector = null, profile = null) {
   const exchange = stock.exchange || inferExchange(stock.code);
   const board = stock.board || inferBoard(stock.code, exchange);
   const merged = {
@@ -105,6 +109,20 @@ function decorateStock(stock, indicators = {}, sector = null) {
   const state = limitState(merged);
   return {
     ...merged,
+    // The quote feed gives price/change; the fundamentals snapshot fills in the
+    // rest of what a quote screen shows. Units follow the source: ratios are
+    // percentages already scaled (0.62 means 0.62%), caps are yuan.
+    open: profile?.open ?? null,
+    high: profile?.high ?? null,
+    low: profile?.low ?? null,
+    prevClose: profile?.prevClose ?? null,
+    amplitudePct: profile?.amplitudePct ?? null,
+    volumeRatio: profile?.volumeRatio ?? null,
+    pe: profile?.peDynamic ?? profile?.peTtm ?? null,
+    peStatic: profile?.peStatic ?? null,
+    peTtm: profile?.peTtm ?? null,
+    pb: profile?.pb ?? null,
+    floatMarketCap: profile?.floatMarketCap ?? null,
     limitPct: state.pct,
     limitLabel: state.pct === null ? "无限制" : `±${state.pct}%`,
     limitUpPrice: state.limitUpPrice ?? null,
@@ -123,6 +141,19 @@ async function loadIndicators() {
     return {};
   } catch {
     return {};
+  }
+}
+
+/** Fundamentals snapshot (PE, PB, open/high/low, turnover...) keyed by code. */
+async function loadProfiles() {
+  try {
+    const payload = await readJson(PROFILES_FILE);
+    if (payload && payload.items && typeof payload.items === "object") {
+      return { items: payload.items, generatedAt: payload.generatedAt ?? null, source: payload.source ?? null };
+    }
+    return { items: {}, generatedAt: null, source: null };
+  } catch {
+    return { items: {}, generatedAt: null, source: null };
   }
 }
 
@@ -365,8 +396,16 @@ function buildThemeIndex(stocks) {
   for (const [theme, keywords] of Object.entries(THEME_KEYWORDS)) {
     const codes = [];
     for (const stock of stocks) {
-      const haystack = `${stock.name || ""} ${stock.industry || ""} ${(stock.concepts || []).join(" ")}`;
-      if (keywords.some((keyword) => haystack.includes(keyword))) codes.push(stock.code);
+      const name = stock.name || "";
+      const industry = stock.industry || "";
+      const concepts = stock.concepts || [];
+      // Industry and name may match loosely, but a concept has to *be* the
+      // keyword: "保险重仓" is a holding-style tag, not the insurance business,
+      // and substring matching there dragged banks into the 非银金融 theme.
+      const hit = keywords.some(
+        (keyword) => industry.includes(keyword) || name.includes(keyword) || concepts.includes(keyword)
+      );
+      if (hit) codes.push(stock.code);
     }
     if (codes.length) index.set(theme, codes);
   }
@@ -383,10 +422,11 @@ async function loadData() {
     sourceFile = SAMPLE_DATA_FILE;
   }
 
-  const [rawStocks, meta, indicators, events, lookup, sectors] = await Promise.all([
+  const [rawStocks, meta, indicators, profiles, events, lookup, sectors] = await Promise.all([
     readJson(sourceFile),
     readJson(META_FILE).catch(() => ({})),
     loadIndicators(),
+    loadProfiles(),
     loadEvents(),
     loadPinyinLookup(),
     loadSectors()
@@ -397,10 +437,16 @@ async function loadData() {
   // from the fully decorated rows rather than per request.
   const stocks = computeFactorTable(
     rawStocks.map((stock) =>
-      decorateStock(stock, indicators[String(stock.code)] || {}, sectorInfoFor(stock.code, sectorLookup))
+      decorateStock(
+        stock,
+        indicators[String(stock.code)] || {},
+        sectorInfoFor(stock.code, sectorLookup),
+        profiles.items[String(stock.code)] || null
+      )
     )
   );
   const withTrend = stocks.filter((stock) => Number.isFinite(stock.momentum20)).length;
+  const withPe = stocks.filter((stock) => Number.isFinite(stock.pe)).length;
 
   cache = {
     stocks,
@@ -408,6 +454,9 @@ async function loadData() {
       ...meta,
       mode: sourceFile === FULL_DATA_FILE ? "full" : "sample",
       indicatorCoverage: withTrend,
+      profileCoverage: withPe,
+      profileCount: Object.keys(profiles.items).length,
+      profilesUpdatedAt: profiles.generatedAt,
       eventCount: events.length,
       industryCount: sectors.industries.length,
       conceptCount: sectors.concepts.length
@@ -1105,6 +1154,28 @@ function round2(value, digits = 2) {
   return Number.isFinite(value) ? Number(value.toFixed(digits)) : null;
 }
 
+// Which session is the reader in? The technical read says "今日分析" before and
+// during the session and "明日走势" afterwards, so the wording never promises a
+// session that has already happened.
+function sessionPhase(now = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  }).formatToParts(now);
+  const get = (type) => parts.find((part) => part.type === type)?.value ?? "";
+  const iso = `${get("year")}-${get("month")}-${get("day")}`;
+  const minutes = Number(get("hour")) * 60 + Number(get("minute"));
+  if (!isTradingDay(iso)) return "postclose";
+  if (minutes < 9 * 60 + 30) return "preopen";
+  if (minutes < 15 * 60) return "intraday";
+  return "postclose";
+}
+
 /** Candlestick + overlay series, aligned bar-for-bar with the returned bars. */
 function chartIndicators(indicators, barCount) {
   if (!indicators) return null;
@@ -1290,16 +1361,47 @@ function buildSectors(stocks) {
 
 function eventView(stocks, events, now = new Date()) {
   if (!events.length) return { impacts: new Map(), themeImpacts: [], classified: [] };
-  return buildEventImpacts(events, stocks, { now, themeIndex: cache.themeIndex || new Map() });
+  // Event matching walks every headline against every name once; without this
+  // memo the quote list would re-do ~1.7s of work on each poll. Keyed to the
+  // data load so a refreshed snapshot drops it immediately.
+  if (cache.eventView && cache.eventView.loadedAt === cache.loadedAt && Date.now() - cache.eventView.at < 60_000) {
+    return cache.eventView.view;
+  }
+  const view = buildEventImpacts(events, stocks, { now, themeIndex: cache.themeIndex || new Map() });
+  cache.eventView = { at: Date.now(), loadedAt: cache.loadedAt, view };
+  return view;
 }
 
+/**
+ * News matched to one stock. `relevance: "direct"` means the headline actually
+ * names the company; theme matches are kept separately because a 白酒 headline
+ * must not paint 中国平安 as bearish. The badge only counts headlines with a
+ * direction, and prefers company-specific ones over sector chatter.
+ */
 function eventsForCode(code, view, limit = 8) {
   const impact = view.impacts.get(code);
-  if (!impact) return { eventScore: 0, eventBias: 0, items: [] };
+  if (!impact) {
+    return { eventScore: 0, eventBias: 0, items: [], positive: 0, negative: 0, neutral: 0, sentiment: null, scope: null };
+  }
+  const direct = impact.items.filter((item) => item.relevance === "direct");
+  const directional = (list) => list.filter((item) => item.sentiment !== "neutral");
+  const directDirectional = directional(direct);
+  const themeDirectional = directional(impact.items.filter((item) => item.relevance !== "direct"));
+  const basis = directDirectional.length ? directDirectional : themeDirectional;
+  const scope = directDirectional.length ? "direct" : themeDirectional.length ? "theme" : null;
+  const positive = basis.filter((item) => item.sentiment === "positive").length;
+  const negative = basis.filter((item) => item.sentiment === "negative").length;
+  const neutral = basis.length - positive - negative;
+  const sentiment = positive > negative ? "positive" : negative > positive ? "negative" : positive + negative > 0 ? "mixed" : null;
   return {
     eventScore: impact.eventScore,
     eventBias: impact.eventBias,
-    items: impact.items.slice(0, limit)
+    items: impact.items.slice(0, limit),
+    positive,
+    negative,
+    neutral,
+    sentiment,
+    scope
   };
 }
 
@@ -1927,6 +2029,62 @@ async function handleApi(req, res, pathname, params) {
     return json(res, 200, { count: items.length, items, meta });
   }
 
+  // 自选股的利好利空面板：只读当前自选（或 ?codes= 临时列表），把每条消息的
+  // 方向、逻辑与原文链接一起给出去，前端不需要再自己归类。
+  if (pathname === "/api/watchlist/news") {
+    const query = String(params.get("codes") || "").trim();
+    const codes = query
+      ? query
+          .split(",")
+          .map((code) => code.trim())
+          .filter((code) => /^\d{6}$/.test(code))
+          .slice(0, 60)
+      : (await loadWatchlist()).codes;
+    const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
+    const view = eventView(stocks, events);
+    const items = codes.map((code) => {
+      const stock = byCode.get(code);
+      const matched = eventsForCode(code, view, 8);
+      return {
+        code,
+        name: stock?.name ?? null,
+        price: stock?.price ?? null,
+        changePct: stock?.changePct ?? null,
+        signalType: stock?.signalType ?? null,
+        missing: !stock,
+        sentiment: matched.sentiment,
+        scope: matched.scope,
+        positive: matched.positive,
+        negative: matched.negative,
+        neutral: matched.neutral,
+        items: matched.items.map((item) => ({
+          title: item.title,
+          url: item.url,
+          source: item.source,
+          publishedAt: item.publishedAt,
+          category: item.category,
+          sentiment: item.sentiment,
+          relevance: item.relevance,
+          detail: item.detail
+        }))
+      };
+    });
+    return json(res, 200, { generatedAt: events.generatedAt ?? null, count: items.length, items, meta });
+  }
+
+  if (pathname === "/api/alerts") {
+    const [indicesPayload, macro] = await Promise.all([loadIndicesPayload(), loadMacroPayload()]);
+    const alerts = buildMacroAlerts({ macro, indices: indicesPayload.items });
+    const date = nextTradingDayDetail(new Date()).date;
+    return json(res, 200, {
+      generatedAt: macro.generatedAt ?? null,
+      date,
+      items: alerts,
+      summary: formatAlerts(alerts, date),
+      meta
+    });
+  }
+
   if (pathname === "/api/briefing") {
     const indicesPayload = await loadIndicesPayload();
     const briefing = buildBriefing(stocks, meta, events);
@@ -1989,6 +2147,7 @@ async function handleApi(req, res, pathname, params) {
     const detail = getStockDetail(stock, stocks, meta);
     const related = eventsForCode(stock.code, view);
     let history = null;
+    let technicals = null;
     try {
       const record = await historyCache.get(stock.code, stock.exchange, { days: 250 });
       const bars = record.bars;
@@ -2001,6 +2160,10 @@ async function handleApi(req, res, pathname, params) {
         indicators: chartIndicators(indicators, bars.length),
         plan: buildTradePlan(stock, indicators, bars)
       };
+      technicals = buildTechnicalView(indicators, bars, {
+        phase: sessionPhase(),
+        limitPct: limitPctFor(stock)
+      });
     } catch (error) {
       history = { error: String(error?.message || error) };
     }
@@ -2018,6 +2181,7 @@ async function handleApi(req, res, pathname, params) {
         directional: directionalScore(stock, 0)
       },
       history,
+      technicals,
       events: related
     });
   }
@@ -2049,8 +2213,23 @@ async function handleApi(req, res, pathname, params) {
     const limit = parsePositiveInt(params.get("limit"), 100, 500);
     const offset = Math.max(Math.trunc(parseNumber(params.get("offset"), 0)), 0);
     const result = filterStocks(stocks, params, searchIndex);
+    const page = result.slice(offset, offset + limit);
+    // Only the page is annotated, so the badge shown next to a name costs one
+    // map lookup per row rather than a scan of the whole universe.
+    const view = eventView(stocks, events);
+    const items = page.map((stock) => {
+      const matched = eventsForCode(stock.code, view, 0);
+      return {
+        ...stock,
+        eventBias: matched.eventBias,
+        eventSentiment: matched.sentiment,
+        eventScope: matched.scope,
+        eventPositive: matched.positive,
+        eventNegative: matched.negative
+      };
+    });
     return json(res, 200, {
-      items: result.slice(offset, offset + limit),
+      items,
       total: result.length,
       limit,
       offset,

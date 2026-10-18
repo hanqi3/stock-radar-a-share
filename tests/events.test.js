@@ -128,3 +128,25 @@ test("decay reduces the impact of stale headlines", () => {
   ).impacts.get("600519").eventScore;
   assert.ok(Math.abs(stale) < Math.abs(fresh));
 });
+
+test("a listed prefix does not stop a direct mention from matching", () => {
+  const stocks = [
+    { code: "920196", name: "N南乳", industry: "食品" },
+    { code: "603517", name: "XD片仔癀", industry: "医药生物" }
+  ];
+  const result = buildEventImpacts(
+    [
+      { title: "南乳科技今日在北交所上市，首日大涨", publishedAt: new Date().toISOString(), source: "test" },
+      { title: "片仔癀发布三季度业绩预增公告", publishedAt: new Date().toISOString(), source: "test" }
+    ],
+    stocks,
+    { themeIndex: new Map() }
+  );
+  const nanru = result.impacts.get("920196");
+  assert.ok(nanru, "南乳 should match even though the name carries an N prefix");
+  assert.ok(nanru.items.some((item) => item.relevance === "direct"));
+  const pianzai = result.impacts.get("603517");
+  assert.ok(pianzai, "片仔癀 should match even though the name carries an XD prefix");
+  assert.ok(pianzai.items.some((item) => item.relevance === "direct"));
+});
+

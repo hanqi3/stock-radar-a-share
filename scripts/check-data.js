@@ -7,6 +7,7 @@ const ROOT = path.resolve(__dirname, "..");
 const DATA_FILE = path.join(ROOT, "data", "all-a-shares.json");
 const SAMPLE_FILE = path.join(ROOT, "data", "sample-a-shares.json");
 const META_FILE = path.join(ROOT, "data", "meta.json");
+const PROFILES_FILE = path.join(ROOT, "data", "profiles.json");
 
 async function readJson(file) {
   const content = await fs.readFile(file, "utf8");
@@ -37,6 +38,22 @@ async function main() {
   console.log(`Stocks: ${stocks.length}`);
   console.log(`Exchanges: ${JSON.stringify(exchangeCounts)}`);
   console.log(`Updated at: ${meta.updatedAt || "unknown"}`);
+
+  // The eastmoney profile snapshot feeds the PE column and the quote grid; a
+  // partial file silently blanks those fields, so report how much is covered.
+  const profiles = await readJson(PROFILES_FILE).catch(() => null);
+  if (!profiles) {
+    console.log("Profiles: missing (run `npm run profiles`)");
+  } else {
+    const covered = Object.keys(profiles.items || {}).filter((code) => codes.has(code)).length;
+    const coverage = stocks.length ? covered / stocks.length : 0;
+    console.log(
+      `Profiles: ${covered}/${stocks.length} covered (${(coverage * 100).toFixed(1)}%), updated ${profiles.generatedAt || "unknown"}`
+    );
+    if (coverage < 0.98) {
+      throw new Error(`Profile coverage too low: ${(coverage * 100).toFixed(1)}% < 98%`);
+    }
+  }
 }
 
 main().catch((error) => {

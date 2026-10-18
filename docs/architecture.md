@@ -20,6 +20,10 @@ scripts/sync-a-shares.js  --写-->  data/all-a-shares.json + data/meta.json
   -> scripts/sync-history.js      --写-->  data/indicators.json
                                   --缓存--> .cache/history/（git 忽略，6h TTL）
 
+估值与报价快照（东方财富 push2/api/qt/clist/get，fltt=2，100/页 × 60 页）
+  -> scripts/sync-profiles.js     --写-->  data/profiles.json（PE / PB / 换手 / 量比 / 振幅 / 开高低收 / 流通市值）
+                                  --读--> data/all-a-shares.json（确定要覆盖哪些代码）
+
 新闻与公告（新浪 7x24 / 新浪滚动 / 东财快讯 / 巨潮公告 / 东财公告）
   -> scripts/sync-news.js         --写-->  data/events.json
                                   --写-->  data/indices.json（一次批量行情取 36 个海外标的 + 8 个 A 股指数，含 A50 期货）
@@ -43,12 +47,23 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
        其中 recordAlertDigest(...)--写--> data/alert-digest.json（当天异动摘要落盘）
        其中 PUT /api/watchlist    --写--> data/watchlist.json（浏览器同步过来的自选）
        其中 recordAlertDigest(...) --读--> data/watchlist.json（把自选并进摘要）
+       其中 /api/stocks/:code/analysis --读--> data/profiles.json（报价字段）+ computeIndicators（技术面）
+       其中 /api/alerts 与 /api/watchlist/news 分别读 macro+indices 与 events
   -> public/index.html + public/app.js + public/chart.js
 ```
 
 盘中不接实时行情是刻意的：A 股实时行情的再分发需要交易所授权，本项目只做收盘后复盘，所以所有数据都来自收盘快照加隔夜刷新。
 
-`.github/workflows/update-data.yml` 是收盘后的主写入方：交易日 15:30（cron `30 7 * * 1-5`，即 07:30 UTC）依次执行 `npm run update`、`npm run sectors`、`npm run history`、`npm run news`、`npm run macro`、`npm run flow`、`npm run index:pinyin`、`npm run index:calendar`、`npm run check:api`、`npm run outlook:history`、`npm run notify`，最后提交有变化的数据文件。增量来源与索引重建都标了 `continue-on-error: true`，单个第三方源失败不会阻断当天的行情提交。
+`.github/workflows/update-data.yml` 一天跑四趟，每趟都比目标时间提前 25 分钟触发 —— GitHub 的定时器经常晚 5-20 分钟启动，提前量是为了让结果在读者打开页面之前就绪：
+
+| cron（UTC） | 北京时间 | 目的 |
+| --- | --- | --- |
+| `5 7 * * 1-5` | 15:05 | 收盘复盘，当天数据落盘 |
+| `30 11 * * 1-5` | 19:30 | 覆盖晚间公告与复盘 |
+| `40 0 * * 1-5` | 08:40 | 接上美股收盘，09:15 集合竞价前就绪 |
+| `0 11 * * 0` | 周日 19:00 | 周末补一次 |
+
+每趟依次执行 `npm run update`、`npm run sectors`、`npm run history`、`npm run profiles`、`npm run news`、`npm run macro`、`npm run flow`、`npm run index:pinyin`、`npm run index:calendar`、`npm run check:api`、`npm run outlook:history`、`npm run notify`，最后提交有变化的数据文件。增量来源与索引重建都标了 `continue-on-error: true`，单个第三方源失败不会阻断当天的行情提交。数据提交失败时会 `fetch` + `rebase --autostash -X theirs` 重试三次（数据文件都是刚重新生成的，冲突时保留本次），避免人工提交插队导致整趟同步白跑。
 
 顺序上有两个依赖关系值得注意：`index:calendar` 必须排在 `flow` 之后，因为它从 `data/flow.json` 的交易日反推休市日；`outlook:history` 必须排在 `check:api` 之后，因为评分记录是由 `/api/outlook` 那次真实请求写下的，先计分只会拿到空账本。
 
@@ -65,6 +80,12 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
 ### Sector Sync
 
 `scripts/sync-sectors.js` 抓取新浪节点树，把 `sw_*`（申万行业，31 个）和 `gn_*`（概念，213 个）扁平化为 `{id, name, count, members}`，并生成 `membership`（6 位代码 -> 所属板块 id 数组）。`chgn_*`（热门概念，705 个）体积约为前两者之和的三倍，默认不抓取，需要时加 `--include-hot-concepts`。行业数少于 31 或单页失败率超过 10% 时拒绝写盘。
+
+### Profiles Sync
+
+`scripts/sync-profiles.js` 补的是行情快照里拿不到的那一半字段：PE、PB、换手率、量比、振幅、今开 / 昨收 / 最高 / 最低、流通市值。数据源是东方财富 `push2/api/qt/clist/get`（`fltt=2` 直接按真实单位返回，不需要自己除 100），`fs` 过滤沪深京三个市场，**`pz` 上限是 100**，所以 5576 只分 60 页拉，每页之间限速。落盘 `data/profiles.json` 为 `{generatedAt, source, count, items: {code: {price, open, high, low, prevClose, changePct, change, volume, amount, amplitudePct, turnoverPct, volumeRatio, peDynamic, peStatic, peTtm, pb, marketCap, floatMarketCap, name}}}`。
+
+上市初期的新股没有量比 / 估值字段，这些位置保留 `null` 而不是 0 —— 前端遇到 `null` 显示 `—`，读者不会把它当成「量比 0 倍」。`scripts/check-data.js` 会顺带校验覆盖率，低于 98% 直接报错，避免半份文件把 PE 列整列刷空。
 
 ### History Sync
 
@@ -142,6 +163,22 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
 
 `/api/briefing` 在处理请求时落盘 `data/alert-digest.json`（同样是内容变了才写）。`scripts/notify-alerts.js`（`npm run notify`）读它并推到 `ALERT_WEBHOOK_URL`，支持 `wecom` / `feishu` / `json` 三种载荷；没配 webhook 就只打印。注意聊天机器人常用 HTTP 200 包业务错误码，所以脚本除了状态码还会检查响应体的 `errcode` / `code`。
 
+### Alerts
+
+`lib/alerts.js` 是顶部那条隔夜提醒的数据源。`RULES` 里每条规则声明 `{key, symbol?, severity, test, tone, title, detail}`，覆盖美联储利率（`symbol: "fedfunds"`，宏观文件里的序列名叫这个而不是 `fed`）、美债 10 年期 ±8bp、A50 ±1%、VIX ±12%、费城半导体 ±3%、纳指 ±1.5%、布伦特 ±3%、美元指数 ±0.8%、离岸人民币 ±0.3%。命中后按 `severity + min(20, |变动|)` 排序取前 3，`formatAlerts` 压成一行。
+
+设计的核心是**宁可不说也不凑数**：平静的隔夜返回 `[]`，前端横幅直接不出现；阈值写死在代码里而不是做成配置，因为这条横幅的价值来自「只有真的值得说才出现」，可调阈值会让它慢慢退化成常驻噪音。
+
+### Technicals
+
+`lib/technicals.js` 的 `buildTechnicalView(indicators, bars, { phase, limitPct })` 把 250 根日 K 的指标读成一份可读结论：从 50 分起按 8 类信号加减并 clamp 到 0-100，再映射到五档（强势 ≥70 / 偏强 ≥56 / 震荡 ≥45 / 偏弱 ≥30 / 弱势）。
+
+八类信号分别是均线排列与收盘相对 MA20 / MA60 的位置、MACD 柱与 DIF/DEA 关系、RSI 极值与强势区间、KDJ 金叉死叉、布林带 `%B` 位置、量比、20 日区间位置、ATR 波动率。每条信号都带 `tone` 与一句 `note`，`reasons` 里列出每条加减分的具体分值——结论必须能被逐条回算，否则读者只能选择相信或不信。
+
+`title` 随 `phase` 切换：收盘后是「明日走势」，盘前和盘中是「今日分析」。`phase` 由 `sessionPhase()` 判定（按 `Asia/Shanghai` 取日期与分钟数，非交易日或 ≥15:00 记 `postclose`，<09:30 记 `preopen`，其余 `intraday`）。`buildLevels` 用最近 20 根给出支撑（布林下轨 / MA20 / 20 日最低里低于收盘价的最高者）、压力（布林上轨 / 20 日最高里高于收盘价的最低者）、止损 `max(close - 2*ATR, support * 0.995)` 以及涨停跌停；上市初期没有涨跌幅限制的标的直接返回 `null` 而不是编一个 ±10%。
+
+压力或支撑不存在时（价格已在 20 日区间上沿 / 下沿），`buildSummary` 换一种说法而不是输出「关注 — 一带的压力」。
+
 ### Watchlist
 
 自选列表是唯一需要用户写入的状态，因此也是唯一有 `PUT` 的接口。`lib/watchlist.js` 的 `normalizeCodes` 负责 trim / 去重 / 排序 / 截断（上限 200）并统计 `rejected`；`server.js` 的 `saveWatchlist(codes)` 在列表未变时直接返回旧对象、不 bump `updatedAt`，这样浏览器每次开机重发都不会弄脏 `data/watchlist.json`。前端 `saveWatchlist()` 先写 `localStorage` 再 400ms 防抖 `PUT`；`syncWatchlist()` 在启动时 `GET` 一次——服务端非空就以服务端为准，服务端还是 `updatedAt: null` 时把本地列表向上迁移一次。
@@ -150,9 +187,9 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
 
 ### API Server
 
-`server.js` 基于 Node.js 原生 HTTP 模块实现接口和静态资源服务，同时是唯一的数据读取方。启动时读取 `data/all-a-shares.json`（缺失时退回 `data/sample-a-shares.json`），并把 `meta.json` / `indicators.json` / `sectors.json` / `events.json` / `indices.json` / `macro.json` / `flow.json` / `lib/pinyin-index.json` 合并成内存数据集，其中 `computeFactorTable` 负责生成截面因子，`loadFlow()` 与 `loadMacroPayload()` 分别对资金流和美债单独做 TTL 缓存（15 秒 / 30 秒）。内存缓存有效期 15 秒（`isFresh()`），所以叠加脚本跑完后最多 15 秒即生效。
+`server.js` 基于 Node.js 原生 HTTP 模块实现接口和静态资源服务，同时是唯一的数据读取方。启动时读取 `data/all-a-shares.json`（缺失时退回 `data/sample-a-shares.json`），并把 `meta.json` / `indicators.json` / `profiles.json` / `sectors.json` / `events.json` / `indices.json` / `macro.json` / `flow.json` / `lib/pinyin-index.json` 合并成内存数据集，其中 `computeFactorTable` 负责生成截面因子，`loadFlow()` 与 `loadMacroPayload()` 分别对资金流和美债单独做 TTL 缓存（15 秒 / 30 秒）。内存缓存有效期 15 秒（`isFresh()`），所以叠加脚本跑完后最多 15 秒即生效。
 
-路由集中在 `handleApi`：`/api/health`、`/api/search`、`/api/overview`、`/api/forecast`、`/api/sectors`、`/api/events`、`/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/outlook`、`/api/flow`、`/api/watchlist`、`/api/briefing`、`/api/backtest`、`/api/signals`、`/api/stocks`，以及三个正则路由 `/api/stocks/:code`、`/api/stocks/:code/history`、`/api/stocks/:code/analysis`。所有数量参数都经过 `parsePositiveInt(value, fallback, max)` 钳制（默认 `limit=100`/上限 500 的 `/api/stocks`、默认 60/上限 200 的 `/api/signals`、默认 10/上限 50 的 `/api/search`、默认 30/上限 200 的 `/api/events`、默认 400/上限 1000 的 `/api/news`、默认 12/上限 40 的 `/api/sector-news`、默认 60/上限 500 的 `/api/flow`、默认 250/上限 1023 的历史 `days`），未知 `sort` 回退到 `score`，未知 `scope` / `side` 回退到 `stock` / `inflow`。`/api/flow` 的 `w` 参数用 `parsePositiveInt(w, 1, 1024)` 取值后再用 `windows.includes()` 判定，这样**不支持的 `w` 回退到当日而不是被钳到 250**（250 现在是合法窗口）；排序键、返回的 `flow` 字段与表头都跟着它走，`history` 始终返回整段窗口，所以 `w=1` 时顶部走势柱仍然是 250 个交易日。
+路由集中在 `handleApi`：`/api/health`、`/api/search`、`/api/overview`、`/api/forecast`、`/api/sectors`、`/api/events`、`/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/alerts`、`/api/outlook`、`/api/flow`、`/api/watchlist`、`/api/watchlist/news`、`/api/briefing`、`/api/backtest`、`/api/signals`、`/api/stocks`，以及三个正则路由 `/api/stocks/:code`、`/api/stocks/:code/history`、`/api/stocks/:code/analysis`。所有数量参数都经过 `parsePositiveInt(value, fallback, max)` 钳制（默认 `limit=100`/上限 500 的 `/api/stocks`、默认 60/上限 200 的 `/api/signals`、默认 10/上限 50 的 `/api/search`、默认 30/上限 200 的 `/api/events`、默认 400/上限 1000 的 `/api/news`、默认 12/上限 40 的 `/api/sector-news`、默认 60/上限 500 的 `/api/flow`、默认 250/上限 1023 的历史 `days`），未知 `sort` 回退到 `score`，未知 `scope` / `side` 回退到 `stock` / `inflow`。`/api/flow` 的 `w` 参数用 `parsePositiveInt(w, 1, 1024)` 取值后再用 `windows.includes()` 判定，这样**不支持的 `w` 回退到当日而不是被钳到 250**（250 现在是合法窗口）；排序键、返回的 `flow` 字段与表头都跟着它走，`history` 始终返回整段窗口，所以 `w=1` 时顶部走势柱仍然是 250 个交易日。
 
 `buildNewsFeed(events, indices, { limit, q })` 对每条事件跑 `classifyEvent` 与 `classifyRegion`，拼 `title/summary/source/themes/codes` 做关键词过滤，返回 `{generatedAt, count, total, limit, query, counts:{cn,global}, indices, items}`，其中 `counts` 与 `total` 都是筛选后的口径。`buildGlobalBriefing(indices, events, quotesUpdatedAt, now)` 生成海外板块的 `{count, groups, themes, newsCount, headlines, narrative, dataUpdatedAt}`，挂在 `/api/briefing` 的 `overseas` 字段上；`dataUpdatedAt` 是**行情数据的时间戳**，不是请求时间，两张简报卡都显示它。`/api/outlook` 用 `Promise.all([loadFlow(), loadIndicesPayload(), loadMacroPayload()])` 加 `buildSectors()`、`buildSectorNews()`、`buildBriefing()` 一起喂给 `buildOutlook`。
 
@@ -169,6 +206,14 @@ data/*.json + lib/pinyin-index.json + lib/trading-days.json
 `public/app.js` 负责调用 API、维护页面状态、处理筛选排序、即时检索、自选股和个股详情渲染。页面是三栏工作台：左侧竖直 tab 栏（`showTab`，共 `flow` / `stocks` / `news` / `watch` / `outlook` 五栏）驱动中间主舞台，右侧个股详情与异动信号常驻。三栏之上是 A 股指数条（`reloadMarketIndices` → `renderMarketIndexStrip`，只取 `group === "A股指数"` 的 8 个标的），它在启动时加载一次、不属于任何 tab；概览条里的「沪深北 · 只数」是三个交易所的股票数量，与指数点位无关，用 `is-dense` 字号避免三组数字被裁切。`public/chart.js` 是独立的 `drawPriceChart(canvas, payload, options)`，用原生 canvas 绘制日 K、均线、布林带、成交量副图和十字光标，并渲染买点 / 止损 / 目标标记，不引入任何图表库。看盘台支持 `options.from` / `options.to` 指定可视窗口，返回值带 `{from, to, total}` 供调用方维护缩放状态；`options.hover` 是可视窗口内的整数 bar 索引，触发十字线、右侧价格标签和 OHLC 读数条。`options.type` 取 `"candle"`（默认）或 `"line"`，线图模式画收盘折线加渐变面积，两种模式都带 TradingView 式最新价标签。滚轮缩放以光标位置为锚点、拖动平移用 Pointer Events、双击复位，最小可视跨度 12 根。检索的四个维度（代码 / 名称 / 全拼 / 首字母）统一走 `/api/search`。搜索框本身由 `createSearchBox({ input, list, wrap, ... })` 这个工厂生成，「股票」与「主力资金」两个 tab 各实例化一个，共享联想下拉、方向键 / Enter / Esc 键盘处理、点外关闭和 220ms 防抖；两者只在 `onPick` / `onQuery` 上不同——股票 tab 把选中项送进 `selectStock` 并重查 `/api/stocks`，主力资金 tab 把选中项写进 `state.flow.q` 并重查 `/api/flow?q=`，所以资金流榜单可以直接按代码、名称、拼音甚至行业名过滤。
 
 新闻栏的两列内容来自同一份事件池，`composeColumn` 对每列做三件事：同一发行人最多 2 条、公告类不超过整栏三分之一、报道与公告两股流按 2:1 交错，避免收盘公告把当天报道整段压到底部。
+
+股票 tab 的详情卡分成三层：标题旁的 `sentimentBadge()`（利好 / 利空 / 多空 + 条数 + 展开箭头）、`quote-grid` 的 12 格报价、下面的 sparkline 与常驻指标。消息明细用 `renderSentimentDetail()` 渲染，每条带方向标签、来源 / 分类 / 日期、`公司级` 或 `板块级`、`逻辑：` 说明和原文外链 —— 计数只统计有方向的条目，所以 badge 写「利空 1」而列表里出现 4 条（含中性提及）时，每条的方向标签就是解释。
+
+列表行的旗标由 `sentimentFlag(stock)` 生成，`/api/stocks` 只在当前页做过事件归因后附加 `eventSentiment / eventPositive / eventNegative / eventScope`，不对全市场扫描；`buildEventImpacts` 单次约 1.7 秒，而 `/api/stocks` 被前端轮询，所以 `eventView()` 带 60 秒 memo（命中 7ms，未命中 1816ms）。
+
+技术面板 `renderTechnicals(analysis)` 显示结论分与档位、一句话摘要、8 个信号 chip、支撑 / 压力 / 止损 / 涨停跌停 8 格与加减分理由；信号 chip 用 flex-wrap 而不是 grid，否则「布林带 突破上轨」这种较长读数会在 chip 内部折行。
+
+「明日参考」的面板不是等宽平铺：评分与结论横贯整行（`.outlook-gauge` 左侧带渐变背景），判断逻辑链占 4/6、宏观传导占 2/6，两张板块清单与两张文字清单各占 3/6，输入快照 4/6、历史战绩 2/6；1560px 以上切到 12 栏再细一分。用 `align-items: stretch` 而不是 `start`，否则同一行里较高的卡片下面会留空洞。
 
 「明日参考」tab 的历史战绩面板由 `renderOutlookHistory(history)` 渲染，分三态：没有账本、有账本但一条都没到计分时点（只显示「已记录 N 个交易日 / 待计分 N」）、有已计分样本（四格指标 + 五档表）。**待计分的记录单独计数、不混进命中率**，样本不足 3 条时相关系数显示「样本不足」而不是 0——这两点决定了这块面板是可核查的成绩单而不是装饰。
 
@@ -237,10 +282,10 @@ data/events.json
 
 ## Testing
 
-`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 12 个文件 148 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散，`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪六种行情族（含 A 股的 `s_*`）解析与公告解析器的 `kind` 标记，`tests/news-dedupe.test.js` 覆盖跨源标题归一化与合并，`tests/outlook.test.js` 覆盖明日参考的驱动权重、缺失因子的归一化、**传导方向必须读原始变动而不是市场影响符号**、利好利空互斥与中位涨跌幅回退，以及板块消息面的归因规则，`tests/trading-calendar.test.js` 覆盖节假日与跨年推算，`tests/outlook-history.test.js` 覆盖评分落盘、重复服务不改写首次记录时间、计分口径与五档统计，`tests/alert-digest.test.js` 覆盖摘要截断、新进榜标记、自选块与推送格式，`tests/watchlist.test.js` 覆盖代码归一化、拒绝计数与上限截断，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中 `/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/outlook`、`/api/briefing`、`/api/flow`、`/api/watchlist` 的断言覆盖分组完整性、筛选口径、榜单排序方向、窗口存储、「明日参考」各项结构与它的 `history` 聚合块、`/api/briefing` 是否真的把异动摘要落了盘，以及 `PUT /api/watchlist` 重发同一份列表是否幂等、全非法码是否返回 400。
+`npm run test` 等价于 `node --test tests/`，使用 Node.js 内置测试运行器，当前 14 个文件 168 个用例。`tests/lib.test.js` 覆盖板块 / 涨跌停 / 指标 / 因子与回测端到端，`tests/events.test.js` 覆盖事件分类与扩散（含「带 `N` / `XD` 前缀的股票名仍能匹配新闻里的直接提及」），`tests/news-region.test.js` 覆盖中国 / 海外区域判定、新浪六种行情族（含 A 股的 `s_*`）解析与公告解析器的 `kind` 标记，`tests/news-dedupe.test.js` 覆盖跨源标题归一化与合并，`tests/outlook.test.js` 覆盖明日参考的驱动权重、缺失因子的归一化、**传导方向必须读原始变动而不是市场影响符号**、利好利空互斥与中位涨跌幅回退，以及板块消息面的归因规则，`tests/trading-calendar.test.js` 覆盖节假日与跨年推算，`tests/outlook-history.test.js` 覆盖评分落盘、重复服务不改写首次记录时间、计分口径与五档统计，`tests/alert-digest.test.js` 覆盖摘要截断、新进榜标记、自选块与推送格式，`tests/alerts.test.js` 覆盖隔夜提醒的阈值、优先级与空结果，`tests/watchlist.test.js` 覆盖代码归一化、拒绝计数与上限截断，`tests/technicals.test.js` 覆盖技术面评分、档位、标题随 `phase` 切换与支撑压力推导，`tests/search.test.js` 覆盖检索与拼音索引，`tests/history.test.js` 覆盖两种 K 线载荷解码与缓存，`tests/sectors.test.js` 覆盖节点树扁平化与成员合并。`npm run check:api` 另有接口层面的冒烟测试，会在 `127.0.0.1:5179` 临时拉起服务逐条断言，其中 `/api/indices`、`/api/news`、`/api/sector-news`、`/api/macro`、`/api/alerts`、`/api/outlook`、`/api/briefing`、`/api/flow`、`/api/watchlist`、`/api/watchlist/news`、`/api/stocks/:code/analysis` 的断言覆盖分组完整性、筛选口径、榜单排序方向、窗口存储、「明日参考」各项结构与它的 `history` 聚合块、`/api/briefing` 是否真的把异动摘要落了盘、技术面块是否给出可回算的分值与价位（且摘要里不出现 `—` / `undefined`），以及 `PUT /api/watchlist` 重发同一份列表是否幂等、全非法码是否返回 400。
 
 ## Production Upgrade
 
 后续可以将 JSON 文件替换为 PostgreSQL，将高频读取结果放入 Redis，并把 `.github/workflows/update-data.yml` 的定时任务迁移到常驻调度器。日线缓存目前落在本地磁盘，多实例部署时需要换成共享存储。此外还可以继续扩充事件源（龙虎榜、财报、北向资金）并复用现有的分类与扩散管线。资金流已滚动保留 250 个交易日（约一年），要做更长周期的资金趋势需要改为按年归档；美债与商品目前只取 FRED 的国家级日频序列，若需要盘中实时收益率曲线需引入付费行情源。
 
-几条已知的边界：交易日历的 2027 年部分是按农历推算后人工维护的，国务院公布次年安排后需要复核 `lib/market-holidays.js` 里的 `FORWARD_CLOSURES` 与 `VERIFIED_THROUGH`；自选已经搬到服务端 `data/watchlist.json`，但目前只有一份列表、没有多用户隔离，同一份部署上的所有人共享同一份自选；「明日参考」的历史账本才刚开始积累，等样本够了才能给不同 score 区间标历史胜率。
+几条已知的边界：交易日历的 2027 年部分是按农历推算后人工维护的，国务院公布次年安排后需要复核 `lib/market-holidays.js` 里的 `FORWARD_CLOSURES` 与 `VERIFIED_THROUGH`；自选已经搬到服务端 `data/watchlist.json`，但目前只有一份列表、没有多用户隔离，同一份部署上的所有人共享同一份自选；「明日参考」的历史账本才刚开始积累，等样本够了才能给不同 score 区间标历史胜率；技术面结论是规则加权而不是模型，它只回答「当前结构偏强还是偏弱」，不预测幅度，也不构成买卖建议；估值快照（`data/profiles.json`）是收盘快照，盘中不更新——这是「不做盘中实时行情」的直接后果，不是缺陷。
