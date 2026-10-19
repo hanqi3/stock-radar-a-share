@@ -1,74 +1,74 @@
 {
  "date": "2026-10-19",
- "generatedAt": "2026-10-19T05:27:19.352Z",
- "limitUpCount": 33,
- "limitDownCount": 19,
- "advancers": 1463,
- "decliners": 4012,
+ "generatedAt": "2026-10-19T14:57:49.842Z",
+ "limitUpCount": 53,
+ "limitDownCount": 33,
+ "advancers": 2274,
+ "decliners": 3129,
  "items": [
   {
    "code": "920196",
    "name": "南方乳业",
-   "changePct": -20.21,
-   "anomalyScore": 98.62,
-   "trendScore": 81.5,
+   "changePct": -25.84,
+   "anomalyScore": 98.84,
+   "trendScore": 18.78,
    "signalType": "跌停附近"
   },
   {
    "code": "300411",
    "name": "金盾股份",
-   "changePct": 13.23,
-   "anomalyScore": 97.17,
-   "trendScore": 94.86,
+   "changePct": 14.38,
+   "anomalyScore": 98.64,
+   "trendScore": 98.46,
    "signalType": "涨停附近"
   },
   {
    "code": "002343",
    "name": "慈文传媒",
-   "changePct": 4.39,
-   "anomalyScore": 97.06,
-   "trendScore": 99.64,
-   "signalType": "强势拉升"
+   "changePct": 9.97,
+   "anomalyScore": 98.4,
+   "trendScore": 99.75,
+   "signalType": "涨停"
   },
   {
-   "code": "002917",
-   "name": "金奥博",
-   "changePct": 5.51,
-   "anomalyScore": 97.06,
-   "trendScore": 96.91,
-   "signalType": "强势拉升"
+   "code": "301569",
+   "name": "C联亚",
+   "changePct": -12.32,
+   "anomalyScore": 98.02,
+   "trendScore": 6.68,
+   "signalType": "跌停附近"
   },
   {
-   "code": "603999",
-   "name": "读者传媒",
-   "changePct": -10.02,
-   "anomalyScore": 96.88,
-   "trendScore": 98.63,
-   "signalType": "跌停"
+   "code": "301313",
+   "name": "凡拓数创",
+   "changePct": 20,
+   "anomalyScore": 97.59,
+   "trendScore": 97.31,
+   "signalType": "涨停"
   },
   {
-   "code": "000995",
-   "name": "皇台酒业",
-   "changePct": 5.74,
-   "anomalyScore": 96.88,
-   "trendScore": 98.64,
-   "signalType": "强势拉升"
-  },
-  {
-   "code": "001309",
-   "name": "德明利",
-   "changePct": 6.09,
-   "anomalyScore": 96.58,
-   "trendScore": 0.06,
+   "code": "300916",
+   "name": "朗特智能",
+   "changePct": 15.2,
+   "anomalyScore": 97.44,
+   "trendScore": 99.13,
    "signalType": "涨停附近"
   },
   {
-   "code": "601999",
-   "name": "出版传媒",
-   "changePct": -9.94,
-   "anomalyScore": 96.32,
-   "trendScore": 96.76,
-   "signalType": "跌停附近"
+   "code": "920162",
+   "name": "莫森泰克",
+   "changePct": -14.57,
+   "anomalyScore": 96.99,
+   "trendScore": 6.76,
+   "signalType": "快速回撤"
+  },
+  {
+   "code": "002889",
+   "name": "东方嘉盛",
+   "changePct": 9.99,
+   "anomalyScore": 96.87,
+   "trendScore": 98.72,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
