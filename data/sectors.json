@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T14:13:28.685Z",
+  "generatedAt": "2026-10-19T05:17:54.924Z",
   "source": "sina",
   "sourceLabel": "Sina Finance market centre node tree",
   "sourceUrl": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodes",
@@ -5371,7 +5371,7 @@
     {
       "id": "sw_fyjr",
       "name": "非银金融",
-      "count": 79,
+      "count": 77,
       "members": [
         "000166",
         "000415",
@@ -5424,13 +5424,11 @@
         "600927",
         "600958",
         "600999",
-        "601059",
         "601066",
         "601099",
         "601108",
         "601136",
         "601162",
-        "601198",
         "601211",
         "601236",
         "601318",
@@ -38295,12 +38293,6 @@
         "gn_yjys"
       ]
     },
-    "601059": {
-      "industries": [
-        "sw_fyjr"
-      ],
-      "concepts": []
-    },
     "601061": {
       "industries": [
         "sw_smls"
@@ -38696,12 +38688,6 @@
         "gn_cxgg",
         "gn_jrcg"
       ]
-    },
-    "601198": {
-      "industries": [
-        "sw_fyjr"
-      ],
-      "concepts": []
     },
     "601199": {
       "industries": [

@@ -1,79 +1,88 @@
 {
- "date": "2026-10-18",
- "generatedAt": "2026-10-18T10:39:19.361Z",
- "limitUpCount": 71,
- "limitDownCount": 15,
- "advancers": 3301,
- "decliners": 2127,
+ "date": "2026-10-19",
+ "generatedAt": "2026-10-19T05:27:19.352Z",
+ "limitUpCount": 33,
+ "limitDownCount": 19,
+ "advancers": 1463,
+ "decliners": 4012,
  "items": [
   {
    "code": "920196",
-   "name": "N南乳",
-   "changePct": 58.76,
-   "anomalyScore": 99.99,
-   "trendScore": 81.51,
-   "signalType": "涨停"
-  },
-  {
-   "code": "301569",
-   "name": "C联亚",
-   "changePct": -28.33,
-   "anomalyScore": 99.94,
-   "trendScore": 12.61,
-   "signalType": "跌停"
-  },
-  {
-   "code": "920162",
-   "name": "莫森泰克",
-   "changePct": -29.97,
-   "anomalyScore": 99.31,
-   "trendScore": 12.74,
+   "name": "南方乳业",
+   "changePct": -20.21,
+   "anomalyScore": 98.62,
+   "trendScore": 81.5,
    "signalType": "跌停附近"
   },
   {
-   "code": "920006",
-   "name": "晟楠科技",
-   "changePct": 29.98,
-   "anomalyScore": 99.26,
-   "trendScore": 98.5,
-   "signalType": "涨停"
-  },
-  {
-   "code": "920690",
-   "name": "捷众科技",
-   "changePct": 30,
-   "anomalyScore": 99.11,
-   "trendScore": 98.6,
-   "signalType": "涨停"
-  },
-  {
-   "code": "300006",
-   "name": "莱美药业",
-   "changePct": 19.93,
-   "anomalyScore": 98.47,
-   "trendScore": 99.74,
+   "code": "300411",
+   "name": "金盾股份",
+   "changePct": 13.23,
+   "anomalyScore": 97.17,
+   "trendScore": 94.86,
    "signalType": "涨停附近"
   },
   {
-   "code": "301345",
-   "name": "涛涛车业",
-   "changePct": -18.83,
-   "anomalyScore": 97.92,
-   "trendScore": 0.52,
-   "signalType": "跌停附近"
+   "code": "002343",
+   "name": "慈文传媒",
+   "changePct": 4.39,
+   "anomalyScore": 97.06,
+   "trendScore": 99.64,
+   "signalType": "强势拉升"
   },
   {
-   "code": "000530",
-   "name": "冰山冷热",
-   "changePct": 9.96,
-   "anomalyScore": 97.64,
-   "trendScore": 99.25,
-   "signalType": "涨停"
+   "code": "002917",
+   "name": "金奥博",
+   "changePct": 5.51,
+   "anomalyScore": 97.06,
+   "trendScore": 96.91,
+   "signalType": "强势拉升"
+  },
+  {
+   "code": "603999",
+   "name": "读者传媒",
+   "changePct": -10.02,
+   "anomalyScore": 96.88,
+   "trendScore": 98.63,
+   "signalType": "跌停"
+  },
+  {
+   "code": "000995",
+   "name": "皇台酒业",
+   "changePct": 5.74,
+   "anomalyScore": 96.88,
+   "trendScore": 98.64,
+   "signalType": "强势拉升"
+  },
+  {
+   "code": "001309",
+   "name": "德明利",
+   "changePct": 6.09,
+   "anomalyScore": 96.58,
+   "trendScore": 0.06,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "601999",
+   "name": "出版传媒",
+   "changePct": -9.94,
+   "anomalyScore": 96.32,
+   "trendScore": 96.76,
+   "signalType": "跌停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": null,
-  "codes": []
+  "date": "2026-10-18",
+  "codes": [
+   "920196",
+   "301569",
+   "920162",
+   "920006",
+   "920690",
+   "300006",
+   "301345",
+   "000530"
+  ]
  }
 }
