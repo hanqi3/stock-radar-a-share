@@ -1,74 +1,74 @@
 {
  "date": "2026-10-20",
- "generatedAt": "2026-10-20T05:21:12.529Z",
- "limitUpCount": 57,
- "limitDownCount": 8,
- "advancers": 3538,
- "decliners": 1871,
+ "generatedAt": "2026-10-20T13:04:30.539Z",
+ "limitUpCount": 60,
+ "limitDownCount": 11,
+ "advancers": 3777,
+ "decliners": 1668,
  "items": [
+  {
+   "code": "920641",
+   "name": "格利尔",
+   "changePct": 29.97,
+   "anomalyScore": 98.77,
+   "trendScore": 97.36,
+   "signalType": "涨停"
+  },
+  {
+   "code": "920096",
+   "name": "嘉晨智能",
+   "changePct": 29.98,
+   "anomalyScore": 98.75,
+   "trendScore": 89.97,
+   "signalType": "涨停附近"
+  },
   {
    "code": "003029",
    "name": "吉大正元",
    "changePct": 10,
-   "anomalyScore": 98.13,
-   "trendScore": 99.3,
+   "anomalyScore": 98.28,
+   "trendScore": 99.58,
    "signalType": "涨停"
   },
   {
-   "code": "300411",
-   "name": "金盾股份",
-   "changePct": -9.29,
-   "anomalyScore": 97.83,
-   "trendScore": 98.46,
-   "signalType": "快速回撤"
+   "code": "688071",
+   "name": "华依科技",
+   "changePct": 16.33,
+   "anomalyScore": 98.23,
+   "trendScore": 97.8,
+   "signalType": "涨停附近"
   },
   {
-   "code": "002724",
-   "name": "海洋王",
-   "changePct": 9.98,
-   "anomalyScore": 97.77,
-   "trendScore": 98.06,
+   "code": "688787",
+   "name": "海天瑞声",
+   "changePct": 17.55,
+   "anomalyScore": 98.14,
+   "trendScore": 91.6,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "688507",
+   "name": "索辰科技",
+   "changePct": 13.1,
+   "anomalyScore": 98.06,
+   "trendScore": 93.39,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "603636",
+   "name": "南威软件",
+   "changePct": 10.03,
+   "anomalyScore": 98.04,
+   "trendScore": 97.83,
    "signalType": "涨停"
-  },
-  {
-   "code": "301313",
-   "name": "凡拓数创",
-   "changePct": 20,
-   "anomalyScore": 97.73,
-   "trendScore": 97.31,
-   "signalType": "涨停"
-  },
-  {
-   "code": "920196",
-   "name": "南方乳业",
-   "changePct": 13.27,
-   "anomalyScore": 97.25,
-   "trendScore": 18.78,
-   "signalType": "强势拉升"
-  },
-  {
-   "code": "300798",
-   "name": "锦鸡股份",
-   "changePct": -13.37,
-   "anomalyScore": 96.27,
-   "trendScore": 93.08,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "000530",
-   "name": "冰山冷热",
-   "changePct": -6.41,
-   "anomalyScore": 95.79,
-   "trendScore": 99.36,
-   "signalType": "跌停附近"
   },
   {
    "code": "600148",
    "name": "长春一东",
-   "changePct": 9.94,
-   "anomalyScore": 95.5,
-   "trendScore": 95.74,
-   "signalType": "涨停附近"
+   "changePct": 9.99,
+   "anomalyScore": 97.44,
+   "trendScore": 98.17,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
