@@ -1,88 +1,88 @@
 {
- "date": "2026-10-19",
- "generatedAt": "2026-10-19T14:57:49.842Z",
- "limitUpCount": 53,
- "limitDownCount": 33,
- "advancers": 2274,
- "decliners": 3129,
+ "date": "2026-10-20",
+ "generatedAt": "2026-10-20T05:21:12.529Z",
+ "limitUpCount": 57,
+ "limitDownCount": 8,
+ "advancers": 3538,
+ "decliners": 1871,
  "items": [
   {
-   "code": "920196",
-   "name": "南方乳业",
-   "changePct": -25.84,
-   "anomalyScore": 98.84,
-   "trendScore": 18.78,
-   "signalType": "跌停附近"
+   "code": "003029",
+   "name": "吉大正元",
+   "changePct": 10,
+   "anomalyScore": 98.13,
+   "trendScore": 99.3,
+   "signalType": "涨停"
   },
   {
    "code": "300411",
    "name": "金盾股份",
-   "changePct": 14.38,
-   "anomalyScore": 98.64,
+   "changePct": -9.29,
+   "anomalyScore": 97.83,
    "trendScore": 98.46,
-   "signalType": "涨停附近"
+   "signalType": "快速回撤"
   },
   {
-   "code": "002343",
-   "name": "慈文传媒",
-   "changePct": 9.97,
-   "anomalyScore": 98.4,
-   "trendScore": 99.75,
+   "code": "002724",
+   "name": "海洋王",
+   "changePct": 9.98,
+   "anomalyScore": 97.77,
+   "trendScore": 98.06,
    "signalType": "涨停"
-  },
-  {
-   "code": "301569",
-   "name": "C联亚",
-   "changePct": -12.32,
-   "anomalyScore": 98.02,
-   "trendScore": 6.68,
-   "signalType": "跌停附近"
   },
   {
    "code": "301313",
    "name": "凡拓数创",
    "changePct": 20,
-   "anomalyScore": 97.59,
+   "anomalyScore": 97.73,
    "trendScore": 97.31,
    "signalType": "涨停"
   },
   {
-   "code": "300916",
-   "name": "朗特智能",
-   "changePct": 15.2,
-   "anomalyScore": 97.44,
-   "trendScore": 99.13,
+   "code": "920196",
+   "name": "南方乳业",
+   "changePct": 13.27,
+   "anomalyScore": 97.25,
+   "trendScore": 18.78,
+   "signalType": "强势拉升"
+  },
+  {
+   "code": "300798",
+   "name": "锦鸡股份",
+   "changePct": -13.37,
+   "anomalyScore": 96.27,
+   "trendScore": 93.08,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "000530",
+   "name": "冰山冷热",
+   "changePct": -6.41,
+   "anomalyScore": 95.79,
+   "trendScore": 99.36,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "600148",
+   "name": "长春一东",
+   "changePct": 9.94,
+   "anomalyScore": 95.5,
+   "trendScore": 95.74,
    "signalType": "涨停附近"
-  },
-  {
-   "code": "920162",
-   "name": "莫森泰克",
-   "changePct": -14.57,
-   "anomalyScore": 96.99,
-   "trendScore": 6.76,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "002889",
-   "name": "东方嘉盛",
-   "changePct": 9.99,
-   "anomalyScore": 96.87,
-   "trendScore": 98.72,
-   "signalType": "涨停"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-18",
+  "date": "2026-10-19",
   "codes": [
    "920196",
+   "300411",
+   "002343",
    "301569",
+   "301313",
+   "300916",
    "920162",
-   "920006",
-   "920690",
-   "300006",
-   "301345",
-   "000530"
+   "002889"
   ]
  }
 }
