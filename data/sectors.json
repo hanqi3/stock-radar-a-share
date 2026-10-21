@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T15:49:46.145Z",
+  "generatedAt": "2026-10-21T05:16:44.574Z",
   "source": "sina",
   "sourceLabel": "Sina Finance market centre node tree",
   "sourceUrl": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodes",
@@ -3748,7 +3748,7 @@
     {
       "id": "sw_gfjg",
       "name": "国防军工",
-      "count": 140,
+      "count": 141,
       "members": [
         "000519",
         "000547",
@@ -3889,6 +3889,7 @@
         "688818",
         "920006",
         "920008",
+        "920296",
         "920642"
       ]
     },
@@ -50125,6 +50126,12 @@
     "920289": {
       "industries": [
         "sw_dlsb"
+      ],
+      "concepts": []
+    },
+    "920296": {
+      "industries": [
+        "sw_gfjg"
       ],
       "concepts": []
     },

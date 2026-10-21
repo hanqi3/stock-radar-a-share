@@ -1,88 +1,88 @@
 {
- "date": "2026-10-20",
- "generatedAt": "2026-10-20T13:04:30.539Z",
- "limitUpCount": 60,
- "limitDownCount": 11,
- "advancers": 3777,
- "decliners": 1668,
+ "date": "2026-10-21",
+ "generatedAt": "2026-10-21T05:24:30.862Z",
+ "limitUpCount": 52,
+ "limitDownCount": 4,
+ "advancers": 2210,
+ "decliners": 3114,
  "items": [
   {
-   "code": "920641",
-   "name": "格利尔",
-   "changePct": 29.97,
-   "anomalyScore": 98.77,
-   "trendScore": 97.36,
+   "code": "920296",
+   "name": "N文峰",
+   "changePct": 273.8,
+   "anomalyScore": 100,
+   "trendScore": 79.99,
    "signalType": "涨停"
-  },
-  {
-   "code": "920096",
-   "name": "嘉晨智能",
-   "changePct": 29.98,
-   "anomalyScore": 98.75,
-   "trendScore": 89.97,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "003029",
-   "name": "吉大正元",
-   "changePct": 10,
-   "anomalyScore": 98.28,
-   "trendScore": 99.58,
-   "signalType": "涨停"
-  },
-  {
-   "code": "688071",
-   "name": "华依科技",
-   "changePct": 16.33,
-   "anomalyScore": 98.23,
-   "trendScore": 97.8,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "688787",
-   "name": "海天瑞声",
-   "changePct": 17.55,
-   "anomalyScore": 98.14,
-   "trendScore": 91.6,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "688507",
-   "name": "索辰科技",
-   "changePct": 13.1,
-   "anomalyScore": 98.06,
-   "trendScore": 93.39,
-   "signalType": "涨停附近"
   },
   {
    "code": "603636",
    "name": "南威软件",
-   "changePct": 10.03,
-   "anomalyScore": 98.04,
+   "changePct": 10.01,
+   "anomalyScore": 98.54,
    "trendScore": 97.83,
    "signalType": "涨停"
   },
   {
+   "code": "301313",
+   "name": "凡拓数创",
+   "changePct": 13.55,
+   "anomalyScore": 98.5,
+   "trendScore": 99.45,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "603386",
+   "name": "骏亚科技",
+   "changePct": -8.75,
+   "anomalyScore": 97.93,
+   "trendScore": 98.72,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "688787",
+   "name": "海天瑞声",
+   "changePct": 10.34,
+   "anomalyScore": 97.86,
+   "trendScore": 91.6,
+   "signalType": "强势拉升"
+  },
+  {
+   "code": "003029",
+   "name": "吉大正元",
+   "changePct": 3.5,
+   "anomalyScore": 97.32,
+   "trendScore": 99.58,
+   "signalType": "换手放大"
+  },
+  {
    "code": "600148",
    "name": "长春一东",
-   "changePct": 9.99,
-   "anomalyScore": 97.44,
+   "changePct": -6.7,
+   "anomalyScore": 97.02,
    "trendScore": 98.17,
-   "signalType": "涨停"
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "920641",
+   "name": "格利尔",
+   "changePct": -8.29,
+   "anomalyScore": 97.01,
+   "trendScore": 97.36,
+   "signalType": "换手放大"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "codes": [
-   "920196",
-   "300411",
-   "002343",
-   "301569",
-   "301313",
-   "300916",
-   "920162",
-   "002889"
+   "920641",
+   "920096",
+   "003029",
+   "688071",
+   "688787",
+   "688507",
+   "603636",
+   "600148"
   ]
  }
 }
