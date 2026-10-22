@@ -1,88 +1,88 @@
 {
- "date": "2026-10-21",
- "generatedAt": "2026-10-21T13:15:56.521Z",
- "limitUpCount": 57,
- "limitDownCount": 9,
- "advancers": 1981,
- "decliners": 3363,
+ "date": "2026-10-22",
+ "generatedAt": "2026-10-22T05:27:28.482Z",
+ "limitUpCount": 33,
+ "limitDownCount": 23,
+ "advancers": 710,
+ "decliners": 4795,
  "items": [
   {
-   "code": "920296",
-   "name": "N文峰",
-   "changePct": 217.03,
+   "code": "301718",
+   "name": "N通则",
+   "changePct": 218.08,
    "anomalyScore": 100,
    "trendScore": 77.68,
    "signalType": "涨停"
   },
   {
+   "code": "603278",
+   "name": "大业股份",
+   "changePct": 10.01,
+   "anomalyScore": 98.78,
+   "trendScore": 99.1,
+   "signalType": "涨停"
+  },
+  {
+   "code": "601091",
+   "name": "沈鼓集团",
+   "changePct": 8.82,
+   "anomalyScore": 98.67,
+   "trendScore": 5.65,
+   "signalType": "涨停附近"
+  },
+  {
    "code": "603636",
    "name": "南威软件",
-   "changePct": 10.01,
-   "anomalyScore": 98.72,
+   "changePct": -8.9,
+   "anomalyScore": 98.26,
    "trendScore": 98.76,
-   "signalType": "涨停"
-  },
-  {
-   "code": "688787",
-   "name": "海天瑞声",
-   "changePct": 11.7,
-   "anomalyScore": 98.21,
-   "trendScore": 95.95,
-   "signalType": "强势拉升"
-  },
-  {
-   "code": "301159",
-   "name": "三维天地",
-   "changePct": 20,
-   "anomalyScore": 98.17,
-   "trendScore": 98.6,
-   "signalType": "涨停"
-  },
-  {
-   "code": "688500",
-   "name": "慧辰股份",
-   "changePct": 20,
-   "anomalyScore": 98.09,
-   "trendScore": 97.07,
-   "signalType": "涨停"
-  },
-  {
-   "code": "301313",
-   "name": "凡拓数创",
-   "changePct": 11.54,
-   "anomalyScore": 98.06,
-   "trendScore": 99.59,
-   "signalType": "强势拉升"
-  },
-  {
-   "code": "688121",
-   "name": "*ST卓然",
-   "changePct": -18.29,
-   "anomalyScore": 97.92,
-   "trendScore": 11.84,
    "signalType": "跌停附近"
   },
   {
    "code": "300839",
    "name": "博汇股份",
-   "changePct": 15.6,
-   "anomalyScore": 97.92,
+   "changePct": 20,
+   "anomalyScore": 98.05,
    "trendScore": 98.96,
-   "signalType": "涨停附近"
+   "signalType": "涨停"
+  },
+  {
+   "code": "002724",
+   "name": "海洋王",
+   "changePct": 10.01,
+   "anomalyScore": 97.9,
+   "trendScore": 99.4,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002076",
+   "name": "星光股份",
+   "changePct": 10.2,
+   "anomalyScore": 97.81,
+   "trendScore": 95.66,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002347",
+   "name": "泰尔股份",
+   "changePct": -9.77,
+   "anomalyScore": 97.69,
+   "trendScore": 97.39,
+   "signalType": "跌停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "codes": [
-   "920641",
-   "920096",
-   "003029",
-   "688071",
-   "688787",
-   "688507",
+   "920296",
    "603636",
-   "600148"
+   "688787",
+   "301159",
+   "688500",
+   "301313",
+   "688121",
+   "300839"
   ]
  }
 }
