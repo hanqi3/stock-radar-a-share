@@ -1,74 +1,74 @@
 {
  "date": "2026-10-22",
- "generatedAt": "2026-10-22T05:27:28.482Z",
- "limitUpCount": 33,
- "limitDownCount": 23,
- "advancers": 710,
- "decliners": 4795,
+ "generatedAt": "2026-10-22T13:16:47.339Z",
+ "limitUpCount": 34,
+ "limitDownCount": 72,
+ "advancers": 535,
+ "decliners": 4998,
  "items": [
   {
    "code": "301718",
    "name": "N通则",
-   "changePct": 218.08,
+   "changePct": 171.54,
    "anomalyScore": 100,
-   "trendScore": 77.68,
-   "signalType": "涨停"
-  },
-  {
-   "code": "603278",
-   "name": "大业股份",
-   "changePct": 10.01,
-   "anomalyScore": 98.78,
-   "trendScore": 99.1,
-   "signalType": "涨停"
-  },
-  {
-   "code": "601091",
-   "name": "沈鼓集团",
-   "changePct": 8.82,
-   "anomalyScore": 98.67,
-   "trendScore": 5.65,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "603636",
-   "name": "南威软件",
-   "changePct": -8.9,
-   "anomalyScore": 98.26,
-   "trendScore": 98.76,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "300839",
-   "name": "博汇股份",
-   "changePct": 20,
-   "anomalyScore": 98.05,
-   "trendScore": 98.96,
+   "trendScore": 80.57,
    "signalType": "涨停"
   },
   {
    "code": "002724",
    "name": "海洋王",
    "changePct": 10.01,
-   "anomalyScore": 97.9,
-   "trendScore": 99.4,
+   "anomalyScore": 98.99,
+   "trendScore": 99.58,
    "signalType": "涨停"
   },
   {
    "code": "002076",
    "name": "星光股份",
    "changePct": 10.2,
-   "anomalyScore": 97.81,
-   "trendScore": 95.66,
+   "anomalyScore": 98.48,
+   "trendScore": 97.91,
    "signalType": "涨停"
   },
   {
-   "code": "002347",
-   "name": "泰尔股份",
-   "changePct": -9.77,
-   "anomalyScore": 97.69,
-   "trendScore": 97.39,
-   "signalType": "跌停附近"
+   "code": "603278",
+   "name": "大业股份",
+   "changePct": 10.01,
+   "anomalyScore": 98.42,
+   "trendScore": 99.55,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300839",
+   "name": "博汇股份",
+   "changePct": 20,
+   "anomalyScore": 98.2,
+   "trendScore": 99.68,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301023",
+   "name": "奕帆传动",
+   "changePct": 19.98,
+   "anomalyScore": 98.08,
+   "trendScore": 97.38,
+   "signalType": "涨停"
+  },
+  {
+   "code": "601999",
+   "name": "出版传媒",
+   "changePct": 10,
+   "anomalyScore": 97.96,
+   "trendScore": 98.17,
+   "signalType": "涨停"
+  },
+  {
+   "code": "600202",
+   "name": "哈空调",
+   "changePct": 10.05,
+   "anomalyScore": 97.86,
+   "trendScore": 97.59,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
