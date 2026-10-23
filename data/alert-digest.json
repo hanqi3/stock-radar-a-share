@@ -1,88 +1,88 @@
 {
- "date": "2026-10-22",
- "generatedAt": "2026-10-22T13:16:47.339Z",
- "limitUpCount": 34,
- "limitDownCount": 72,
- "advancers": 535,
- "decliners": 4998,
+ "date": "2026-10-23",
+ "generatedAt": "2026-10-23T05:26:35.464Z",
+ "limitUpCount": 38,
+ "limitDownCount": 20,
+ "advancers": 1746,
+ "decliners": 3663,
  "items": [
   {
-   "code": "301718",
-   "name": "N通则",
-   "changePct": 171.54,
-   "anomalyScore": 100,
-   "trendScore": 80.57,
-   "signalType": "涨停"
-  },
-  {
-   "code": "002724",
-   "name": "海洋王",
-   "changePct": 10.01,
-   "anomalyScore": 98.99,
-   "trendScore": 99.58,
-   "signalType": "涨停"
-  },
-  {
-   "code": "002076",
-   "name": "星光股份",
-   "changePct": 10.2,
-   "anomalyScore": 98.48,
-   "trendScore": 97.91,
+   "code": "920285",
+   "name": "N远大",
+   "changePct": 93.1,
+   "anomalyScore": 99.99,
+   "trendScore": 80.58,
    "signalType": "涨停"
   },
   {
    "code": "603278",
    "name": "大业股份",
-   "changePct": 10.01,
-   "anomalyScore": 98.42,
+   "changePct": 9.99,
+   "anomalyScore": 99.18,
    "trendScore": 99.55,
    "signalType": "涨停"
   },
   {
-   "code": "300839",
-   "name": "博汇股份",
-   "changePct": 20,
-   "anomalyScore": 98.2,
-   "trendScore": 99.68,
+   "code": "002724",
+   "name": "海洋王",
+   "changePct": -9.99,
+   "anomalyScore": 98.79,
+   "trendScore": 99.58,
+   "signalType": "跌停"
+  },
+  {
+   "code": "301660",
+   "name": "粤芯半导",
+   "changePct": 20.01,
+   "anomalyScore": 97.99,
+   "trendScore": 5.33,
    "signalType": "涨停"
   },
   {
-   "code": "301023",
-   "name": "奕帆传动",
-   "changePct": 19.98,
-   "anomalyScore": 98.08,
-   "trendScore": 97.38,
-   "signalType": "涨停"
+   "code": "003021",
+   "name": "兆威机电",
+   "changePct": 9.07,
+   "anomalyScore": 97.66,
+   "trendScore": 94.4,
+   "signalType": "涨停附近"
   },
   {
-   "code": "601999",
-   "name": "出版传媒",
-   "changePct": 10,
-   "anomalyScore": 97.96,
-   "trendScore": 98.17,
-   "signalType": "涨停"
+   "code": "603138",
+   "name": "海量数据",
+   "changePct": -9.81,
+   "anomalyScore": 96.52,
+   "trendScore": 97.92,
+   "signalType": "跌停附近"
   },
   {
-   "code": "600202",
-   "name": "哈空调",
-   "changePct": 10.05,
-   "anomalyScore": 97.86,
-   "trendScore": 97.59,
-   "signalType": "涨停"
+   "code": "002076",
+   "name": "星光股份",
+   "changePct": -4.07,
+   "anomalyScore": 96.25,
+   "trendScore": 97.91,
+   "signalType": "快速回撤"
+  },
+  {
+   "code": "002731",
+   "name": "萃华退",
+   "changePct": -57.14,
+   "anomalyScore": 95.15,
+   "trendScore": 12.3,
+   "signalType": "跌停"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "codes": [
-   "920296",
-   "603636",
-   "688787",
-   "301159",
-   "688500",
-   "301313",
-   "688121",
-   "300839"
+   "301718",
+   "002724",
+   "002076",
+   "603278",
+   "300839",
+   "301023",
+   "601999",
+   "600202"
   ]
  }
 }
