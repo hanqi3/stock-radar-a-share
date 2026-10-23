@@ -1,6 +1,6 @@
 {
  "date": "2026-10-23",
- "generatedAt": "2026-10-23T12:54:16.435Z",
+ "generatedAt": "2026-10-23T16:00:18.142Z",
  "limitUpCount": 89,
  "limitDownCount": 12,
  "advancers": 4525,
@@ -11,7 +11,7 @@
    "name": "N远大",
    "changePct": 73.99,
    "anomalyScore": 99.99,
-   "trendScore": 75.6,
+   "trendScore": 75.58,
    "signalType": "涨停"
   },
   {
@@ -59,7 +59,7 @@
    "name": "世纪恒通",
    "changePct": 20,
    "anomalyScore": 98.56,
-   "trendScore": 97.65,
+   "trendScore": 97.64,
    "signalType": "涨停"
   },
   {
