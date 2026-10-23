@@ -1,74 +1,74 @@
 {
  "date": "2026-10-23",
- "generatedAt": "2026-10-23T05:26:35.464Z",
- "limitUpCount": 38,
- "limitDownCount": 20,
- "advancers": 1746,
- "decliners": 3663,
+ "generatedAt": "2026-10-23T12:54:16.435Z",
+ "limitUpCount": 89,
+ "limitDownCount": 12,
+ "advancers": 4525,
+ "decliners": 909,
  "items": [
   {
    "code": "920285",
    "name": "N远大",
-   "changePct": 93.1,
+   "changePct": 73.99,
    "anomalyScore": 99.99,
-   "trendScore": 80.58,
+   "trendScore": 75.6,
+   "signalType": "涨停"
+  },
+  {
+   "code": "920207",
+   "name": "众诚科技",
+   "changePct": 30,
+   "anomalyScore": 99.24,
+   "trendScore": 98.6,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300296",
+   "name": "利亚德",
+   "changePct": 20,
+   "anomalyScore": 99.01,
+   "trendScore": 98.75,
    "signalType": "涨停"
   },
   {
    "code": "603278",
    "name": "大业股份",
    "changePct": 9.99,
-   "anomalyScore": 99.18,
-   "trendScore": 99.55,
+   "anomalyScore": 98.9,
+   "trendScore": 99.61,
+   "signalType": "涨停"
+  },
+  {
+   "code": "920091",
+   "name": "大鹏工业",
+   "changePct": 29.98,
+   "anomalyScore": 98.71,
+   "trendScore": 95.21,
    "signalType": "涨停"
   },
   {
    "code": "002724",
    "name": "海洋王",
-   "changePct": -9.99,
-   "anomalyScore": 98.79,
-   "trendScore": 99.58,
-   "signalType": "跌停"
-  },
-  {
-   "code": "301660",
-   "name": "粤芯半导",
-   "changePct": 20.01,
-   "anomalyScore": 97.99,
-   "trendScore": 5.33,
+   "changePct": 9.99,
+   "anomalyScore": 98.66,
+   "trendScore": 99.64,
    "signalType": "涨停"
   },
   {
-   "code": "003021",
-   "name": "兆威机电",
-   "changePct": 9.07,
-   "anomalyScore": 97.66,
-   "trendScore": 94.4,
-   "signalType": "涨停附近"
+   "code": "301428",
+   "name": "世纪恒通",
+   "changePct": 20,
+   "anomalyScore": 98.56,
+   "trendScore": 97.65,
+   "signalType": "涨停"
   },
   {
-   "code": "603138",
-   "name": "海量数据",
-   "changePct": -9.81,
-   "anomalyScore": 96.52,
-   "trendScore": 97.92,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "002076",
-   "name": "星光股份",
-   "changePct": -4.07,
-   "anomalyScore": 96.25,
-   "trendScore": 97.91,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "002731",
-   "name": "萃华退",
-   "changePct": -57.14,
-   "anomalyScore": 95.15,
-   "trendScore": 12.3,
-   "signalType": "跌停"
+   "code": "300307",
+   "name": "慈星股份",
+   "changePct": 20,
+   "anomalyScore": 98.06,
+   "trendScore": 98.07,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
