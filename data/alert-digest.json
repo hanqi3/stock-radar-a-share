@@ -1,6 +1,6 @@
 {
- "date": "2026-10-23",
- "generatedAt": "2026-10-23T16:00:18.142Z",
+ "date": "2026-10-25",
+ "generatedAt": "2026-10-25T14:50:15.343Z",
  "limitUpCount": 89,
  "limitDownCount": 12,
  "advancers": 4525,
@@ -11,7 +11,7 @@
    "name": "N远大",
    "changePct": 73.99,
    "anomalyScore": 99.99,
-   "trendScore": 75.58,
+   "trendScore": 75.6,
    "signalType": "涨停"
   },
   {
@@ -59,7 +59,7 @@
    "name": "世纪恒通",
    "changePct": 20,
    "anomalyScore": 98.56,
-   "trendScore": 97.64,
+   "trendScore": 97.65,
    "signalType": "涨停"
   },
   {
@@ -73,16 +73,16 @@
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "codes": [
-   "301718",
-   "002724",
-   "002076",
+   "920285",
+   "920207",
+   "300296",
    "603278",
-   "300839",
-   "301023",
-   "601999",
-   "600202"
+   "920091",
+   "002724",
+   "301428",
+   "300307"
   ]
  }
 }
