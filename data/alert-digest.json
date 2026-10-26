@@ -1,74 +1,74 @@
 {
  "date": "2026-10-26",
- "generatedAt": "2026-10-26T05:23:02.441Z",
- "limitUpCount": 60,
- "limitDownCount": 10,
- "advancers": 2979,
- "decliners": 2441,
+ "generatedAt": "2026-10-26T14:27:42.100Z",
+ "limitUpCount": 65,
+ "limitDownCount": 32,
+ "advancers": 2252,
+ "decliners": 3156,
  "items": [
-  {
-   "code": "920285",
-   "name": "远大健科",
-   "changePct": -24.97,
-   "anomalyScore": 99.06,
-   "trendScore": 75.6,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "603278",
-   "name": "大业股份",
-   "changePct": 9.46,
-   "anomalyScore": 98.78,
-   "trendScore": 99.61,
-   "signalType": "涨停附近"
-  },
   {
    "code": "301502",
    "name": "华阳智能",
-   "changePct": 12.18,
-   "anomalyScore": 98.45,
-   "trendScore": 98.54,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "920207",
-   "name": "众诚科技",
-   "changePct": 15.74,
-   "anomalyScore": 98.31,
-   "trendScore": 98.6,
-   "signalType": "强势拉升"
-  },
-  {
-   "code": "688071",
-   "name": "华依科技",
-   "changePct": 13.64,
-   "anomalyScore": 98.26,
-   "trendScore": 98.63,
-   "signalType": "涨停附近"
+   "changePct": 20,
+   "anomalyScore": 99.33,
+   "trendScore": 99.56,
+   "signalType": "涨停"
   },
   {
    "code": "301428",
    "name": "世纪恒通",
-   "changePct": 12.01,
-   "anomalyScore": 98.06,
-   "trendScore": 97.65,
+   "changePct": 17.74,
+   "anomalyScore": 99.05,
+   "trendScore": 99.26,
    "signalType": "涨停附近"
+  },
+  {
+   "code": "920285",
+   "name": "远大健科",
+   "changePct": -29.19,
+   "anomalyScore": 98.94,
+   "trendScore": 6.26,
+   "signalType": "跌停附近"
   },
   {
    "code": "300949",
    "name": "奥雅股份",
-   "changePct": 15.35,
-   "anomalyScore": 97.7,
-   "trendScore": 98.85,
+   "changePct": 20,
+   "anomalyScore": 98.75,
+   "trendScore": 99.6,
+   "signalType": "涨停"
+  },
+  {
+   "code": "603278",
+   "name": "大业股份",
+   "changePct": 8.08,
+   "anomalyScore": 98.35,
+   "trendScore": 99.68,
    "signalType": "涨停附近"
   },
   {
-   "code": "002724",
-   "name": "海洋王",
-   "changePct": -6.65,
-   "anomalyScore": 97.46,
-   "trendScore": 99.64,
-   "signalType": "跌停附近"
+   "code": "688648",
+   "name": "中邮科技",
+   "changePct": 20.01,
+   "anomalyScore": 98.31,
+   "trendScore": 97.06,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002535",
+   "name": "林州重机",
+   "changePct": 9.9,
+   "anomalyScore": 97.7,
+   "trendScore": 97.75,
+   "signalType": "涨停"
+  },
+  {
+   "code": "688071",
+   "name": "华依科技",
+   "changePct": 11.83,
+   "anomalyScore": 97.49,
+   "trendScore": 99.33,
+   "signalType": "强势拉升"
   }
  ],
  "watch": [],
