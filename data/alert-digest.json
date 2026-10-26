@@ -1,79 +1,79 @@
 {
- "date": "2026-10-25",
- "generatedAt": "2026-10-25T14:50:15.343Z",
- "limitUpCount": 89,
- "limitDownCount": 12,
- "advancers": 4525,
- "decliners": 909,
+ "date": "2026-10-26",
+ "generatedAt": "2026-10-26T05:23:02.441Z",
+ "limitUpCount": 60,
+ "limitDownCount": 10,
+ "advancers": 2979,
+ "decliners": 2441,
  "items": [
   {
    "code": "920285",
-   "name": "N远大",
-   "changePct": 73.99,
-   "anomalyScore": 99.99,
+   "name": "远大健科",
+   "changePct": -24.97,
+   "anomalyScore": 99.06,
    "trendScore": 75.6,
-   "signalType": "涨停"
-  },
-  {
-   "code": "920207",
-   "name": "众诚科技",
-   "changePct": 30,
-   "anomalyScore": 99.24,
-   "trendScore": 98.6,
-   "signalType": "涨停"
-  },
-  {
-   "code": "300296",
-   "name": "利亚德",
-   "changePct": 20,
-   "anomalyScore": 99.01,
-   "trendScore": 98.75,
-   "signalType": "涨停"
+   "signalType": "跌停附近"
   },
   {
    "code": "603278",
    "name": "大业股份",
-   "changePct": 9.99,
-   "anomalyScore": 98.9,
+   "changePct": 9.46,
+   "anomalyScore": 98.78,
    "trendScore": 99.61,
-   "signalType": "涨停"
+   "signalType": "涨停附近"
   },
   {
-   "code": "920091",
-   "name": "大鹏工业",
-   "changePct": 29.98,
-   "anomalyScore": 98.71,
-   "trendScore": 95.21,
-   "signalType": "涨停"
+   "code": "301502",
+   "name": "华阳智能",
+   "changePct": 12.18,
+   "anomalyScore": 98.45,
+   "trendScore": 98.54,
+   "signalType": "涨停附近"
   },
   {
-   "code": "002724",
-   "name": "海洋王",
-   "changePct": 9.99,
-   "anomalyScore": 98.66,
-   "trendScore": 99.64,
-   "signalType": "涨停"
+   "code": "920207",
+   "name": "众诚科技",
+   "changePct": 15.74,
+   "anomalyScore": 98.31,
+   "trendScore": 98.6,
+   "signalType": "强势拉升"
+  },
+  {
+   "code": "688071",
+   "name": "华依科技",
+   "changePct": 13.64,
+   "anomalyScore": 98.26,
+   "trendScore": 98.63,
+   "signalType": "涨停附近"
   },
   {
    "code": "301428",
    "name": "世纪恒通",
-   "changePct": 20,
-   "anomalyScore": 98.56,
+   "changePct": 12.01,
+   "anomalyScore": 98.06,
    "trendScore": 97.65,
-   "signalType": "涨停"
+   "signalType": "涨停附近"
   },
   {
-   "code": "300307",
-   "name": "慈星股份",
-   "changePct": 20,
-   "anomalyScore": 98.06,
-   "trendScore": 98.07,
-   "signalType": "涨停"
+   "code": "300949",
+   "name": "奥雅股份",
+   "changePct": 15.35,
+   "anomalyScore": 97.7,
+   "trendScore": 98.85,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "002724",
+   "name": "海洋王",
+   "changePct": -6.65,
+   "anomalyScore": 97.46,
+   "trendScore": 99.64,
+   "signalType": "跌停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-23",
+  "date": "2026-10-25",
   "codes": [
    "920285",
    "920207",
