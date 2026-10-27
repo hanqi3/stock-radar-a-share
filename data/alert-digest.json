@@ -1,73 +1,73 @@
 {
  "date": "2026-10-27",
- "generatedAt": "2026-10-27T05:40:59.785Z",
- "limitUpCount": 53,
- "limitDownCount": 13,
- "advancers": 1061,
- "decliners": 4413,
+ "generatedAt": "2026-10-27T13:30:53.335Z",
+ "limitUpCount": 45,
+ "limitDownCount": 35,
+ "advancers": 606,
+ "decliners": 4921,
  "items": [
-  {
-   "code": "002731",
-   "name": "萃华退",
-   "changePct": -10.71,
-   "anomalyScore": 98.71,
-   "trendScore": 7.97,
-   "signalType": "跌停"
-  },
   {
    "code": "301314",
    "name": "科瑞思",
-   "changePct": 13.64,
-   "anomalyScore": 98.4,
-   "trendScore": 98.17,
-   "signalType": "涨停附近"
+   "changePct": 20,
+   "anomalyScore": 99.51,
+   "trendScore": 99.62,
+   "signalType": "涨停"
   },
   {
-   "code": "301686",
-   "name": "中塑股份",
-   "changePct": 13.77,
-   "anomalyScore": 97.71,
-   "trendScore": 99.78,
-   "signalType": "涨停附近"
+   "code": "603528",
+   "name": "多伦科技",
+   "changePct": 10.06,
+   "anomalyScore": 97.5,
+   "trendScore": 99.14,
+   "signalType": "涨停"
   },
   {
-   "code": "300949",
-   "name": "奥雅股份",
-   "changePct": 13.57,
-   "anomalyScore": 97.7,
-   "trendScore": 99.6,
-   "signalType": "涨停附近"
+   "code": "603028",
+   "name": "赛福天",
+   "changePct": 10.01,
+   "anomalyScore": 97.3,
+   "trendScore": 99.14,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300539",
+   "name": "横河精密",
+   "changePct": 20,
+   "anomalyScore": 97.07,
+   "trendScore": 95.63,
+   "signalType": "涨停"
   },
   {
    "code": "002724",
    "name": "海洋王",
-   "changePct": 9.33,
-   "anomalyScore": 97.69,
-   "trendScore": 99.56,
-   "signalType": "涨停附近"
+   "changePct": 10,
+   "anomalyScore": 96.99,
+   "trendScore": 99.63,
+   "signalType": "涨停"
   },
   {
-   "code": "300916",
-   "name": "朗特智能",
-   "changePct": -11.58,
-   "anomalyScore": 97.65,
-   "trendScore": 99.02,
-   "signalType": "快速回撤"
+   "code": "600865",
+   "name": "百大集团",
+   "changePct": 10.03,
+   "anomalyScore": 96.74,
+   "trendScore": 96.36,
+   "signalType": "涨停"
   },
   {
-   "code": "605488",
-   "name": "福莱新材",
-   "changePct": 6.74,
-   "anomalyScore": 97.4,
-   "trendScore": 99.48,
-   "signalType": "涨停附近"
+   "code": "301479",
+   "name": "弘景光电",
+   "changePct": 20,
+   "anomalyScore": 96.74,
+   "trendScore": 96.48,
+   "signalType": "涨停"
   },
   {
-   "code": "603089",
-   "name": "正裕工业",
-   "changePct": -10.02,
-   "anomalyScore": 97.17,
-   "trendScore": 98.95,
+   "code": "002731",
+   "name": "萃华退",
+   "changePct": -10.71,
+   "anomalyScore": 96.61,
+   "trendScore": 7.91,
    "signalType": "跌停"
   }
  ],

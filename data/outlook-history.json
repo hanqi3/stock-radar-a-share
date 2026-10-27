@@ -1,8 +1,7 @@
 {
- "generatedAt": "2026-10-27T05:41:02.545Z",
+ "generatedAt": "2026-10-27T13:30:55.135Z",
  "source": "上证指数(000001) 日线收盘 via 新浪财经",
  "closes": {
-  "2025-03-04": 3324.21,
   "2025-03-05": 3341.965,
   "2025-03-06": 3381.098,
   "2025-03-07": 3372.546,
@@ -401,7 +400,8 @@
   "2026-10-21": 3713.028,
   "2026-10-22": 3658.026,
   "2026-10-23": 3690.475,
-  "2026-10-26": 3697.52
+  "2026-10-26": 3697.52,
+  "2026-10-27": 3648.301
  },
  "records": [
   {
@@ -920,6 +920,81 @@
     }
    ],
    "recordedAt": "2026-10-26T14:27:42.213Z",
+   "actual": {
+    "date": "2026-10-27",
+    "close": 3648.3,
+    "prevClose": 3697.52,
+    "changePct": -1.331,
+    "direction": "down",
+    "hit": null
+   }
+  },
+  {
+   "dataDate": "2026-10-27",
+   "forDate": "2026-10-28",
+   "forDateExact": true,
+   "score": -19,
+   "bias": "震荡偏空",
+   "tone": "down",
+   "availableWeight": 100,
+   "drivers": [
+    {
+     "key": "a50",
+     "z": 0.18,
+     "contribution": 3.6
+    },
+    {
+     "key": "us",
+     "z": 0,
+     "contribution": 0
+    },
+    {
+     "key": "sox",
+     "z": 0,
+     "contribution": 0
+    },
+    {
+     "key": "dxy",
+     "z": -0.2,
+     "contribution": -1.2
+    },
+    {
+     "key": "cnh",
+     "z": 0.08,
+     "contribution": 0.48
+    },
+    {
+     "key": "us10y",
+     "z": 1,
+     "contribution": 8
+    },
+    {
+     "key": "vix",
+     "z": 0.243,
+     "contribution": 0.73
+    },
+    {
+     "key": "breadth",
+     "z": -1,
+     "contribution": -14
+    },
+    {
+     "key": "limits",
+     "z": 0.125,
+     "contribution": 1
+    },
+    {
+     "key": "flowRatio",
+     "z": -1,
+     "contribution": -10
+    },
+    {
+     "key": "median",
+     "z": -1,
+     "contribution": -8
+    }
+   ],
+   "recordedAt": "2026-10-27T13:30:53.430Z",
    "actual": null
   }
  ]
