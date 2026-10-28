@@ -1,88 +1,88 @@
 {
- "date": "2026-10-27",
- "generatedAt": "2026-10-27T13:30:53.335Z",
- "limitUpCount": 45,
- "limitDownCount": 35,
- "advancers": 606,
- "decliners": 4921,
+ "date": "2026-10-28",
+ "generatedAt": "2026-10-28T06:23:32.254Z",
+ "limitUpCount": 70,
+ "limitDownCount": 9,
+ "advancers": 3967,
+ "decliners": 1429,
  "items": [
-  {
-   "code": "301314",
-   "name": "科瑞思",
-   "changePct": 20,
-   "anomalyScore": 99.51,
-   "trendScore": 99.62,
-   "signalType": "涨停"
-  },
   {
    "code": "603528",
    "name": "多伦科技",
-   "changePct": 10.06,
-   "anomalyScore": 97.5,
+   "changePct": -9.95,
+   "anomalyScore": 98.15,
    "trendScore": 99.14,
-   "signalType": "涨停"
+   "signalType": "跌停附近"
   },
   {
-   "code": "603028",
-   "name": "赛福天",
-   "changePct": 10.01,
-   "anomalyScore": 97.3,
-   "trendScore": 99.14,
-   "signalType": "涨停"
+   "code": "600838",
+   "name": "上海九百",
+   "changePct": 5.93,
+   "anomalyScore": 97.81,
+   "trendScore": 99.45,
+   "signalType": "强势拉升"
   },
   {
-   "code": "300539",
-   "name": "横河精密",
-   "changePct": 20,
-   "anomalyScore": 97.07,
-   "trendScore": 95.63,
-   "signalType": "涨停"
-  },
-  {
-   "code": "002724",
-   "name": "海洋王",
-   "changePct": 10,
-   "anomalyScore": 96.99,
-   "trendScore": 99.63,
-   "signalType": "涨停"
-  },
-  {
-   "code": "600865",
-   "name": "百大集团",
-   "changePct": 10.03,
-   "anomalyScore": 96.74,
-   "trendScore": 96.36,
-   "signalType": "涨停"
-  },
-  {
-   "code": "301479",
-   "name": "弘景光电",
-   "changePct": 20,
-   "anomalyScore": 96.74,
-   "trendScore": 96.48,
-   "signalType": "涨停"
+   "code": "301428",
+   "name": "世纪恒通",
+   "changePct": 11.43,
+   "anomalyScore": 97.14,
+   "trendScore": 99.18,
+   "signalType": "强势拉升"
   },
   {
    "code": "002731",
    "name": "萃华退",
-   "changePct": -10.71,
-   "anomalyScore": 96.61,
-   "trendScore": 7.91,
-   "signalType": "跌停"
+   "changePct": 12,
+   "anomalyScore": 96.38,
+   "trendScore": 7.92,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301314",
+   "name": "科瑞思",
+   "changePct": -6.59,
+   "anomalyScore": 95.97,
+   "trendScore": 99.62,
+   "signalType": "换手放大"
+  },
+  {
+   "code": "603037",
+   "name": "凯众股份",
+   "changePct": 10.03,
+   "anomalyScore": 95.77,
+   "trendScore": 97.38,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002820",
+   "name": "桂发祥",
+   "changePct": -8.38,
+   "anomalyScore": 95.64,
+   "trendScore": 96.8,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "605488",
+   "name": "福莱新材",
+   "changePct": 8.62,
+   "anomalyScore": 94.72,
+   "trendScore": 99.66,
+   "signalType": "涨停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-26",
+  "date": "2026-10-27",
   "codes": [
-   "301502",
-   "301428",
-   "920285",
-   "300949",
-   "603278",
-   "688648",
-   "002535",
-   "688071"
+   "301314",
+   "603528",
+   "603028",
+   "300539",
+   "002724",
+   "600865",
+   "301479",
+   "002731"
   ]
  }
 }
