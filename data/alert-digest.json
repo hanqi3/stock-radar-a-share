@@ -1,74 +1,74 @@
 {
  "date": "2026-10-28",
- "generatedAt": "2026-10-28T06:23:32.254Z",
- "limitUpCount": 70,
- "limitDownCount": 9,
- "advancers": 3967,
- "decliners": 1429,
+ "generatedAt": "2026-10-28T14:22:23.067Z",
+ "limitUpCount": 75,
+ "limitDownCount": 10,
+ "advancers": 4156,
+ "decliners": 1238,
  "items": [
   {
-   "code": "603528",
-   "name": "多伦科技",
-   "changePct": -9.95,
-   "anomalyScore": 98.15,
-   "trendScore": 99.14,
-   "signalType": "跌停附近"
+   "code": "920220",
+   "name": "朗信电气",
+   "changePct": 30,
+   "anomalyScore": 99.49,
+   "trendScore": 98.82,
+   "signalType": "涨停"
   },
   {
-   "code": "600838",
-   "name": "上海九百",
-   "changePct": 5.93,
-   "anomalyScore": 97.81,
-   "trendScore": 99.45,
-   "signalType": "强势拉升"
+   "code": "920896",
+   "name": "旺成科技",
+   "changePct": 29.94,
+   "anomalyScore": 99.06,
+   "trendScore": 98.63,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "301525",
+   "name": "儒竞科技",
+   "changePct": 20,
+   "anomalyScore": 98.15,
+   "trendScore": 97.96,
+   "signalType": "涨停"
   },
   {
    "code": "301428",
    "name": "世纪恒通",
-   "changePct": 11.43,
-   "anomalyScore": 97.14,
-   "trendScore": 99.18,
+   "changePct": 14.02,
+   "anomalyScore": 97.73,
+   "trendScore": 99.52,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "600838",
+   "name": "上海九百",
+   "changePct": 5.11,
+   "anomalyScore": 97.04,
+   "trendScore": 99.47,
    "signalType": "强势拉升"
   },
   {
-   "code": "002731",
-   "name": "萃华退",
-   "changePct": 12,
-   "anomalyScore": 96.38,
-   "trendScore": 7.92,
-   "signalType": "涨停"
-  },
-  {
-   "code": "301314",
-   "name": "科瑞思",
-   "changePct": -6.59,
-   "anomalyScore": 95.97,
-   "trendScore": 99.62,
-   "signalType": "换手放大"
-  },
-  {
-   "code": "603037",
-   "name": "凯众股份",
-   "changePct": 10.03,
-   "anomalyScore": 95.77,
-   "trendScore": 97.38,
-   "signalType": "涨停"
-  },
-  {
-   "code": "002820",
-   "name": "桂发祥",
-   "changePct": -8.38,
-   "anomalyScore": 95.64,
-   "trendScore": 96.8,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "605488",
-   "name": "福莱新材",
-   "changePct": 8.62,
-   "anomalyScore": 94.72,
-   "trendScore": 99.66,
+   "code": "300984",
+   "name": "金沃股份",
+   "changePct": 14.61,
+   "anomalyScore": 96.93,
+   "trendScore": 97.08,
    "signalType": "涨停附近"
+  },
+  {
+   "code": "300291",
+   "name": "百纳千成",
+   "changePct": 20,
+   "anomalyScore": 96.84,
+   "trendScore": 93.73,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301261",
+   "name": "恒工精密",
+   "changePct": 20,
+   "anomalyScore": 96.77,
+   "trendScore": 97.09,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
