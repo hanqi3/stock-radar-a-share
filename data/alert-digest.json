@@ -1,88 +1,88 @@
 {
- "date": "2026-10-28",
- "generatedAt": "2026-10-28T14:22:23.067Z",
- "limitUpCount": 75,
- "limitDownCount": 10,
- "advancers": 4156,
- "decliners": 1238,
+ "date": "2026-10-29",
+ "generatedAt": "2026-10-29T06:34:01.450Z",
+ "limitUpCount": 46,
+ "limitDownCount": 47,
+ "advancers": 894,
+ "decliners": 4589,
  "items": [
   {
-   "code": "920220",
-   "name": "朗信电气",
-   "changePct": 30,
-   "anomalyScore": 99.49,
-   "trendScore": 98.82,
+   "code": "920306",
+   "name": "N天元",
+   "changePct": 120.54,
+   "anomalyScore": 100,
+   "trendScore": 71.19,
    "signalType": "涨停"
+  },
+  {
+   "code": "600715",
+   "name": "文投控股",
+   "changePct": 10.19,
+   "anomalyScore": 98.39,
+   "trendScore": 95.49,
+   "signalType": "涨停"
+  },
+  {
+   "code": "000678",
+   "name": "襄阳轴承",
+   "changePct": 6.36,
+   "anomalyScore": 97.8,
+   "trendScore": 99.55,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "002708",
+   "name": "光洋股份",
+   "changePct": 9.98,
+   "anomalyScore": 97.36,
+   "trendScore": 97.43,
+   "signalType": "涨停"
+  },
+  {
+   "code": "603028",
+   "name": "赛福天",
+   "changePct": -9.42,
+   "anomalyScore": 97.08,
+   "trendScore": 99.1,
+   "signalType": "跌停附近"
   },
   {
    "code": "920896",
    "name": "旺成科技",
-   "changePct": 29.94,
-   "anomalyScore": 99.06,
+   "changePct": -13.37,
+   "anomalyScore": 96.2,
    "trendScore": 98.63,
-   "signalType": "涨停附近"
+   "signalType": "快速回撤"
   },
   {
-   "code": "301525",
-   "name": "儒竞科技",
-   "changePct": 20,
-   "anomalyScore": 98.15,
-   "trendScore": 97.96,
-   "signalType": "涨停"
+   "code": "688066",
+   "name": "*ST航图",
+   "changePct": -18.05,
+   "anomalyScore": 96.1,
+   "trendScore": 3.86,
+   "signalType": "跌停附近"
   },
   {
-   "code": "301428",
-   "name": "世纪恒通",
-   "changePct": 14.02,
-   "anomalyScore": 97.73,
-   "trendScore": 99.52,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "600838",
-   "name": "上海九百",
-   "changePct": 5.11,
-   "anomalyScore": 97.04,
-   "trendScore": 99.47,
-   "signalType": "强势拉升"
-  },
-  {
-   "code": "300984",
-   "name": "金沃股份",
-   "changePct": 14.61,
-   "anomalyScore": 96.93,
-   "trendScore": 97.08,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "300291",
-   "name": "百纳千成",
-   "changePct": 20,
-   "anomalyScore": 96.84,
-   "trendScore": 93.73,
-   "signalType": "涨停"
-  },
-  {
-   "code": "301261",
-   "name": "恒工精密",
-   "changePct": 20,
-   "anomalyScore": 96.77,
-   "trendScore": 97.09,
-   "signalType": "涨停"
+   "code": "603528",
+   "name": "多伦科技",
+   "changePct": -10.03,
+   "anomalyScore": 96.03,
+   "trendScore": 98.58,
+   "signalType": "跌停"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-27",
+  "date": "2026-10-28",
   "codes": [
-   "301314",
-   "603528",
-   "603028",
-   "300539",
-   "002724",
-   "600865",
-   "301479",
-   "002731"
+   "920220",
+   "920896",
+   "301525",
+   "301428",
+   "600838",
+   "300984",
+   "300291",
+   "301261"
   ]
  }
 }
