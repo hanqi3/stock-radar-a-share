@@ -1,74 +1,74 @@
 {
  "date": "2026-10-29",
- "generatedAt": "2026-10-29T06:34:01.450Z",
- "limitUpCount": 46,
- "limitDownCount": 47,
- "advancers": 894,
- "decliners": 4589,
+ "generatedAt": "2026-10-29T14:30:47.053Z",
+ "limitUpCount": 43,
+ "limitDownCount": 71,
+ "advancers": 781,
+ "decliners": 4727,
  "items": [
   {
    "code": "920306",
    "name": "N天元",
    "changePct": 120.54,
    "anomalyScore": 100,
-   "trendScore": 71.19,
+   "trendScore": 73.43,
    "signalType": "涨停"
   },
   {
    "code": "600715",
    "name": "文投控股",
    "changePct": 10.19,
-   "anomalyScore": 98.39,
-   "trendScore": 95.49,
+   "anomalyScore": 98.55,
+   "trendScore": 97.19,
    "signalType": "涨停"
-  },
-  {
-   "code": "000678",
-   "name": "襄阳轴承",
-   "changePct": 6.36,
-   "anomalyScore": 97.8,
-   "trendScore": 99.55,
-   "signalType": "涨停附近"
   },
   {
    "code": "002708",
    "name": "光洋股份",
    "changePct": 9.98,
-   "anomalyScore": 97.36,
-   "trendScore": 97.43,
+   "anomalyScore": 98.18,
+   "trendScore": 98.97,
    "signalType": "涨停"
   },
   {
-   "code": "603028",
-   "name": "赛福天",
-   "changePct": -9.42,
-   "anomalyScore": 97.08,
-   "trendScore": 99.1,
-   "signalType": "跌停附近"
+   "code": "301079",
+   "name": "邵阳液压",
+   "changePct": 20.01,
+   "anomalyScore": 97.49,
+   "trendScore": 98.67,
+   "signalType": "涨停"
   },
   {
-   "code": "920896",
-   "name": "旺成科技",
-   "changePct": -13.37,
-   "anomalyScore": 96.2,
-   "trendScore": 98.63,
-   "signalType": "快速回撤"
+   "code": "000678",
+   "name": "襄阳轴承",
+   "changePct": 6.47,
+   "anomalyScore": 97.22,
+   "trendScore": 99.69,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "688818",
+   "name": "电科蓝天",
+   "changePct": 11.82,
+   "anomalyScore": 96.36,
+   "trendScore": 94.28,
+   "signalType": "强势拉升"
   },
   {
    "code": "688066",
    "name": "*ST航图",
-   "changePct": -18.05,
-   "anomalyScore": 96.1,
-   "trendScore": 3.86,
+   "changePct": -14.55,
+   "anomalyScore": 96.03,
+   "trendScore": 2.92,
    "signalType": "跌停附近"
   },
   {
-   "code": "603528",
-   "name": "多伦科技",
-   "changePct": -10.03,
-   "anomalyScore": 96.03,
-   "trendScore": 98.58,
-   "signalType": "跌停"
+   "code": "300394",
+   "name": "天孚通信",
+   "changePct": -19.77,
+   "anomalyScore": 95.77,
+   "trendScore": 6.36,
+   "signalType": "跌停附近"
   }
  ],
  "watch": [],
