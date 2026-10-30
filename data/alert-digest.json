@@ -1,74 +1,74 @@
 {
  "date": "2026-10-30",
- "generatedAt": "2026-10-30T06:32:33.383Z",
- "limitUpCount": 59,
- "limitDownCount": 59,
- "advancers": 1159,
- "decliners": 4301,
+ "generatedAt": "2026-10-30T14:21:32.974Z",
+ "limitUpCount": 53,
+ "limitDownCount": 107,
+ "advancers": 892,
+ "decliners": 4602,
  "items": [
   {
    "code": "001219",
    "name": "青岛食品",
    "changePct": 9.98,
-   "anomalyScore": 97.44,
-   "trendScore": 99.11,
+   "anomalyScore": 97.39,
+   "trendScore": 99.53,
    "signalType": "涨停"
-  },
-  {
-   "code": "601956",
-   "name": "东贝集团",
-   "changePct": -10,
-   "anomalyScore": 97.4,
-   "trendScore": 98.11,
-   "signalType": "跌停"
-  },
-  {
-   "code": "600592",
-   "name": "龙溪股份",
-   "changePct": -9.77,
-   "anomalyScore": 96.56,
-   "trendScore": 97.84,
-   "signalType": "跌停附近"
   },
   {
    "code": "920306",
    "name": "天元重工",
-   "changePct": -19.43,
-   "anomalyScore": 96.51,
-   "trendScore": 73.43,
+   "changePct": -23.28,
+   "anomalyScore": 96.69,
+   "trendScore": 29.69,
    "signalType": "跌停附近"
   },
   {
-   "code": "600715",
-   "name": "文投控股",
-   "changePct": -10.13,
-   "anomalyScore": 96.38,
-   "trendScore": 97.19,
-   "signalType": "跌停"
-  },
-  {
-   "code": "002708",
-   "name": "光洋股份",
-   "changePct": -4.95,
-   "anomalyScore": 95.8,
-   "trendScore": 98.97,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "301132",
-   "name": "满坤科技",
-   "changePct": 20.01,
-   "anomalyScore": 95.68,
-   "trendScore": 20.18,
+   "code": "300030",
+   "name": "阳普医疗",
+   "changePct": 20.03,
+   "anomalyScore": 95.09,
+   "trendScore": 94.78,
    "signalType": "涨停"
   },
   {
    "code": "002086",
    "name": "东方海洋",
    "changePct": 10.12,
-   "anomalyScore": 95.62,
-   "trendScore": 96.83,
+   "anomalyScore": 94.27,
+   "trendScore": 98.07,
    "signalType": "涨停"
+  },
+  {
+   "code": "688308",
+   "name": "欧科亿",
+   "changePct": -18.83,
+   "anomalyScore": 94.21,
+   "trendScore": 3.77,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "300911",
+   "name": "亿田智能",
+   "changePct": -19.33,
+   "anomalyScore": 93.43,
+   "trendScore": 19.21,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "605338",
+   "name": "巴比食品",
+   "changePct": 10.01,
+   "anomalyScore": 93.19,
+   "trendScore": 95.81,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300803",
+   "name": "指南针",
+   "changePct": -18.37,
+   "anomalyScore": 93.01,
+   "trendScore": 10.89,
+   "signalType": "跌停附近"
   }
  ],
  "watch": [],
