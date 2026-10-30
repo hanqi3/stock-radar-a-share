@@ -1,88 +1,88 @@
 {
- "date": "2026-10-29",
- "generatedAt": "2026-10-29T17:39:01.533Z",
- "limitUpCount": 43,
- "limitDownCount": 71,
- "advancers": 781,
- "decliners": 4727,
+ "date": "2026-10-30",
+ "generatedAt": "2026-10-30T06:32:33.383Z",
+ "limitUpCount": 59,
+ "limitDownCount": 59,
+ "advancers": 1159,
+ "decliners": 4301,
  "items": [
   {
-   "code": "920306",
-   "name": "N天元",
-   "changePct": 120.54,
-   "anomalyScore": 100,
-   "trendScore": 73.42,
+   "code": "001219",
+   "name": "青岛食品",
+   "changePct": 9.98,
+   "anomalyScore": 97.44,
+   "trendScore": 99.11,
    "signalType": "涨停"
+  },
+  {
+   "code": "601956",
+   "name": "东贝集团",
+   "changePct": -10,
+   "anomalyScore": 97.4,
+   "trendScore": 98.11,
+   "signalType": "跌停"
+  },
+  {
+   "code": "600592",
+   "name": "龙溪股份",
+   "changePct": -9.77,
+   "anomalyScore": 96.56,
+   "trendScore": 97.84,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "920306",
+   "name": "天元重工",
+   "changePct": -19.43,
+   "anomalyScore": 96.51,
+   "trendScore": 73.43,
+   "signalType": "跌停附近"
   },
   {
    "code": "600715",
    "name": "文投控股",
-   "changePct": 10.19,
-   "anomalyScore": 98.55,
+   "changePct": -10.13,
+   "anomalyScore": 96.38,
    "trendScore": 97.19,
-   "signalType": "涨停"
+   "signalType": "跌停"
   },
   {
    "code": "002708",
    "name": "光洋股份",
-   "changePct": 9.98,
-   "anomalyScore": 98.18,
+   "changePct": -4.95,
+   "anomalyScore": 95.8,
    "trendScore": 98.97,
-   "signalType": "涨停"
+   "signalType": "快速回撤"
   },
   {
-   "code": "301079",
-   "name": "邵阳液压",
+   "code": "301132",
+   "name": "满坤科技",
    "changePct": 20.01,
-   "anomalyScore": 97.49,
-   "trendScore": 98.67,
+   "anomalyScore": 95.68,
+   "trendScore": 20.18,
    "signalType": "涨停"
   },
   {
-   "code": "000678",
-   "name": "襄阳轴承",
-   "changePct": 6.47,
-   "anomalyScore": 97.23,
-   "trendScore": 99.69,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "688818",
-   "name": "电科蓝天",
-   "changePct": 11.82,
-   "anomalyScore": 96.36,
-   "trendScore": 94.28,
-   "signalType": "强势拉升"
-  },
-  {
-   "code": "688066",
-   "name": "*ST航图",
-   "changePct": -14.55,
-   "anomalyScore": 96.03,
-   "trendScore": 2.92,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "300394",
-   "name": "天孚通信",
-   "changePct": -19.77,
-   "anomalyScore": 95.77,
-   "trendScore": 6.36,
-   "signalType": "跌停附近"
+   "code": "002086",
+   "name": "东方海洋",
+   "changePct": 10.12,
+   "anomalyScore": 95.62,
+   "trendScore": 96.83,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-28",
+  "date": "2026-10-29",
   "codes": [
-   "920220",
-   "920896",
-   "301525",
-   "301428",
-   "600838",
-   "300984",
-   "300291",
-   "301261"
+   "920306",
+   "600715",
+   "002708",
+   "301079",
+   "000678",
+   "688818",
+   "688066",
+   "300394"
   ]
  }
 }
