@@ -1,79 +1,79 @@
 {
- "date": "2026-11-01",
- "generatedAt": "2026-11-01T17:06:09.685Z",
- "limitUpCount": 53,
- "limitDownCount": 107,
- "advancers": 892,
- "decliners": 4602,
+ "date": "2026-11-02",
+ "generatedAt": "2026-11-02T06:55:17.889Z",
+ "limitUpCount": 137,
+ "limitDownCount": 14,
+ "advancers": 4575,
+ "decliners": 920,
  "items": [
   {
    "code": "001219",
    "name": "青岛食品",
    "changePct": 9.98,
-   "anomalyScore": 97.39,
+   "anomalyScore": 96.89,
    "trendScore": 99.53,
    "signalType": "涨停"
   },
   {
-   "code": "920306",
-   "name": "天元重工",
-   "changePct": -23.28,
-   "anomalyScore": 96.69,
-   "trendScore": 29.69,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "300030",
-   "name": "阳普医疗",
-   "changePct": 20.03,
-   "anomalyScore": 95.09,
-   "trendScore": 94.78,
-   "signalType": "涨停"
-  },
-  {
-   "code": "002086",
-   "name": "东方海洋",
-   "changePct": 10.12,
-   "anomalyScore": 94.27,
-   "trendScore": 98.07,
-   "signalType": "涨停"
-  },
-  {
-   "code": "688308",
-   "name": "欧科亿",
-   "changePct": -18.83,
+   "code": "003032",
+   "name": "传智教育",
+   "changePct": -4.92,
    "anomalyScore": 94.21,
-   "trendScore": 3.77,
-   "signalType": "跌停附近"
+   "trendScore": 96.84,
+   "signalType": "快速回撤"
   },
   {
-   "code": "300911",
-   "name": "亿田智能",
-   "changePct": -19.33,
-   "anomalyScore": 93.43,
-   "trendScore": 19.21,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "605338",
-   "name": "巴比食品",
-   "changePct": 10.01,
-   "anomalyScore": 93.19,
-   "trendScore": 95.81,
-   "signalType": "涨停"
+   "code": "301079",
+   "name": "邵阳液压",
+   "changePct": -9,
+   "anomalyScore": 93.36,
+   "trendScore": 99.33,
+   "signalType": "快速回撤"
   },
   {
    "code": "300803",
    "name": "指南针",
-   "changePct": -18.37,
-   "anomalyScore": 93.01,
-   "trendScore": 10.89,
-   "signalType": "跌停附近"
+   "changePct": 16.64,
+   "anomalyScore": 93.26,
+   "trendScore": 10.88,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "300182",
+   "name": "捷成股份",
+   "changePct": 20,
+   "anomalyScore": 92.33,
+   "trendScore": 64.53,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300911",
+   "name": "亿田智能",
+   "changePct": 9.37,
+   "anomalyScore": 91.7,
+   "trendScore": 19.21,
+   "signalType": "强势拉升"
+  },
+  {
+   "code": "300085",
+   "name": "银之杰",
+   "changePct": 20.02,
+   "anomalyScore": 90.72,
+   "trendScore": 12.16,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301187",
+   "name": "欧圣电气",
+   "changePct": -6.73,
+   "anomalyScore": 90.72,
+   "trendScore": 95.02,
+   "signalType": "换手放大"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-10-30",
+  "date": "2026-11-01",
   "codes": [
    "001219",
    "920306",
