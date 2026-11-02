@@ -1,74 +1,74 @@
 {
  "date": "2026-11-02",
- "generatedAt": "2026-11-02T06:55:17.889Z",
- "limitUpCount": 137,
- "limitDownCount": 14,
- "advancers": 4575,
- "decliners": 920,
+ "generatedAt": "2026-11-02T17:17:36.679Z",
+ "limitUpCount": 141,
+ "limitDownCount": 17,
+ "advancers": 4680,
+ "decliners": 818,
  "items": [
   {
    "code": "001219",
    "name": "青岛食品",
    "changePct": 9.98,
-   "anomalyScore": 96.89,
-   "trendScore": 99.53,
+   "anomalyScore": 97.21,
+   "trendScore": 99.66,
    "signalType": "涨停"
   },
   {
-   "code": "003032",
-   "name": "传智教育",
-   "changePct": -4.92,
-   "anomalyScore": 94.21,
-   "trendScore": 96.84,
-   "signalType": "快速回撤"
+   "code": "600189",
+   "name": "泉阳泉",
+   "changePct": 9.96,
+   "anomalyScore": 96.66,
+   "trendScore": 96.67,
+   "signalType": "涨停"
   },
   {
-   "code": "301079",
-   "name": "邵阳液压",
-   "changePct": -9,
-   "anomalyScore": 93.36,
-   "trendScore": 99.33,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "300803",
-   "name": "指南针",
-   "changePct": 16.64,
-   "anomalyScore": 93.26,
-   "trendScore": 10.88,
+   "code": "002708",
+   "name": "光洋股份",
+   "changePct": 7.99,
+   "anomalyScore": 96.05,
+   "trendScore": 98.84,
    "signalType": "涨停附近"
   },
   {
-   "code": "300182",
-   "name": "捷成股份",
-   "changePct": 20,
-   "anomalyScore": 92.33,
-   "trendScore": 64.53,
+   "code": "000410",
+   "name": "沈阳机床",
+   "changePct": 10.06,
+   "anomalyScore": 95.74,
+   "trendScore": 96.16,
    "signalType": "涨停"
   },
   {
-   "code": "300911",
-   "name": "亿田智能",
-   "changePct": 9.37,
-   "anomalyScore": 91.7,
-   "trendScore": 19.21,
-   "signalType": "强势拉升"
+   "code": "301227",
+   "name": "森鹰窗业",
+   "changePct": -11.86,
+   "anomalyScore": 95.3,
+   "trendScore": 19.85,
+   "signalType": "快速回撤"
   },
   {
-   "code": "300085",
-   "name": "银之杰",
-   "changePct": 20.02,
-   "anomalyScore": 90.72,
-   "trendScore": 12.16,
+   "code": "688095",
+   "name": "福昕软件",
+   "changePct": 16.39,
+   "anomalyScore": 95.21,
+   "trendScore": 85.92,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "600715",
+   "name": "文投控股",
+   "changePct": 9.8,
+   "anomalyScore": 94.91,
+   "trendScore": 97.34,
    "signalType": "涨停"
   },
   {
-   "code": "301187",
-   "name": "欧圣电气",
-   "changePct": -6.73,
-   "anomalyScore": 90.72,
-   "trendScore": 95.02,
-   "signalType": "换手放大"
+   "code": "300533",
+   "name": "冰川网络",
+   "changePct": 13.79,
+   "anomalyScore": 94.9,
+   "trendScore": 95.07,
+   "signalType": "涨停附近"
   }
  ],
  "watch": [],
