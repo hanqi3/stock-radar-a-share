@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T17:01:21.722Z",
+  "generatedAt": "2026-11-02T20:54:13.398Z",
   "providers": [
     {
       "id": "sina-live",
@@ -27,15 +27,1381 @@
       "count": 100
     }
   ],
-  "count": 847,
+  "count": 800,
   "note": "Public policy/market news and exchange announcements, classified at read time by lib/events.js.",
   "items": [
+    {
+      "id": "sina-live-5188284",
+      "title": "伊朗外长：与土库曼斯坦总统和外长会晤后，加强同邻国关系仍是德黑兰的优先事项。",
+      "summary": "伊朗外长：与土库曼斯坦总统和外长会晤后，加强同邻国关系仍是德黑兰的优先事项。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6884737.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:50:11.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919189666",
+      "title": "美国总统特朗普表示 伊朗希望尽快和解",
+      "summary": "美国总统特朗普表示，伊朗希望尽快和解。",
+      "url": "http://finance.eastmoney.com/a/202611033919189666.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T04:49:46.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188283",
+      "title": "美国总统特朗普：油价正大幅下跌，每桶下跌近10美元，创下纪录，因为人们认为不会（再）与伊朗爆发战争。伊朗希望尽快达成解决",
+      "summary": "美国总统特朗普：油价正大幅下跌，每桶下跌近10美元，创下纪录，因为人们认为不会（再）与伊朗爆发战争。伊朗希望尽快达成解决方案。这有可能实现。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6884258.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:47:48.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188282",
+      "title": "特朗普：伊朗希望尽快达成协议。",
+      "summary": "特朗普：伊朗希望尽快达成协议。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0108104.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:47:10.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188281",
+      "title": "美国计划缩减与妊娠相关的职场保护措施。",
+      "summary": "美国计划缩减与妊娠相关的职场保护措施。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6883832.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:45:52.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188280",
+      "title": "美国法官命令特朗普政府停止要求加利福尼亚州选举官员将疑似非公民名单上人员的选票进行隔离区分。",
+      "summary": "美国法官命令特朗普政府停止要求加利福尼亚州选举官员将疑似非公民名单上人员的选票进行隔离区分。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0107365.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:44:26.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188278",
+      "title": "纳指跌1.00%，现报25182.068点；道指涨0.57%，现报52066.230点；标普500指数跌0.38%，现报",
+      "summary": "纳指跌1.00%，现报25182.068点；道指涨0.57%，现报52066.230点；标普500指数跌0.38%，现报7551.490点。",
+      "url": "",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:40:10.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188277",
+      "title": "国际油价2日大幅下跌",
+      "summary": "截至当天收盘，纽约商品交易所12月交货的轻质原油期货价格下跌7.66美元，收于每桶96.46美元，跌幅为7.36%；1月交货的伦敦布伦特原油期货价格下跌8.66美元，收于每桶104.77美元，跌幅为7.63%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6879828.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:35:27.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
+      "id": "sina-live-5188276",
+      "title": "伊朗革命卫队航空航天部队宣布，借助电子战系统在格什姆岛南部击落两架美军MQM-170侦察无人机，该型号无人机的缴获总数已",
+      "summary": "伊朗革命卫队航空航天部队宣布，借助电子战系统在格什姆岛南部击落两架美军MQM-170侦察无人机，该型号无人机的缴获总数已达四架。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8976319.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:30:41.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188275",
+      "title": "达美航空：将对希思罗机场4号航站楼搬迁决定采取补救措施。",
+      "summary": "达美航空：将对希思罗机场4号航站楼搬迁决定采取补救措施。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6878137.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:26:42.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188274",
+      "title": "达美航空：希思罗机场决定将运营业务从维珍大西洋航空迁至4号航站楼，这一决定“令人深感失望”。",
+      "summary": "达美航空：希思罗机场决定将运营业务从维珍大西洋航空迁至4号航站楼，这一决定“令人深感失望”。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0101912.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:25:54.000Z",
+      "codes": [
+        "600558"
+      ]
+    },
+    {
+      "id": "sina-live-5188273",
+      "title": "美国副总统万斯：大约一小时前与特朗普讨论了伊朗问题。",
+      "summary": "美国副总统万斯：大约一小时前与特朗普讨论了伊朗问题。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0101881.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:25:39.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919188691",
+      "title": "美国副总统万斯表示 对伊朗协议的前景感觉很好",
+      "summary": "美国副总统万斯表示，对伊朗协议的前景感觉很好。",
+      "url": "http://finance.eastmoney.com/a/202611033919188691.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T04:25:33.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188271",
+      "title": "美国副总统万斯：我和伊朗人进行过多次富有成效的会谈。",
+      "summary": "美国副总统万斯：我和伊朗人进行过多次富有成效的会谈。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2524636.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:24:44.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188270",
+      "title": "美国副总统万斯就伊朗问题：尚未设定恢复打击的最后期限。",
+      "summary": "美国副总统万斯就伊朗问题：尚未设定恢复打击的最后期限。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0101628.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:24:28.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188269",
+      "title": "美国副总统万斯谈伊朗：已经取得进展，看看能否取得更多进展。",
+      "summary": "美国副总统万斯谈伊朗：已经取得进展，看看能否取得更多进展。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0101515.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:24:04.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188268",
+      "title": "美国副总统万斯：对伊朗核协议的前景感到乐观。",
+      "summary": "美国副总统万斯：对伊朗核协议的前景感到乐观。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8975067.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:23:50.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188266",
+      "title": "马斯克以及特朗普旗下主要超级政治行动委员会，在本次中期选举周期已为共和党投入超7.7亿美元。马斯克出资4.74亿美元，特",
+      "summary": "马斯克以及特朗普旗下主要超级政治行动委员会，在本次中期选举周期已为共和党投入超7.7亿美元。马斯克出资4.74亿美元，特朗普的MAGA申报支出3.005亿美元。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0099832.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:16:25.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188267",
+      "title": "美元指数2日下跌",
+      "summary": "【美元指数2日下跌】衡量美元对六种主要货币的美元指数当天下跌0.16%，在汇市尾市收于101.719。截至纽约汇市尾市，1欧元兑换1.1194美元，高于前一交易日的1.1167美元；1英镑兑换1.3410美元，高于前一交易日的1.3394美元。1美元兑换157.91日元，高于前一交易日的157.37日元。",
+      "url": "http://finance.eastmoney.com/a/202611033919187617.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T04:16:21.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188265",
+      "title": "俄方说卢甘斯克一辆公共汽车遭袭致1死8伤",
+      "summary": "据俄新社2日报道，俄罗斯方面任命的卢甘斯克地区领导人帕谢奇尼克当天在社交媒体发文说，乌克兰武装部队一架无人机袭击了该地区一辆公共汽车，造成1人死亡、8人受伤。（新华社）",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6875043.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:12:18.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
+      "id": "em-kuaixun-202611033919187568",
+      "title": "超300名胡塞武装成员死伤 也门政府军和沙特发起密集打击 涉及多条战线",
+      "summary": "【超300名胡塞武装成员死伤 也门政府军和沙特发起密集打击 涉及多条战线】近期，也门胡塞武装和沙特主导的联军继续互袭攻势。与此同时，胡塞武装与沙特支持的也门政府军在多条战线的交火也日趋激烈。",
+      "url": "http://global.eastmoney.com/a/202611033919187568.html",
+      "source": "东方财富快讯·期货商品",
+      "publishedAt": "2026-11-03T04:12:02.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188264",
+      "title": "南非政府表示，美国仍是重要的贸易和投资伙伴。",
+      "summary": "南非政府表示，美国仍是重要的贸易和投资伙伴。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0097804.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:07:31.000Z",
+      "codes": [
+        "159352"
+      ]
+    },
+    {
+      "id": "sina-live-5188263",
+      "title": "Meta与狮门影业达成合作，将《饥饿游戏》转制为3D版本。",
+      "summary": "Meta与狮门影业达成合作，将《饥饿游戏》转制为3D版本。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2520047.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:06:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188262",
+      "title": "南非政府注意到美国对《非洲增长与机会法案》优惠待遇的撤销，并认识到企业对由此产生的影响感到担忧。",
+      "summary": "南非政府注意到美国对《非洲增长与机会法案》优惠待遇的撤销，并认识到企业对由此产生的影响感到担忧。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6873319.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:05:47.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919187378",
+      "title": "特朗普表示不会在中期选举后对伊朗发动打击",
+      "summary": "特朗普表示不会在中期选举后对伊朗发动打击。",
+      "url": "http://finance.eastmoney.com/a/202611033919187378.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T04:05:11.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188261",
+      "title": "美国财政部上调三季度融资预估至7390亿美元",
+      "summary": "美国财政部上调7至9月发债融资预期至7390亿美元。美国财政部预估，2026年7至9月面向私人部门的可流通国债净融资规模为7390亿美元，假设9月末现金余额为9500亿美元。该融资预估较5月的预测值上调680亿美元，主要原因是净现金流入预期下降。若剔除高于预期的季初现金余额，融资预估较5月预测高出870亿美元。财政部预计2026年10至12月融资规模6280亿美元，假设12月末现金余额为8500亿美元。2026年4至6月，财政部实际融资1900亿美元，此前预估为1890亿美元。财政部6月末现金余额9190亿美元，高于9000亿美元的预期。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0097061.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:04:33.000Z",
+      "codes": [
+        "512890"
+      ]
+    },
+    {
+      "id": "em-kuaixun-202611033919187222",
+      "title": "卡塔尔调解人员再赴德黑兰 将就潜在的美伊协议进行会谈",
+      "summary": "【卡塔尔调解人员再赴德黑兰 将就潜在的美伊协议进行会谈】一位了解会谈情况的官员表示，卡塔尔调解人员当地时间2日晚前往德黑兰，计划与伊朗外交部长阿拉格齐就美伊可能达成的协议进行会谈。消息人士称，在卡塔尔斡旋下，美伊谈判取得突破，相关程序性障碍已得到解决。不过，伊朗方面当天表示，伊美双方仍在通过调解人员交换信息，谈判涉及的问题较为复杂。",
+      "url": "http://finance.eastmoney.com/a/202611033919187222.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T04:04:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188260",
+      "title": "美国总统特朗普：（被问及是否考虑在中期选举之后再次打击伊朗时）不会。",
+      "summary": "美国总统特朗普：（被问及是否考虑在中期选举之后再次打击伊朗时）不会。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6872420.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:01:14.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188259",
+      "title": "美国农业部称，9月份美国大豆压榨量为596万吨（1.988亿蒲式耳）。",
+      "summary": "美国农业部称，9月份美国大豆压榨量为596万吨（1.988亿蒲式耳）。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6872296.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T04:00:36.000Z",
+      "codes": [
+        "012724"
+      ]
+    },
+    {
+      "id": "sina-live-5188258",
+      "title": "消息人士称，埃克森美孚将于11月底关闭得克萨斯州博蒙特炼油厂的流化催化裂化装置进行检修。",
+      "summary": "消息人士称，埃克森美孚将于11月底关闭得克萨斯州博蒙特炼油厂的流化催化裂化装置进行检修。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0095981.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:59:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919186511",
+      "title": "卡塔尔与土耳其两国外长就缓和紧张局势的努力进行了讨论",
+      "summary": "卡塔尔与土耳其两国外长就缓和紧张局势的努力进行了讨论。",
+      "url": "http://finance.eastmoney.com/a/202611033919186511.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T03:57:13.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188257",
+      "title": "乌克兰总统泽连斯基：情报显示，俄罗斯正准备对我国发动新一轮大规模袭击，主要目标是能源和物流设施。其基本判断是，明天全世界",
+      "summary": "乌克兰总统泽连斯基：情报显示，俄罗斯正准备对我国发动新一轮大规模袭击，主要目标是能源和物流设施。其基本判断是，明天全世界将关注美国中期选举，而乌克兰这里发生的一切，以及我们在防空和“爱国者”导弹方面的困难，都会被忽视。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8968861.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:57:11.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188256",
+      "title": "泽连斯基称扎波罗热一居民区遭袭 18人死亡",
+      "summary": "乌克兰总统泽连斯基2日晚在社交媒体发文称，俄军当天对扎波罗热地区科米舒瓦哈居民区发动袭击，造成至少18人死亡。（新华社）",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6871151.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:54:18.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188255",
+      "title": "美国总统特朗普谈伊朗问题：这不算战争，我们几乎没有进行什么战斗。",
+      "summary": "美国总统特朗普谈伊朗问题：这不算战争，我们几乎没有进行什么战斗。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8968327.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:53:56.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188254",
+      "title": "特朗普谈伊朗：一切进展顺利，这就是油价下跌的原因。",
+      "summary": "特朗普谈伊朗：一切进展顺利，这就是油价下跌的原因。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6871027.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:53:28.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188253",
+      "title": "特朗普：伊朗要求停止杀害其领导人，我们会照办。",
+      "summary": "特朗普：伊朗要求停止杀害其领导人，我们会照办。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6870992.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:53:20.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188252",
+      "title": "特朗普：我们和伊朗打过仗，我们赢了。",
+      "summary": "特朗普：我们和伊朗打过仗，我们赢了。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6870879.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:52:40.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188251",
+      "title": "布伦特原油期货结算价为每桶104.77美元，下跌8.66美元，跌幅7.63%。",
+      "summary": "布伦特原油期货结算价为每桶104.77美元，下跌8.66美元，跌幅7.63%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2517500.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:52:25.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188250",
+      "title": "卡塔尔外交部通报，与土耳其外长通电话。",
+      "summary": "卡塔尔外交部通报，与土耳其外长通电话。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8967631.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:48:57.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188249",
+      "title": "卡塔尔与土耳其外长讨论缓和局势的努力。",
+      "summary": "卡塔尔与土耳其外长讨论缓和局势的努力。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0094215.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:48:33.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188248",
+      "title": "德国提议设置汽油、柴油价格上限以帮扶消费者。",
+      "summary": "德国提议设置汽油、柴油价格上限以帮扶消费者。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6869067.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:43:58.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188247",
+      "title": "美国总统特朗普：我们拥有史上安保最严密的边境。我们推出了史上规模最大的减税法案。我们查获了数十亿美元经民主党方面批准产生",
+      "summary": "美国总统特朗普：我们拥有史上安保最严密的边境。我们推出了史上规模最大的减税法案。我们查获了数十亿美元经民主党方面批准产生的欺诈资金。我们捍卫了宪法第二修正案持枪权利，并且我们将始终坚守这一点。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0092324.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:42:14.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188246",
+      "title": "纳斯达克100指数跌幅扩大至1%。",
+      "summary": "纳斯达克100指数跌幅扩大至1%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6868015.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:41:16.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
+      "id": "sina-live-5188245",
+      "title": "费城半导体指数日内跌3%",
+      "summary": "费城半导体指数日内跌3.02%，现报10366.12点。英伟达跌0.69%，博通跌0.76%，美光跌5.50%，英特尔跌8.20%，AMD跌6.66%，高通跌1.04%，台积电跌1.46%，阿斯麦跌2.44%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2514385.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:40:21.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188244",
+      "title": "乌克兰总统泽连斯基：在奥列什卡的人道主义任务之后，本有机会采取新的人道主义措施，但俄罗斯继续杀害人民。",
+      "summary": "乌克兰总统泽连斯基：在奥列什卡的人道主义任务之后，本有机会采取新的人道主义措施，但俄罗斯继续杀害人民。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6867632.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:40:13.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188243",
+      "title": "乌克兰总统泽连斯基：对科米舒瓦哈村的袭击是一次“卑鄙的恐怖袭击”。",
+      "summary": "乌克兰总统泽连斯基：对科米舒瓦哈村的袭击是一次“卑鄙的恐怖袭击”。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8964924.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:40:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188242",
+      "title": "美国总统特朗普：我们将保护我们的孩子免受跨性别性侵害。",
+      "summary": "美国总统特朗普：我们将保护我们的孩子免受跨性别性侵害。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0090720.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:36:39.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188241",
+      "title": "美国总统特朗普：居民个人收入创历史新高，贫困率处于历史低位，美国出口额创下纪录，当前就业人数达到史上最高。美国目前是全球",
+      "summary": "美国总统特朗普：居民个人收入创历史新高，贫困率处于历史低位，美国出口额创下纪录，当前就业人数达到史上最高。美国目前是全球遥遥领先的石油和天然气供应国。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2513012.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:36:12.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188240",
+      "title": "特朗普：“不急于”决定是否重启伊朗战争。",
+      "summary": "特朗普：“不急于”决定是否重启伊朗战争。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8963524.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:35:35.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188239",
+      "title": "非洲金融科技公司OPay突然撤回3.04亿美元的美国IPO计划。",
+      "summary": "非洲金融科技公司OPay突然撤回3.04亿美元的美国IPO计划。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2512792.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:35:04.000Z",
+      "codes": [
+        "930986"
+      ]
+    },
+    {
+      "id": "em-kuaixun-202611033919185323",
+      "title": "旧金山联储研究：厄尔尼诺或加剧美国2027年通胀压力",
+      "summary": "【旧金山联储研究：厄尔尼诺或加剧美国2027年通胀压力】旧金山联储周一发布的一项研究显示，可能导致未来几个月海洋温度创纪录上升的厄尔尼诺现象，或将给美国2027年通胀带来“不可忽视的上行风险”，同时也可能推动就业增长。",
+      "url": "http://futures.eastmoney.com/a/202611033919185323.html",
+      "source": "东方财富快讯·期货商品",
+      "publishedAt": "2026-11-03T03:34:53.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188238",
+      "title": "特朗普：伊朗最近还说他们不会拥有核武器。",
+      "summary": "特朗普：伊朗最近还说他们不会拥有核武器。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6866215.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:33:34.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188237",
+      "title": "美国总统特朗普：我们现在也拥有格陵兰了，我们要感谢丹麦和欧洲让这一切成为可能。",
+      "summary": "美国总统特朗普：我们现在也拥有格陵兰了，我们要感谢丹麦和欧洲让这一切成为可能。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0090032.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:32:57.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188236",
+      "title": "美国总统特朗普：我希望美国人准备好做正确的事。",
+      "summary": "美国总统特朗普：我希望美国人准备好做正确的事。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6866013.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:32:36.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188235",
+      "title": "美国总统特朗普：再说说我们拿下委内瑞拉一事。我们一天之内打赢委内瑞拉的战争，攫取了数千亿美元的石油收益，每天都有石油源源",
+      "summary": "美国总统特朗普：再说说我们拿下委内瑞拉一事。我们一天之内打赢委内瑞拉的战争，攫取了数千亿美元的石油收益，每天都有石油源源不断从委内瑞拉运出。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6865978.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:32:24.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188234",
+      "title": "美国总统特朗普：若我们赢得选举，每位成年人将获得5000美元。这笔钱必须在美国境内消费。",
+      "summary": "美国总统特朗普：若我们赢得选举，每位成年人将获得5000美元。这笔钱必须在美国境内消费。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8962748.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:31:28.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188233",
+      "title": "美国总统特朗普：我们必须保持国会的强大和自由。",
+      "summary": "美国总统特朗普：我们必须保持国会的强大和自由。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0089706.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:31:16.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188232",
+      "title": "美国原油期货结算价为每桶96.46美元，下跌7.66美元，跌幅7.36%。",
+      "summary": "美国原油期货结算价为每桶96.46美元，下跌7.66美元，跌幅7.36%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6865713.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:31:08.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188231",
+      "title": "德国总理默茨表示，欧洲不能将塑造技术的力量拱手让与他人，德国希望与私人投资者共同开发自主的欧洲前沿人工智能模型，以保障自",
+      "summary": "德国总理默茨表示，欧洲不能将塑造技术的力量拱手让与他人，德国希望与私人投资者共同开发自主的欧洲前沿人工智能模型，以保障自身自由的技术基础。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0089520.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:30:14.000Z",
+      "codes": [
+        "159352",
+        "931071",
+        "159363"
+      ]
+    },
+    {
+      "id": "em-kuaixun-202611033919184886",
+      "title": "特朗普：伊朗想达成协议 这有可能发生",
+      "summary": "【特朗普：伊朗想达成协议 这有可能发生】特朗普表示，油价将进一步下跌，因为美国正在伊朗问题上取得胜利。伊朗想达成协议，这有可能发生。伊朗最近还说他们不会拥有核武器。伊朗要求停止杀害其领导人，我们会照办。一切进展顺利，这就是油价下跌的原因。",
+      "url": "http://finance.eastmoney.com/a/202611033919184886.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T03:30:08.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188230",
+      "title": "美国总统特朗普：我们现在拥有格陵兰岛。",
+      "summary": "美国总统特朗普：我们现在拥有格陵兰岛。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2511931.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:30:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188229",
+      "title": "美国总统特朗普：油价今日下跌10美元，为历史上最大单日跌幅。",
+      "summary": "美国总统特朗普：油价今日下跌10美元，为历史上最大单日跌幅。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0089466.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:29:48.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188228",
+      "title": "美国总统特朗普：我们显然正在对伊朗占据上风。",
+      "summary": "美国总统特朗普：我们显然正在对伊朗占据上风。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2511851.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:29:28.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188227",
+      "title": "特朗普：伊朗想要达成协议，这可能会实现。",
+      "summary": "特朗普：伊朗想要达成协议，这可能会实现。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0089351.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:28:51.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188226",
+      "title": "一位知情谈判官员：卡塔尔调解人周一晚些时候前往德黑兰，与伊朗外交部长就潜在的美伊协议进行会谈。",
+      "summary": "一位知情谈判官员：卡塔尔调解人周一晚些时候前往德黑兰，与伊朗外交部长就潜在的美伊协议进行会谈。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6865344.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:28:37.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919184442",
+      "title": "汇丰将GE Vernova的评级上调至“买入” 目标价定为1100美元",
+      "summary": "汇丰将GE Vernova的评级上调至“买入”，目标价定为1100美元。",
+      "url": "http://finance.eastmoney.com/a/202611033919184442.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T03:28:36.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188225",
+      "title": "一位知情谈判官员：正在讨论的是过去八天一直在谈判的美伊协议草案版本。",
+      "summary": "一位知情谈判官员：正在讨论的是过去八天一直在谈判的美伊协议草案版本。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6865292.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:28:22.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188224",
+      "title": "美国总统特朗普：这次选举确实存在舞弊（行为）。",
+      "summary": "美国总统特朗普：这次选举确实存在舞弊（行为）。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6865242.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:28:00.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188223",
+      "title": "特朗普：油价还会进一步下跌，因为我们在伊朗问题上取得了胜利。",
+      "summary": "特朗普：油价还会进一步下跌，因为我们在伊朗问题上取得了胜利。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6865194.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:27:37.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188222",
+      "title": "美国总统特朗普：民主党非常腐败。",
+      "summary": "美国总统特朗普：民主党非常腐败。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6865113.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:26:58.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188221",
+      "title": "美国总统特朗普：如你们所知，明天就是中期选举前的最后一天，我认为这是我们一生中最重要的中期选举。民主党提名了美国历史上最",
+      "summary": "美国总统特朗普：如你们所知，明天就是中期选举前的最后一天，我认为这是我们一生中最重要的中期选举。民主党提名了美国历史上最极端、最危险的候选人名单。这些是有史以来最危险的候选人。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6865006.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:26:05.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188220",
+      "title": "英国准备每年最多支出4.5亿英镑用于欧盟学生学费，前提是布鲁塞尔在其拟议的“欧洲制造”产业计划下给予英国企业同等待遇。",
+      "summary": "英国准备每年最多支出4.5亿英镑用于欧盟学生学费，前提是布鲁塞尔在其拟议的“欧洲制造”产业计划下给予英国企业同等待遇。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0088873.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:25:19.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188219",
+      "title": "美国总统特朗普：我们过去平均每周有三人死于（毒品）。而现在，这种情况已经没有了。",
+      "summary": "美国总统特朗普：我们过去平均每周有三人死于（毒品）。而现在，这种情况已经没有了。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0088834.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:25:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919183940",
+      "title": "美国最高法院将苹果与Epic Games纠纷的口头辩论日期定在1月11日",
+      "summary": "美国最高法院将苹果与Epic Games纠纷的口头辩论日期定在1月11日。",
+      "url": "http://finance.eastmoney.com/a/202611033919183940.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T03:22:59.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188218",
+      "title": "英国海上贸易行动办公室：2026年11月1日协调世界时20时20分，一艘船只在阿曼利马东北方向9海里处被不明发射物击中。",
+      "summary": "英国海上贸易行动办公室：2026年11月1日协调世界时20时20分，一艘船只在阿曼利马东北方向9海里处被不明发射物击中。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0088508.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:22:54.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188217",
+      "title": "伊朗议员莫赫森·赞加内：在战争带来的经济压力下，过去一年伊朗生产成本大幅上升，生产者通胀率超过消费者通胀率。",
+      "summary": "伊朗议员莫赫森·赞加内：在战争带来的经济压力下，过去一年伊朗生产成本大幅上升，生产者通胀率超过消费者通胀率。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8961624.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:22:31.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188216",
+      "title": "美国总统特朗普：我们整个国家都在蓬勃发展，我们正以史无前例的势头蓬勃发展。",
+      "summary": "美国总统特朗普：我们整个国家都在蓬勃发展，我们正以史无前例的势头蓬勃发展。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6864277.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:21:03.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188215",
+      "title": "特朗普称赞Scotts Miracle-Gro公司捐赠草坪草皮。",
+      "summary": "特朗普称赞Scotts Miracle-Gro公司捐赠草坪草皮。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2510797.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:20:42.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188214",
+      "title": "标普500指数转跌，抹去了此前1.1%的涨幅。",
+      "summary": "标普500指数转跌，抹去了此前1.1%的涨幅。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0088175.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:20:31.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188213",
+      "title": "特朗普在华盛顿国家广场的倒影池边发表讲话。",
+      "summary": "特朗普在华盛顿国家广场的倒影池边发表讲话。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6864137.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:20:13.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188212",
+      "title": "纳斯达克100指数跌幅扩大至0.5%。",
+      "summary": "纳斯达克100指数跌幅扩大至0.5%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2510559.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:19:03.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188211",
+      "title": "美股网络安全公司SentinelOne将与Anthropic的Claude Cowork实现对接。",
+      "summary": "美股网络安全公司SentinelOne将与Anthropic的Claude Cowork实现对接。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsi0087886.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:18:58.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188210",
+      "title": "中国品牌占挪威10月新乘用车注册量22.5% 创单月新高",
+      "summary": "挪威公路联合会2日发布数据显示，中国品牌汽车占挪威10月新乘用车注册量的22.5%，创单月新高。该机构数据显示，10月中国品牌新乘用车注册量为3534辆，去年同期为1879辆。中国品牌当月在挪威新乘用车注册量中的占比达22.5%，超过7月创下的22.1%的纪录。（新华社）",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6863797.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:18:07.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188209",
+      "title": "美国最高法院确定苹果与Epic纠纷一案于1月11日进行口头辩论。",
+      "summary": "美国最高法院确定苹果与Epic纠纷一案于1月11日进行口头辩论。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6863732.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:17:30.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188206",
+      "title": "伊朗最高领袖：无论谁当选，无论是这一位还是那一位，有一件事非常清楚，美国体系在政治、公民和道德层面正在衰落。",
+      "summary": "伊朗最高领袖：无论谁当选，无论是这一位还是那一位，有一件事非常清楚，美国体系在政治、公民和道德层面正在衰落。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2510060.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:15:20.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188205",
+      "title": "Robinhood首席财务官：正继续与美国证券交易委员会（SEC）就KPI相关产品以及IPO市场事宜开展沟通。",
+      "summary": "Robinhood首席财务官：正继续与美国证券交易委员会（SEC）就KPI相关产品以及IPO市场事宜开展沟通。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6863338.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:14:47.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188204",
+      "title": "Robinhood首席财务官：对执政党派持中立态度，由本届政府主导相关事务。",
+      "summary": "Robinhood首席财务官：对执政党派持中立态度，由本届政府主导相关事务。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsn2509970.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:14:26.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188203",
+      "title": "Robotaxi：全新Cybercab系列周边现已登陆特斯拉线上商店。",
+      "summary": "Robotaxi：全新Cybercab系列周边现已登陆特斯拉线上商店。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsp8960484.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:13:35.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919183662",
+      "title": "美国制造业加速扩张 生产指标创2021年以来新高",
+      "summary": "【美国制造业加速扩张 生产指标创2021年以来新高】美国供应管理学会(ISM)制造业指数10月上升1点至55.5，为逾四年来第二高水平。这一数据高于调查中的几乎所有经济学家预期。读数高于50表明制造业处于扩张状态。周一公布的数据显示，生产指标创2021年底以来最高水平。反映需求的新订单指标升至7月以来最高，并继续稳居扩张区间。",
+      "url": "http://finance.eastmoney.com/a/202611033919183662.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T03:12:55.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188202",
+      "title": "伊朗外长表示，与美国的协议完全取决于华盛顿的“政治智慧”。",
+      "summary": "伊朗外长表示，与美国的协议完全取决于华盛顿的“政治智慧”。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6862736.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:11:15.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188201",
+      "title": "Robinhood首席财务官：只要是受监管的产品，Robinhood就应当上线提供。",
+      "summary": "Robinhood首席财务官：只要是受监管的产品，Robinhood就应当上线提供。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkvsk6862679.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:11:02.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188200",
+      "title": "Robinhood首席财务官：预测市场活动中30%与体育无关。",
+      "summary": "Robinhood首席财务官：预测市场活动中30%与体育无关。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkn6993157.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:09:03.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188199",
+      "title": "千禧年从两个外部对冲基金撤资超过15亿美元。",
+      "summary": "千禧年从两个外部对冲基金撤资超过15亿美元。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2639911.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:08:31.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188198",
+      "title": "Robinhood首席财务官：约20万人拥有代理式交易账户。",
+      "summary": "Robinhood首席财务官：约20万人拥有代理式交易账户。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0217021.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:08:17.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188197",
+      "title": "Robinhood首席财务官：企业封禁Muse及其他代理工具是短视之举。",
+      "summary": "Robinhood首席财务官：企业封禁Muse及其他代理工具是短视之举。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0216905.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:07:27.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188196",
+      "title": "Robinhood首席财务官：个人智能代理应当支持接入Robinhood。",
+      "summary": "Robinhood首席财务官：个人智能代理应当支持接入Robinhood。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkn6992873.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:07:07.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188195",
+      "title": "美国法官驳回了特朗普政府针对哈佛大学的诉讼，该诉讼旨在获取与种族相关的招生记录。",
+      "summary": "美国法官驳回了特朗普政府针对哈佛大学的诉讼，该诉讼旨在获取与种族相关的招生记录。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2639666.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:06:42.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188194",
+      "title": "伊朗与美国的信息交流没有新进展",
+      "summary": "知情人士表示，伊朗与美国通过中间方进行“例行”信息交换，并且“在这方面没有出现新的进展”。在美国满足伊朗提出的条件之前，（伊朗）不会采取新的行动或步骤。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkn6992752.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:06:37.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188193",
+      "title": "Robinhood首席财务官：银行应考虑在IPO中配置较大比例的散户额度。",
+      "summary": "Robinhood首席财务官：银行应考虑在IPO中配置较大比例的散户额度。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0216510.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:05:44.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188192",
+      "title": "Robinhood首席财务官：散户资金已经入场，并且对科技板块持乐观态度。",
+      "summary": "Robinhood首席财务官：散户资金已经入场，并且对科技板块持乐观态度。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0216381.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:05:22.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188191",
+      "title": "Robinhood首席财务官：散户配售比例最终由银行决定。",
+      "summary": "Robinhood首席财务官：散户配售比例最终由银行决定。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2639063.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:03:45.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188190",
+      "title": "美国钢铁工人联合会：新协议期限为四年，将为泰勒斯公司工人提供总计12.25%的工资涨幅。",
+      "summary": "美国钢铁工人联合会：新协议期限为四年，将为泰勒斯公司工人提供总计12.25%的工资涨幅。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkn6992032.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:03:31.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188189",
+      "title": "Robinhood首席财务官：Anthropic的IPO将成为市场的风向标。",
+      "summary": "Robinhood首席财务官：Anthropic的IPO将成为市场的风向标。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0215884.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:03:13.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919183310",
+      "title": "纳指转跌 此前曾涨超1%",
+      "summary": "纳指转跌，此前曾涨超1%。",
+      "url": "http://finance.eastmoney.com/a/202611033919183310.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T03:00:53.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188188",
+      "title": "纳指转跌。",
+      "summary": "纳指转跌。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkn6991202.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:00:33.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188187",
+      "title": "费城半导体指数日内跌2%",
+      "summary": "费城半导体指数日内跌2.01%，现报10474.20点。英伟达涨0.33%，博通涨0.16%，美光跌4.92%，英特尔跌7.01%，AMD跌5.50%，高通涨0.05%，台积电跌0.97%，阿斯麦跌1.26%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0215107.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:00:21.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188186",
+      "title": "恒指期货夜盘收涨0.78%，报23537.48点，高水144.16点。",
+      "summary": "恒指期货夜盘收涨0.78%，报23537.48点，高水144.16点。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2638133.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T03:00:02.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188185",
+      "title": "美国总统特朗普抵达倒影池，将在选举日前发表讲话。",
+      "summary": "美国总统特朗普抵达倒影池，将在选举日前发表讲话。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2637953.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T02:58:38.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919183152",
+      "title": "据报道 伊朗与美国之间的信息交流没有新进展",
+      "summary": "据报道，伊朗与美国之间的信息交流没有新进展。",
+      "url": "http://finance.eastmoney.com/a/202611033919183152.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:56:07.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188184",
+      "title": "伊朗第一副总统穆罕默德・礼萨・阿雷夫周一称，美国通过斡旋方传递给德黑兰的信息表明，美方已经承认伊朗在这场战争中取得 “胜",
+      "summary": "伊朗第一副总统穆罕默德・礼萨・阿雷夫周一称，美国通过斡旋方传递给德黑兰的信息表明，美方已经承认伊朗在这场战争中取得 “胜利”。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2636937.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T02:52:53.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188183",
+      "title": "英国海上贸易行动办公室（UKMTO）称，11月1日一艘船只在阿曼附近被炮弹击中。",
+      "summary": "英国海上贸易行动办公室（UKMTO）称，11月1日一艘船只在阿曼附近被炮弹击中。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0213193.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T02:50:52.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919182994",
+      "title": "马克·沃尔特据悉正考虑以约30亿美元的估值出售其F1凯迪拉克车队的部分股权",
+      "summary": "马克·沃尔特据悉正考虑以约30亿美元的估值出售其F1凯迪拉克车队的部分股权。",
+      "url": "http://finance.eastmoney.com/a/202611033919182994.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:49:43.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188182",
+      "title": "市场消息：马克・沃尔特正考虑以 30 亿美元估值出售旗下凯迪拉克 F1 车队股权。",
+      "summary": "市场消息：马克・沃尔特正考虑以 30 亿美元估值出售旗下凯迪拉克 F1 车队股权。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkr9086929.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-03T02:49:24.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919182357",
+      "title": "甲骨文规模100亿美元的股票发售据悉获得了超额认购",
+      "summary": "甲骨文规模100亿美元的股票发售据悉获得了超额认购。",
+      "url": "http://finance.eastmoney.com/a/202611033919182357.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:44:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188180",
+      "title": "伊朗法尔斯通讯社援引知情消息人士：美伊通过中间人传递信息属于常态，相关方面并无新进展。该消息人士强调，在美国满足伊朗提出",
+      "summary": "伊朗法尔斯通讯社援引知情消息人士：美伊通过中间人传递信息属于常态，相关方面并无新进展。该消息人士强调，在美国满足伊朗提出的七项条件之前，绝不会出现新动向或新行动；并明确霍尔木兹海峡处于伊朗完全军事管控之下，没有美国船只敢于靠近海峡数百公里范围以内。",
+      "url": "",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:40:25.000Z",
+      "codes": [
+        "873021"
+      ]
+    },
+    {
+      "id": "sina-live-5188207",
+      "title": "国际海事组织：仍不建议船舶在霍尔木兹海峡航行",
+      "summary": "国际海事组织秘书长多明格斯2日在伦敦表示，该组织无法确认霍尔木兹海峡分道通航制水域内水雷是否已被清除，船舶通行安全没有保障，仍不建议船舶在该海峡航行。 近期，伊朗方面多次宣称，有船舶因驶入“未经授权”的航线而触雷。美军中央司令部则公开否认有关触雷说法，并称已清除霍尔木兹海峡国际航道内的水雷。 多明格斯2日在国际海事组织总部举行的记者会上回答新华社记者有关水雷威胁的提问时说：“我没有收到任何关于分道通航制水域内水雷已被清除的确认信息……这也是我们不建议任何人尝试通行霍尔木兹海峡的原因。我一直呼吁船舶避开那里。” 多明格斯还说，近期发生多起船舶被击中事件，但因冲突期间难以开展调查，其中部分事件尚无法确定究竟由水雷、无人机还是导弹造成。他提醒，在霍尔木兹海峡航行“并不安全”。 多明格斯说，国际海事组织10月在霍尔木兹海峡及周边海域记录约30起袭船事件，当月是该组织记录的袭船事件最多的月份之一，部分事件还造成溢油或其他污染。目前近400艘船舶、共计约6000名海员滞留海湾地区。国际海事组织正与地区国家、国际运输工人联合会等协调，为海员提供物资、医疗及联络家属等方面支持。(新华社)",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0209829.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:39:08.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
+      "id": "em-kuaixun-202611033919181360",
+      "title": "也门胡塞武装称袭击沙特达曼机场",
+      "summary": "【也门胡塞武装称袭击沙特达曼机场】当地时间2日晚间，也门胡塞武装发表声明称，该组织在过去48小时内分两轮使用无人机袭击沙特阿拉伯达曼机场，并称袭击成功，导致机场航空交通运行中断。",
+      "url": "http://finance.eastmoney.com/a/202611033919181360.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:35:08.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188178",
+      "title": "以色列总理内塔尼亚胡：我们希望与己方盟友，以及任何不支持恐怖主义、愿意加入的政党组建广泛联合政府。",
+      "summary": "以色列总理内塔尼亚胡：我们希望与己方盟友，以及任何不支持恐怖主义、愿意加入的政党组建广泛联合政府。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0208300.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:34:50.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919180932",
+      "title": "上期所原油期货2612合约夜盘收跌8.62% 沪金夜盘收涨1.18%",
+      "summary": "上期所原油期货2612合约夜盘收跌8.62%，报681元人民币/桶。沪金夜盘收涨1.18%，沪银收涨3.41%。",
+      "url": "http://finance.eastmoney.com/a/202611033919180932.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:33:40.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188176",
+      "title": "美国民主党联邦参议员达克沃思要求美国联邦航空管理局（FAA）与国防部就空军一号飞越白宫一事作出说明。",
+      "summary": "美国民主党联邦参议员达克沃思要求美国联邦航空管理局（FAA）与国防部就空军一号飞越白宫一事作出说明。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkn6982313.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:26:23.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919180276",
+      "title": "美联储隔夜逆回购协议周一使用规模为50.87亿美元（交易对手6家） 上个交易日报43.75亿美元",
+      "summary": "美联储隔夜逆回购协议（RRP）周一使用规模为50.87亿美元（交易对手6家），上个交易日报43.75亿美元。",
+      "url": "http://forex.eastmoney.com/a/202611033919180276.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:25:08.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188175",
+      "title": "哈萨克斯坦与俄罗斯一条输油管道因俄境内设施遭袭停运",
+      "summary": "总台记者11月2日获悉，哈萨克斯坦能源部当天表示，连接哈萨克斯坦阿特劳市与俄罗斯萨马拉市的输油管道已暂停输油。哈萨克斯坦能源部称，当天凌晨，位于俄罗斯境内的萨马拉生产调度枢纽遭无人机袭击，导致该管道暂停运行。目前，相关部门正在评估受损设施状况，预计输油将于近期恢复。哈萨克斯坦能源部表示，目前局势可控。（央视新闻）",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0205587.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:23:01.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
+      "id": "em-kuaixun-202611033919179132",
+      "title": "运价支撑业绩弹性 航运业景气度上行",
+      "summary": "【运价支撑业绩弹性 航运业景气度上行】上市航运企业三季报显示，油运市场在地缘、供需、贸易格局等多重因素推动下走出超级行情，干散货、特种船、集装箱运输等多条主线同步迎来景气上行，运价成为拉动利润的重要因素，多家头部企业净利润实现数倍增长，航运板块业绩弹性充分释放。",
+      "url": "http://finance.eastmoney.com/a/202611033919179132.html",
+      "source": "东方财富快讯·期货商品",
+      "publishedAt": "2026-11-03T02:17:24.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919178349",
+      "title": "从“七日”到“两日” 霍尔木兹海峡能否恢复和平",
+      "summary": "【从“七日”到“两日” 霍尔木兹海峡能否恢复和平】伊朗外交部发言人巴加埃2日就地区局势、伊美关系等举行新闻发布会。巴加埃说，当前伊美间接互动的基础是伊朗此前提出的“七日计划”，即如果伊朗的条件得到满足，霍尔木兹海峡将在第七天前开放并恢复伊美谈判。但伊朗本着建设性做法，简化了这一机制，如果伊朗的合理要求得到美方执行，那么整个计划可以简化到两天时间，即第一天，美国将采取一系列履约措施；第二天，霍尔木兹海峡将开放，海峡交通将恢复到之前的状态。",
+      "url": "http://futures.eastmoney.com/a/202611033919178349.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:17:16.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919179888",
+      "title": "“第二张收入表”改写电力公司利润结构",
+      "summary": "【“第二张收入表”改写电力公司利润结构】电力行业2026年三季报释放出一个值得关注的行业信号：部分发电企业发电量下滑，但盈利底盘依旧稳固。背后是一套全新的收益来源——容量电价。不同于传统卖电收入，它不按照实际发电量结算，而是为机组“需要时能够顶上去”的备用能力付费，即便机组少发电，也可以拿到相应补偿。这份“第二张收入表”正在重塑电力企业的盈利逻辑。",
+      "url": "http://finance.eastmoney.com/a/202611033919179888.html",
+      "source": "东方财富快讯·期货商品",
+      "publishedAt": "2026-11-03T02:17:00.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188174",
+      "title": "周一（11月2日），美联储隔夜逆回购协议（RRP）使用规模为50.87亿美元（交易对手6家），上个交易日报43.75亿美",
+      "summary": "周一（11月2日），美联储隔夜逆回购协议（RRP）使用规模为50.87亿美元（交易对手6家），上个交易日报43.75亿美元。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0204135.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:16:33.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919178215",
+      "title": "美国10年期国债收益率跌至9月10日以来的最低水平 报4.871%",
+      "summary": "美国10年期国债收益率跌至9月10日以来的最低水平，报4.871%。",
+      "url": "http://bond.eastmoney.com/a/202611033919178215.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:12:38.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919179966",
+      "title": "伊朗军方组首支“为伊朗捐躯”旅 动员超2410万人 总统外长释放对话信号",
+      "summary": "【伊朗军方组首支“为伊朗捐躯”旅 动员超2410万人 总统外长释放对话信号】据央视新闻报道，伊朗方面2日消息，伊朗外长阿拉格齐在接受采访时说，通过调解方卡塔尔和巴基斯坦进行的伊美间接磋商“非常密集”，伊方已提出自己的条件。",
+      "url": "http://global.eastmoney.com/a/202611033919179966.html",
+      "source": "东方财富快讯·期货商品",
+      "publishedAt": "2026-11-03T02:11:28.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188173",
+      "title": "美国国债收益率跌至9月10日以来最低水平；10年期美国国债收益率最新下跌5.76个基点，报4.871%。",
+      "summary": "美国国债收益率跌至9月10日以来最低水平；10年期美国国债收益率最新下跌5.76个基点，报4.871%。",
+      "url": "",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:10:38.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188171",
+      "title": "中东能源与OPEC+洞察负责人Bakr：外交消息人士向Al-Jadeed透露，在卡塔尔斡旋成功克服程序性障碍后，美伊谈判",
+      "summary": "中东能源与OPEC+洞察负责人Bakr：外交消息人士向Al-Jadeed透露，在卡塔尔斡旋成功克服程序性障碍后，美伊谈判取得突破。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0201687.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:07:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919178145",
+      "title": "Anthropic计划通过RetailBook平台推出英国散户IPO",
+      "summary": "Anthropic计划通过RetailBook平台推出英国散户IPO。",
+      "url": "http://finance.eastmoney.com/a/202611033919178145.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T02:06:17.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188169",
+      "title": "乌克兰紧急服务部门称，俄罗斯对东南部村庄科米舒瓦哈的袭击已造成24人死亡。",
+      "summary": "乌克兰紧急服务部门称，俄罗斯对东南部村庄科米舒瓦哈的袭击已造成24人死亡。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2622640.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T02:00:37.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919177383",
+      "title": "美国30年期国债收益率跌至9月9日以来的最低水平 跌幅达6.57个基点 报5.243%",
+      "summary": "美国30年期国债收益率跌至9月9日以来的最低水平，跌幅达6.57个基点，报5.243%。",
+      "url": "http://bond.eastmoney.com/a/202611033919177383.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T01:59:22.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188168",
+      "title": "30年期美国国债收益率跌至9月9日以来最低水平，下跌6.57个基点，至5.243%。",
+      "summary": "30年期美国国债收益率跌至9月9日以来最低水平，下跌6.57个基点，至5.243%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkr9072940.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T01:58:54.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919177263",
+      "title": "LME期铜收涨190美元",
+      "summary": "【LME期铜收涨190美元】LME期铜收涨190美元，报14345美元/吨。LME期铝收涨25美元，报3094美元/吨。LME期锌收涨50美元，报3892美元/吨。LME期铅收跌4美元，报1906美元/吨。LME期镍收涨285美元，报15556美元/吨。LME期锡收涨786美元，报49659美元/吨。LME期钴收涨15美元，报33525美元/吨。",
+      "url": "http://futures.eastmoney.com/a/202611033919177263.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T01:56:34.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919177093",
+      "title": "布油期货跌幅扩大至8%",
+      "summary": "【布油期货跌幅扩大至8%】国际油价持续走低，WTI原油期货价格跌7.73%，报96.076美元/桶；布伦特原油期货价格跌8.23%，报104.098美元/桶。",
+      "url": "http://finance.eastmoney.com/a/202611033919177093.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T01:52:55.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919176812",
+      "title": "迈威尔科技跌幅扩大至10% 触及盘中低点",
+      "summary": "迈威尔科技跌幅扩大至10%，触及盘中低点。",
+      "url": "http://finance.eastmoney.com/a/202611033919176812.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T01:49:18.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188160",
+      "title": "纳斯达克100指数转跌，回吐此前1.3%的涨幅。",
+      "summary": "纳斯达克100指数转跌，回吐此前1.3%的涨幅。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkn6972984.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T01:46:12.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919176054",
+      "title": "Meta据悉计划通过美元和欧元债券发行筹集至少200亿美元",
+      "summary": "Meta据悉计划通过美元和欧元债券发行筹集至少200亿美元。",
+      "url": "http://bond.eastmoney.com/a/202611033919176054.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T01:39:52.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188157",
+      "title": "乌克兰总理：与欧盟扩大事务专员进行了磋商，探讨如何加快落实欧盟入盟谈判设定的阶段性基准要求，并推动剩余谈判议题集群开启谈",
+      "summary": "乌克兰总理：与欧盟扩大事务专员进行了磋商，探讨如何加快落实欧盟入盟谈判设定的阶段性基准要求，并推动剩余谈判议题集群开启谈判。欧盟委员会的年度《扩大政策报告》预计将于本周发布。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2617658.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T01:37:30.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188156",
+      "title": "泽连斯基称俄军空袭人道援助点 已致18人死亡",
+      "summary": "乌克兰总统泽连斯基通报，俄军当天上午对扎波罗热州科米舒瓦哈镇发动多轮航空炸弹袭击，一处用于发放人道主义物资的学校和平民避难掩体被击中。截至通报发布，袭击已造成18人死亡、5人受伤，现场搜救工作仍在进行。泽连斯基表示，这所学校长期作为人道物资发放点，当地居民每周都会前往领取援助物资。首轮轰炸之后，俄军又投下9枚航空炸弹，袭击平民避难场所。 (央视新闻)",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0194291.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T01:36:29.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
+      "id": "em-kuaixun-202611033919174682",
+      "title": "Snap在洛杉矶社交媒体危害审判进行期间与两名青少年原告达成了和解",
+      "summary": "Snap在洛杉矶社交媒体危害审判进行期间与两名青少年原告达成了和解。",
+      "url": "http://finance.eastmoney.com/a/202611033919174682.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T01:31:59.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188155",
+      "title": "市场消息：以色列选举委员会主席拒绝了利库德集团的诉求，选举结果将按原定日期公布。",
+      "summary": "市场消息：以色列选举委员会主席拒绝了利库德集团的诉求，选举结果将按原定日期公布。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkq2614731.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T01:26:17.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919175440",
+      "title": "10月份车市分化明显 新能源与出口成主要增量",
+      "summary": "【10月份车市分化明显 新能源与出口成主要增量】日前，多家车企陆续披露10月产销数据，市场表现进一步分化。",
+      "url": "http://finance.eastmoney.com/a/202611033919175440.html",
+      "source": "东方财富快讯·期货商品",
+      "publishedAt": "2026-11-03T01:26:00.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919175257",
+      "title": "国际金价走弱 金饰消费活跃",
+      "summary": "【国际金价走弱 金饰消费活跃】近期，国际金价大幅下降，伦敦金现货价格在10月31日创下一年来新低，盘中最低触及3869.96美元/盎司。万得数据显示，截至11月2日17时，现货黄金报3898.31美元/盎司，较今年1月29日5598.75美元/盎司的历史高点回落30.37%。",
+      "url": "http://forex.eastmoney.com/a/202611033919175257.html",
+      "source": "东方财富快讯·期货商品",
+      "publishedAt": "2026-11-03T01:17:00.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919173984",
+      "title": "意大利交通部表示：特斯拉今年1月至10月在意大利的新车注册量同比增长20.69%",
+      "summary": "意大利交通部表示，特斯拉今年1月至10月在意大利的新车注册量同比增长20.69%。",
+      "url": "http://finance.eastmoney.com/a/202611033919173984.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T01:16:16.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188150",
+      "title": "美国国务卿鲁比奥会见委内瑞拉外长。",
+      "summary": "美国国务卿鲁比奥会见委内瑞拉外长。",
+      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0188225.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-03T01:08:59.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611033919173219",
+      "title": "不锈钢夜盘收涨2.78%",
+      "summary": "【不锈钢夜盘收涨2.78%】国际铜夜盘收涨0.82%，沪铜收涨0.73%，沪铝收涨0.26%，沪锌收涨0.9%，沪铅收跌0.99%，沪镍收涨1.23%，沪锡收涨1.2%。氧化铝夜盘收涨0.61%，铝合金收涨0.57%。不锈钢夜盘收涨2.78%。",
+      "url": "http://futures.eastmoney.com/a/202611033919173219.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T01:03:15.000Z",
+      "codes": []
+    },
     {
       "id": "sina-live-5188144",
       "title": "美国贸易代表格里尔：美国总统特朗普认定卢旺达和南非政府正在采取不符合《非洲增长与机会法案》资格标准的行为。",
       "summary": "美国贸易代表格里尔：美国总统特朗普认定卢旺达和南非政府正在采取不符合《非洲增长与机会法案》资格标准的行为。",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkm0184577.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-03T00:53:42.000Z",
       "codes": []
     },
@@ -44,7 +1410,7 @@
       "title": "美国贸易代表办公室发表声明称，其打算根据《非洲增长与机会法案》，暂停南非和卢旺达对美国市场的免税准入资格。",
       "summary": "美国贸易代表办公室发表声明称，其打算根据《非洲增长与机会法案》，暂停南非和卢旺达对美国市场的免税准入资格。",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkrkn6960570.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-03T00:53:30.000Z",
       "codes": []
     },
@@ -58,21 +1424,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188142",
-      "title": "意大利10年期国债收益率跌约9个基点",
-      "summary": "周一（11月2日）欧市尾盘，法国10年期国债收益率跌6.9个基点，报4.903%；两年期法债收益率跌3.8个基点，30年期法债收益率跌3.2个基点。意大利10年期国债收益率跌8.8个基点，报4.425%，整体持续震荡下行。西班牙10年期国债收益率跌5.0个基点，报3.898%。希腊10年期国债收益率跌6.1个基点，报4.245%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmaq7090618.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:50:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188141",
-      "title": "Snap公司敲定和解方案，以避免洛杉矶这场成瘾相关指控的庭审。Snap股价升至盘中高点，涨幅超过4%。",
-      "summary": "Snap公司敲定和解方案，以避免洛杉矶这场成瘾相关指控的庭审。Snap股价升至盘中高点，涨幅超过4%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmat9189526.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:50:18.000Z",
+      "id": "em-kuaixun-202611033919170931",
+      "title": "沙特联军称拦截一枚胡塞武装发射的弹道导弹",
+      "summary": "【沙特联军称拦截一枚胡塞武装发射的弹道导弹】当地时间3日，沙特阿拉伯主导的多国联军发言人图尔基·马利基表示，防空部队拦截并摧毁了一枚胡塞武装向南部地区发射的弹道导弹。",
+      "url": "http://futures.eastmoney.com/a/202611033919170931.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-03T00:48:03.000Z",
       "codes": []
     },
     {
@@ -85,69 +1442,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188140",
-      "title": "葡萄牙汽车协会（ACAP）数据显示，10月特斯拉汽车在葡萄牙的新注册量同比增长186.1%，1至10月增长62.5%。",
-      "summary": "葡萄牙汽车协会（ACAP）数据显示，10月特斯拉汽车在葡萄牙的新注册量同比增长186.1%，1至10月增长62.5%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0312913.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:43:50.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188139",
-      "title": "沙特联军称拦截一枚胡塞武装发射的弹道导弹",
-      "summary": "当地时间3日，沙特阿拉伯主导的多国联军发言人图尔基·马利基表示，防空部队拦截并摧毁了一枚胡塞武装向南部地区发射的弹道导弹。（央视新闻）",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0312882.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:43:37.000Z",
-      "codes": [],
-      "alsoIn": [
-        "东方财富快讯"
-      ]
-    },
-    {
       "id": "em-kuaixun-202611033919170711",
       "title": "欧洲主要股指收盘集体上涨",
       "summary": "【欧洲主要股指收盘集体上涨】英国富时100指数涨0.29%，法国CAC40指数涨0.98%，德国DAX30指数涨0.64%，富时意大利MIB指数涨0.90%。",
       "url": "http://stock.eastmoney.com/a/202611033919170711.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-03T00:41:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188138",
-      "title": "上海原油连续主力合约日内跌8%，现报685.40元。",
-      "summary": "上海原油连续主力合约日内跌8%，现报685.40元。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmat9187837.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:41:40.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188137",
-      "title": "英国公布移民制度改革方案 部分永久居留申请收紧",
-      "summary": "当地时间11月2日，英国政府公布移民制度全面改革方案，将大多数合法移民申请永久居留权的标准居住年限由目前的5年延长至10年，部分移民可能面临更长的等待期。根据新方案，英国政府将实行以个人贡献为基础的永久居留制度。高收入移民最快可在3年后获得永久居留资格，而通过小船穿越英吉利海峡抵达英国的移民将面临更加严格的限制。此前，英国政府计划将部分医疗和社会护理行业外籍工作者的永久居留申请年限延长至10年甚至15年，但这一提议遭到工会及执政党工党内部部分议员的强烈反对。经过调整，英国政府决定将部分医疗和护理行业工作者的标准申请年限维持在5年。此次改革是英国政府在脱欧后移民人数大幅增加的背景下，进一步收紧移民政策的最新举措。（央视新闻）",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmat9187671.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:41:04.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188136",
-      "title": "纽约期金突破3980美元/盎司，日内涨2.08%。",
-      "summary": "纽约期金突破3980美元/盎司，日内涨2.08%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0310639.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:36:57.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188134",
-      "title": "布伦特原油失守105美元/桶，日内跌7.43%。",
-      "summary": "布伦特原油失守105美元/桶，日内跌7.43%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0309888.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:35:26.000Z",
       "codes": []
     },
     {
@@ -160,53 +1460,24 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188133",
-      "title": "秘鲁安卡什大区发生5.0级地震",
-      "summary": "据秘鲁地球物理研究所消息，当地时间11月2日上午10时28分，秘鲁安卡什大区瓦尔梅伊省发生5.0级地震，震中位于瓦尔梅伊以西73公里处，震源深度30公里。部分居民在室内感受到明显震感，目前暂无人员伤亡报告。（央视新闻）",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0308675.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:33:09.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5188132",
       "title": "美国财政部拍卖三个月期国债，得标利率4.040%，投标倍数2.88。拍卖六个月期国债，得标利率4.150%，投标倍数2.",
       "summary": "美国财政部拍卖三个月期国债，得标利率4.040%，投标倍数2.88。拍卖六个月期国债，得标利率4.150%，投标倍数2.89。",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmaq7084387.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-03T00:32:22.000Z",
       "codes": []
-    },
-    {
-      "id": "sina-live-5188131",
-      "title": "德国DAX 30指数初步收涨0.67%，报25988.47点。法国股指初步收涨1%，意大利股指初步收涨1.05%、银行指",
-      "summary": "德国DAX 30指数初步收涨0.67%，报25988.47点。法国股指初步收涨1%，意大利股指初步收涨1.05%、银行指数涨1.85%，英国股指初步收涨0.39%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmaq7083970.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:31:06.000Z",
-      "codes": [
-        "159352"
-      ]
     },
     {
       "id": "sina-live-5188130",
       "title": "欧洲STOXX 600指数初步收涨0.50%，报649.99点。欧元区STOXX 50指数初步收涨0.84%，报6182",
       "summary": "欧洲STOXX 600指数初步收涨0.50%，报649.99点。欧元区STOXX 50指数初步收涨0.84%，报6182.70点。富时泛欧绩优300指数初步收涨0.51%，报2591.58点。",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0307938.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-03T00:31:04.000Z",
       "codes": [
         "159352"
       ]
-    },
-    {
-      "id": "sina-live-5188129",
-      "title": "纽约期金日内涨2%，现报3976.90美元/盎司。",
-      "summary": "纽约期金日内涨2%，现报3976.90美元/盎司。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmat9183710.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:30:32.000Z",
-      "codes": []
     },
     {
       "id": "em-kuaixun-202611033919169597",
@@ -222,7 +1493,7 @@
       "title": "欧洲天然气价格一度下跌10%，至每兆瓦时93.55欧元。",
       "summary": "欧洲天然气价格一度下跌10%，至每兆瓦时93.55欧元。",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0306903.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-03T00:26:24.000Z",
       "codes": []
     },
@@ -233,15 +1504,6 @@
       "url": "http://bond.eastmoney.com/a/202611033919169859.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-03T00:26:16.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188127",
-      "title": "英国国债延续涨势，10年期国债收益率下跌10个基点至5.18%，触及日内低点。",
-      "summary": "英国国债延续涨势，10年期国债收益率下跌10个基点至5.18%，触及日内低点。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmaq7082778.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:25:51.000Z",
       "codes": []
     },
     {
@@ -258,20 +1520,9 @@
       "title": "美国总统特朗普政府请求美国最高法院介入其诉讼，该诉讼旨在阻止加利福尼亚州统计某些邮寄选票。",
       "summary": "美国总统特朗普政府请求美国最高法院介入其诉讼，该诉讼旨在阻止加利福尼亚州统计某些邮寄选票。",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmat9181507.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-03T00:23:06.000Z",
       "codes": []
-    },
-    {
-      "id": "sina-live-5188125",
-      "title": "上海阶梯医疗科技股份有限公司启动上市辅导",
-      "summary": "据证监会官网显示，上海阶梯医疗科技股份有限公司于2026年11月2日正式启动上市辅导，华泰联合证券有限责任公司担任辅导机构。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmat9181327.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:22:34.000Z",
-      "codes": [
-        "601688"
-      ]
     },
     {
       "id": "em-kuaixun-202611033919167641",
@@ -280,15 +1531,6 @@
       "url": "http://finance.eastmoney.com/a/202611033919167641.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-03T00:21:21.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188124",
-      "title": "布伦特原油日内跌7%，现报105.32美元/桶。",
-      "summary": "布伦特原油日内跌7%，现报105.32美元/桶。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmaq7079748.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:17:52.000Z",
       "codes": []
     },
     {
@@ -310,29 +1552,11 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188123",
-      "title": "胡塞武装发表声明后，沙特方面尚未予以确认。",
-      "summary": "胡塞武装发表声明后，沙特方面尚未予以确认。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmaq7076133.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:08:52.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188122",
-      "title": "胡塞武装：我方武装力量在过去 48 小时内分两个阶段使用无人机成功袭击达曼机场。行动达成目标，机场空中交通陷入中断。此外",
-      "summary": "胡塞武装：我方武装力量在过去 48 小时内分两个阶段使用无人机成功袭击达曼机场。行动达成目标，机场空中交通陷入中断。此外，吉赞的一座预警雷达遭无人机打击并被直接命中。最后，吉赞机场内一架军用运输机也遭到袭击，行动取得成功。",
-      "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmat9175774.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-03T00:08:05.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5188121",
       "title": "伊朗外长：与美国的间接磋商“非常密集”",
       "summary": "据伊朗伊斯兰共和国通讯社2日报道，伊朗外长阿拉格齐在接受采访时说，通过调解方卡塔尔和巴基斯坦进行的伊美间接磋商“非常密集”，伊方已提出自己的条件。 阿拉格齐说，霍尔木兹海峡重新开放须以接受伊朗条件为前提，否则当前局势将持续下去，“如果美国选择真诚外交，伊朗愿意参与其中；如果美国企图欺骗或发动军事行动，将面临比以往更加严厉、更加沉重的回击”。(新华社)",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0298624.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-03T00:05:02.000Z",
       "codes": [],
       "alsoIn": [
@@ -344,7 +1568,7 @@
       "title": "欧盟称针对食品商店的反复网络攻击“令人深感担忧”。",
       "summary": "欧盟称针对食品商店的反复网络攻击“令人深感担忧”。",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0297590.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-03T00:03:06.000Z",
       "codes": []
     },
@@ -353,7 +1577,7 @@
       "title": "美国中期选举今天投票",
       "summary": "今天（11月3日），美国中期选举将迎来正式投票日。截至当地时间10月31日，已有创纪录的5000万人提前投票。此次选举被视为美国人对特朗普政府近两年执政表现的一次评分，也将影响共和党和民主党未来两年在国会的力量对比，以及在各州的影响力。（CCTV国际时讯）",
       "url": "https://finance.sina.cn/7x24/2026-11-03/detail-inixkmap0297455.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-03T00:02:46.000Z",
       "codes": [],
       "alsoIn": [
@@ -370,18 +1594,13 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188117",
+      "id": "em-kuaixun-202611033919163411",
       "title": "Alphabet势将通过欧元债券发行筹集60亿欧元 付出更高溢价吸引买家",
       "summary": "【Alphabet势将通过欧元债券发行筹集60亿欧元 付出更高溢价吸引买家】Alphabet势将通过今年第二次欧元债券发行筹集60亿欧元（67亿美元）。此前，对人工智能支出速度的担忧引发信用市场抛售，使得此次发债的收益率明显高于5月的那次发行。",
       "url": "http://bond.eastmoney.com/a/202611033919163411.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-03T00:01:23.000Z",
-      "codes": [
-        "931071",
-        "159363",
-        "159352",
-        "875186"
-      ]
+      "codes": []
     },
     {
       "id": "em-kuaixun-202611033919162714",
@@ -391,6 +1610,19 @@
       "source": "东方财富快讯",
       "publishedAt": "2026-11-03T00:00:10.000Z",
       "codes": []
+    },
+    {
+      "id": "em-ann-AN202611031831339747",
+      "kind": "announcement",
+      "title": "河钢资源:2026年11月2日投资者关系活动记录表",
+      "summary": "河钢资源 调研活动",
+      "url": "https://data.eastmoney.com/notices/detail/000923/AN202611031831339747.html",
+      "source": "东方财富公告",
+      "publishedAt": "2026-11-03T00:00:00.000Z",
+      "codes": [
+        "000923"
+      ],
+      "category": "调研活动"
     },
     {
       "id": "em-ann-AN202611031831339228",
@@ -1691,20 +2923,6 @@
       "category": "投资理财"
     },
     {
-      "id": "em-ann-AN202611021831333376",
-      "kind": "announcement",
-      "title": "ST东时:关于公司募集资金账户部分资金被司法划扣的公告",
-      "summary": "东时转债 募集资金使用情况报告/募集资金用途",
-      "url": "https://data.eastmoney.com/notices/detail/113575/AN202611021831333376.html",
-      "source": "东方财富公告",
-      "publishedAt": "2026-11-03T00:00:00.000Z",
-      "codes": [
-        "113575",
-        "603377"
-      ],
-      "category": "募集资金使用情况报告"
-    },
-    {
       "id": "em-kuaixun-202611023919161751",
       "title": "特斯拉股价上涨3.5% 创7月中旬以来新高",
       "summary": "特斯拉股价上涨3.5%，报413.925美元/股，总市值报1.64万亿美元，创7月中旬以来新高。",
@@ -1714,43 +2932,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188116",
-      "title": "英国财政大臣马哈茂德：年收入超过2.5万英镑的护理工作者可在5年后获得定居资格。年收入超过12.5万英镑者需在三年内申请",
-      "summary": "英国财政大臣马哈茂德：年收入超过2.5万英镑的护理工作者可在5年后获得定居资格。年收入超过12.5万英镑者需在三年内申请定居身份。有犯罪记录者将无法获得定居身份。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7071746.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:57:35.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188115",
-      "title": "英国允许高收入移民 3 年内申请永居。",
-      "summary": "英国允许高收入移民 3 年内申请永居。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7071015.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:54:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188114",
-      "title": "Meta Platforms 计划发行美元 / 欧元债券，召开固收投资者电话会议。",
-      "summary": "Meta Platforms 计划发行美元 / 欧元债券，召开固收投资者电话会议。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9171324.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:53:26.000Z",
-      "codes": [
-        "002705",
-        "485007",
-        "159352"
-      ]
-    },
-    {
-      "id": "sina-live-5188113",
-      "title": "OpenAI Codex产品负责人Tibo：我们正在扩充支撑 Dots 产品的前沿模型矩阵，其中包括 GPT-6 Ast",
-      "summary": "OpenAI Codex产品负责人Tibo：我们正在扩充支撑 Dots 产品的前沿模型矩阵，其中包括 GPT-6 Astra、GPT-6.1 Terra，后续还会推出其他模型。Terra 在速度上有所提升，交互表现也得到优化，将助力我们把 Dots 推向更多用户。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0294316.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:51:34.000Z",
+      "id": "em-kuaixun-202611023919149021",
+      "title": "俄主要云服务商遭网络攻击 或致近50万个俄网站访问异常",
+      "summary": "【俄主要云服务商遭网络攻击 或致近50万个俄网站访问异常】俄罗斯主要云服务商Beget当地时间11月2日通报称，其基础设施当天凌晨遭到大规模网络攻击，导致部分服务中断。攻击后果仍在评估，全面恢复时间尚无法给出。",
+      "url": "http://finance.eastmoney.com/a/202611023919149021.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-02T23:50:29.000Z",
       "codes": []
     },
     {
@@ -1758,17 +2945,8 @@
       "title": "德意志银行：高盛将该股纳入欧洲核心推荐标的清单。",
       "summary": "德意志银行：高盛将该股纳入欧洲核心推荐标的清单。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7070068.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:50:27.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188111",
-      "title": "英国拟要求部分移民等待十年才可申请永居，同时放宽护工相关规定。",
-      "summary": "英国拟要求部分移民等待十年才可申请永居，同时放宽护工相关规定。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7069798.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:49:18.000Z",
       "codes": []
     },
     {
@@ -1803,27 +2981,18 @@
       "title": "市场消息：日本SBI将投资美国数字银行Erebor。",
       "summary": "市场消息：日本SBI将投资美国数字银行Erebor。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0292633.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:45:30.000Z",
       "codes": [
         "159352"
       ]
     },
     {
-      "id": "sina-live-5188109",
-      "title": "中国地震台网正式测定：11月02日23时35分在西藏那曲市巴青县（北纬32.38度，东经93.86度）发生4.2级地震，",
-      "summary": "中国地震台网正式测定：11月02日23时35分在西藏那曲市巴青县（北纬32.38度，东经93.86度）发生4.2级地震，震源深度10千米。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9168645.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:42:49.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5188106",
       "title": "埃及声明各类战略物资储备可满足国内六个月需求。",
       "summary": "埃及声明各类战略物资储备可满足国内六个月需求。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0291351.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:41:31.000Z",
       "codes": []
     },
@@ -1832,7 +3001,7 @@
       "title": "欧洲央行Escriva：人工智能估值显然偏高。我对人工智能的影响持乐观态度，认为其将带来巨大的生产力提升。",
       "summary": "欧洲央行Escriva：人工智能估值显然偏高。我对人工智能的影响持乐观态度，认为其将带来巨大的生产力提升。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2717353.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:40:50.000Z",
       "codes": [
         "931071",
@@ -1844,17 +3013,17 @@
       "title": "王毅分别同伊朗最高国家安全委员会副秘书巴盖里、沙特国家安全顾问艾班会见会谈",
       "summary": "11月2日，中共中央政治局委员、中央外办主任王毅在北京会见伊朗最高国家安全委员会副秘书巴盖里，同沙特国务大臣、内阁成员、国家安全顾问艾班举行会谈。 在会见巴盖里时，王毅表示，当前中东地区战事延宕、外溢扩散，对话谈判才是解决之道。中方愿秉持习近平主席就缓和中东局势提出的一系列倡议和主张，同各方一道继续为恢复地区和平作出努力。中方支持伊朗维护自身主权和安全，愿推动中伊关系继续发展。 巴盖里表示，伊方赞赏习近平主席提出的倡议主张和中方维护多边主义的一贯立场，期待中方为国际地区和平发挥更重要作用。 在同艾班会谈时，艾班转交了沙特王储兼首相穆罕默德就双边关系发展和双方共同关心的问题致习近平主席的信函。 王毅表示，在两国最高领导人战略引领下，中沙关系保持稳健发展势头。中方愿与沙方共同推动双边关系不断取得新进展。 王毅说，当前地区局势再次走到战与和的关键路口，希望各方通过对话谈判化解纷争。中方愿秉持习近平主席提出的一系列倡议和主张，同包括沙特在内的各方沟通协调。(新华社)",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0290820.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-02T23:40:17.000Z",
       "codes": []
     },
     {
-      "id": "sina-live-5188103",
-      "title": "奥本海默：苹果高估值几乎没有容错空间",
-      "summary": "报发布前夕，奥本海默维持苹果“中性” 评级，警示苹果估值处于高位，上行空间有限。该机构预测苹果第四财季营收 1129 亿美元，每股收益 1.96 美元，两项指标均低于市场一致预期。机构给出的 2027 年每股收益预期为 8.91 美元，较市场预期低 7%，主要反映 iPhone 增长放缓、内存成本上行以及服务业务面临逆风。奥本海默同时预计，12 月所在财季产品板块利润率将受到 150 个基点的冲击。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7066727.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:39:59.000Z",
+      "id": "em-kuaixun-202611023919152059",
+      "title": "普京同伊朗最高国家安全委员会秘书通话 讨论中东局势",
+      "summary": "【普京同伊朗最高国家安全委员会秘书通话 讨论中东局势】总台记者11月2日获悉，俄罗斯总统普京与伊朗最高国家安全委员会秘书雷扎伊通话，讨论中东局势等议题。",
+      "url": "http://futures.eastmoney.com/a/202611023919152059.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-02T23:39:08.000Z",
       "codes": []
     },
     {
@@ -1862,7 +3031,7 @@
       "title": "政党消息称：以色列反对派阵营将于周二首次会晤，推进总理人选提名事宜。",
       "summary": "政党消息称：以色列反对派阵营将于周二首次会晤，推进总理人选提名事宜。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9166298.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:36:46.000Z",
       "codes": []
     },
@@ -1898,7 +3067,7 @@
       "title": "欧洲央行Escriva：近年来市场对价格风险基本免疫。",
       "summary": "欧洲央行Escriva：近年来市场对价格风险基本免疫。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0286546.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:30:57.000Z",
       "codes": []
     },
@@ -1907,7 +3076,7 @@
       "title": "欧洲央行Escriva： 将利率维持在 2% 以把通胀稳定在 2% 左右是合理的。",
       "summary": "欧洲央行Escriva： 将利率维持在 2% 以把通胀稳定在 2% 左右是合理的。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9163196.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:29:38.000Z",
       "codes": []
     },
@@ -1916,7 +3085,7 @@
       "title": "美国法官驳回针对前联邦调查局官员的刑事案件，这些官员被控在亨特・拜登相关调查一事上撒谎。",
       "summary": "美国法官驳回针对前联邦调查局官员的刑事案件，这些官员被控在亨特・拜登相关调查一事上撒谎。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9163058.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:29:06.000Z",
       "codes": []
     },
@@ -1930,15 +3099,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188092",
-      "title": "法国央行行长穆兰：当前形势无法与2022年的通胀相提并论。当前宏观经济形势与2022年截然不同。",
-      "summary": "法国央行行长穆兰：当前形势无法与2022年的通胀相提并论。当前宏观经济形势与2022年截然不同。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7061072.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:25:43.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919147734",
       "title": "美股罗素2000指数上涨1.1%",
       "summary": "美股罗素2000指数上涨1.1%。",
@@ -1948,84 +3108,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188091",
-      "title": "法国央行行长穆兰：当前通胀率远高于我们2%的目标。",
-      "summary": "法国央行行长穆兰：当前通胀率远高于我们2%的目标。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2711161.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:24:26.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188089",
-      "title": "哈萨克斯坦：阿特劳 — 萨马拉原油管道因无人机袭击暂停输油。",
-      "summary": "哈萨克斯坦：阿特劳 — 萨马拉原油管道因无人机袭击暂停输油。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7060625.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:24:04.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188088",
-      "title": "法国央行行长穆兰：目前对整体经济的影响相当温和。",
-      "summary": "法国央行行长穆兰：目前对整体经济的影响相当温和。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0284461.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:23:34.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188086",
-      "title": "莱茵金属股价走低，目前下跌4.5%，有望创下7月以来最差单日表现。",
-      "summary": "莱茵金属股价走低，目前下跌4.5%，有望创下7月以来最差单日表现。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0284278.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:22:54.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188085",
-      "title": "美股三大指数均涨超1%",
-      "summary": "道指涨1.20%，现报52389.109点；纳指涨1.27%，现报25760.952点；标普500指数涨1.01%，现报7656.420点。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0284251.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:22:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188084",
-      "title": "法国央行行长穆兰：通胀明显高于我们的目标。",
-      "summary": "法国央行行长穆兰：通胀明显高于我们的目标。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0284173.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:22:32.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5188083",
       "title": "欧洲央行Escriva：目前尚无第二轮效应的迹象。",
       "summary": "欧洲央行Escriva：目前尚无第二轮效应的迹象。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7060125.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-02T23:22:20.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188082",
-      "title": "欧洲央行Escriva：油气价格冲击高于预期。",
-      "summary": "欧洲央行Escriva：油气价格冲击高于预期。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9161177.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:22:10.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188079",
-      "title": "欧洲央行Escriva：不确定性如此之高，提供前瞻性指引将是一个错误。",
-      "summary": "欧洲央行Escriva：不确定性如此之高，提供前瞻性指引将是一个错误。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0283368.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:19:36.000Z",
       "codes": []
     },
     {
@@ -2038,15 +3126,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188078",
-      "title": "乌方称与俄就奥列什基人道主义救援机制达成共识",
-      "summary": "乌克兰最高拉达人权事务专员卢比涅茨2日表示，乌俄就奥列什基人道主义救援机制达成共识，正商讨如何确保每月至少运送一次物资，该模式有望在其他地区推行。俄方人权事务专员兰特拉托娃1日称，奥列什基人道主义行动区“静默制度”已结束（10月27日至11月1日），各方正努力继续人道主义救援，留居居民仍需帮助。奥列什基位于第聂伯河东岸，俄乌10月27日开始局部停火以便人道主义物资进入。（新华社）",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7059222.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:19:03.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919143061",
       "title": "Anthropic客户净收入留存率达到900% 企业客户持续扩大Claude使用规模",
       "summary": "【Anthropic客户净收入留存率达到900% 企业客户持续扩大Claude使用规模】Anthropic披露，截至2026年9月30日，公司净收入留存率（NRR）约为900%，反映现有客户持续扩大Claude使用规模。同期，超过50%的年收入贡献超过10万美元的客户同时使用ClaudePlatform及至少一款Anthropic自有应用，去年底这一比例约为30%。",
@@ -2056,115 +3135,11 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188077",
-      "title": "欧洲央行Escriva：利率情景高度复杂。",
-      "summary": "欧洲央行Escriva：利率情景高度复杂。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0283097.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:18:38.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188076",
-      "title": "沙特主导联军：在利雅得地区拦截并摧毁两架无人机。",
-      "summary": "沙特主导联军：在利雅得地区拦截并摧毁两架无人机。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0282927.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:18:02.000Z",
-      "codes": [
-        "430542"
-      ]
-    },
-    {
-      "id": "sina-live-5188075",
-      "title": "消息人士称，也门胡塞武装推进至距亚丁80公里处。",
-      "summary": "消息人士称，也门胡塞武装推进至距亚丁80公里处。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2709380.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:17:19.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188073",
-      "title": "俄主要云服务商遭网络攻击 或致近50万个俄网站访问异常",
-      "summary": "俄罗斯主要云服务商Beget当地时间11月2日通报称，其基础设施当天凌晨遭到大规模网络攻击，导致部分服务中断。攻击后果仍在评估，全面恢复时间尚无法给出。据悉，此次攻击可能导致托管在Beget上的近50万个俄罗斯网站出现访问异常。（央视新闻）",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9159543.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:15:25.000Z",
-      "codes": [],
-      "alsoIn": [
-        "东方财富快讯"
-      ]
-    },
-    {
-      "id": "sina-live-5188070",
-      "title": "纳指涨1.00%，现报25691.378点；道指涨1.02%，现报52297.441点；标普500指数涨0.73%，现报",
-      "summary": "纳指涨1.00%，现报25691.378点；道指涨1.02%，现报52297.441点；标普500指数涨0.73%，现报7635.600点。",
-      "url": "",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:13:10.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188069",
-      "title": "欧洲央行Escriva：缺乏财政调整的问题不止出现在法国。",
-      "summary": "欧洲央行Escriva：缺乏财政调整的问题不止出现在法国。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9158940.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:13:06.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188067",
-      "title": "法国央行行长穆兰：市场对法国局势的反应或许过度了。",
-      "summary": "法国央行行长穆兰：市场对法国局势的反应或许过度了。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0280943.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:11:43.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188064",
-      "title": "法国央行行长穆兰：法国极有可能敲定预算案。",
-      "summary": "法国央行行长穆兰：法国极有可能敲定预算案。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2707641.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:11:23.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188061",
-      "title": "法国央行行长穆兰：法国预算状况不佳，必须加以解决。",
-      "summary": "法国央行行长穆兰：法国预算状况不佳，必须加以解决。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0280498.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:10:58.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188058",
-      "title": "法国央行行长穆兰：全球利率上升影响所有国家。",
-      "summary": "法国央行行长穆兰：全球利率上升影响所有国家。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0280066.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:09:50.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188057",
-      "title": "法国央行行长穆兰：市场对法国局势感到担忧。",
-      "summary": "法国央行行长穆兰：市场对法国局势感到担忧。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9157616.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:09:36.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5188056",
       "title": "蓝佛安出席2026年中亚经济合作天山论坛开幕式",
       "summary": "2026年11月2日至3日，中亚经济合作天山论坛在哈萨克斯坦阿拉木图举行，财政部部长蓝佛安出席开幕式并致辞，部长助理常军红陪同参会。蓝佛安指出，今年是中国“十五五”规划开局之年，中国经济运行总体平稳、稳中有进，前三季度国内生产总值同比增长4.6%，展现出强大韧性和活力。中国将持续推动高质量发展，扩大高水平开放，为包括中亚国家在内的世界各国带来更多发展机遇。同时，中方愿与中亚各国加强合作，大力弘扬“中国—中亚精神”，构建更加紧密的中国—中亚命运共同体，支持中亚地区发展成为连通欧亚大陆的“黄金十字路口”。（财政部）",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7055552.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-02T23:08:19.000Z",
       "codes": [
         "002611"
@@ -2180,72 +3155,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188053",
-      "title": "法国央行行长穆兰：欧洲央行行长拉加德希望开启职业生涯新篇章。",
-      "summary": "法国央行行长穆兰：欧洲央行行长拉加德希望开启职业生涯新篇章。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0279233.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:07:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188052",
-      "title": "普京同伊朗最高国家安全委员会秘书通话 讨论中东局势",
-      "summary": "总台记者11月2日获悉，俄罗斯总统普京与伊朗最高国家安全委员会秘书雷扎伊通话，讨论中东局势等议题。双方指出，有必要在两国最高领导层制定的行动计划基础上继续推进俄伊全面战略伙伴关系。（央视新闻）",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9156733.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:06:45.000Z",
-      "codes": [],
-      "alsoIn": [
-        "东方财富快讯"
-      ]
-    },
-    {
-      "id": "sina-live-5188051",
-      "title": "欧洲央行Escriva：央行行长拉加德有充分的理由提前离职。",
-      "summary": "欧洲央行Escriva：央行行长拉加德有充分的理由提前离职。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9156504.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:06:10.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188050",
-      "title": "俄罗斯央行：将11月3日官方卢布汇率定为1美元兑80.9734卢布（前值为80.5573）。",
-      "summary": "俄罗斯央行：将11月3日官方卢布汇率定为1美元兑80.9734卢布（前值为80.5573）。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2705867.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:06:05.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188048",
-      "title": "OpenAI将在佐治亚州提供最高1000兆瓦的需求响应能力。",
+      "id": "em-kuaixun-202611023919128352",
+      "title": "OpenAI将在佐治亚州提供最高1000兆瓦的需求响应能力",
       "summary": "OpenAI将在佐治亚州提供最高1000兆瓦的需求响应能力。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0278091.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:04:41.000Z",
-      "codes": [],
-      "alsoIn": [
-        "东方财富快讯"
-      ]
-    },
-    {
-      "id": "sina-live-5188047",
-      "title": "纳斯达克中国金龙指数涨超3%，震坤行涨16.46%，哔哩哔哩涨7.93%，小鹏汽车涨7.39%，亿航涨6.96%，海川证",
-      "summary": "纳斯达克中国金龙指数涨超3%，震坤行涨16.46%，哔哩哔哩涨7.93%，小鹏汽车涨7.39%，亿航涨6.96%，海川证券涨6.07%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0277755.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:04:00.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188046",
-      "title": "甲骨文股价跌幅扩大至6.5%，创7月以来新低。",
-      "summary": "甲骨文股价跌幅扩大至6.5%，创7月以来新低。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2704944.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:03:45.000Z",
+      "url": "http://finance.eastmoney.com/a/202611023919128352.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-02T23:05:53.000Z",
       "codes": []
     },
     {
@@ -2258,48 +3173,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188045",
-      "title": "OpenAI：推出电网守护者计划。",
-      "summary": "OpenAI：推出电网守护者计划。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9155472.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:03:37.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188044",
-      "title": "美国ISM制造业数据公布后，美元指数维持跌势，最新下跌0.35%，报101.6。",
-      "summary": "美国ISM制造业数据公布后，美元指数维持跌势，最新下跌0.35%，报101.6。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7053343.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:03:12.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919127519",
       "title": "美国10月ISM制造业生产指数升至59 创2021年以来最高",
       "summary": "美国10月ISM制造业生产指数升至59，创2021年以来最高。",
       "url": "http://finance.eastmoney.com/a/202611023919127519.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-02T23:02:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188041",
-      "title": "美国战略石油储备原油库存降至1982年以来最低",
-      "summary": "据美国能源部数据，上周美国战略石油储备中的原油库存降至2.822亿桶，为1982年10月以来最低水平。近期的库存下降是美国一项释放1.72亿桶原油协议的一部分。美国政府上周表示，石油公司已同意从战略石油储备中借用约4,000万桶原油，这是美国在一项旨在控制燃料价格的全球协议中承担份额的最后一批。该协议是在美国与以色列对伊朗开战后达成的。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7052693.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:01:43.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188037",
-      "title": "美国10月ISM制造业PMI 55.5，预期54.6，前值54.5。",
-      "summary": "美国10月ISM制造业PMI 55.5，预期54.6，前值54.5。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2703388.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:00:44.000Z",
       "codes": []
     },
     {
@@ -2312,24 +3191,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188036",
-      "title": "美国9月营建支出环比 -1.9%，预期 0.5%，前值 0.9%。",
-      "summary": "美国9月营建支出环比 -1.9%，预期 0.5%，前值 0.9%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0275731.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:00:15.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188145",
-      "title": "夜盘期货收盘",
-      "summary": "低硫燃料油连续跌5.67%，沥青连续跌5.44%，燃料油连续跌5.38%，液化石油气连续跌4.84%，苯乙烯连续跌4.54%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2703039.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T23:00:03.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919124493",
       "title": "国内部分商品期货夜盘收盘 主力合约多数下跌",
       "summary": "【国内部分商品期货夜盘收盘 主力合约多数下跌】截至23:00，国内部分商品期货夜盘收盘，主力合约多数下跌。跌幅方面，低硫燃油、沥青、燃油、纯苯跌超5%，LPG跌近5%，瓶片、苯乙烯、对二甲苯跌超4%，聚丙烯、PTA跌近4%，甲醇、短纤、塑料、乙二醇、丙烯跌超3%，丁二烯胶跌超2%，PVC跌近2%；涨幅方面，烧碱涨超1%，玻璃、胶版纸、20号胶、淀粉、玉米等小幅上涨。",
@@ -2339,64 +3200,13 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188032",
-      "title": "Anthropic考虑在研发流程中对部分决策引入人工审核与批准机制，原因是模型承担了其中越来越大比例的工作。",
-      "summary": "Anthropic考虑在研发流程中对部分决策引入人工审核与批准机制，原因是模型承担了其中越来越大比例的工作。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9153082.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:58:25.000Z",
+      "id": "em-kuaixun-202611023919120721",
+      "title": "美债长端收益率集体回落 10年期收益率跌逾5个基点",
+      "summary": "【美债长端收益率集体回落 10年期收益率跌逾5个基点】美国国债收益率多数下行，其中10年期国债收益率报4.882%，下跌5.1个基点；20年期报5.283%，下跌5.7个基点；30年期报5.254%，下跌5.6个基点。7年期收益率下跌4.8个基点，报4.769%。",
+      "url": "http://finance.eastmoney.com/a/202611023919120721.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-02T22:56:06.000Z",
       "codes": []
-    },
-    {
-      "id": "sina-live-5188031",
-      "title": "几内亚矿业部：第三季度铝土矿出口同比增长34%，至5010万吨。",
-      "summary": "几内亚矿业部：第三季度铝土矿出口同比增长34%，至5010万吨。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7050518.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:57:10.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188030",
-      "title": "Coop：我们可以确认，冷却系统故障是由一起涉及未经授权篡改的网络事件所致。",
-      "summary": "Coop：我们可以确认，冷却系统故障是由一起涉及未经授权篡改的网络事件所致。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2701819.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:56:48.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188028",
-      "title": "莫斯科交易所10月总交易量为212.9万亿卢布。",
-      "summary": "莫斯科交易所10月总交易量为212.9万亿卢布。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0274230.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:56:32.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188026",
-      "title": "关志鸥会见中国矿产资源集团董事长姚林",
-      "summary": "据“湖北发布”，11月2日下午，湖北省委书记关志鸥在武汉会见中国矿产资源集团党组书记、董事长姚林。关志鸥说，希望中国矿产发挥自身独特优势，聚焦战略性矿产资源勘查、开采、加工、贸易等领域，加大在鄂布局力度，深化大宗商品物流合作，实现优势互补、互利共赢。我们将坚持“有呼必应、无事不扰”，不断优化营商环境，为中国矿产在鄂发展提供更优服务。姚林说，中国矿产肩负保障国家战略性矿产资源安全的重要使命，将主动服务国家战略需求，不断深化与湖北在矿产资源勘查开发、供应链体系建设等领域的务实合作，助力湖北矿业高质量发展，为湖北加快建成中部地区崛起重要战略支点贡献力量。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0274035.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:56:07.000Z",
-      "codes": [
-        "000979",
-        "012724",
-        "005106"
-      ]
-    },
-    {
-      "id": "sina-live-5188025",
-      "title": "埃及美元债券领涨新兴市场，市场押注伊朗谈判。",
-      "summary": "埃及美元债券领涨新兴市场，市场押注伊朗谈判。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0273990.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:56:00.000Z",
-      "codes": [
-        "378006"
-      ]
     },
     {
       "id": "em-kuaixun-202611023919122760",
@@ -2417,84 +3227,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188023",
-      "title": "美债长端收益率集体回落 10年期收益率跌逾5个基点",
-      "summary": "美国国债收益率多数下行，其中10年期国债收益率报4.882%，下跌5.1个基点；20年期报5.283%，下跌5.7个基点；30年期报5.254%，下跌5.6个基点。7年期收益率下跌4.8个基点，报4.769%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7049530.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:54:52.000Z",
-      "codes": [],
-      "alsoIn": [
-        "东方财富快讯"
-      ]
-    },
-    {
-      "id": "sina-live-5188022",
-      "title": "亚马逊股价上涨4.3%，领涨七大科技巨头。",
-      "summary": "亚马逊股价上涨4.3%，领涨七大科技巨头。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9151582.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:54:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188021",
-      "title": "Mercado Bitcoin确认发生安全事件后流失4000万美元。",
-      "summary": "Mercado Bitcoin确认发生安全事件后流失4000万美元。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmaq7049299.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:54:23.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188020",
-      "title": "朱忠明会见联合国副秘书长、人居署执行主任罗斯巴赫",
-      "summary": "上海市市长朱忠明今天（11月2日）会见了联合国副秘书长、人居署执行主任罗斯巴赫一行。朱忠明说，期待持续深化与人居署的合作，共同深化国际公共产品应用推广，提升上海奖、上海指数、《上海手册》的科学性、权威性，办好城市可持续发展全球大会，为各国城市交流互鉴、分享成果、务实合作搭建平台，谱写“城市，让生活更美好”的新篇章。希望人居署发挥实践经验、技术储备、专家团队等优势，在优化城市空间布局、提升城市生活品质、增强城市治理效能等方面，助力上海建设现代化人民城市，推动城市高质量发展、可持续发展。（澎湃）",
-      "url": "",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:54:05.000Z",
-      "codes": [
-        "159352",
-        "931268"
-      ]
-    },
-    {
-      "id": "sina-live-5188019",
-      "title": "WTI原油日内跌7%，现报96.82美元/桶。",
-      "summary": "WTI原油日内跌7%，现报96.82美元/桶。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmas2700293.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:52:56.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188018",
-      "title": "WTI原油失守97美元/桶，日内跌6.87%。",
-      "summary": "WTI原油失守97美元/桶，日内跌6.87%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9150861.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:52:47.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188017",
-      "title": "美国邮轮运营商股价上涨，因油价下跌逾6%，挪威邮轮公司股价上涨3.5%，皇家加勒比邮轮公司股价上涨4%，嘉年华集团股价上",
-      "summary": "美国邮轮运营商股价上涨，因油价下跌逾6%，挪威邮轮公司股价上涨3.5%，皇家加勒比邮轮公司股价上涨4%，嘉年华集团股价上涨4.2%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0272582.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:52:47.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188016",
-      "title": "富国银行维持对Alphabet的增持评级。",
-      "summary": "富国银行维持对Alphabet的增持评级。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0272220.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:52:11.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919119697",
       "title": "道指涨幅扩大至1%",
       "summary": "道指涨幅扩大至1%，纳斯达克综合指数涨0.79%，标普500指数涨0.59%。",
@@ -2504,29 +3236,11 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188014",
-      "title": "道指涨1.01%，现报52290.961点；纳指涨0.79%，现报25636.858点；标普500指数涨0.57%，现报",
-      "summary": "道指涨1.01%，现报52290.961点；纳指涨0.79%，现报25636.858点；标普500指数涨0.57%，现报7623.150点。",
-      "url": "",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:51:10.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188013",
-      "title": "IDEXX 公司预测全年营收高于预期，股价上涨 19.4%。",
-      "summary": "IDEXX 公司预测全年营收高于预期，股价上涨 19.4%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmap0271044.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:49:40.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5188012",
       "title": "上海市政府常务会部署加快新型能源体系建设、更好服务全国统一大市场建设",
       "summary": "上海市委副书记、市长朱忠明今天（11月2日）主持召开市政府常务会议，要求按照市委部署，加快上海新型能源体系建设，推动更好服务全国统一大市场建设重点措施落实。会议原则同意《上海市新型能源体系建设“十五五”规划》并指出，要不断提升能源治理体系效能，为经济社会高质量发展奠定坚实基础、提供强劲动能。要着力推动绿色低碳转型，优化能源结构，全力打造千万千瓦级绿电基地，加快蒙电入沪特高压工程和深远海风电基地建设，大力培育算电协同、“AI+”能源等新业态，健全完善低碳能源消费体系。着力增强能源保障能力，健全能源安全储备机制，统筹市内外、近远端多层次储备体系，推动虚拟电厂、新型储能等多元调节资源聚合发展，增强电力系统灵活调节和顶峰保供能力，全力保障经济社会发展合理用能需求。着力深化体制机制改革，发挥市场主导和政府引导作用，促进各类经营主体平等广泛参与电力市场，加快构建统一开放、竞争有序的能源市场体系，引导各类资源向能源科技创新倾斜，为城市能源安全低碳发展提供坚实支撑。会议原则同意《上海市贯彻落实纵深推进全国统一大市场建设的重点措施》并指出，要在“规范”上下功夫、在“联通”上求突破，为全国统一大市场建设贡献上海力量。要对标国家要求不折不扣落实建设任务，健全全国统一大市场建设制度规则体系，推进“六张网”等重点领域基础设施建设，夯实全国统一大市场建设的硬件基础，深入开展招商引资、政府采购、招标投标、企业低价无序竞争等领域专项整治。要发挥上海优势，主动作为服务全国大局，深化长三角一体化发展，加快建设全国统一大市场先行区，推动市场监管执法协同、新兴领域标准衔接，推进长三角政务服务“一网通办”扩面提质增效。要建强要素市场和平台功能，加快技术交易、数据流通、电力市场、算力调度等平台建设，在数据要素、绿色能源、科技创新等领域形成更多可复制可推广的“上海经验”。会议还研究了其他事项。 (澎湃新闻)",
       "url": "",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-02T22:49:22.000Z",
       "codes": [
         "159363",
@@ -2542,48 +3256,12 @@
       ]
     },
     {
-      "id": "sina-live-5188011",
-      "title": "BioMar上调业绩指引，哥本哈根交易所股价上涨2.6%；Schouw上涨1.9%。",
-      "summary": "BioMar上调业绩指引，哥本哈根交易所股价上涨2.6%；Schouw上涨1.9%。",
-      "url": "",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-02T22:49:01.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188009",
-      "title": "美国股市延续涨势，道琼斯指数涨幅扩大至1%，标普500指数涨0.60%，纳斯达克综合指数涨0.81%。",
-      "summary": "美国股市延续涨势，道琼斯指数涨幅扩大至1%，标普500指数涨0.60%，纳斯达克综合指数涨0.81%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9148184.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:46:53.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919116758",
       "title": "美国10月标普全球制造业PMI终值报54.9 预期56 前值56",
       "summary": "美国10月标普全球制造业PMI终值报54.9，预期56，前值56。",
       "url": "http://finance.eastmoney.com/a/202611023919116758.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-02T22:46:28.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188008",
-      "title": "美国食品药品监督管理局批准治疗罕见呼吸系统疾病的药物后，INOVIO制药公司股价飙升186%。",
-      "summary": "美国食品药品监督管理局批准治疗罕见呼吸系统疾病的药物后，INOVIO制药公司股价飙升186%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9147741.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:45:53.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5188006",
-      "title": "美国10月标普全球制造业PMI终值 54.9，预期56，前值56。",
-      "summary": "美国10月标普全球制造业PMI终值 54.9，预期56，前值56。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkmat9147354.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:45:06.000Z",
       "codes": []
     },
     {
@@ -2632,24 +3310,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5187971",
-      "title": "Strategy：根据美国证券交易委员会（SEC）文件，公司拟发行最高16.6亿美元、票面利率10.00%的A系列永久优",
-      "summary": "Strategy：根据美国证券交易委员会（SEC）文件，公司拟发行最高16.6亿美元、票面利率10.00%的A系列永久优先股。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7168531.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:34:32.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187969",
-      "title": "美国农场净收入创纪录地下滑26%，降至历史最低点。",
-      "summary": "美国农场净收入创纪录地下滑26%，降至历史最低点。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2821164.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:34:14.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919100528",
       "title": "迈威尔与Lumentum股价盘中大跌",
       "summary": "【迈威尔与Lumentum股价盘中大跌】迈威尔科技（MRVL）跌5.15%，报186.28美元；Lumentum（LITE）跌9.45%，报761.285美元。两家公司此前宣布达成合并协议。",
@@ -2674,24 +3334,6 @@
       "url": "http://finance.eastmoney.com/a/202611023919096063.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-02T22:30:57.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187942",
-      "title": "罗氏获得美国食品药品监督管理局（FDA）510(k)许可，其新型cobas® eplex呼吸道病原体检测组合3获批，使实",
-      "summary": "罗氏获得美国食品药品监督管理局（FDA）510(k)许可，其新型cobas® eplex呼吸道病原体检测组合3获批，使实验室能够根据当地患者需求定制呼吸道检测方案。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0390433.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:30:31.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187938",
-      "title": "俄罗斯总统普京要求俄罗斯数据中心预留10%的容量。",
-      "summary": "俄罗斯总统普京要求俄罗斯数据中心预留10%的容量。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2818885.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:29:54.000Z",
       "codes": []
     },
     {
@@ -2731,44 +3373,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5187928",
-      "title": "美国战略石油储备原油库存上周降至2.822亿桶，为1982年以来最低水平。",
-      "summary": "美国战略石油储备原油库存上周降至2.822亿桶，为1982年以来最低水平。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7165265.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:27:22.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187919",
-      "title": "欧洲旅游与休闲指数有望录得近5个月来最大单日涨幅，最高上涨3.1%。",
-      "summary": "欧洲旅游与休闲指数有望录得近5个月来最大单日涨幅，最高上涨3.1%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7163848.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:24:14.000Z",
-      "codes": [
-        "159352"
-      ]
-    },
-    {
-      "id": "sina-live-5187916",
-      "title": "伊朗外长阿拉格齐表示：如果美国接受我们的条件，霍尔木兹海峡将重新开放，谈判也将恢复。",
-      "summary": "伊朗外长阿拉格齐表示：如果美国接受我们的条件，霍尔木兹海峡将重新开放，谈判也将恢复。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7162966.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:22:18.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187911",
-      "title": "据伊朗方面消息，伊朗外长阿拉格齐表示，通过卡塔尔和巴基斯坦等中间人进行的磋商非常密集。",
-      "summary": "据伊朗方面消息，伊朗外长阿拉格齐表示，通过卡塔尔和巴基斯坦等中间人进行的磋商非常密集。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2815202.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:20:54.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919085429",
       "title": "俄紧急情况部移动应用遭大规模网络攻击",
       "summary": "【俄紧急情况部移动应用遭大规模网络攻击】据俄罗斯媒体2日报道，俄紧急情况部通报，该部移动应用程序当天遭大规模网络攻击，不法分子借此向俄罗斯33个联邦主体的用户推送虚假信息。",
@@ -2784,60 +3388,6 @@
       "url": "http://finance.eastmoney.com/a/202611023919086170.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-02T22:18:07.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187904",
-      "title": "市场消息：伊朗外长阿拉格齐表示，伊朗在军事应对和外交途径两方面都已做好了比以往任何时候都更充分的准备；霍尔木兹海峡的重新",
-      "summary": "市场消息：伊朗外长阿拉格齐表示，伊朗在军事应对和外交途径两方面都已做好了比以往任何时候都更充分的准备；霍尔木兹海峡的重新开放，前提是伊朗提出的条件必须得到接受。",
-      "url": "",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:17:59.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187900",
-      "title": "欧盟食品专员：增强韧性需要整个食品供应链采取协调一致的做法。",
-      "summary": "欧盟食品专员：增强韧性需要整个食品供应链采取协调一致的做法。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0384690.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:17:17.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187899",
-      "title": "欧盟食品事务专员：必须确保供应链的每一个环节都能抵御网络威胁并做出应对。",
-      "summary": "欧盟食品事务专员：必须确保供应链的每一个环节都能抵御网络威胁并做出应对。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2813508.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:17:13.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187898",
-      "title": "格陵兰资源公司就加拿大-欧盟协议发布最新情况。",
-      "summary": "格陵兰资源公司就加拿大-欧盟协议发布最新情况。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0384319.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:16:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187897",
-      "title": "欧盟食品事务专员：目前粮食安全未受威胁，但食品浪费及其影响真实存在。",
-      "summary": "欧盟食品事务专员：目前粮食安全未受威胁，但食品浪费及其影响真实存在。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7160247.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:16:12.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187896",
-      "title": "欧盟食品事务专员：冰箱网络攻击是破坏我们食品供应的企图。",
-      "summary": "欧盟食品事务专员：冰箱网络攻击是破坏我们食品供应的企图。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0383496.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:15:02.000Z",
       "codes": []
     },
     {
@@ -2859,16 +3409,7 @@
       "codes": []
     },
     {
-      "id": "sina-live-5187886",
-      "title": "据报道，伊朗最高安全官员穆赫辛·雷扎伊与俄罗斯总统普京在电话会谈中讨论了中东局势发展。",
-      "summary": "据报道，伊朗最高安全官员穆赫辛·雷扎伊与俄罗斯总统普京在电话会谈中讨论了中东局势发展。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7155663.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:08:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187884",
+      "id": "em-kuaixun-202611023919076977",
       "title": "伊朗革命卫队称已组建首支“为伊朗捐躯”旅",
       "summary": "【伊朗革命卫队称已组建首支“为伊朗捐躯”旅】据伊朗法尔斯通讯社2日报道，德黑兰大区伊斯兰革命卫队司令哈桑扎德说，伊朗首支“为伊朗捐躯”旅已完成组建，并已接受强化训练、完成装备配备，目前正准备开展实战训练、野外训练和专业射击训练。",
       "url": "http://finance.eastmoney.com/a/202611023919076977.html",
@@ -2877,48 +3418,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5187881",
-      "title": "美国出口商向墨西哥出售了1729740吨玉米。",
-      "summary": "美国出口商向墨西哥出售了1729740吨玉米。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuv9257543.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:05:48.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187880",
+      "id": "em-kuaixun-202611023919073250",
       "title": "伊总统：伊朗最高领袖已赋予政府在谈判领域一定的权力",
       "summary": "【伊朗最高领袖赋予政府谈判权限】伊朗总统佩泽希齐扬今天（11月2日）强调，敌人无法通过战争让伊朗投降，“我们将坚决抵制他们的谎言和夸大其词，因此我们必须努力增强人民的韧性，解决他们的关切和担忧。”他表示，伊朗政府的目标是更好地照顾弱势群体。佩泽希齐扬指出，必须在伊朗人民的支持与合作下，克服敌人给伊朗造成的挑战和危机。伊朗政府正在努力通过对话解决问题，在这方面，伊朗最高领袖穆杰塔巴·哈梅内伊也赋予了政府一定的权限。",
       "url": "http://finance.eastmoney.com/a/202611023919073250.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-02T22:04:59.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187872",
-      "title": "埃及内阁称将讨论政府节能措施。",
-      "summary": "埃及内阁称将讨论政府节能措施。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7151456.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T22:01:32.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187858",
-      "title": "丹佛斯：我们可以确认，多个欧洲国家报告的事件也涉及我们的产品，包括AK-SM800和AK-SC355系统。",
-      "summary": "丹佛斯：我们可以确认，多个欧洲国家报告的事件也涉及我们的产品，包括AK-SM800和AK-SC355系统。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0373494.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:57:07.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187857",
-      "title": "赵乐际同俄罗斯联邦委员会主席马特维延科会谈",
-      "summary": "全国人大常委会委员长赵乐际2日在北京人民大会堂同俄罗斯联邦委员会主席马特维延科举行会谈。（新华社）",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2802740.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:56:38.000Z",
       "codes": []
     },
     {
@@ -2928,15 +3433,6 @@
       "url": "http://forex.eastmoney.com/a/202611023919063253.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-02T21:51:48.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187842",
-      "title": "OpenAI承诺在极端天气或电力紧急情况下减少美国数据中心园区的用电量。",
-      "summary": "OpenAI承诺在极端天气或电力紧急情况下减少美国数据中心园区的用电量。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2799683.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:49:36.000Z",
       "codes": []
     },
     {
@@ -2958,39 +3454,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5187837",
-      "title": "伊朗总统佩泽希齐扬表示，最高领袖已就和平谈判授予政府“某些权限”。",
-      "summary": "伊朗总统佩泽希齐扬表示，最高领袖已就和平谈判授予政府“某些权限”。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7143048.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:45:23.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919054289",
       "title": "伊朗外交部：若美国落实伊朗诉求 两天内可启动谈判",
       "summary": "【伊朗外交部：若美国落实伊朗诉求 两天内可启动谈判】伊朗外交部发言人巴加埃2日表示，如果美国同意落实伊朗诉求，相关方案最快可在两天内启动，霍尔木兹海峡安全将得到恢复，伊美谈判进程也将随之启动。",
       "url": "http://finance.eastmoney.com/a/202611023919054289.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-02T21:45:09.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919052588",
-      "title": "美股期货涨幅扩大 纳斯达克100指数期货涨超1%",
-      "summary": "【美股期货涨幅扩大 纳斯达克100指数期货涨超1%】美股期货涨幅扩大，道琼斯指数期货涨0.72%，标普500指数期货涨0.58%，纳斯达克100指数期货涨1.00%。",
-      "url": "http://finance.eastmoney.com/a/202611023919052588.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:43:12.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187827",
-      "title": "布伦特原油与美国WTI原油期货扩大跌幅，双双下跌逾6%，市场寄望于达成结束伊朗战争的协议。",
-      "summary": "布伦特原油与美国WTI原油期货扩大跌幅，双双下跌逾6%，市场寄望于达成结束伊朗战争的协议。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7139746.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:40:55.000Z",
       "codes": []
     },
     {
@@ -3003,51 +3472,6 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023919048533",
-      "title": "现货白银日内涨幅扩大至4%",
-      "summary": "现货白银日内涨幅扩大至4%，报51.07美元/盎司。",
-      "url": "http://finance.eastmoney.com/a/202611023919048533.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:40:25.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919049734",
-      "title": "标普500指数期货触及盘前高点",
-      "summary": "【标普500指数期货触及盘前高点】标普500指数期货上涨0.6%，触及盘前高点。",
-      "url": "http://futures.eastmoney.com/a/202611023919049734.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:39:41.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919048471",
-      "title": "现货白银价格涨超3%",
-      "summary": "【现货白银价格涨超3%】现货黄金价格涨1.04%，报3917.12美元/盎司；现货白银价格涨3.10%，报50.61美元/盎司。",
-      "url": "http://finance.eastmoney.com/a/202611023919048471.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:39:38.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187815",
-      "title": "美国股指期货扩大涨幅；标普500 E-mini期货上涨0.6%，纳斯达克100期货上涨1%，道指期货上涨0.8%。",
-      "summary": "美国股指期货扩大涨幅；标普500 E-mini期货上涨0.6%，纳斯达克100期货上涨1%，道指期货上涨0.8%。",
-      "url": "",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:39:23.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919050040",
-      "title": "晶华微：涉嫌信息披露违法违规等 公司及控股股东被证监会立案",
-      "summary": "【晶华微：涉嫌信息披露违法违规等 公司及控股股东被证监会立案】11月2日，晶华微(688130.SH)公告称，公司及控股股东吕汉泉于2026年11月2日收到证监会出具的《立案告知书》，因涉嫌信息披露违法违规等，证监会决定对公司及吕汉泉立案。",
-      "url": "http://finance.eastmoney.com/a/202611023919050040.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:39:06.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919051141",
       "title": "原油系期货日内集体下跌 原油主力合约跌超7%",
       "summary": "【原油系期货日内集体下跌 原油主力合约跌超7%】原油系期货日内集体下跌，原油主力合约跌超7%，现报692.4元/桶。低硫燃油主力合约跌超6%，现报5743元/吨。沥青主力合约跌超5%，现报4990元/吨。",
@@ -3057,159 +3481,21 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023919048247",
-      "title": "穆迪确认甲骨文“Baa2”高级无担保债务评级 维持负面展望",
-      "summary": "【穆迪确认甲骨文“Baa2”高级无担保债务评级 维持负面展望】11月2日，穆迪确认甲骨文“Baa2”高级无担保债务评级及“P-2”商业票据评级，并给予公司拟发行的100亿美元高级无担保票据“Baa2”评级，展望维持负面。",
-      "url": "http://bond.eastmoney.com/a/202611023919048247.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:38:12.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023919045260",
       "title": "国际油价直线跳水超6% 美油跌破98美元 现货黄金突破3950美元",
       "summary": "北京时间11月2日晚，此前一路上涨的国际油价突然重挫，截至21:45左右，国际油价直线跳水超6%，布油几乎跌破106美元/桶，美油跌破98美元/桶，柴油同步跳水超5%。",
       "url": "http://finance.eastmoney.com/a/202611023919045260.html",
-      "source": "东方财富快讯",
+      "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-02T21:38:03.000Z",
       "codes": []
     },
     {
-      "id": "sina-live-5187776",
-      "title": "据伊朗方面消息，伊朗最高领袖已授权政府进行谈判。",
-      "summary": "据伊朗方面消息，伊朗最高领袖已授权政府进行谈判。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7136703.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:36:53.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187774",
-      "title": "加拿大皇家银行将艾伯维目标价从每股280.00美元上调至330.00美元。",
-      "summary": "加拿大皇家银行将艾伯维目标价从每股280.00美元上调至330.00美元。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7135428.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:35:23.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919042498",
-      "title": "英飞凌与高通在车载计算机领域展开合作",
-      "summary": "英飞凌与高通在车载计算机领域展开合作。",
-      "url": "http://finance.eastmoney.com/a/202611023919042498.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:33:27.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187769",
-      "title": "CrowdStrike任命罗兰·斯特里特为欧洲联盟业务副总裁。",
-      "summary": "CrowdStrike任命罗兰·斯特里特为欧洲联盟业务副总裁。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2788324.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:32:43.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919039837",
-      "title": "摩根大通恢复对L3Harris Technologies的覆盖",
-      "summary": "【摩根大通恢复对L3Harris Technologies的覆盖】摩根大通恢复对L3Harris Technologies的覆盖，评级为“增持”，目标价320美元。",
-      "url": "http://finance.eastmoney.com/a/202611023919039837.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:30:54.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919040670",
-      "title": "Lumen与微软扩大合作",
-      "summary": "【Lumen与微软扩大合作】Lumen与微软扩大合作，共同销售企业网络解决方案。",
-      "url": "http://finance.eastmoney.com/a/202611023919040670.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:30:47.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919025729",
-      "title": "Coreweave与CrowdStrike达成合作 以保障AI工作负载安全",
-      "summary": "【Coreweave与CrowdStrike达成合作 以保障AI工作负载安全】据CrowdStrike官网消息，Coreweave与CrowdStrike达成合作，以保障AI工作负载安全。",
-      "url": "http://finance.eastmoney.com/a/202611023919025729.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:26:36.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919025612",
-      "title": "Lumentum、迈威尔科技盘前跌幅扩大",
-      "summary": "【Lumentum、迈威尔科技盘前跌幅扩大】Lumentum盘前跌幅扩大至5.5%，迈威尔科技跌3.3%。",
-      "url": "http://finance.eastmoney.com/a/202611023919025612.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:25:00.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187758",
+      "id": "em-kuaixun-202611023919026566",
       "title": "伊朗称霍尔木兹海峡东部发生一起油轮事故",
-      "summary": "当地时间11月2日，伊朗海军称，一艘油轮在霍尔木兹海峡东部的禁航区触雷起火。该油轮关闭了导航系统。伊朗海军称，“油轮船东们应从这起违规事件中吸取教训，切勿在未事先与伊朗协调的情况下擅自通过禁航区”。（央视新闻）",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0352903.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:24:39.000Z",
-      "codes": [],
-      "alsoIn": [
-        "东方财富快讯"
-      ]
-    },
-    {
-      "id": "sina-live-5187753",
-      "title": "奥本海默将美国合众银行（USB.N）的目标价从73美元上调至74美元。",
-      "summary": "奥本海默将美国合众银行（USB.N）的目标价从73美元上调至74美元。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7127267.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:22:11.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919021425",
-      "title": "哈塞特：人工智能是一个“资金极其充裕的生态系统”",
-      "summary": "【哈塞特：人工智能是一个“资金极其充裕的生态系统”】白宫国家经济委员会主任哈塞特表示，人工智能是一个“资金极其充裕的生态系统”。这与金融危机完全不同。",
-      "url": "http://finance.eastmoney.com/a/202611023919021425.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:19:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919012822",
-      "title": "原油：11月多事之秋 短期地缘升级概率较大 油价易涨难跌",
-      "summary": "大地期货11月2日研报显示，SoH流量的持续性可能不足，地缘烈度持续升级，油价上行。本周中选投票结束后，媒体预测初步席位，接下来一周关注各摇摆州的重点数据，最终结果可能要11月中下旬公布。同时，美伊双方的极限施压也在进行。美伊双方通过第三方的沟通信息仍在持续，但目前尚未看到明确进展。",
-      "url": "http://futures.eastmoney.com/a/202611023919012822.html",
+      "summary": "【伊朗称霍尔木兹海峡东部发生一起油轮事故】伊朗海军当地时间11月2日称，一艘油轮在霍尔木兹海峡东部的禁航区触雷起火。该油轮关闭了导航系统。伊朗海军称，“油轮船东们应从这起违规事件中吸取教训，切勿在未事先与伊朗协调的情况下擅自通过禁航区”。",
+      "url": "http://futures.eastmoney.com/a/202611023919026566.html",
       "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T21:17:56.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919019383",
-      "title": "甲骨文提交文件 拟发行100亿美元普通股",
-      "summary": "甲骨文提交文件，拟发行100亿美元普通股。",
-      "url": "http://finance.eastmoney.com/a/202611023919019383.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:17:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919014825",
-      "title": "阿联酋高管：全球石油库存较伊朗战事前减少10亿桶",
-      "summary": "【阿联酋高管：全球石油库存较伊朗战事前减少10亿桶】阿联酋阿布扎比国家石油公司首席执行官贾比尔11月2日说，自2月底美以伊冲突导致霍尔木兹海峡航运受阻以来，全球石油库存已减少10亿桶。",
-      "url": "http://finance.eastmoney.com/a/202611023919014825.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:17:35.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919016837",
-      "title": "Lumentum盘前跌幅扩大至4%",
-      "summary": "Lumentum盘前跌幅扩大至4%。",
-      "url": "http://finance.eastmoney.com/a/202611023919016837.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:16:50.000Z",
+      "publishedAt": "2026-11-02T21:29:17.000Z",
       "codes": []
     },
     {
@@ -3225,194 +3511,12 @@
       ]
     },
     {
-      "id": "em-kuaixun-202611023919018012",
-      "title": "迈威尔科技CEO：与Lumentum合并后的公司预计将跻身全球五大AI基础设施半导体公司之列",
-      "summary": "【迈威尔科技CEO：与Lumentum合并后的公司预计将跻身全球五大AI基础设施半导体公司之列】迈威尔科技CEO表示，与Lumentum合并后的公司预计将跻身全球五大AI基础设施半导体公司之列。",
-      "url": "http://finance.eastmoney.com/a/202611023919018012.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:15:15.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919007813",
-      "title": "迈威尔与Lumentum约定巨额交易终止费 特定情形下双方最高分别支付58亿美元和29亿美元",
-      "summary": "【迈威尔与Lumentum约定巨额交易终止费 特定情形下双方最高分别支付58亿美元和29亿美元】根据双方合并协议，在特定情形下，若交易终止，迈威尔需向Lumentum支付最高58亿美元的终止费；其中，部分情形下终止费为32亿美元。若由Lumentum在特定情形下终止交易，则需向迈威尔支付29亿美元终止费。上述费用仅在协议约定的特定终止条件下触发。",
-      "url": "http://finance.eastmoney.com/a/202611023919007813.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:13:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187733",
-      "title": "消息人士称，印度政府表示正在采取必要措施解决根本问题，以免散装苏格兰威士忌的关税优惠受到影响。",
-      "summary": "消息人士称，印度政府表示正在采取必要措施解决根本问题，以免散装苏格兰威士忌的关税优惠受到影响。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2776848.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:13:22.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187732",
-      "title": "11月2日，全球基金净买入311亿印度卢比的印度股票。",
-      "summary": "11月2日，全球基金净买入311亿印度卢比的印度股票。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2776790.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:13:15.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187731",
-      "title": "标准核能公司入选美国能源部高级研究计划局（ARPA-E）项目，将利用回收的超铀材料开发TRISO燃料。",
-      "summary": "标准核能公司入选美国能源部高级研究计划局（ARPA-E）项目，将利用回收的超铀材料开发TRISO燃料。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0345272.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:12:51.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187730",
-      "title": "印度政府消息人士称，印度商务秘书向酒业保证，印英协议下的关税优惠不会受到影响。",
-      "summary": "印度政府消息人士称，印度商务秘书向酒业保证，印英协议下的关税优惠不会受到影响。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuv9227111.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:12:34.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023919006379",
-      "title": "和仁科技：控股股东及一致行动人拟向实控人转让20.76%股份",
-      "summary": "【和仁科技：控股股东及一致行动人拟向实控人转让20.76%股份】和仁科技(300550.SZ)公告称，公司控股股东磐源投资及其一致行动人磐鸿投资拟将所持公司全部股份合计5450.16万股(占总股本20.76%)协议转让给实控人杨一兵，转让价格8.96元/股。",
-      "url": "http://finance.eastmoney.com/a/202611023919006379.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:12:09.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187724",
-      "title": "Super League Enterprise在2026年10月28日至11月1日期间以每枚比特币78,532.14美元",
-      "summary": "Super League Enterprise在2026年10月28日至11月1日期间以每枚比特币78,532.14美元的平均价格购入8枚比特币。该公司已向美国证券交易委员会提交文件。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7118270.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:08:14.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187721",
-      "title": "美股盘前要闻速递",
-      "summary": "①美股三大股指期货齐涨，道指期货涨0.39%，标普500指数期货涨0.32%，纳指期货涨0.56%。 ②德国DAX指数跌0.14%，英国富时100指数跌0.2%，法国CAC40指数涨0.07%，欧洲斯托克50指数跌0.09%。 ③WTI原油跌4.43%，报99.42美元/桶。布伦特原油跌4.32%，报108.53美元/桶。 ④伊朗外交部发言人巴加埃今天（11月2日）表示，伊朗最高国家安全委员会秘书将根据国家利益，决定如何以及以何种方式回应美国的来信。 巴加埃还表示，伊朗与美国通过调解人进行的所有间接谈判的主要基础是伊朗提出的“七日计划”方案，该方案现已精简，可在两天内全面实施。 ⑤俄罗斯人权事务专员亚娜·兰特拉托娃1日在社交媒体发布消息说，奥列什基人道主义行动区的“静默制度”已结束，该制度有效期为10月27日至11月1日。 ⑥高盛策略师称，美国三季度企业盈利增长表现强劲，但增速已经不再继续抬升。 ⑦迈威尔科技盘前跌0.6%，Lumentum盘前跌2.7%，迈威尔科技将以股票交易方式收购Lumentum。 ⑧小鹏汽车盘前涨超5%，此前2026年10月海内外交付量均创历史纪录。 ⑨甲骨文盘前下跌1.1%。据知情人士消息，甲骨文公司周一启动 100 亿美元美国投资级债券发行工作。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0341119.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:06:23.000Z",
-      "codes": [
-        "159352"
-      ]
-    },
-    {
-      "id": "sina-live-5187720",
-      "title": "伊朗：油轮在霍尔木兹海峡东部触雷后起火。",
-      "summary": "伊朗：油轮在霍尔木兹海峡东部触雷后起火。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7116766.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T21:05:42.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918997227",
-      "title": "燃料成本上涨 日本东京等地电价创4年来新高",
-      "summary": "【燃料成本上涨 日本东京等地电价创4年来新高】日本电力交易机构最新数据显示，因中东局势推高燃料成本，首都东京和中部地区电力现货价格近日持续走高，创4年来新高。",
-      "url": "http://finance.eastmoney.com/a/202611023918997227.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:03:53.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918996215",
-      "title": "焦煤主力合约跌超2%",
-      "summary": "【焦煤主力合约跌超2%】焦煤主力合约跌超2%，现报1372.5元/吨。",
-      "url": "http://futures.eastmoney.com/a/202611023918996215.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T21:02:54.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918997630",
-      "title": "半小时卖出2万亿Token 李佳琦双十一卖千问办公",
-      "summary": "【半小时卖出2万亿Token 李佳琦双十一卖千问办公】11月2日晚，李佳琦直播间迎来双十一新爆款——千问办公Token。开卖仅半小时，就售出10万份千问办公个人会员月卡，累计约2万亿Token。",
-      "url": "http://finance.eastmoney.com/a/202611023918997630.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:01:47.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023918997597",
       "title": "特朗普称如有必要可预先赦免马斯克等人",
       "summary": "特朗普称如有必要可预先赦免马斯克等人。",
       "url": "http://finance.eastmoney.com/a/202611023918997597.html",
-      "source": "东方财富快讯",
+      "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-02T21:01:47.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918997875",
-      "title": "Strategy上周增持810枚比特币",
-      "summary": "【Strategy上周增持810枚比特币】Strategy上周购买了810枚比特币，使持有的比特币总数增加至849,327枚。",
-      "url": "http://finance.eastmoney.com/a/202611023918997875.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:01:03.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918995821",
-      "title": "苏州固锝：目前已与多家钙钛矿叠层客户合作 产品已实现小批量出货",
-      "summary": "【苏州固锝：目前已与多家钙钛矿叠层客户合作 产品已实现小批量出货】苏州固锝在接受机构线上调研时表示，从行业而言，钙钛矿叠层技术已渐趋成熟，明年会有商业化产线逐步落地，公司目前已与多家钙钛矿叠层客户合作，产品已经实现小批量出货，明年有望逐渐放量。",
-      "url": "http://finance.eastmoney.com/a/202611023918995821.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:00:40.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918997485",
-      "title": "远程股份：拟联合收购中复碳芯股权",
-      "summary": "【远程股份：拟联合收购中复碳芯股权】远程股份(002692.SZ)公告称，公司拟与连星投资组成联合体，通过公开摘牌方式现金收购中复碳芯电缆科技有限公司股权，其中公司出资不超过5亿元，竞拍不低于中复碳芯40%股权。",
-      "url": "http://finance.eastmoney.com/a/202611023918997485.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:00:07.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918994454",
-      "title": "国内商品期货夜盘开盘 主力合约多数下跌",
-      "summary": "国内商品期货夜盘开盘，主力合约多数下跌。跌幅方面，原油、燃油、低硫燃油跌超3%，瓶片跌近3%，对二甲苯、沥青、LPG、PTA跌超2%，短纤、纯苯跌近2%，塑料、聚丙烯、焦煤、乙二醇、丙烯等跌超1%；涨幅方面，沪银涨超1%，玻璃、20号胶、不锈钢、沪镍、橡胶等小幅上涨。",
-      "url": "http://futures.eastmoney.com/a/202611023918994454.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T21:00:07.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918997748",
-      "title": "波罗的海干散货运价指数下跌2.43%",
-      "summary": "波罗的海干散货运价指数下跌2.43%，报2648点。",
-      "url": "http://xianhuo.eastmoney.com/a/202611023918997748.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T20:59:55.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918992276",
-      "title": "证监会最新部署 哪些增量资金买入了？",
-      "summary": "【证监会最新部署 哪些增量资金买入了？】证监会相关负责人今日回答记者提问时最新介绍了中长期资金入市的情况，包括目前哪些资金已经新增入市，哪些增量资金在途，这也被不少市场投资者视为一个稳市场稳预期的信号。",
-      "url": "http://finance.eastmoney.com/a/202611023918992276.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T20:54:37.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918994097",
-      "title": "下调利率25个基点！央行优化股票回购增持再贷款政策",
-      "summary": "【下调利率25个基点！央行优化股票回购增持再贷款政策】另据参会人士透露，会上强调，银行应按市场化原则，合理确定股票回购增持贷款利率水平，避免过度“内卷”竞争，保持商业可持续。下一步银行要积极满足不同上市公司需求，对估值偏离大的企业加强研判；对行业龙头加强重点对接，发挥带头作用；对上市公司集聚地区加强资源倾斜。",
-      "url": "http://forex.eastmoney.com/a/202611023918994097.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T20:54:00.000Z",
       "codes": []
     },
     {
@@ -3420,119 +3524,18 @@
       "title": "欧洲央行管委Kazimir：市场或低估所需的政策紧缩力度",
       "summary": "欧洲央行管委Kazimir称，市场或低估所需的政策紧缩力度。",
       "url": "http://forex.eastmoney.com/a/202611023918992027.html",
-      "source": "东方财富快讯",
+      "source": "东方财富快讯·欧洲央行",
       "publishedAt": "2026-11-02T20:53:13.000Z",
       "codes": []
     },
     {
-      "id": "sina-live-5187687",
-      "title": "欧洲央行Kazimir称市场或低估所需的政策紧缩力度",
-      "summary": "欧洲央行管理委员会委员、斯洛伐克央行行长Peter Kazimir表示，在能源冲击没有消退迹象、通胀再度上升之际，投资者可能尚未充分计入欧洲央行所需的进一步紧缩力度。“市场或仍低估了所需的政策力度，”Kazimir周一在斯洛伐克央行网站发表的一篇评论文章中表示，“问题不在于某一次会议或某一步行动，而在于需要怎样的政策路径，才能让通胀回到目标并维持在那里。”Kazimir称，现在的问题越来越不是欧洲央行是否需要进一步行动，而是还需要多大力度。他表示：“上周的暂停并非终点。”Kazimir警告通胀面临上行风险，并称经济增长放缓本身未必足以令通胀降温。Kazimir说：“能源价格比一年前高出近五分之一，企业支付的成本正在上升，汇率走弱也使进口商品更加昂贵。食品价格同样在缓慢上涨。”他警告称，企业可能先承受成本累积，之后才将其转嫁出去，而通胀预期也可能在更广泛的价格压力显现之前发生变化。他表示：“等待确定性并不一定能带来好的政策。行动力度不足的风险越来越难以忽视。”",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0333853.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:52:51.000Z",
-      "codes": [
-        "159352"
-      ]
-    },
-    {
-      "id": "sina-live-5187686",
-      "title": "阿联酋承诺加强能源基础设施 降低霍尔木兹海峡供应中断风险",
-      "summary": "阿联酋承诺加强能源基础设施建设，并表示中东战争凸显了投资替代供应路线和备用产能的重要性，这些措施有助于应对危机时期的供应中断。阿联酋能源部长Suhail Al Mazrouei周一在阿布扎比举行的阿布扎比国际石油展（ADIPEC）上表示，该国必须为最坏情况做好准备，因为“我们无法预测未来会发生什么”。他指出，此前在管道、船舶和物流领域的投资，帮助阿联酋在冲突期间维持了能源供应。Al Mazrouei表示，产油国还必须在海外投资建设储油设施，以便更接近客户。他指出，战争结束后，许多企业将重新设计相关设施，以增强未来应对危机的能力。他的上述表态与阿布扎比国家石油公司（ADNOC）首席执行官Sultan Al Jaber此前的观点一致。AlJaber呼吁扩大能源战略储备、增加成品油库存并强化基础设施建设。他周一早些时候表示，能源安全应以能源实际交付地点为衡量标准，而不仅仅取决于生产能力。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0333233.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:51:54.000Z",
-      "codes": [
-        "159352"
-      ]
-    },
-    {
-      "id": "em-kuaixun-202611023918991829",
-      "title": "曦智科技：拟启动A股IPO进程",
-      "summary": "【曦智科技：拟启动A股IPO进程】11月2日，曦智科技发布公告称，公司于港交所成功上市后，已审慎评估资本市场机遇，为促进业务发展、深化产业布局及提升公司整体竞争实力，拟启动A股发行相关工作，并批准与国泰海通签署辅导协议。",
-      "url": "http://finance.eastmoney.com/a/202611023918991829.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T20:51:00.000Z",
+      "id": "sina-roll-comos:nixkvsi0106192",
+      "title": "纽约汇市：美元走低 油价在美国中期选举前下挫",
+      "summary": "随着中东紧张局势可能缓和的前景推动油价下跌，美元走低，投资者同时将注意力转向周二的美国中期选举。 彭博美元即期指数下跌0.2%。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkvsi0106192.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T20:41:42.000Z",
       "codes": []
-    },
-    {
-      "id": "sina-live-5187680",
-      "title": "苏丹油轮追踪：原油出口扭转 9 月跌势",
-      "summary": "丹与南苏丹的原油海外出口量 10 月环比小幅回升，回到 8 月水平。油轮追踪数据显示，10 月共有 8 艘油轮在苏丹的两处相邻码头装油，装载量约 480 万桶，9 月为 440 万桶。对应日出口量由上月 14.7 万桶升至 10 月的 15.5 万桶。三个月移动均值口径下，出口量由截至 9 月的 16.3 万桶 / 日下滑至 15.2 万桶 / 日。自 2025 年 8 月苏丹籍船舶被拒绝靠港后，原油不再发往阿联酋。受伊朗局势影响，红海海域船舶追踪信号受到的电子干扰有所增多。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7107710.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:49:14.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918991186",
-      "title": "主动ETF逐步建仓 360亿增量资金“上膛”",
-      "summary": "【主动ETF逐步建仓 360亿增量资金“上膛”】第一财经记者11月2日获悉，首批18只主动ETF10月23日启动募集，截至10月30日合计募集资金超过342亿，有15只达到上限并结束募集。摩根、易方达、富国等9家管理人自购27亿。18只主动ETF将逐步投资建仓，预计为市场带来近360亿增量资金。",
-      "url": "http://stock.eastmoney.com/a/202611023918991186.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T20:48:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187676",
-      "title": "甲骨文拟发行 100 亿美元高等级美元债券",
-      "summary": "据知情人士消息，甲骨文公司周一启动 100 亿美元美国投资级债券发行工作。该公司上周曾表示，未来几年新增融资规模仅为 200 亿美元。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuv9213802.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:45:56.000Z",
-      "codes": [
-        "159352"
-      ]
-    },
-    {
-      "id": "em-kuaixun-202611023918987442",
-      "title": "罗马仕“重生计划”因债务搁浅 拟按三折清偿",
-      "summary": "【罗马仕“重生计划”因债务搁浅 拟按三折清偿】近日，记者从知情人士处获悉，罗马仕“重生计划”搁浅的核心症结仍在于债务：投资方要等罗马仕把现有债务处理得差不多之后才会投。与此同时，罗马仕当前给供应商的债务处理方案是“按三折折扣以清偿”。",
-      "url": "http://finance.eastmoney.com/a/202611023918987442.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-02T20:44:59.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187674",
-      "title": "香港暂停进口美国华盛顿州Kittitas县禽肉及禽类产品",
-      "summary": "香港食物环境卫生署食物安全中心今日（11月2日）宣布，因应世界动物卫生组织通报，指美国华盛顿州Kittitas县爆发高致病性H5N1禽流感，中心即时指示业界暂停从该地区进口禽肉及禽类产品（包括禽蛋），以保障香港公众健康。中心发言人说，根据政府统计处的资料，香港今年前九个月从美国进口约33270公吨冰鲜和冷藏禽肉，以及约9233万只禽蛋。发言人称，中心已就事件联络美国当局，并会继续密切留意世界动物卫生组织及有关当局发出关于爆发禽流感的消息，以应当地疫情发展采取适当行动。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2761841.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:43:11.000Z",
-      "codes": [],
-      "alsoIn": [
-        "东方财富快讯"
-      ]
-    },
-    {
-      "id": "em-kuaixun-202611023918993787",
-      "title": "国家能源局：煤炭供应稳步恢复 全国统调电厂存煤平均可用35天",
-      "summary": "【国家能源局：煤炭供应稳步恢复 全国统调电厂存煤平均可用35天】11月2日，国家能源局发布迎峰度冬煤炭保供最新情况。随着近期煤炭增产保供举措加快实施，煤炭供应稳步恢复，与之同时，煤炭消费相对平稳，供需差进一步收窄，叠加电煤库存保持安全合理区间，为迎峰度冬保供提供坚实基础。",
-      "url": "http://finance.eastmoney.com/a/202611023918993787.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T20:42:36.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187666",
-      "title": "印度石油天然气公司：卡塔尔未按长期协议供应90船液化天然气。",
-      "summary": "印度石油天然气公司：卡塔尔未按长期协议供应90船液化天然气。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0325832.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:39:34.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187663",
-      "title": "印度总理莫迪认为到2030年印度清洁能源领域将迎来2200亿美元投资机会。",
-      "summary": "印度总理莫迪认为到2030年印度清洁能源领域将迎来2200亿美元投资机会。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0325275.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:38:46.000Z",
-      "codes": [
-        "159352"
-      ]
     },
     {
       "id": "sina-live-5187656",
@@ -3541,15 +3544,6 @@
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0323878.d.html",
       "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-02T20:36:16.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187651",
-      "title": "印度财长西塔拉曼就塔塔问题表态：希望该问题能尽快得到解决。",
-      "summary": "印度财长西塔拉曼就塔塔问题表态：希望该问题能尽快得到解决。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7099059.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:35:02.000Z",
       "codes": []
     },
     {
@@ -3562,103 +3556,13 @@
       "codes": []
     },
     {
-      "id": "sina-live-5187635",
-      "title": "印度证券交易委员会：关于房地产投资信托基金单位存托凭证发行框架。",
-      "summary": "印度证券交易委员会：关于房地产投资信托基金单位存托凭证发行框架。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuu2755627.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:31:06.000Z",
-      "codes": [
-        "931775",
-        "159352"
-      ]
-    },
-    {
-      "id": "sina-live-5187632",
-      "title": "美股云概念股在经历此前两个交易日的下跌后，于盘前时段走高。CoreWeave上涨4.9%，Nebius上涨3.2%，IR",
-      "summary": "美股云概念股在经历此前两个交易日的下跌后，于盘前时段走高。CoreWeave上涨4.9%，Nebius上涨3.2%，IREN上涨2.9%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7094948.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:29:12.000Z",
+      "id": "sina-roll-comos:nixkvsn2525555",
+      "title": "哈梅内伊为和平谈判开绿灯 特朗普称“有可能”与伊朗达成协议",
+      "summary": "伊朗最高领袖穆杰塔巴·哈梅内伊批准政府推进和平谈判，在外界日益担忧美以与伊朗再度爆发冲突之际，释放出可能出现外交突破的信号。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkvsn2525555.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T20:29:39.000Z",
       "codes": []
-    },
-    {
-      "id": "sina-live-5187631",
-      "title": "今日特朗普行程：在林肯纪念堂倒影池发表讲话，参加九场电话竞选集会",
-      "summary": "以下均为北京时间，美东已进入冬令时，时差为13小时。日间活动对应美东时间11月2日。 1、11月2日14:52（美东时间凌晨一点五十二）：返回白宫。 2、11月2日21:00：在白宫进行行政事务时间，不对媒体开放。 3、11月3日00:00：在白宫参加电话竞选集会，不对媒体开放。 4、11月3日00:45：在白宫参加电话竞选集会，不对媒体开放。 5、11月3日03:00：在林肯纪念堂倒影池发表讲话，活动结束后返回白宫。 6、11月3日05:00：在白宫参加电话竞选集会，不对媒体开放。 7、11月3日05:45：在白宫参加电话竞选集会，不对媒体开放。 8、11月3日06:30：在白宫参加电话竞选集会，不对媒体开放。 9、11月3日07:15：在白宫参加电话竞选集会，不对媒体开放。 10、11月3日08:00：在白宫参加电话竞选集会，不对媒体开放。 11、11月3日08:45：在白宫参加电话竞选集会，不对媒体开放。 12、11月3日09:15：在白宫参加电话竞选集会，不对媒体开放。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7094945.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:29:12.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187626",
-      "title": "以色列总统赫尔佐格将于周三启动组阁磋商。",
-      "summary": "以色列总统赫尔佐格将于周三启动组阁磋商。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeuv9204218.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:27:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187622",
-      "title": "联合信贷银行：印度是许多客户的重要商业和投资伙伴。",
-      "summary": "联合信贷银行：印度是许多客户的重要商业和投资伙伴。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7093184.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:25:57.000Z",
-      "codes": [
-        "159352"
-      ]
-    },
-    {
-      "id": "sina-live-5187620",
-      "title": "以色列利伯曼表示将推荐艾森科特组建新政府。",
-      "summary": "以色列利伯曼表示将推荐艾森科特组建新政府。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7093131.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:25:48.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187616",
-      "title": "裕信银行与印度ICICI银行将为两大区域的跨国企业提供支持。",
-      "summary": "裕信银行与印度ICICI银行将为两大区域的跨国企业提供支持。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0315636.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:23:33.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187610",
-      "title": "裕信银行：此举旨在支持欧洲与印度之间的商业机会。",
-      "summary": "裕信银行：此举旨在支持欧洲与印度之间的商业机会。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0314664.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:22:14.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187609",
-      "title": "意大利联合信贷银行与印度工业信贷投资银行签署谅解备忘录。",
-      "summary": "意大利联合信贷银行与印度工业信贷投资银行签署谅解备忘录。",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeus7090356.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:21:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187607",
-      "title": "摩根大通交易员：中期选举后标普 500 指数大概率上行",
-      "summary": "摩根大通市场情报团队的情景分析显示，本周中期选举落幕后，标普 500 指数上涨的可能性高于下跌。在摩根大通交易员判定概率最高的情景，也就是 “蓝浪”（民主党大胜）情景下，指数波动区间为下跌 0.25% 至上涨 0.5%；其余所有情景中，指数均有望走高。该团队指出，主要风险在于：市场可能借流动性预期改善的机会，削减 AI 板块头寸。此外，和特朗普竞选捐款相关的企业高管（包括大型科技巨头）还面临调查风险。由安德鲁・泰勒牵头的团队在研报中写道：“不少投资者担心监管收紧会引发 AI 板块抛售。但相关政策很难落地，特朗普已经表态不会签署任何限制 AI 扩张的法案，同时民主党也无法在参众两院拿到可以绕过总统否决权的绝对多数席位。看多 AI 的投资者，如果后续出现回调，这会是逢低买入的机会。”",
-      "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixkeur0314010.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-02T20:21:17.000Z",
-      "codes": [
-        "159352",
-        "510300",
-        "159363"
-      ]
     },
     {
       "id": "sina-live-5187605",
@@ -3670,12 +3574,12 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023918958977",
-      "title": "欧洲天然气价格下跌5.3%至98.49欧元/兆瓦时",
-      "summary": "欧洲天然气价格下跌5.3%至98.49欧元/兆瓦时。",
-      "url": "http://stock.eastmoney.com/a/202611023918958977.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T20:16:04.000Z",
+      "id": "sina-roll-comos:nixkvsp8974118",
+      "title": "特朗普否认会在中期选举后恢复对伊朗的打击",
+      "summary": "据美国总统特朗普的随行记者团报道，他被问及中期选举后是否会恢复对伊朗的打击时回答说“不会”。 特朗普在华盛顿特区出席活动后回答了记者的提问。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkvsp8974118.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T20:20:01.000Z",
       "codes": []
     },
     {
@@ -3706,21 +3610,21 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023918925478",
-      "title": "三部门：股票回购增持再贷款政策由阶段性安排转为长期制度性安排 再贷款利率由1.25%降至1%",
-      "summary": "【央行、金融监管总局、证监会召开支持资本市场两项工具座谈会】2026年11月2日，中国人民银行会同金融监管总局、中国证监会等部门先后召开证券、基金、保险公司互换便利座谈会和股票回购增持再贷款座谈会，听取金融机构业务进展及意见建议，研究部署用好用足政策工具有关工作，支持资本市场健康稳定发展。中国人民银行副行长邹澜，金融监管总局副局长丛林，中国证监会副主席刘浩凌出席会议并讲话。",
-      "url": "http://finance.eastmoney.com/a/202611023918925478.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T20:02:02.000Z",
+      "id": "sina-roll-comos:nixkvsk6872693",
+      "title": "Alphabet通过欧元债券发行筹集60亿欧元 付出更高溢价吸引买家",
+      "summary": "Alphabet通过今年第二次欧元债券发行筹集60亿欧元（67亿美元）。此前，对人工智能支出速度的担忧引发信用市场抛售，使得此次发债的收益率明显高于5月的那次发行。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkvsk6872693.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T20:02:44.000Z",
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023918919920",
-      "title": "精选 | 夜盘盘前要闻汇总 11月2日 周一",
-      "summary": "【夜盘盘前要闻汇总】伊朗称局势如何发展取决于美方态度，若条件满足可2日内开放海峡；10月第5周生猪和猪肉价格有所下跌；宜春国轩矿业有限责任公司江西省宜丰县水南矿区锂矿项目生态环境影响报告书拟受理公示。",
-      "url": "http://futures.eastmoney.com/a/202611023918919920.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T19:50:15.000Z",
+      "id": "sina-roll-comos:nixkvsi0092679",
+      "title": "特朗普：伊朗希望达成协议 这有可能实现",
+      "summary": "美国总统特朗普在华盛顿的活动上谈及伊朗时表示：“他们希望达成协议，这有可能实现。” 特朗普在华盛顿特区的活动上表示。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkvsi0092679.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T19:43:03.000Z",
       "codes": []
     },
     {
@@ -3769,21 +3673,21 @@
       "codes": []
     },
     {
+      "id": "sina-roll-comos:nixkvsn2511011",
+      "title": "法尔斯通讯社：伊朗与美国的信息交流没有新进展",
+      "summary": "伊朗半官方的法尔斯通讯社援引一名未具名知情人士报道称，伊朗与美国通过中间方进行“例行”信息交换，并且“在这方面没有出现新的进展”。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkvsn2511011.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T19:22:30.000Z",
+      "codes": []
+    },
+    {
       "id": "em-kuaixun-202611023918894156",
       "title": "特朗普：如果民主党在中期选举中获胜 将否决所有法案",
       "summary": "美国总统特朗普表示，如果民主党在中期选举中获胜，他将否决所有法案。",
       "url": "http://finance.eastmoney.com/a/202611023918894156.html",
       "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-02T19:18:35.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918891873",
-      "title": "特朗普表示是否与伊朗达成协议还有待观察",
-      "summary": "【特朗普表示是否与伊朗达成协议还有待观察】美国总统特朗普表示，是否与伊朗达成协议还有待观察，伊朗希望达成协议。",
-      "url": "http://finance.eastmoney.com/a/202611023918891873.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T19:15:18.000Z",
       "codes": []
     },
     {
@@ -3810,57 +3714,21 @@
       ]
     },
     {
-      "id": "em-kuaixun-202611023918877251",
-      "title": "金价跌破4000以后 11月应关注什么？",
-      "summary": "恒银期货11月2日研报指出，核心关注两条主线：中期选举与12月利率路径。1.中期选举：关键在选举前后美国对伊朗态度的变化，以及由此引发的原油波动。若特朗普政府重新对伊朗施压，中东地缘风险可能再起，原油容易剧烈波动。油价上涨会通过“油价—通胀—美联储加息”的链条传导：通胀预期升温，市场提高12月加息定价，名义和实际利率上行，黄金持有成本上升，压制金价。",
-      "url": "http://futures.eastmoney.com/a/202611023918877251.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T18:56:32.000Z",
+      "id": "sina-roll-comos:nixkmat9159848",
+      "title": "Anthropic IPO前营收猛增 第三季度已达上年同期12倍",
+      "summary": "Anthropic PBC披露季度营收达到上年同期的12倍，同时表示未来几年计划支出超过8，950亿美元。目前，这家人工智能公司正争取投资者支持，为一场可能创纪录的IPO做准备。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkmat9159848.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T19:00:22.000Z",
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023918864735",
-      "title": "美国推动俄气经乌克兰重返欧洲：停火筹码还是难以接受的交易？",
-      "summary": "综合央视新闻等媒体报道，为了推动俄罗斯与乌克兰在即将到来的冬季前达成能源停火，美国正忙着说服各方达成一项交易：让欧洲人通过乌克兰境内的管道，重新开始进口俄罗斯天然气。毫无意外，此举遭到欧洲多国的强烈反对。根据欧盟现行规定，成员国须在2027年内分阶段停止进口俄罗斯天然气，其中液化天然气禁令将于明年1月全面生效，管道气则于秋季完成退出。",
-      "url": "http://finance.eastmoney.com/a/202611023918864735.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T18:45:06.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918851129",
-      "title": "消息人士：科威特10月原油产量增至每日210万桶",
-      "summary": "【消息人士：科威特10月原油产量增至每日210万桶】消息人士称，科威特10月原油产量增至每日210万桶，为伊朗战争爆发以来最高水平。",
-      "url": "http://finance.eastmoney.com/a/202611023918851129.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T18:30:36.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918845433",
-      "title": "伊朗外交部：伊美谈判由伊朗议长卡利巴夫负责",
-      "summary": "【伊朗外交部：伊美谈判由伊朗议长卡利巴夫负责】伊朗外交部发言人巴加埃2日说，伊朗副外长加里巴巴迪近日访问卡塔尔多哈旨在与美国交流信息。伊美间相关对话仍在继续，目前伊美谈判由伊朗议长卡利巴夫负责。",
-      "url": "http://finance.eastmoney.com/a/202611023918845433.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T18:25:05.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918836792",
-      "title": "10月第5周生猪和猪肉价格有所下跌",
-      "summary": "【10月第5周生猪和猪肉价格有所下跌】据农业农村部对500个县集贸市场和采集点监测，上周（10月第5周，10月26日—11月1日，下同），全国活猪价格为10.41元/公斤，环比跌2.8%；猪肉集贸市场价格为20.35元/公斤，环比跌1.2%。据农业农村部对200个批发市场监测调度，上周全国猪肉批发市场均价为15.49元/公斤，环比跌1.3%，同比低13.8%。",
-      "url": "http://xianhuo.eastmoney.com/a/202611023918836792.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T18:00:30.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918835289",
-      "title": "美国中期选举“观赛”时间手册：最终结果预计何时出炉？",
-      "summary": "【美国中期选举“观赛”时间手册：最终结果预计何时出炉？】美东时间11月3日是美国中期选举正式投票日，届时美国众议院全部435个席位以及参议院35个席位将迎来改选。",
-      "url": "http://finance.eastmoney.com/a/202611023918835289.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T17:58:19.000Z",
+      "id": "sina-roll-comos:nixkrkm0211187",
+      "title": "欧洲债市：英国国债创9月3日以来最大涨幅 油价下跌削弱加息预期",
+      "summary": "英国国债全线上涨，涨幅与法国和意大利国债大致持平，并跑赢德国国债和美国国债，此前美国和伊朗示意对谈判持开放态度，能源价格应声大跌。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkrkm0211187.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T18:42:51.000Z",
       "codes": []
     },
     {
@@ -3882,6 +3750,15 @@
       "codes": []
     },
     {
+      "id": "sina-roll-comos:nixkrkn6974622",
+      "title": "美国称南非将失去非洲增长与机会法案优惠资格",
+      "summary": "据美国贸易代表办公室通过电子邮件发布的声明，美国拟取消南非享受《非洲增长与机会法案》（AGOA）优惠待遇的资格。 声明称，美国还拟取消卢旺达的相关资格。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkrkn6974622.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T17:52:58.000Z",
+      "codes": []
+    },
+    {
       "id": "sina-live-5187238",
       "title": "印度财政部长：希望银行跟上现代银行业的要求。",
       "summary": "印度财政部长：希望银行跟上现代银行业的要求。",
@@ -3891,21 +3768,35 @@
       "codes": []
     },
     {
+      "id": "sina-roll-comos:nixkrkm0198093",
+      "title": "甲骨文启动200亿美元股债融资 为AI支出“筹粮”",
+      "summary": "甲骨文周一启动200亿美元股债融资。尽管越来越多迹象显示，资产管理机构对科技公司的巨额支出感到不安，该公司仍在推进为人工智能投资筹资的计划。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkrkm0198093.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T17:50:33.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5188162",
+      "title": "法国央行行长：市场可能对财政情况反应过度 预算案大概率能通过",
+      "summary": "法国央行行长Emmanuel Moulin表示，投资者可能对法国面临的财政挑战反应过度，预算案在议会通过的可能性很大。 Moulin表示，政府可以利用宪法第49.3条...",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkrkq2620659.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T17:49:56.000Z",
+      "codes": [
+        "159352"
+      ],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
       "id": "sina-live-5187231",
       "title": "印度财政部长：全民保险是政府的首要议程。",
       "summary": "印度财政部长：全民保险是政府的首要议程。",
       "url": "https://finance.sina.cn/7x24/2026-11-02/detail-inixiuew7249523.d.html",
       "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-02T17:48:33.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918813341",
-      "title": "宜春国轩矿业有限责任公司江西省宜丰县水南矿区锂矿项目生态环境影响报告书拟受理公示",
-      "summary": "【宜春国轩矿业有限责任公司江西省宜丰县水南矿区锂矿项目生态环境影响报告书拟受理公示】宜春市生态环境局公告，根据建设项目环境影响评价审批程序的有关规定，我局拟受理宜春国轩矿业有限责任公司江西省宜丰县水南矿区锂矿项目环境影响评价文件，现予以公示，公示期为2026年11月2日-2026年11月13日（10个工作日）。矿区位于江西省宜春市宜丰县花桥乡，项目划定矿区范围面积为0.2546平方千米，年开采锂（同体共生陶瓷土）矿180万吨/年。",
-      "url": "http://futures.eastmoney.com/a/202611023918813341.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T17:36:41.000Z",
       "codes": []
     },
     {
@@ -3920,6 +3811,24 @@
       ]
     },
     {
+      "id": "sina-roll-comos:nixkrkr9066503",
+      "title": "欧洲股市收涨 油价下跌提振周期股 阿尔斯通重挫",
+      "summary": "欧洲股市上涨，油价重挫提振了对经济敏感的股票。法国列车制造商阿尔斯通发布盈利预警后股价大跌。 斯托克欧洲600指数收涨0.4%，扭转盘中一度下跌0.3%的走势。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkrkr9066503.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T17:32:50.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nixkrkr9066434",
+      "title": "英国推进移民永居制度改革 50万人或面临更长等待期",
+      "summary": "英国内政大臣谢巴娜·马哈茂德在收紧移民规定的计划中给予外籍护理人员一定宽限，但并未撤回让更广泛改革追溯适用于现有移民的争议性提议。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkrkr9066434.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T17:32:37.000Z",
+      "codes": []
+    },
+    {
       "id": "sina-live-5187198",
       "title": "香港交易所旗下衍生产品结算所现接受中国国债、政策性银行债券及财政部债券作抵押品",
       "summary": "香港交易所今天（星期一）宣布，旗下衍生产品结算所——香港期货结算有限公司（期货结算公司）及香港联合交易所期权结算所有限公司（联交所期权结算所）——已开始接受合资格人民币定息资产作为非现金抵押品，以满足保证金要求。首日共有七间机构提交合资格债券作为抵押品，总值超过人民币四亿元。此举让参与者可使用透过债券通「北向通」持有的中国国债及政策性银行债券（统称「债券通证券」），以及中华人民共和国财政部在境外发售的债券（财政部债券），满足保证金要求，而毋须出售资产或将其转换为现金。这项措施扩大了抵押品选择，有助参与者在香港交易所旗下衍生产品市场更有效地管理流动性及资金。此举建基于香港交易所现有的人民币债券抵押品安排。场外结算公司分别于2017年及2025年开始接受财政部债券及债券通证券作为抵押品。截至2026年9月，这些债券占场外结算公司保证金总额约16%。",
@@ -3928,9 +3837,6 @@
       "publishedAt": "2026-11-02T17:27:57.000Z",
       "codes": [
         "510300"
-      ],
-      "alsoIn": [
-        "东方财富快讯"
       ]
     },
     {
@@ -3963,13 +3869,25 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023918777212",
-      "title": "图解期货 | 中期选举倒计时 美伊是战是和？",
-      "summary": "【图解期货 | 中期选举倒计时 美伊是战是和？】美国中期选举落幕在即，美国对伊朗发动新一轮打击的风险骤然升温。美伊双方外交斡旋持续，各方立场显现，和谈窗口期所剩无几，如果“谈不成”，战事是否要重启？",
-      "url": "http://futures.eastmoney.com/a/202611023918777212.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T17:01:35.000Z",
+      "id": "sina-roll-comos:nixkrkn6962488",
+      "title": "辉立资本上调评级：亚马逊的人工智能投入终将获得回报",
+      "summary": "辉立资本表示，亚马逊在人工智能领域的大手笔投入，将为这家超大规模云厂商带来丰厚回报。该行周一将亚马逊股票上调至买入评级，并把目标价上调至 330 美元...",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkrkn6962488.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T17:02:05.000Z",
       "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nixkrkq2610268",
+      "title": "哈塞特反驳AI融资担忧 称该行业不存在被全面抛售的风险",
+      "summary": "美国国家经济委员会主任凯文·哈塞特表示，AI是一个“资金非常充裕的生态系统”，该行业不存在“全面抛售”的风险。 他说，一些公司背负大量债务...",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkrkq2610268.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-02T17:01:38.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
     },
     {
       "id": "sina-roll-comos:nixkrkn6962026",
@@ -4008,15 +3926,6 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023918764012",
-      "title": "LME伦铜涨幅扩大 现涨1.01%",
-      "summary": "11月2日，LME伦铜涨幅扩大，现涨1.01%，最新报14298.165美元/吨。",
-      "url": "http://futures.eastmoney.com/a/202611023918764012.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T16:52:11.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-roll-comos:nixkmap0312973",
       "title": "失望情绪日渐高涨：中期选举前夕，特朗普经济议题支持率最终观察",
       "summary": "特朗普的经济议题支持率徘徊在其第二任期的低点。随着中期选举日益临近，通胀担忧成为总统及其所属政党面临的主要阻力。",
@@ -4044,15 +3953,6 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611023918749038",
-      "title": "WTI原油期货价格跌超4% 跌破100美元/桶",
-      "summary": "【WTI原油期货价格跌超4% 跌破100美元/桶】WTI原油期货价格跌4.03%，报99.929美元/桶；布伦特原油期货价格跌3.89%，报109.015美元/桶。",
-      "url": "http://finance.eastmoney.com/a/202611023918749038.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T16:38:18.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5188135",
       "title": "大型多策略对冲基金杠杆高企 持仓趋同或放大市场冲击",
       "summary": "PivotalPath一份最新报告显示，大型多策略对冲基金管理的资金规模越来越大，且大量使用杠杆，随着他们越来越多地投资于相同股票，市场在遭遇冲击时可能面临更剧烈的动荡。",
@@ -4064,39 +3964,12 @@
       ]
     },
     {
-      "id": "em-kuaixun-202611023918752826",
-      "title": "每日龙虎榜 | 商品期货综合指数下跌1.9% 日内资金净流出77.23亿元",
-      "summary": "【每日龙虎榜】螺纹钢增仓超11万手，棕榈油减仓超3万手，商品期市资金净流出77.23亿元。一文带你深度了解期货市场！",
-      "url": "http://futures.eastmoney.com/a/202611023918752826.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T16:32:49.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023918740838",
       "title": "在岸人民币兑美元收盘报6.6458",
       "summary": "【在岸人民币兑美元收盘报6.6458】11月2日消息，在岸人民币兑美元收盘报6.6458，较上一交易日上涨99点。",
       "url": "http://forex.eastmoney.com/a/202611023918740838.html",
       "source": "东方财富快讯·外汇债券",
       "publishedAt": "2026-11-02T16:32:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918752494",
-      "title": "红枣龙虎榜 | 主力合约今日减仓上行 多方呈退场态势 空方呈进场态势",
-      "summary": "红枣701合约今日减仓上行，多空持仓排名前20席中，多方呈退场态势，空方呈进场态势。",
-      "url": "http://futures.eastmoney.com/a/202611023918752494.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T16:28:53.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918752679",
-      "title": "沪金龙虎榜 | 主力合约今日减仓下行 多头退场意愿强于空头",
-      "summary": "沪金2612合约今日减仓下行，多空持仓排名前20席中，多空双方均呈退场态势，多头退场意愿强于空头。",
-      "url": "http://futures.eastmoney.com/a/202611023918752679.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T16:26:50.000Z",
       "codes": []
     },
     {
@@ -4117,24 +3990,6 @@
       "url": "http://finance.eastmoney.com/a/202611023918728733.html",
       "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-02T16:18:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918727938",
-      "title": "“四连阳”！蛋价触底了？",
-      "summary": "【“四连阳”！蛋价触底了？】11月2日，鸡蛋期货延续近期强势，主力合约日内一度涨逾4%，截至收盘报3564元/500千克，连续第四个交易日走高。",
-      "url": "http://futures.eastmoney.com/a/202611023918727938.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T16:16:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918727237",
-      "title": "伊朗提交美以袭击伊方港口及海上设施证据",
-      "summary": "【伊朗提交美以袭击伊方港口及海上设施证据】据伊朗方面11月1日消息，伊朗已向国际海事组织提交了今年2月底美国和以色列对伊朗发动军事打击以来袭击伊朗港口、民用船只和海上基础设施的证据报告。",
-      "url": "http://finance.eastmoney.com/a/202611023918727237.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T16:16:29.000Z",
       "codes": []
     },
     {
@@ -4159,16 +4014,13 @@
       "codes": []
     },
     {
-      "id": "sina-live-5188120",
+      "id": "sina-roll-comos:nixkmas2724771",
       "title": "高盛限制交易员和银行家使用某些人工智能工具",
       "summary": "在对生产力和风险进行评估后，高盛禁止大多数员工使用专为编程设计的高级人工智能工具，此举引发部分人不满。 数月来，高盛一直允许银行家在工作中使用Anthropic...",
       "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-03/doc-inixkmas2724771.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-02T16:07:05.000Z",
-      "codes": [
-        "931071",
-        "159363"
-      ],
+      "codes": [],
       "alsoIn": [
         "东方财富快讯"
       ]
@@ -4201,24 +4053,6 @@
       "codes": [
         "159352"
       ]
-    },
-    {
-      "id": "em-kuaixun-202611023918712874",
-      "title": "伊朗：局势如何发展取决于美方态度，若条件满足可2日内开放海峡",
-      "summary": "【伊朗：局势如何发展取决于美方态度，若条件满足可2日内开放海峡】伊朗外交部发言人巴加埃今天（11月2日）表示，伊朗最高国家安全委员会秘书将根据国家利益，决定如何以及以何种方式回应美国的来信。巴加埃还表示，伊朗与美国通过调解人进行的所有间接谈判的主要基础是伊朗提出的“七日计划”方案，该方案现已精简，可在两天内全面实施。",
-      "url": "http://finance.eastmoney.com/a/202611023918712874.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T15:54:33.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611023918710298",
-      "title": "马来西亚2026年10月1-31日棕榈油产量环比上月同期减少0.84%",
-      "summary": "【马来西亚2026年10月1-31日棕榈油产量环比上月同期减少0.84%】南部半岛棕榈油压榨商协会（SPPOMA）数据显示，2026年10月1-31日马来西亚棕榈油单产环比上月同期增加0.11%，出油率环比上月同期减少0.19%，产量环比上月同期减少0.84%。",
-      "url": "http://xianhuo.eastmoney.com/a/202611023918710298.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-02T15:48:09.000Z",
-      "codes": []
     },
     {
       "id": "sina-roll-comos:nixkmap0293156",
@@ -4273,15 +4107,13 @@
       ]
     },
     {
-      "id": "sina-live-5188068",
+      "id": "sina-roll-comos:nixkmat9163218",
       "title": "美国10月制造业活动加速增长 生产指标创2021年以来新高",
       "summary": "美国10月制造业活动加快，受近五年来最强劲生产增长的支撑。 美国供应管理学会（ISM）制造业指数10月上升1点至55.5，为逾四年来第二高水平。",
       "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkmat9163218.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-02T15:29:46.000Z",
-      "codes": [
-        "159352"
-      ]
+      "codes": []
     },
     {
       "id": "sina-live-5186929",
@@ -4383,15 +4215,6 @@
       "codes": [
         "159352"
       ]
-    },
-    {
-      "id": "sina-roll-comos:nixkmat9159848",
-      "title": "Anthropic IPO前营收猛增 第三季度已达上年同期12倍",
-      "summary": "截至9月30日，Anthropic PBC第三季度营收接近170亿美元，是上年同期的12倍左右，这势将进一步推高市场对这家人工智能实验室可能创纪录IPO的期待。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkmat9159848.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T14:50:22.000Z",
-      "codes": []
     },
     {
       "id": "sina-roll-comos:nixkmat9149499",
@@ -4588,57 +4411,12 @@
       "codes": []
     },
     {
-      "id": "sina-roll-comos:nixkeuv9268464",
-      "title": "17家A股上市城商行均已公布！",
-      "summary": "截至10月30日，北京银行、江苏银行、宁波银行、上海银行、南京银行、杭州银行、长沙银行、成都银行、重庆银行、青岛银行、齐鲁银行、苏州银行、贵阳银行、郑州银行...",
-      "url": "https://finance.sina.com.cn/wm/2026-11-02/doc-inixkeuv9268464.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:22:34.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-roll-comos:nixkeuv9266435",
       "title": "芯片厂商迈威尔科技迈威尔科技拟800亿美元收购Lumentum",
       "summary": "该交易将打造所谓的人工智能连接领域行业龙头迈威尔科技正着力壮大自身数据中心业务。 内容摘要 迈威尔科技达成全股票交易，斥资约 800 亿美元收购Lumentum...",
       "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeuv9266435.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-02T14:22:26.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeur0391125",
-      "title": "国际油价跳水，金银、美股期货直线拉升",
-      "summary": "北京时间11月2日晚间，国际油价短线跳水。Wind数据显示，截至发稿，WTI原油期货跌幅扩大至6.33%，报97.53美元/桶；布伦特原油期货跌幅扩大至6.27%，报106.32美元/桶。",
-      "url": "https://finance.sina.com.cn/jjxw/2026-11-02/doc-inixkeur0391125.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:22:19.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuv9265629",
-      "title": "雅诗兰黛CEO财报会上以中文问好，一季度中国大陆有机销售额增长9%",
-      "summary": "新浪财经讯，雅诗兰黛集团总裁兼首席执行官司泰峰（Stéphane de La Faverie）在周一举行的财报电话会议上，与分析师进行了一段简短的中文互动。",
-      "url": "https://finance.sina.com.cn/roll/2026-11-02/doc-inixkeuv9265629.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:20:27.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuv9265050",
-      "title": "香港金融科技周今开幕 料吸引超4.5万人参与 金管局推四项新举措",
-      "summary": "香港金融科技周（Hong Kong FinTech Week）今日于香港会议展览中心揭幕。本届盛事与“StartmeupHK”联合举办，预计线上线下将吸引来自全球逾120个经济体、超过4.5万人参与...",
-      "url": "https://finance.sina.com.cn/stock/roll/2026-11-02/doc-inixkeuv9265050.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:19:15.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuu2814415",
-      "title": "火线解读｜政策“组合拳”打出，机构看好A股估值修复",
-      "summary": "“信心提振情绪，资金面面临改善，市场修复在路上。” 11月2日，人民银行宣布将开展第三批证券、基金、保险公司互换便利操作，股票回购增持再贷款政策由阶段性安排转为长期制...",
-      "url": "https://finance.sina.com.cn/roll/2026-11-02/doc-inixkeuu2814415.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:17:57.000Z",
       "codes": []
     },
     {
@@ -4669,66 +4447,12 @@
       "codes": []
     },
     {
-      "id": "sina-roll-comos:nixkeus7164328",
-      "title": "【现货异动】重芳烃30天上涨152.1901%！原料偏强、流通偏紧叠加刚需补库支撑价格",
-      "summary": "据同花顺iFinD数据显示，现货商品重芳烃11月2日最新价格8135.83元/吨，单日上涨1.01%，最近一周上涨1.64%，一个月累计上涨152.19%。",
-      "url": "https://finance.sina.com.cn/stock/relnews/cn/2026-11-02/doc-inixkeus7164328.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:14:20.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeus7159933",
-      "title": "业绩“热”、股价“冷”，存储芯片怎么了",
-      "summary": "11月2日，美股存储芯片股盘前多数上涨，SK海力士盘前大涨超4%，美光科技、闪迪、AMD等涨超2%，此前持续深度调整的美股存储芯片板块似乎有了一线转机。",
-      "url": "https://finance.sina.com.cn/stock/hyyj/2026-11-02/doc-inixkeus7159933.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:13:07.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuv9267613",
-      "title": "三家A股公司同日被证监会立案",
-      "summary": "【大河财立方消息】万辰集团、科力远、晶华微同日公告，因涉嫌信息披露违法违规，被证监会立案。11月2日，晶华微公告称，公司及控股股东吕汉泉收到证监会出具的《立案告知...",
-      "url": "https://finance.sina.com.cn/stock/relnews/cn/2026-11-02/doc-inixkeuv9267613.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:10:31.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeur0386630",
-      "title": "中国股市“护盘式回购”，央行启动“超级信用保障”",
-      "summary": "来源：鹏友来开会 在股市下跌14%之际，中国人民银行、证监会、金融监管总局果断出手，此次稳市政策组合拳，不仅仅在于注入流动性，将两项货币政策支持工具常态化...",
-      "url": "https://finance.sina.com.cn/stock/marketresearch/2026-11-02/doc-inixkeur0386630.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:10:07.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuv9267193",
-      "title": "198亿融资落地 快手旗下可灵AI“单飞”加速",
-      "summary": "观点网 可灵创下全球视频生成大模型赛道单轮融资最高纪录。近日，快手公告披露，旗下视频生成业务平台可灵完成198.02亿元外部增资交割，约合29.05亿美元...",
-      "url": "https://finance.sina.com.cn/stock/estate/integration/2026-11-02/doc-inixkeuv9267193.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:07:00.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-roll-comos:nixkeuv9255413",
       "title": "伊朗最高领袖放行谈判，油价延续跌势",
       "summary": "伊朗最高领袖批准政府开启谈判，有望化解扰乱中东能源供给、持续数月的冲突，受此消息影响，油价进一步走低。 伊朗官方媒体放出该消息后，伦敦布伦特原油期货大跌 6%...",
       "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeuv9255413.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-02T14:02:18.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuv9261173",
-      "title": "东山精密、宁德时代三季报业绩亮眼 高端制造与新能源龙头增长动能充沛",
-      "summary": "近日，深圳证券交易所上市公司三季报披露正式收官。数据显示，截至10月30日，深市2904家上市公司披露了三季度报告，前三季度共计实现营业总收入17.49万亿元...",
-      "url": "https://finance.sina.com.cn/stock/relnews/cn/2026-11-02/doc-inixkeuv9261173.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-02T14:01:48.000Z",
       "codes": []
     },
     {
@@ -4741,21 +4465,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5187853",
+      "id": "sina-roll-comos:nixkeur0372896",
       "title": "OpenAI承诺：极端天气下 旗下美国数据中心可削减用电负荷",
       "summary": "OpenAI承诺，在美国由其直接投建的数据中心园区，当极端天气或其他紧急情况造成电网承压时，将主动降低用电量。 正当AI算力中心的高耗电问题引发公众与政界反对...",
       "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeur0372896.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-02T13:55:45.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuv9249317",
-      "title": "新兴市场货币指数转跌为平：伊朗最高领袖授权谈判，油价应声下挫",
-      "summary": "有消息称伊朗最高领袖授权政府开展谈判，油价随之走低，摩根士丹利资本国际（MSCI）新兴市场货币指数由此收复日内跌幅。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeuv9249317.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T13:47:44.000Z",
       "codes": []
     },
     {
@@ -4768,75 +4483,12 @@
       "codes": []
     },
     {
-      "id": "sina-roll-comos:nixkeus7132223",
-      "title": "哈塞特淡化AI融资担忧：不会出现大规模抛售",
-      "summary": "美国国家经济委员会主任凯文·哈塞特表示，AI赛道“资金供给十分充足”，行业不存在出现全盘抛售的风险。 他称，部分企业负债高企，但市场上随处可见资金雄厚的巨头...",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeus7132223.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T13:30:57.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuu2790189",
-      "title": "盘前：纳指期货涨0.80% 本周关注中期选举、苹果财报与非农",
-      "summary": "上周五科技股遭遇猛烈抛售后，美国股指期货上涨，欧洲股市周一走势缺乏明确方向，暂时止住了人工智能相关股票此前遭遇的猛烈抛售。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeuu2790189.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T13:30:02.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuv9235196",
-      "title": "000972，将被实施退市风险警示！明天停牌",
-      "summary": "中基健康（000972）11月2日晚间公告，因新疆生产建设兵团第六师中级人民法院（简称“六师中院”）依法裁定受理债权人对公司的重整申请...",
-      "url": "https://finance.sina.com.cn/stock/zqgd/2026-11-02/doc-inixkeuv9235196.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T13:23:22.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuu2817626",
-      "title": "千亿AI PCB龙头单季净利腰斩，因投资合作伙伴“吃大亏”？",
-      "summary": "来源：雷达Finance 雷达财经出品 文|丁禹 编|孟帅 10月30日，A股当月最后一个交易日，AI PCB龙头胜宏科技低开跳水，当日收盘报139.04元/股，单日跌幅达13.31%。",
-      "url": "https://finance.sina.com.cn/stock/s/2026-11-02/doc-inixkeuu2817626.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T13:09:41.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeur0388657",
-      "title": "逸飞激光4亿元收购兴启航100%股权 加码光模块耦合设备领域",
-      "summary": "来源：雷达Finance 雷达财经讯 10月27日，逸飞激光发布公告称，公司拟通过支付现金的方式，购买深圳市兴启航自动化设备有限公司（以下简称“兴启航”）100%股权...",
-      "url": "https://finance.sina.com.cn/stock/s/2026-11-02/doc-inixkeur0388657.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T13:09:41.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeur0349408",
-      "title": "前首富“抄底专业户”救完王健林，又来接盘恒大物业",
-      "summary": "来源：雷达Finance 雷达财经出品 文|周慧 编|孟帅 市值约百亿港元的物管龙头恒大物业，终于迎来了“新东家”。曾充当王健林“白衣骑士”的太盟，将成为恒大物业的“新主人”。",
-      "url": "https://finance.sina.com.cn/stock/s/2026-11-02/doc-inixkeur0349408.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T13:09:41.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023918522396",
       "title": "日本央行：潜在通胀已加速至约2%",
       "summary": "【日本央行：潜在通胀已加速至约2%】日本央行称，潜在通胀已加速至约2%，近年来正逐步在该水平附近固化。实际利率的中位数均值仍处于低位。",
       "url": "http://forex.eastmoney.com/a/202611023918522396.html",
       "source": "东方财富快讯·日本央行",
       "publishedAt": "2026-11-02T13:07:19.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuv9221464",
-      "title": "特朗普：如有必要，可预先赦免马斯克等人",
-      "summary": "美国总统唐纳德·特朗普表示，如果民主党在中期选举后控制国会，他愿意向马斯克及亲近助手提供保护性赦免。 特朗普在一次采访中否定了民主党可能推动将马斯克旗下SpaceX国有...",
-      "url": "https://finance.sina.com.cn/world/2026-11-02/doc-inixkeuv9221464.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T13:02:31.000Z",
       "codes": []
     },
     {
@@ -4849,66 +4501,12 @@
       "codes": []
     },
     {
-      "id": "sina-roll-comos:nixkeuv9219526",
-      "title": "阿波罗CEO正在应对的两大核心任务",
-      "summary": "阿波罗全球管理首席执行官马克・罗文并不希望外界把自家公司简单称作 “私募股权机构”。在本周《领导力学院：领导者访谈》播客节目中他表示：“私募股权业务只占到我们业务总...",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeuv9219526.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T12:57:54.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuu2768688",
-      "title": "欧洲央行卡兹米尔：市场或低估所需的政策紧缩力度",
-      "summary": "欧洲央行管理委员会委员、斯洛伐克央行行长Peter Kazimir表示，在能源冲击没有消退迹象、通胀再度上升之际，投资者可能尚未充分计入欧洲央行所需的进一步紧缩力度。",
-      "url": "https://finance.sina.com.cn/world/2026-11-02/doc-inixkeuu2768688.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T12:57:23.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611023918493963",
       "title": "日本财务大臣：已准备好采取措施稳定外汇市场",
       "summary": "【日本财务大臣：已准备好采取措施稳定外汇市场】日本财务大臣片山皋月表示，如果外汇市场出现无序波动，日本当局已准备好采取应对措施，并将按照日本与美国之间现有的相关协议行事。",
       "url": "http://forex.eastmoney.com/a/202611023918493963.html",
       "source": "东方财富快讯·外汇债券",
       "publishedAt": "2026-11-02T12:55:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5187679",
-      "title": "国际足联悄然为其主席代缴数百万美元税款",
-      "summary": "2024年5月的一天，曼谷，负责敲定国际足联高层薪酬、由三人组成的委员会正在召开一场惯例上枯燥乏味的会议，会议临近尾声，一名委员提出一件在他看来十分紧迫的事项。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeuu2764867.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T12:49:15.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeur0331494",
-      "title": "比特币回落至77900美元 因币安恢复提币后客户净提取资金",
-      "summary": "自币安分阶段恢复提款以来，客户净提取36.4亿美元资金，美国现货比特币ETF也出现6.43亿美元资金净流出，比特币价格下跌0.4%。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeur0331494.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T12:48:48.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeur0387200",
-      "title": "解约107名应届生，“车灯一哥”净利下降近四成",
-      "summary": "来源丨深蓝财经 作者丨吴瑞馨 解约107名应届生事件后，星宇股份交出风波后的首份季度财报。 近日，星宇股份发布三季报，业绩明显转弱。",
-      "url": "https://finance.sina.com.cn/stock/s/2026-11-02/doc-inixkeur0387200.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T12:46:12.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nixkeuu2761641",
-      "title": "欧洲天然气价格从2022年以来高位回落，10月累计涨幅超30%",
-      "summary": "11月2日，欧洲天然气价格下跌，投资者在10月大幅上涨后获利了结。作为欧洲天然气价格基准的荷兰TTF近月期货下跌3%，报每兆瓦时101欧元...",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-02/doc-inixkeuu2761641.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-02T12:42:40.000Z",
       "codes": []
     },
     {
@@ -7174,27 +6772,6 @@
       ]
     },
     {
-      "id": "sina-live-5182572",
-      "title": "财政部：纳税人通过合并、分立、出售、置换等方式实施资产重组，不属于增值税应税交易和增值税法实施条例第二十二条规定的不得抵扣非应税交易，涉及的货物、金融商品、无形资产、不动产（以下统称资产）转让，不征收增值税",
-      "summary": "财政部发布《企业兼并重组主要税收优惠政策指引》。其中提到：纳税人通过合并、分立、出售、置换等方式实施资产重组，同时符合下列条件的，不属于增值税应税交易和增值税法实施条例第二十二条规定的不得抵扣非应税交易，涉及的货物、金融商品、无形资产、不动产（以下统称资产）转让，不征收增值税，对应的进项税额可以按规定从销项税额中抵扣： 1.资产重组的标的是可以相对独立运营的经营业务。 2.纳税人实施资产重组时，应当将全部或者部分资产，与相关联的对应债权、负债和员工共同组成资产包，一并转让。资产包中应当同时包括资产、债权、负债和员工。 3.资产重组应当具有合理的商业目的，且不以减少、免除、推迟缴纳增值税税款或者提前退税、多退税款为主要目的。 4.资产重组的转让方属于一般纳税人的，接收方也应当属于一般纳税人。 纳税人因实施上述资产重组被合并，办理注销税务登记的，注销登记前尚未抵扣的进项税额，可以由合并后的纳税人继续抵扣。",
-      "url": "https://finance.sina.cn/7x24/2026-10-30/detail-iniwzazq5475057.d.html",
-      "source": "新浪财经7x24·政策",
-      "publishedAt": "2026-10-30T18:05:25.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5182549",
-      "title": "财政部发布《企业兼并重组主要税收优惠政策指引》：集成电路企业、工业母机企业在2026年1月1日至2028年12月31日期",
-      "summary": "财政部发布《企业兼并重组主要税收优惠政策指引》：集成电路企业、工业母机企业在2026年1月1日至2028年12月31日期间发生非货币性资产交换，按规定确认的非货币性资产交换所得，可在不超过5年期限内分期均匀计入相应年度的应纳税所得额，按现行政策规定计算缴纳企业所得税；企业进行非货币性资产交换所发生的损失，不得分期确认。",
-      "url": "",
-      "source": "新浪财经7x24·政策",
-      "publishedAt": "2026-10-30T18:01:44.000Z",
-      "codes": [
-        "932087",
-        "159558"
-      ]
-    },
-    {
       "id": "em-kuaixun-202610303916668139",
       "title": "香港金管局：9月份港元货币供应量M2及M3同比均上升7.5%",
       "summary": "【香港金管局：9月份港元货币供应量M2及M3同比均上升7.5%】10月30日，香港金融管理局发表的统计数字显示，9月份港元货币供应量M2及M3均下跌0.8%，与去年同期比较均上升7.5%。9月份经季节因素调整的港元货币供应量M1下跌0.6%，与去年同期比较则上升4.4%，部分反映投资相关活动。",
@@ -7555,15 +7132,6 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202610303915370764",
-      "title": "美媒：美国一高级将领被解职 涉嫌泄露涉伊朗战争机密",
-      "summary": "【美媒：美国一高级将领被解职 涉嫌泄露涉伊朗战争机密】据美国哥伦比亚广播公司(CBS)29日报道，多名消息人士证实，美国国防部长赫格塞思已解除美国防部负责战略规划的高级将领布雷特·西尔维亚的职务。",
-      "url": "http://finance.eastmoney.com/a/202610303915370764.html",
-      "source": "东方财富快讯·宏观",
-      "publishedAt": "2026-10-30T08:30:25.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202610303915361511",
       "title": "币安联合创始人何一：币安将承担所有黑客攻击损失",
       "summary": "币安联合创始人何一表示，用户资金安全，币安将承担所有黑客攻击损失。",
@@ -7588,24 +7156,6 @@
       "url": "http://finance.eastmoney.com/a/202610303915074789.html",
       "source": "东方财富快讯·外汇债券",
       "publishedAt": "2026-10-30T01:14:22.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202610303915072886",
-      "title": "美国财政部七年期国债中标收益率4.894% 投标倍数2.46",
-      "summary": "美国财政部七年期国债中标收益率4.894%，投标倍数2.46。",
-      "url": "http://bond.eastmoney.com/a/202610303915072886.html",
-      "source": "东方财富快讯·宏观",
-      "publishedAt": "2026-10-30T01:03:56.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202610303915048042",
-      "title": "美国抵押贷款利率连续第二周下降 报7.24%",
-      "summary": "美国抵押贷款利率连续第二周下降，报7.24%。",
-      "url": "http://finance.eastmoney.com/a/202610303915048042.html",
-      "source": "东方财富快讯·宏观",
-      "publishedAt": "2026-10-30T00:02:04.000Z",
       "codes": []
     },
     {
@@ -8353,15 +7903,6 @@
       "url": "http://finance.eastmoney.com/a/202610163897593518.html",
       "source": "东方财富快讯·美国·美联储",
       "publishedAt": "2026-10-16T08:23:00.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202610163897375313",
-      "title": "美联储古尔斯比：如果通胀驱动因素能迅速消失 仍然持有一些乐观态度",
-      "summary": "美联储古尔斯比称，从通胀角度来看，这是一个令人沮丧的月份。如果通胀驱动因素能迅速消失，仍然持有一些乐观态度。",
-      "url": "http://finance.eastmoney.com/a/202610163897375313.html",
-      "source": "东方财富快讯·美国·美联储",
-      "publishedAt": "2026-10-16T07:25:17.000Z",
       "codes": []
     },
     {
