@@ -1,8 +1,7 @@
 {
- "generatedAt": "2026-11-03T07:34:11.540Z",
+ "generatedAt": "2026-11-03T15:07:18.970Z",
  "source": "上证指数(000001) 日线收盘 via 新浪财经",
  "closes": {
-  "2025-03-11": 3379.828,
   "2025-03-12": 3371.924,
   "2025-03-13": 3358.729,
   "2025-03-14": 3419.562,
@@ -401,7 +400,8 @@
   "2026-10-28": 3681.469,
   "2026-10-29": 3651.434,
   "2026-10-30": 3599.017,
-  "2026-11-02": 3638.031
+  "2026-11-02": 3638.031,
+  "2026-11-03": 3608.098
  },
  "records": [
   {
@@ -1295,41 +1295,48 @@
     }
    ],
    "recordedAt": "2026-11-02T17:17:36.746Z",
-   "actual": null
+   "actual": {
+    "date": "2026-11-03",
+    "close": 3608.1,
+    "prevClose": 3638.03,
+    "changePct": -0.823,
+    "direction": "down",
+    "hit": false
+   }
   },
   {
    "dataDate": "2026-11-03",
    "forDate": "2026-11-04",
    "forDateExact": true,
-   "score": -26,
-   "bias": "震荡偏空",
-   "tone": "down",
+   "score": 1,
+   "bias": "震荡",
+   "tone": "flat",
    "availableWeight": 100,
    "drivers": [
     {
      "key": "a50",
-     "z": -0.305,
-     "contribution": -6.1
+     "z": 0.24,
+     "contribution": 4.8
     },
     {
      "key": "us",
-     "z": -0.26,
-     "contribution": -2.86
+     "z": 0.071,
+     "contribution": 0.78
     },
     {
      "key": "sox",
-     "z": -1,
-     "contribution": -6
+     "z": 0.973,
+     "contribution": 5.84
     },
     {
      "key": "dxy",
-     "z": 0.025,
-     "contribution": 0.15
+     "z": -0.05,
+     "contribution": -0.3
     },
     {
      "key": "cnh",
-     "z": -0.84,
-     "contribution": -5.04
+     "z": -0.68,
+     "contribution": -4.08
     },
     {
      "key": "us10y",

@@ -1,6 +1,6 @@
 {
  "date": "2026-11-03",
- "generatedAt": "2026-11-03T07:34:06.961Z",
+ "generatedAt": "2026-11-03T15:07:15.796Z",
  "limitUpCount": 61,
  "limitDownCount": 23,
  "advancers": 2107,
@@ -11,64 +11,64 @@
    "name": "N皇冠",
    "changePct": 397.94,
    "anomalyScore": 100,
-   "trendScore": 75.13,
+   "trendScore": 72.62,
    "signalType": "涨停"
   },
   {
    "code": "600715",
    "name": "文投控股",
    "changePct": 9.82,
-   "anomalyScore": 97.81,
-   "trendScore": 97.34,
+   "anomalyScore": 98.21,
+   "trendScore": 97.86,
    "signalType": "涨停"
   },
   {
    "code": "600261",
    "name": "阳光照明",
    "changePct": 10,
-   "anomalyScore": 97.72,
-   "trendScore": 98.19,
+   "anomalyScore": 98.16,
+   "trendScore": 98.66,
    "signalType": "涨停"
   },
   {
-   "code": "603131",
-   "name": "上海沪工",
-   "changePct": -10,
-   "anomalyScore": 96.28,
-   "trendScore": 98.14,
-   "signalType": "跌停"
+   "code": "300426",
+   "name": "华智数媒",
+   "changePct": 16.28,
+   "anomalyScore": 98.16,
+   "trendScore": 96.83,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "601188",
+   "name": "龙江交通",
+   "changePct": 10.12,
+   "anomalyScore": 97.2,
+   "trendScore": 96.74,
+   "signalType": "涨停"
+  },
+  {
+   "code": "920045",
+   "name": "蘅东光",
+   "changePct": -23.15,
+   "anomalyScore": 96.35,
+   "trendScore": 18.53,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "301487",
+   "name": "盟固利",
+   "changePct": 13.51,
+   "anomalyScore": 96.3,
+   "trendScore": 96.58,
+   "signalType": "涨停附近"
   },
   {
    "code": "002172",
    "name": "澳洋健康",
    "changePct": 4.62,
-   "anomalyScore": 95.25,
-   "trendScore": 97.77,
+   "anomalyScore": 95.47,
+   "trendScore": 98.26,
    "signalType": "强势拉升"
-  },
-  {
-   "code": "300394",
-   "name": "天孚通信",
-   "changePct": -12.8,
-   "anomalyScore": 94.1,
-   "trendScore": 3.8,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "002708",
-   "name": "光洋股份",
-   "changePct": -8.08,
-   "anomalyScore": 93.95,
-   "trendScore": 98.84,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "600330",
-   "name": "天通股份",
-   "changePct": -9.95,
-   "anomalyScore": 93.74,
-   "trendScore": 17.62,
-   "signalType": "跌停附近"
   }
  ],
  "watch": [],
