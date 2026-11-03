@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T20:52:20.651Z",
+  "generatedAt": "2026-11-03T07:13:19.137Z",
   "source": "sina",
   "sourceLabel": "Sina Finance market centre node tree",
   "sourceUrl": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodes",
@@ -1676,7 +1676,7 @@
     {
       "id": "sw_jchg",
       "name": "基础化工",
-      "count": 451,
+      "count": 452,
       "members": [
         "000408",
         "000420",
@@ -1720,6 +1720,7 @@
         "001359",
         "001369",
         "001378",
+        "001381",
         "002001",
         "002037",
         "002054",
@@ -56784,6 +56785,12 @@
     "001380": {
       "industries": [
         "sw_qc"
+      ],
+      "concepts": []
+    },
+    "001381": {
+      "industries": [
+        "sw_jchg"
       ],
       "concepts": []
     },
