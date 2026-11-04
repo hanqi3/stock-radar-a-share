@@ -1,88 +1,88 @@
 {
- "date": "2026-11-03",
- "generatedAt": "2026-11-03T15:07:15.796Z",
- "limitUpCount": 61,
- "limitDownCount": 23,
- "advancers": 2107,
- "decliners": 3309,
+ "date": "2026-11-04",
+ "generatedAt": "2026-11-04T07:05:16.904Z",
+ "limitUpCount": 125,
+ "limitDownCount": 13,
+ "advancers": 4602,
+ "decliners": 839,
  "items": [
   {
    "code": "001381",
-   "name": "N皇冠",
-   "changePct": 397.94,
+   "name": "C皇冠",
+   "changePct": -21.16,
    "anomalyScore": 100,
-   "trendScore": 72.62,
-   "signalType": "涨停"
+   "trendScore": 72.61,
+   "signalType": "跌停"
   },
   {
-   "code": "600715",
-   "name": "文投控股",
-   "changePct": 9.82,
-   "anomalyScore": 98.21,
-   "trendScore": 97.86,
-   "signalType": "涨停"
-  },
-  {
-   "code": "600261",
-   "name": "阳光照明",
-   "changePct": 10,
-   "anomalyScore": 98.16,
-   "trendScore": 98.66,
-   "signalType": "涨停"
+   "code": "688613",
+   "name": "奥精医疗",
+   "changePct": -20,
+   "anomalyScore": 98.76,
+   "trendScore": 2.87,
+   "signalType": "跌停"
   },
   {
    "code": "300426",
    "name": "华智数媒",
-   "changePct": 16.28,
-   "anomalyScore": 98.16,
+   "changePct": 14,
+   "anomalyScore": 96.91,
    "trendScore": 96.83,
    "signalType": "涨停附近"
   },
   {
-   "code": "601188",
-   "name": "龙江交通",
-   "changePct": 10.12,
-   "anomalyScore": 97.2,
-   "trendScore": 96.74,
+   "code": "000995",
+   "name": "皇台酒业",
+   "changePct": -4.84,
+   "anomalyScore": 95.47,
+   "trendScore": 99.17,
+   "signalType": "快速回撤"
+  },
+  {
+   "code": "002029",
+   "name": "七 匹 狼",
+   "changePct": -9.97,
+   "anomalyScore": 95.07,
+   "trendScore": 96.33,
+   "signalType": "跌停"
+  },
+  {
+   "code": "300943",
+   "name": "春晖智控",
+   "changePct": 20.02,
+   "anomalyScore": 94.99,
+   "trendScore": 17.28,
    "signalType": "涨停"
   },
   {
-   "code": "920045",
-   "name": "蘅东光",
-   "changePct": -23.15,
-   "anomalyScore": 96.35,
-   "trendScore": 18.53,
-   "signalType": "跌停附近"
+   "code": "601566",
+   "name": "九牧王",
+   "changePct": -5.37,
+   "anomalyScore": 94.47,
+   "trendScore": 98.02,
+   "signalType": "快速回撤"
   },
   {
-   "code": "301487",
-   "name": "盟固利",
-   "changePct": 13.51,
-   "anomalyScore": 96.3,
-   "trendScore": 96.58,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "002172",
-   "name": "澳洋健康",
-   "changePct": 4.62,
-   "anomalyScore": 95.47,
-   "trendScore": 98.26,
-   "signalType": "强势拉升"
+   "code": "002086",
+   "name": "东方海洋",
+   "changePct": -4.09,
+   "anomalyScore": 94.2,
+   "trendScore": 98.62,
+   "signalType": "快速回撤"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-02",
+  "date": "2026-11-03",
   "codes": [
-   "001219",
-   "600189",
-   "002708",
-   "000410",
-   "301227",
-   "688095",
+   "001381",
    "600715",
-   "300533"
+   "600261",
+   "300426",
+   "601188",
+   "920045",
+   "301487",
+   "002172"
   ]
  }
 }
