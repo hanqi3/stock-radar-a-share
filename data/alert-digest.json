@@ -1,74 +1,74 @@
 {
  "date": "2026-11-04",
- "generatedAt": "2026-11-04T07:05:16.904Z",
- "limitUpCount": 125,
- "limitDownCount": 13,
- "advancers": 4602,
- "decliners": 839,
+ "generatedAt": "2026-11-04T15:42:17.946Z",
+ "limitUpCount": 127,
+ "limitDownCount": 11,
+ "advancers": 4667,
+ "decliners": 778,
  "items": [
   {
    "code": "001381",
    "name": "C皇冠",
-   "changePct": -21.16,
+   "changePct": -20.86,
    "anomalyScore": 100,
-   "trendScore": 72.61,
+   "trendScore": 2.58,
    "signalType": "跌停"
   },
   {
    "code": "688613",
    "name": "奥精医疗",
-   "changePct": -20,
-   "anomalyScore": 98.76,
-   "trendScore": 2.87,
-   "signalType": "跌停"
+   "changePct": -19.73,
+   "anomalyScore": 98.89,
+   "trendScore": 0.63,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "920770",
+   "name": "艾能聚",
+   "changePct": 29.99,
+   "anomalyScore": 98.77,
+   "trendScore": 96.04,
+   "signalType": "涨停"
+  },
+  {
+   "code": "920298",
+   "name": "腾信精密",
+   "changePct": 30,
+   "anomalyScore": 98.71,
+   "trendScore": 99.24,
+   "signalType": "涨停"
   },
   {
    "code": "300426",
    "name": "华智数媒",
-   "changePct": 14,
-   "anomalyScore": 96.91,
-   "trendScore": 96.83,
+   "changePct": 15,
+   "anomalyScore": 97.97,
+   "trendScore": 98.51,
    "signalType": "涨停附近"
   },
   {
-   "code": "000995",
-   "name": "皇台酒业",
-   "changePct": -4.84,
-   "anomalyScore": 95.47,
-   "trendScore": 99.17,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "002029",
-   "name": "七 匹 狼",
-   "changePct": -9.97,
-   "anomalyScore": 95.07,
-   "trendScore": 96.33,
-   "signalType": "跌停"
-  },
-  {
-   "code": "300943",
-   "name": "春晖智控",
-   "changePct": 20.02,
-   "anomalyScore": 94.99,
-   "trendScore": 17.28,
+   "code": "300788",
+   "name": "中信出版",
+   "changePct": 20,
+   "anomalyScore": 97.5,
+   "trendScore": 98.3,
    "signalType": "涨停"
   },
   {
-   "code": "601566",
-   "name": "九牧王",
-   "changePct": -5.37,
-   "anomalyScore": 94.47,
-   "trendScore": 98.02,
-   "signalType": "快速回撤"
+   "code": "300953",
+   "name": "震裕科技",
+   "changePct": 19.65,
+   "anomalyScore": 95.91,
+   "trendScore": 94.8,
+   "signalType": "涨停附近"
   },
   {
-   "code": "002086",
-   "name": "东方海洋",
-   "changePct": -4.09,
-   "anomalyScore": 94.2,
-   "trendScore": 98.62,
-   "signalType": "快速回撤"
+   "code": "300085",
+   "name": "银之杰",
+   "changePct": 12.13,
+   "anomalyScore": 95.9,
+   "trendScore": 94.97,
+   "signalType": "涨停附近"
   }
  ],
  "watch": [],
