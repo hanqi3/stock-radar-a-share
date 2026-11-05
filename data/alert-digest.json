@@ -1,6 +1,6 @@
 {
  "date": "2026-11-05",
- "generatedAt": "2026-11-05T07:42:46.536Z",
+ "generatedAt": "2026-11-05T15:30:12.815Z",
  "limitUpCount": 93,
  "limitDownCount": 1,
  "advancers": 4868,
@@ -11,64 +11,64 @@
    "name": "C皇冠",
    "changePct": -14.66,
    "anomalyScore": 99.96,
-   "trendScore": 2.58,
+   "trendScore": 0.79,
    "signalType": "跌停"
   },
   {
    "code": "920770",
    "name": "艾能聚",
    "changePct": 19.97,
-   "anomalyScore": 98.53,
-   "trendScore": 96.04,
+   "anomalyScore": 98.94,
+   "trendScore": 98.31,
    "signalType": "涨停附近"
   },
   {
-   "code": "002086",
-   "name": "东方海洋",
-   "changePct": 10.06,
-   "anomalyScore": 97.95,
-   "trendScore": 98.21,
+   "code": "920007",
+   "name": "酉立智能",
+   "changePct": 29.99,
+   "anomalyScore": 98.79,
+   "trendScore": 95.33,
    "signalType": "涨停"
   },
   {
-   "code": "000995",
-   "name": "皇台酒业",
-   "changePct": 10.02,
-   "anomalyScore": 97.69,
-   "trendScore": 98.84,
+   "code": "300709",
+   "name": "精研科技",
+   "changePct": 20.01,
+   "anomalyScore": 98.43,
+   "trendScore": 96.74,
    "signalType": "涨停"
   },
   {
    "code": "600261",
    "name": "阳光照明",
    "changePct": 10.09,
-   "anomalyScore": 97.62,
-   "trendScore": 97.99,
+   "anomalyScore": 98.16,
+   "trendScore": 97.57,
    "signalType": "涨停"
   },
   {
-   "code": "002088",
-   "name": "鲁阳节能",
-   "changePct": 10.04,
-   "anomalyScore": 96.28,
-   "trendScore": 95.23,
+   "code": "000995",
+   "name": "皇台酒业",
+   "changePct": 10.02,
+   "anomalyScore": 98.12,
+   "trendScore": 98.76,
    "signalType": "涨停"
   },
   {
-   "code": "000679",
-   "name": "大连友谊",
-   "changePct": -9.75,
-   "anomalyScore": 95.58,
-   "trendScore": 95.99,
-   "signalType": "跌停附近"
+   "code": "300071",
+   "name": "福石控股",
+   "changePct": 20.05,
+   "anomalyScore": 98.12,
+   "trendScore": 87.85,
+   "signalType": "涨停"
   },
   {
-   "code": "300413",
-   "name": "芒果超媒",
-   "changePct": 9.27,
-   "anomalyScore": 95.49,
-   "trendScore": 99.11,
-   "signalType": "强势拉升"
+   "code": "002086",
+   "name": "东方海洋",
+   "changePct": 10.06,
+   "anomalyScore": 98.04,
+   "trendScore": 97.6,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
