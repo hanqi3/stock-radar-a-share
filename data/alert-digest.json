@@ -1,88 +1,88 @@
 {
- "date": "2026-11-04",
- "generatedAt": "2026-11-04T15:42:17.946Z",
- "limitUpCount": 127,
- "limitDownCount": 11,
- "advancers": 4667,
- "decliners": 778,
+ "date": "2026-11-05",
+ "generatedAt": "2026-11-05T07:42:46.536Z",
+ "limitUpCount": 93,
+ "limitDownCount": 1,
+ "advancers": 4868,
+ "decliners": 625,
  "items": [
   {
    "code": "001381",
    "name": "C皇冠",
-   "changePct": -20.86,
-   "anomalyScore": 100,
+   "changePct": -14.66,
+   "anomalyScore": 99.96,
    "trendScore": 2.58,
    "signalType": "跌停"
   },
   {
-   "code": "688613",
-   "name": "奥精医疗",
-   "changePct": -19.73,
-   "anomalyScore": 98.89,
-   "trendScore": 0.63,
+   "code": "920770",
+   "name": "艾能聚",
+   "changePct": 19.97,
+   "anomalyScore": 98.53,
+   "trendScore": 96.04,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "002086",
+   "name": "东方海洋",
+   "changePct": 10.06,
+   "anomalyScore": 97.95,
+   "trendScore": 98.21,
+   "signalType": "涨停"
+  },
+  {
+   "code": "000995",
+   "name": "皇台酒业",
+   "changePct": 10.02,
+   "anomalyScore": 97.69,
+   "trendScore": 98.84,
+   "signalType": "涨停"
+  },
+  {
+   "code": "600261",
+   "name": "阳光照明",
+   "changePct": 10.09,
+   "anomalyScore": 97.62,
+   "trendScore": 97.99,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002088",
+   "name": "鲁阳节能",
+   "changePct": 10.04,
+   "anomalyScore": 96.28,
+   "trendScore": 95.23,
+   "signalType": "涨停"
+  },
+  {
+   "code": "000679",
+   "name": "大连友谊",
+   "changePct": -9.75,
+   "anomalyScore": 95.58,
+   "trendScore": 95.99,
    "signalType": "跌停附近"
   },
   {
-   "code": "920770",
-   "name": "艾能聚",
-   "changePct": 29.99,
-   "anomalyScore": 98.77,
-   "trendScore": 96.04,
-   "signalType": "涨停"
-  },
-  {
-   "code": "920298",
-   "name": "腾信精密",
-   "changePct": 30,
-   "anomalyScore": 98.71,
-   "trendScore": 99.24,
-   "signalType": "涨停"
-  },
-  {
-   "code": "300426",
-   "name": "华智数媒",
-   "changePct": 15,
-   "anomalyScore": 97.97,
-   "trendScore": 98.51,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "300788",
-   "name": "中信出版",
-   "changePct": 20,
-   "anomalyScore": 97.5,
-   "trendScore": 98.3,
-   "signalType": "涨停"
-  },
-  {
-   "code": "300953",
-   "name": "震裕科技",
-   "changePct": 19.65,
-   "anomalyScore": 95.91,
-   "trendScore": 94.8,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "300085",
-   "name": "银之杰",
-   "changePct": 12.13,
-   "anomalyScore": 95.9,
-   "trendScore": 94.97,
-   "signalType": "涨停附近"
+   "code": "300413",
+   "name": "芒果超媒",
+   "changePct": 9.27,
+   "anomalyScore": 95.49,
+   "trendScore": 99.11,
+   "signalType": "强势拉升"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "codes": [
    "001381",
-   "600715",
-   "600261",
+   "688613",
+   "920770",
+   "920298",
    "300426",
-   "601188",
-   "920045",
-   "301487",
-   "002172"
+   "300788",
+   "300953",
+   "300085"
   ]
  }
 }
