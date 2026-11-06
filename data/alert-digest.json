@@ -1,88 +1,88 @@
 {
- "date": "2026-11-05",
- "generatedAt": "2026-11-05T15:30:12.815Z",
- "limitUpCount": 93,
- "limitDownCount": 1,
- "advancers": 4868,
- "decliners": 625,
+ "date": "2026-11-06",
+ "generatedAt": "2026-11-06T07:41:11.145Z",
+ "limitUpCount": 36,
+ "limitDownCount": 17,
+ "advancers": 758,
+ "decliners": 4740,
  "items": [
+  {
+   "code": "920085",
+   "name": "N森峰",
+   "changePct": 120.63,
+   "anomalyScore": 100,
+   "trendScore": 47.08,
+   "signalType": "涨停"
+  },
   {
    "code": "001381",
    "name": "C皇冠",
-   "changePct": -14.66,
-   "anomalyScore": 99.96,
+   "changePct": -17.11,
+   "anomalyScore": 99.97,
    "trendScore": 0.79,
    "signalType": "跌停"
   },
   {
-   "code": "920770",
-   "name": "艾能聚",
-   "changePct": 19.97,
-   "anomalyScore": 98.94,
-   "trendScore": 98.31,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "920007",
-   "name": "酉立智能",
-   "changePct": 29.99,
-   "anomalyScore": 98.79,
-   "trendScore": 95.33,
-   "signalType": "涨停"
-  },
-  {
-   "code": "300709",
-   "name": "精研科技",
-   "changePct": 20.01,
-   "anomalyScore": 98.43,
-   "trendScore": 96.74,
-   "signalType": "涨停"
-  },
-  {
-   "code": "600261",
-   "name": "阳光照明",
-   "changePct": 10.09,
-   "anomalyScore": 98.16,
-   "trendScore": 97.57,
-   "signalType": "涨停"
-  },
-  {
    "code": "000995",
    "name": "皇台酒业",
-   "changePct": 10.02,
-   "anomalyScore": 98.12,
+   "changePct": -8.72,
+   "anomalyScore": 97.94,
    "trendScore": 98.76,
-   "signalType": "涨停"
+   "signalType": "跌停附近"
   },
   {
-   "code": "300071",
-   "name": "福石控股",
-   "changePct": 20.05,
-   "anomalyScore": 98.12,
-   "trendScore": 87.85,
+   "code": "002088",
+   "name": "鲁阳节能",
+   "changePct": 10.02,
+   "anomalyScore": 97.73,
+   "trendScore": 96.92,
    "signalType": "涨停"
   },
   {
    "code": "002086",
    "name": "东方海洋",
-   "changePct": 10.06,
-   "anomalyScore": 98.04,
+   "changePct": 9.97,
+   "anomalyScore": 97.34,
    "trendScore": 97.6,
    "signalType": "涨停"
+  },
+  {
+   "code": "601599",
+   "name": "浙文影业",
+   "changePct": 9.96,
+   "anomalyScore": 97.33,
+   "trendScore": 97,
+   "signalType": "涨停"
+  },
+  {
+   "code": "600261",
+   "name": "阳光照明",
+   "changePct": 9.98,
+   "anomalyScore": 96.89,
+   "trendScore": 97.57,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300949",
+   "name": "奥雅股份",
+   "changePct": 12.52,
+   "anomalyScore": 96.8,
+   "trendScore": 99.85,
+   "signalType": "涨停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "codes": [
    "001381",
-   "688613",
    "920770",
-   "920298",
-   "300426",
-   "300788",
-   "300953",
-   "300085"
+   "920007",
+   "300709",
+   "600261",
+   "000995",
+   "300071",
+   "002086"
   ]
  }
 }
