@@ -1,6 +1,6 @@
 {
  "date": "2026-11-06",
- "generatedAt": "2026-11-06T07:41:11.145Z",
+ "generatedAt": "2026-11-06T15:04:13.183Z",
  "limitUpCount": 36,
  "limitDownCount": 17,
  "advancers": 758,
@@ -11,7 +11,7 @@
    "name": "N森峰",
    "changePct": 120.63,
    "anomalyScore": 100,
-   "trendScore": 47.08,
+   "trendScore": 41.03,
    "signalType": "涨停"
   },
   {
@@ -19,56 +19,56 @@
    "name": "C皇冠",
    "changePct": -17.11,
    "anomalyScore": 99.97,
-   "trendScore": 0.79,
+   "trendScore": 0.43,
    "signalType": "跌停"
   },
   {
-   "code": "000995",
-   "name": "皇台酒业",
-   "changePct": -8.72,
-   "anomalyScore": 97.94,
-   "trendScore": 98.76,
-   "signalType": "跌停附近"
+   "code": "301697",
+   "name": "贝特利",
+   "changePct": 20,
+   "anomalyScore": 99.17,
+   "trendScore": 98.87,
+   "signalType": "涨停"
   },
   {
    "code": "002088",
    "name": "鲁阳节能",
    "changePct": 10.02,
-   "anomalyScore": 97.73,
-   "trendScore": 96.92,
+   "anomalyScore": 98.16,
+   "trendScore": 98.18,
    "signalType": "涨停"
   },
   {
-   "code": "002086",
-   "name": "东方海洋",
-   "changePct": 9.97,
-   "anomalyScore": 97.34,
-   "trendScore": 97.6,
+   "code": "002578",
+   "name": "闽发铝业",
+   "changePct": 10.11,
+   "anomalyScore": 97.9,
+   "trendScore": 96.57,
    "signalType": "涨停"
   },
   {
    "code": "601599",
    "name": "浙文影业",
    "changePct": 9.96,
-   "anomalyScore": 97.33,
-   "trendScore": 97,
+   "anomalyScore": 97.81,
+   "trendScore": 97.63,
    "signalType": "涨停"
   },
   {
-   "code": "600261",
-   "name": "阳光照明",
-   "changePct": 9.98,
-   "anomalyScore": 96.89,
-   "trendScore": 97.57,
+   "code": "002086",
+   "name": "东方海洋",
+   "changePct": 9.97,
+   "anomalyScore": 97.74,
+   "trendScore": 97.68,
    "signalType": "涨停"
   },
   {
-   "code": "300949",
-   "name": "奥雅股份",
-   "changePct": 12.52,
-   "anomalyScore": 96.8,
-   "trendScore": 99.85,
-   "signalType": "涨停附近"
+   "code": "002929",
+   "name": "润建股份",
+   "changePct": 10.01,
+   "anomalyScore": 97.72,
+   "trendScore": 97.67,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
