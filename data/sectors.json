@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T17:23:54.977Z",
+  "generatedAt": "2026-11-09T21:36:50.369Z",
   "source": "sina",
   "sourceLabel": "Sina Finance market centre node tree",
   "sourceUrl": "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodes",
@@ -7,7 +7,7 @@
     {
       "id": "sw_jxsb",
       "name": "机械设备",
-      "count": 618,
+      "count": 619,
       "members": [
         "000008",
         "000039",
@@ -547,6 +547,7 @@
         "688813",
         "688816",
         "688826",
+        "688827",
         "688828",
         "688835",
         "688836",
@@ -49011,6 +49012,12 @@
       "concepts": []
     },
     "688826": {
+      "industries": [
+        "sw_jxsb"
+      ],
+      "concepts": []
+    },
+    "688827": {
       "industries": [
         "sw_jxsb"
       ],
