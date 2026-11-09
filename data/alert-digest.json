@@ -1,6 +1,6 @@
 {
  "date": "2026-11-09",
- "generatedAt": "2026-11-09T07:31:24.517Z",
+ "generatedAt": "2026-11-09T17:31:25.656Z",
  "limitUpCount": 65,
  "limitDownCount": 5,
  "advancers": 2242,
@@ -11,7 +11,7 @@
    "name": "森峰激光",
    "changePct": -18.73,
    "anomalyScore": 98.56,
-   "trendScore": 41,
+   "trendScore": 2.69,
    "signalType": "跌停附近"
   },
   {
@@ -19,55 +19,55 @@
    "name": "C皇冠",
    "changePct": -6,
    "anomalyScore": 98.48,
-   "trendScore": 0.43,
+   "trendScore": 0.23,
    "signalType": "跌停附近"
-  },
-  {
-   "code": "002086",
-   "name": "东方海洋",
-   "changePct": 10.08,
-   "anomalyScore": 97.98,
-   "trendScore": 97.68,
-   "signalType": "涨停"
   },
   {
    "code": "002578",
    "name": "闽发铝业",
    "changePct": 9.98,
-   "anomalyScore": 97.96,
-   "trendScore": 96.57,
+   "anomalyScore": 98.28,
+   "trendScore": 97.39,
    "signalType": "涨停"
+  },
+  {
+   "code": "002086",
+   "name": "东方海洋",
+   "changePct": 10.08,
+   "anomalyScore": 98.01,
+   "trendScore": 97.77,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300825",
+   "name": "阿尔特",
+   "changePct": 15.43,
+   "anomalyScore": 97.92,
+   "trendScore": 93.32,
+   "signalType": "涨停附近"
   },
   {
    "code": "301718",
    "name": "通则康威",
    "changePct": 20,
    "anomalyScore": 97.76,
-   "trendScore": 1.08,
+   "trendScore": 1.9,
    "signalType": "涨停"
   },
   {
-   "code": "002929",
-   "name": "润建股份",
-   "changePct": -6.51,
-   "anomalyScore": 97.58,
-   "trendScore": 97.67,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "920007",
-   "name": "酉立智能",
-   "changePct": -11.1,
-   "anomalyScore": 97.57,
-   "trendScore": 98.09,
-   "signalType": "快速回撤"
+   "code": "300421",
+   "name": "力星股份",
+   "changePct": 15.06,
+   "anomalyScore": 97.64,
+   "trendScore": 94.41,
+   "signalType": "涨停附近"
   },
   {
    "code": "601599",
    "name": "浙文影业",
    "changePct": 5.91,
-   "anomalyScore": 97.47,
-   "trendScore": 97.63,
+   "anomalyScore": 97.57,
+   "trendScore": 97.82,
    "signalType": "强势拉升"
   }
  ],
