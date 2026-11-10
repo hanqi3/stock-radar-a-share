@@ -1,88 +1,88 @@
 {
- "date": "2026-11-09",
- "generatedAt": "2026-11-09T17:31:25.656Z",
- "limitUpCount": 65,
- "limitDownCount": 5,
- "advancers": 2242,
- "decliners": 3147,
+ "date": "2026-11-10",
+ "generatedAt": "2026-11-10T08:06:17.091Z",
+ "limitUpCount": 101,
+ "limitDownCount": 0,
+ "advancers": 4272,
+ "decliners": 1149,
  "items": [
   {
-   "code": "920085",
-   "name": "森峰激光",
-   "changePct": -18.73,
-   "anomalyScore": 98.56,
-   "trendScore": 2.69,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "001381",
-   "name": "C皇冠",
-   "changePct": -6,
-   "anomalyScore": 98.48,
-   "trendScore": 0.23,
-   "signalType": "跌停附近"
+   "code": "688827",
+   "name": "N钶锐",
+   "changePct": 184.77,
+   "anomalyScore": 100,
+   "trendScore": 25.71,
+   "signalType": "涨停"
   },
   {
    "code": "002578",
    "name": "闽发铝业",
    "changePct": 9.98,
-   "anomalyScore": 98.28,
-   "trendScore": 97.39,
+   "anomalyScore": 98.97,
+   "trendScore": 97.56,
    "signalType": "涨停"
   },
   {
-   "code": "002086",
-   "name": "东方海洋",
-   "changePct": 10.08,
-   "anomalyScore": 98.01,
-   "trendScore": 97.77,
+   "code": "300556",
+   "name": "丝路视觉",
+   "changePct": 20.01,
+   "anomalyScore": 98.88,
+   "trendScore": 96.29,
+   "signalType": "涨停"
+  },
+  {
+   "code": "601188",
+   "name": "龙江交通",
+   "changePct": 10.02,
+   "anomalyScore": 98.55,
+   "trendScore": 95.59,
+   "signalType": "涨停"
+  },
+  {
+   "code": "688781",
+   "name": "视涯科技",
+   "changePct": 20,
+   "anomalyScore": 98.34,
+   "trendScore": 98.51,
    "signalType": "涨停"
   },
   {
    "code": "300825",
    "name": "阿尔特",
-   "changePct": 15.43,
-   "anomalyScore": 97.92,
-   "trendScore": 93.32,
+   "changePct": 12.4,
+   "anomalyScore": 97.98,
+   "trendScore": 96.63,
    "signalType": "涨停附近"
   },
   {
-   "code": "301718",
-   "name": "通则康威",
-   "changePct": 20,
-   "anomalyScore": 97.76,
-   "trendScore": 1.9,
+   "code": "002565",
+   "name": "顺灏股份",
+   "changePct": 7.12,
+   "anomalyScore": 97.8,
+   "trendScore": 96.12,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "600892",
+   "name": "大晟文化",
+   "changePct": 10.02,
+   "anomalyScore": 97.78,
+   "trendScore": 94.21,
    "signalType": "涨停"
-  },
-  {
-   "code": "300421",
-   "name": "力星股份",
-   "changePct": 15.06,
-   "anomalyScore": 97.64,
-   "trendScore": 94.41,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "601599",
-   "name": "浙文影业",
-   "changePct": 5.91,
-   "anomalyScore": 97.57,
-   "trendScore": 97.82,
-   "signalType": "强势拉升"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-08",
+  "date": "2026-11-09",
   "codes": [
    "920085",
    "001381",
-   "301697",
-   "002088",
    "002578",
-   "601599",
    "002086",
-   "002929"
+   "300825",
+   "301718",
+   "300421",
+   "601599"
   ]
  }
 }
