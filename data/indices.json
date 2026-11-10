@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T21:39:11.160Z",
+  "generatedAt": "2026-11-10T03:40:29.635Z",
   "source": "sina-hq",
   "count": 44,
   "note": "Overseas benchmarks and commodities quoted by Sina hq.sinajs.cn.",
@@ -9,80 +9,80 @@
       "name": "上证指数",
       "group": "A股指数",
       "digits": 2,
-      "price": 3660.79,
-      "change": 11.61,
-      "changePct": 0.32,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "price": 3662.81,
+      "change": 2.02,
+      "changePct": 0.06,
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "s_sz399001",
       "name": "深证成指",
       "group": "A股指数",
       "digits": 2,
-      "price": 11145.49,
-      "change": -30.29,
-      "changePct": -0.27,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "price": 11229.66,
+      "change": 84.17,
+      "changePct": 0.76,
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "s_sz399006",
       "name": "创业板指",
       "group": "A股指数",
       "digits": 2,
-      "price": 2458.56,
-      "change": -6.67,
-      "changePct": -0.27,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "price": 2495.29,
+      "change": 36.73,
+      "changePct": 1.49,
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "s_sh000688",
       "name": "科创50",
       "group": "A股指数",
       "digits": 2,
-      "price": 1256.96,
-      "change": 3.76,
-      "changePct": 0.3,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "price": 1270.14,
+      "change": 13.18,
+      "changePct": 1.05,
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "s_sh000300",
       "name": "沪深300",
       "group": "A股指数",
       "digits": 2,
-      "price": 4056.11,
-      "change": 1.83,
-      "changePct": 0.05,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "price": 4058.95,
+      "change": 2.85,
+      "changePct": 0.07,
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "s_sh000016",
       "name": "上证50",
       "group": "A股指数",
       "digits": 2,
-      "price": 2789.15,
-      "change": 1.75,
-      "changePct": 0.06,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "price": 2777,
+      "change": -12.15,
+      "changePct": -0.44,
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "s_sz399905",
       "name": "中证500",
       "group": "A股指数",
       "digits": 2,
-      "price": 6586.18,
-      "change": -11.17,
-      "changePct": -0.17,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "price": 6640.4,
+      "change": 54.23,
+      "changePct": 0.82,
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "s_bj899050",
       "name": "北证50",
       "group": "A股指数",
       "digits": 2,
-      "price": 895.76,
-      "change": 7.28,
-      "changePct": 0.82,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "price": 900.22,
+      "change": 4.46,
+      "changePct": 0.5,
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "gb_dji",
@@ -92,7 +92,7 @@
       "price": 52389.75,
       "change": 1104.02,
       "changePct": 2.15,
-      "updatedAt": "2026-11-09T21:20:23.000Z"
+      "updatedAt": "2026-11-09T22:13:19.000Z"
     },
     {
       "symbol": "gb_ixic",
@@ -102,7 +102,7 @@
       "price": 25253.14,
       "change": 673.71,
       "changePct": 2.74,
-      "updatedAt": "2026-11-09T21:39:10.000Z"
+      "updatedAt": "2026-11-09T22:30:00.000Z"
     },
     {
       "symbol": "gb_inx",
@@ -112,7 +112,7 @@
       "price": 7549.94,
       "change": 173.08,
       "changePct": 2.35,
-      "updatedAt": "2026-11-09T21:20:23.000Z"
+      "updatedAt": "2026-11-09T22:13:19.000Z"
     },
     {
       "symbol": "gb_ndx",
@@ -122,7 +122,7 @@
       "price": 27907.63,
       "change": 917.63,
       "changePct": 3.4,
-      "updatedAt": "2026-11-09T21:39:10.000Z"
+      "updatedAt": "2026-11-09T22:30:00.000Z"
     },
     {
       "symbol": "gb_sox",
@@ -132,7 +132,7 @@
       "price": 10033.93,
       "change": 643.68,
       "changePct": 6.85,
-      "updatedAt": "2026-11-09T21:39:10.000Z"
+      "updatedAt": "2026-11-09T22:16:01.000Z"
     },
     {
       "symbol": "gb_nvda",
@@ -142,7 +142,7 @@
       "price": 178.67,
       "change": -7.97,
       "changePct": -4.27,
-      "updatedAt": "2026-11-09T21:39:09.000Z"
+      "updatedAt": "2026-11-10T01:37:22.000Z"
     },
     {
       "symbol": "gb_aapl",
@@ -152,7 +152,7 @@
       "price": 350.69,
       "change": 8.32,
       "changePct": 2.43,
-      "updatedAt": "2026-11-09T21:39:00.000Z"
+      "updatedAt": "2026-11-10T01:30:10.000Z"
     },
     {
       "symbol": "gb_tsm",
@@ -160,9 +160,9 @@
       "group": "美股龙头",
       "digits": 2,
       "price": 388.62,
-      "change": 13.18,
-      "changePct": 3.51,
-      "updatedAt": "2026-11-09T21:39:03.000Z"
+      "change": 0,
+      "changePct": 0,
+      "updatedAt": "2026-11-10T01:45:01.000Z"
     },
     {
       "symbol": "gb_baba",
@@ -170,9 +170,9 @@
       "group": "美股龙头",
       "digits": 2,
       "price": 105.38,
-      "change": -4.07,
-      "changePct": -3.72,
-      "updatedAt": "2026-11-09T21:39:07.000Z"
+      "change": 0,
+      "changePct": 0,
+      "updatedAt": "2026-11-10T01:45:02.000Z"
     },
     {
       "symbol": "int_nikkei",
@@ -182,27 +182,27 @@
       "price": 44946.64,
       "change": -408.35,
       "changePct": -0.9,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "rt_hkHSI",
       "name": "恒生指数",
       "group": "亚太欧洲",
       "digits": 2,
-      "price": 24448.95,
-      "change": -32.91,
-      "changePct": -0.13,
-      "updatedAt": "2026-11-09T08:08:26.000Z"
+      "price": 24513.01,
+      "change": 64.06,
+      "changePct": 0.26,
+      "updatedAt": "2026-11-10T03:40:29.000Z"
     },
     {
       "symbol": "rt_hkHSCEI",
       "name": "恒生国企",
       "group": "亚太欧洲",
       "digits": 2,
-      "price": 8260.15,
-      "change": -13.95,
-      "changePct": -0.17,
-      "updatedAt": "2026-11-09T08:08:26.000Z"
+      "price": 8259.97,
+      "change": -0.18,
+      "changePct": 0,
+      "updatedAt": "2026-11-10T03:40:28.000Z"
     },
     {
       "symbol": "int_ftse",
@@ -212,237 +212,237 @@
       "price": 9284.83,
       "change": 70.85,
       "changePct": 0.77,
-      "updatedAt": "2026-11-09T21:39:12.266Z"
+      "updatedAt": "2026-11-10T03:40:30.361Z"
     },
     {
       "symbol": "hf_CHA50CFD",
       "name": "富时中国A50期货",
       "group": "亚太欧洲",
       "digits": 2,
-      "price": 13044.76,
-      "change": 138.76,
-      "changePct": 1.08,
-      "updatedAt": "2026-11-09T21:14:58.000Z"
+      "price": 12902.56,
+      "change": -3.44,
+      "changePct": -0.03,
+      "updatedAt": "2026-11-10T03:40:29.000Z"
     },
     {
       "symbol": "DINIW",
       "name": "美元指数",
       "group": "外汇",
       "digits": 3,
-      "price": 101.685,
-      "change": 0.008,
-      "changePct": 0.01,
-      "updatedAt": "2026-11-09T21:39:01.000Z"
+      "price": 101.677,
+      "change": 0.001,
+      "changePct": 0,
+      "updatedAt": "2026-11-10T03:40:25.000Z"
     },
     {
       "symbol": "fx_susdcnh",
       "name": "离岸人民币",
       "group": "外汇",
       "digits": 4,
-      "price": 6.6696,
-      "change": -0.004,
-      "changePct": -0.06,
-      "updatedAt": "2026-11-09T21:39:05.000Z"
+      "price": 6.6684,
+      "change": -0.0009,
+      "changePct": -0.01,
+      "updatedAt": "2026-11-10T03:40:21.000Z"
     },
     {
       "symbol": "fx_susdcny",
       "name": "在岸人民币",
       "group": "外汇",
       "digits": 4,
-      "price": 6.6724,
-      "change": -0.0002,
-      "changePct": 0,
-      "updatedAt": "2026-11-09T19:00:01.000Z"
+      "price": 6.6707,
+      "change": -0.0017,
+      "changePct": -0.03,
+      "updatedAt": "2026-11-10T03:39:01.000Z"
     },
     {
       "symbol": "fx_susdjpy",
       "name": "美元日元",
       "group": "外汇",
       "digits": 3,
-      "price": 157.93,
-      "change": -0.52,
-      "changePct": -0.33,
-      "updatedAt": "2026-11-09T21:39:01.000Z"
+      "price": 157.95,
+      "change": 0.05,
+      "changePct": 0.03,
+      "updatedAt": "2026-11-10T03:40:23.000Z"
     },
     {
       "symbol": "fx_seurcnh",
       "name": "欧元离岸人民币",
       "group": "外汇",
       "digits": 4,
-      "price": 7.487,
-      "change": 0.05,
-      "changePct": 0.67,
-      "updatedAt": "2026-11-09T21:39:05.000Z"
+      "price": 7.4831,
+      "change": -0.001,
+      "changePct": -0.01,
+      "updatedAt": "2026-11-10T03:40:23.000Z"
     },
     {
       "symbol": "fx_sgbpusd",
       "name": "英镑美元",
       "group": "外汇",
       "digits": 4,
-      "price": 1.3436,
-      "change": 0.0087,
-      "changePct": 0.65,
-      "updatedAt": "2026-11-09T21:39:02.000Z"
+      "price": 1.3444,
+      "change": 0.0004,
+      "changePct": 0.03,
+      "updatedAt": "2026-11-10T03:40:24.000Z"
     },
     {
       "symbol": "fx_saudcnh",
       "name": "澳元离岸人民币",
       "group": "外汇",
       "digits": 4,
-      "price": 4.6189,
-      "change": 0.036,
-      "changePct": 0.79,
-      "updatedAt": "2026-11-09T21:38:56.000Z"
+      "price": 4.6147,
+      "change": -0.0064,
+      "changePct": -0.14,
+      "updatedAt": "2026-11-10T03:39:58.000Z"
     },
     {
       "symbol": "fx_susdchf",
       "name": "美元瑞郎",
       "group": "外汇",
       "digits": 4,
-      "price": 0.8194,
-      "change": -0.0011,
-      "changePct": -0.13,
-      "updatedAt": "2026-11-09T21:38:53.000Z"
+      "price": 0.8191,
+      "change": -0.0004,
+      "changePct": -0.05,
+      "updatedAt": "2026-11-10T03:40:23.000Z"
     },
     {
       "symbol": "fx_susdhkd",
       "name": "美元港元",
       "group": "外汇",
       "digits": 4,
-      "price": 7.8419,
-      "change": 0.0023,
-      "changePct": 0.03,
-      "updatedAt": "2026-11-09T21:39:04.000Z"
+      "price": 7.8424,
+      "change": 0.0006,
+      "changePct": 0.01,
+      "updatedAt": "2026-11-10T03:40:22.000Z"
     },
     {
       "symbol": "fx_susdkrw",
       "name": "美元韩元",
       "group": "外汇",
       "digits": 2,
-      "price": 1338.24,
-      "change": -25.4,
-      "changePct": -1.86,
-      "updatedAt": "2026-11-09T21:38:53.000Z"
+      "price": 1345.5,
+      "change": 5.3,
+      "changePct": 0.4,
+      "updatedAt": "2026-11-10T03:40:20.000Z"
     },
     {
       "symbol": "hf_GC",
       "name": "纽约黄金",
       "group": "商品",
       "digits": 2,
-      "price": 4147.67,
-      "change": 72.77,
-      "changePct": 1.79,
-      "updatedAt": "2026-11-09T21:39:10.000Z"
+      "price": 4122.67,
+      "change": 8.17,
+      "changePct": 0.2,
+      "updatedAt": "2026-11-10T03:40:16.000Z"
     },
     {
       "symbol": "hf_SI",
       "name": "纽约白银",
       "group": "商品",
       "digits": 2,
-      "price": 53.39,
-      "change": 1.45,
-      "changePct": 2.79,
-      "updatedAt": "2026-11-09T21:39:08.000Z"
+      "price": 52.98,
+      "change": 0.29,
+      "changePct": 0.55,
+      "updatedAt": "2026-11-10T03:40:00.000Z"
     },
     {
       "symbol": "hf_CL",
       "name": "纽约原油",
       "group": "商品",
       "digits": 2,
-      "price": 86.56,
-      "change": -4.27,
-      "changePct": -4.7,
-      "updatedAt": "2026-11-09T21:39:09.000Z"
+      "price": 85.7,
+      "change": -1.15,
+      "changePct": -1.33,
+      "updatedAt": "2026-11-10T03:40:29.000Z"
     },
     {
       "symbol": "hf_OIL",
       "name": "布伦特原油",
       "group": "商品",
       "digits": 2,
-      "price": 92.23,
-      "change": -6.09,
-      "changePct": -6.19,
-      "updatedAt": "2026-11-09T21:39:09.000Z"
+      "price": 91.55,
+      "change": -1.02,
+      "changePct": -1.1,
+      "updatedAt": "2026-11-10T03:40:22.000Z"
     },
     {
       "symbol": "hf_HG",
       "name": "美铜",
       "group": "商品",
       "digits": 2,
-      "price": 637.6,
-      "change": 13.85,
-      "changePct": 2.22,
-      "updatedAt": "2026-11-09T21:39:06.000Z"
+      "price": 633.85,
+      "change": -0.6,
+      "changePct": -0.09,
+      "updatedAt": "2026-11-10T03:40:22.000Z"
     },
     {
       "symbol": "hf_CAD",
       "name": "伦铜",
       "group": "商品",
       "digits": 2,
-      "price": 13894.44,
-      "change": -2.06,
-      "changePct": -0.01,
-      "updatedAt": "2026-11-09T18:59:40.000Z"
+      "price": 13899.34,
+      "change": 2.84,
+      "changePct": 0.02,
+      "updatedAt": "2026-11-10T03:40:23.000Z"
     },
     {
       "symbol": "hf_AHD",
       "name": "伦铝",
       "group": "商品",
       "digits": 2,
-      "price": 3083.49,
-      "change": 16.99,
-      "changePct": 0.55,
-      "updatedAt": "2026-11-09T18:59:55.000Z"
+      "price": 3044.22,
+      "change": -22.28,
+      "changePct": -0.73,
+      "updatedAt": "2026-11-10T03:39:18.000Z"
     },
     {
       "symbol": "hf_NG",
       "name": "美国天然气",
       "group": "商品",
       "digits": 3,
-      "price": 3.626,
-      "change": 0.172,
-      "changePct": 4.98,
-      "updatedAt": "2026-11-09T21:39:02.000Z"
+      "price": 3.609,
+      "change": -0.018,
+      "changePct": -0.5,
+      "updatedAt": "2026-11-10T03:40:13.000Z"
     },
     {
       "symbol": "hf_S",
       "name": "美国大豆",
       "group": "商品",
       "digits": 2,
-      "price": 1186.92,
-      "change": -6.83,
-      "changePct": -0.57,
-      "updatedAt": "2026-11-09T19:19:59.000Z"
+      "price": 1190,
+      "change": 1.75,
+      "changePct": 0.15,
+      "updatedAt": "2026-11-10T03:39:51.000Z"
     },
     {
       "symbol": "hf_C",
       "name": "美国玉米",
       "group": "商品",
       "digits": 2,
-      "price": 438.68,
-      "change": -2.82,
-      "changePct": -0.64,
-      "updatedAt": "2026-11-09T19:20:00.000Z"
+      "price": 440.13,
+      "change": 0.88,
+      "changePct": 0.2,
+      "updatedAt": "2026-11-10T03:40:28.000Z"
     },
     {
       "symbol": "hf_W",
       "name": "美国小麦",
       "group": "商品",
       "digits": 2,
-      "price": 587.38,
-      "change": -3.88,
-      "changePct": -0.66,
-      "updatedAt": "2026-11-09T19:20:00.000Z"
+      "price": 588.88,
+      "change": 0.88,
+      "changePct": 0.15,
+      "updatedAt": "2026-11-10T03:38:59.000Z"
     },
     {
       "symbol": "hf_CT",
       "name": "美国棉花",
       "group": "商品",
       "digits": 2,
-      "price": 78.76,
-      "change": -0.35,
-      "changePct": -0.44,
-      "updatedAt": "2026-11-09T19:19:59.000Z"
+      "price": 78.99,
+      "change": 0.21,
+      "changePct": 0.27,
+      "updatedAt": "2026-11-10T03:36:08.000Z"
     }
   ]
 }
