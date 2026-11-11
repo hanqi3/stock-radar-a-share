@@ -1,88 +1,88 @@
 {
- "date": "2026-11-10",
- "generatedAt": "2026-11-10T18:54:38.223Z",
- "limitUpCount": 101,
- "limitDownCount": 0,
- "advancers": 4272,
- "decliners": 1149,
+ "date": "2026-11-11",
+ "generatedAt": "2026-11-11T07:25:00.653Z",
+ "limitUpCount": 88,
+ "limitDownCount": 6,
+ "advancers": 3538,
+ "decliners": 1826,
  "items": [
   {
    "code": "688827",
-   "name": "N钶锐",
-   "changePct": 184.77,
-   "anomalyScore": 100,
+   "name": "C钶锐",
+   "changePct": -16.33,
+   "anomalyScore": 98.78,
    "trendScore": 25.71,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "300473",
+   "name": "德尔股份",
+   "changePct": 20,
+   "anomalyScore": 97.54,
+   "trendScore": 98.71,
    "signalType": "涨停"
   },
   {
-   "code": "002578",
-   "name": "闽发铝业",
-   "changePct": 9.98,
-   "anomalyScore": 98.97,
-   "trendScore": 97.56,
+   "code": "600715",
+   "name": "文投控股",
+   "changePct": 10.18,
+   "anomalyScore": 97.22,
+   "trendScore": 94.73,
    "signalType": "涨停"
   },
   {
-   "code": "300556",
-   "name": "丝路视觉",
-   "changePct": 20.01,
-   "anomalyScore": 98.88,
-   "trendScore": 96.29,
-   "signalType": "涨停"
+   "code": "000530",
+   "name": "冰山冷热",
+   "changePct": 7.12,
+   "anomalyScore": 97.17,
+   "trendScore": 95.21,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "002889",
+   "name": "东方嘉盛",
+   "changePct": -5.81,
+   "anomalyScore": 96.83,
+   "trendScore": 96.79,
+   "signalType": "快速回撤"
+  },
+  {
+   "code": "002347",
+   "name": "泰尔股份",
+   "changePct": -4.42,
+   "anomalyScore": 96.72,
+   "trendScore": 92.78,
+   "signalType": "快速回撤"
+  },
+  {
+   "code": "600261",
+   "name": "阳光照明",
+   "changePct": 6.84,
+   "anomalyScore": 96.68,
+   "trendScore": 97.36,
+   "signalType": "涨停附近"
   },
   {
    "code": "601188",
    "name": "龙江交通",
-   "changePct": 10.02,
-   "anomalyScore": 98.55,
+   "changePct": -6.94,
+   "anomalyScore": 96.66,
    "trendScore": 95.59,
-   "signalType": "涨停"
-  },
-  {
-   "code": "688781",
-   "name": "视涯科技",
-   "changePct": 20,
-   "anomalyScore": 98.34,
-   "trendScore": 98.51,
-   "signalType": "涨停"
-  },
-  {
-   "code": "300825",
-   "name": "阿尔特",
-   "changePct": 12.4,
-   "anomalyScore": 97.98,
-   "trendScore": 96.63,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "002565",
-   "name": "顺灏股份",
-   "changePct": 7.12,
-   "anomalyScore": 97.8,
-   "trendScore": 96.12,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "600892",
-   "name": "大晟文化",
-   "changePct": 10.02,
-   "anomalyScore": 97.78,
-   "trendScore": 94.21,
-   "signalType": "涨停"
+   "signalType": "跌停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "codes": [
-   "920085",
-   "001381",
+   "688827",
    "002578",
-   "002086",
+   "300556",
+   "601188",
+   "688781",
    "300825",
-   "301718",
-   "300421",
-   "601599"
+   "002565",
+   "600892"
   ]
  }
 }
