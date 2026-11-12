@@ -1,88 +1,88 @@
 {
- "date": "2026-11-11",
- "generatedAt": "2026-11-11T07:25:00.653Z",
- "limitUpCount": 88,
- "limitDownCount": 6,
- "advancers": 3538,
- "decliners": 1826,
+ "date": "2026-11-12",
+ "generatedAt": "2026-11-12T08:02:44.779Z",
+ "limitUpCount": 39,
+ "limitDownCount": 11,
+ "advancers": 875,
+ "decliners": 4634,
  "items": [
   {
-   "code": "688827",
-   "name": "C钶锐",
-   "changePct": -16.33,
-   "anomalyScore": 98.78,
-   "trendScore": 25.71,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "300473",
-   "name": "德尔股份",
-   "changePct": 20,
-   "anomalyScore": 97.54,
-   "trendScore": 98.71,
+   "code": "603366",
+   "name": "日出东方",
+   "changePct": 10.03,
+   "anomalyScore": 98.35,
+   "trendScore": 98.41,
    "signalType": "涨停"
   },
   {
-   "code": "600715",
-   "name": "文投控股",
-   "changePct": 10.18,
-   "anomalyScore": 97.22,
-   "trendScore": 94.73,
+   "code": "600802",
+   "name": "福建水泥",
+   "changePct": 9.99,
+   "anomalyScore": 98.17,
+   "trendScore": 92.98,
    "signalType": "涨停"
   },
   {
-   "code": "000530",
-   "name": "冰山冷热",
-   "changePct": 7.12,
-   "anomalyScore": 97.17,
-   "trendScore": 95.21,
+   "code": "603536",
+   "name": "惠发食品",
+   "changePct": 10.04,
+   "anomalyScore": 97.93,
+   "trendScore": 96.51,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002931",
+   "name": "锋龙股份",
+   "changePct": 6.63,
+   "anomalyScore": 97.91,
+   "trendScore": 97.83,
    "signalType": "涨停附近"
   },
   {
-   "code": "002889",
-   "name": "东方嘉盛",
-   "changePct": -5.81,
-   "anomalyScore": 96.83,
-   "trendScore": 96.79,
+   "code": "600327",
+   "name": "大东方",
+   "changePct": 9.95,
+   "anomalyScore": 97.4,
+   "trendScore": 97.79,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301596",
+   "name": "瑞迪智驱",
+   "changePct": -10,
+   "anomalyScore": 97.09,
+   "trendScore": 91.45,
    "signalType": "快速回撤"
   },
   {
-   "code": "002347",
-   "name": "泰尔股份",
-   "changePct": -4.42,
-   "anomalyScore": 96.72,
-   "trendScore": 92.78,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "600261",
-   "name": "阳光照明",
-   "changePct": 6.84,
-   "anomalyScore": 96.68,
-   "trendScore": 97.36,
+   "code": "300829",
+   "name": "金丹科技",
+   "changePct": 13.61,
+   "anomalyScore": 97.02,
+   "trendScore": 93.94,
    "signalType": "涨停附近"
   },
   {
-   "code": "601188",
-   "name": "龙江交通",
-   "changePct": -6.94,
-   "anomalyScore": 96.66,
-   "trendScore": 95.59,
-   "signalType": "跌停附近"
+   "code": "002708",
+   "name": "光洋股份",
+   "changePct": -5.6,
+   "anomalyScore": 96.85,
+   "trendScore": 98.88,
+   "signalType": "快速回撤"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "codes": [
    "688827",
-   "002578",
-   "300556",
-   "601188",
-   "688781",
-   "300825",
-   "002565",
-   "600892"
+   "300473",
+   "600715",
+   "000530",
+   "002889",
+   "002347",
+   "600261",
+   "601188"
   ]
  }
 }
