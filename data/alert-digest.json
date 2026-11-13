@@ -1,6 +1,6 @@
 {
  "date": "2026-11-13",
- "generatedAt": "2026-11-13T15:43:01.717Z",
+ "generatedAt": "2026-11-13T18:50:20.797Z",
  "limitUpCount": 41,
  "limitDownCount": 42,
  "advancers": 765,
@@ -42,7 +42,7 @@
    "code": "300237",
    "name": "美晨科技",
    "changePct": 19.85,
-   "anomalyScore": 96.64,
+   "anomalyScore": 96.63,
    "trendScore": 94.41,
    "signalType": "涨停"
   },
@@ -50,7 +50,7 @@
    "code": "603366",
    "name": "日出东方",
    "changePct": 5.54,
-   "anomalyScore": 96.62,
+   "anomalyScore": 96.61,
    "trendScore": 98.95,
    "signalType": "强势拉升"
   },
