@@ -1,88 +1,88 @@
 {
- "date": "2026-11-12",
- "generatedAt": "2026-11-12T08:02:44.779Z",
- "limitUpCount": 39,
- "limitDownCount": 11,
- "advancers": 875,
- "decliners": 4634,
+ "date": "2026-11-13",
+ "generatedAt": "2026-11-13T07:25:33.557Z",
+ "limitUpCount": 41,
+ "limitDownCount": 42,
+ "advancers": 765,
+ "decliners": 4747,
  "items": [
   {
-   "code": "603366",
-   "name": "日出东方",
-   "changePct": 10.03,
-   "anomalyScore": 98.35,
-   "trendScore": 98.41,
-   "signalType": "涨停"
+   "code": "603536",
+   "name": "惠发食品",
+   "changePct": -9.97,
+   "anomalyScore": 97.1,
+   "trendScore": 96.51,
+   "signalType": "跌停"
+  },
+  {
+   "code": "688827",
+   "name": "C钶锐",
+   "changePct": -12.5,
+   "anomalyScore": 97.1,
+   "trendScore": 0.02,
+   "signalType": "跌停附近"
   },
   {
    "code": "600802",
    "name": "福建水泥",
-   "changePct": 9.99,
-   "anomalyScore": 98.17,
+   "changePct": -10.01,
+   "anomalyScore": 97,
    "trendScore": 92.98,
-   "signalType": "涨停"
+   "signalType": "跌停"
   },
   {
-   "code": "603536",
-   "name": "惠发食品",
-   "changePct": 10.04,
-   "anomalyScore": 97.93,
-   "trendScore": 96.51,
-   "signalType": "涨停"
+   "code": "603366",
+   "name": "日出东方",
+   "changePct": 5.54,
+   "anomalyScore": 96.97,
+   "trendScore": 98.41,
+   "signalType": "强势拉升"
   },
   {
-   "code": "002931",
-   "name": "锋龙股份",
-   "changePct": 6.63,
-   "anomalyScore": 97.91,
-   "trendScore": 97.83,
-   "signalType": "涨停附近"
+   "code": "603725",
+   "name": "天安新材",
+   "changePct": -5.93,
+   "anomalyScore": 96.28,
+   "trendScore": 93.5,
+   "signalType": "快速回撤"
   },
   {
    "code": "600327",
    "name": "大东方",
-   "changePct": 9.95,
-   "anomalyScore": 97.4,
+   "changePct": -10.03,
+   "anomalyScore": 96.23,
    "trendScore": 97.79,
+   "signalType": "跌停"
+  },
+  {
+   "code": "002187",
+   "name": "广百股份",
+   "changePct": 9.94,
+   "anomalyScore": 95.93,
+   "trendScore": 88.7,
    "signalType": "涨停"
   },
   {
-   "code": "301596",
-   "name": "瑞迪智驱",
-   "changePct": -10,
-   "anomalyScore": 97.09,
-   "trendScore": 91.45,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "300829",
-   "name": "金丹科技",
-   "changePct": 13.61,
-   "anomalyScore": 97.02,
-   "trendScore": 93.94,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "002708",
-   "name": "光洋股份",
-   "changePct": -5.6,
-   "anomalyScore": 96.85,
-   "trendScore": 98.88,
-   "signalType": "快速回撤"
+   "code": "002593",
+   "name": "日上集团",
+   "changePct": -9.18,
+   "anomalyScore": 95.88,
+   "trendScore": 91.4,
+   "signalType": "跌停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "codes": [
-   "688827",
-   "300473",
-   "600715",
-   "000530",
-   "002889",
-   "002347",
-   "600261",
-   "601188"
+   "603366",
+   "600802",
+   "603536",
+   "002931",
+   "600327",
+   "301596",
+   "300829",
+   "002708"
   ]
  }
 }
