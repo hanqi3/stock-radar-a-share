@@ -1,18 +1,26 @@
 {
  "date": "2026-11-13",
- "generatedAt": "2026-11-13T07:25:33.557Z",
+ "generatedAt": "2026-11-13T15:43:01.717Z",
  "limitUpCount": 41,
  "limitDownCount": 42,
  "advancers": 765,
  "decliners": 4747,
  "items": [
   {
-   "code": "603536",
-   "name": "惠发食品",
-   "changePct": -9.97,
-   "anomalyScore": 97.1,
-   "trendScore": 96.51,
-   "signalType": "跌停"
+   "code": "300528",
+   "name": "幸福蓝海",
+   "changePct": 20.01,
+   "anomalyScore": 97.81,
+   "trendScore": 97.81,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002187",
+   "name": "广百股份",
+   "changePct": 9.94,
+   "anomalyScore": 97.2,
+   "trendScore": 94.49,
+   "signalType": "涨停"
   },
   {
    "code": "688827",
@@ -23,52 +31,44 @@
    "signalType": "跌停附近"
   },
   {
-   "code": "600802",
-   "name": "福建水泥",
-   "changePct": -10.01,
-   "anomalyScore": 97,
-   "trendScore": 92.98,
-   "signalType": "跌停"
+   "code": "002205",
+   "name": "国统股份",
+   "changePct": 10.04,
+   "anomalyScore": 96.93,
+   "trendScore": 94.88,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300237",
+   "name": "美晨科技",
+   "changePct": 19.85,
+   "anomalyScore": 96.64,
+   "trendScore": 94.41,
+   "signalType": "涨停"
   },
   {
    "code": "603366",
    "name": "日出东方",
    "changePct": 5.54,
-   "anomalyScore": 96.97,
-   "trendScore": 98.41,
+   "anomalyScore": 96.62,
+   "trendScore": 98.95,
    "signalType": "强势拉升"
   },
   {
-   "code": "603725",
-   "name": "天安新材",
-   "changePct": -5.93,
-   "anomalyScore": 96.28,
-   "trendScore": 93.5,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "600327",
-   "name": "大东方",
-   "changePct": -10.03,
-   "anomalyScore": 96.23,
-   "trendScore": 97.79,
-   "signalType": "跌停"
-  },
-  {
-   "code": "002187",
-   "name": "广百股份",
-   "changePct": 9.94,
-   "anomalyScore": 95.93,
-   "trendScore": 88.7,
+   "code": "603396",
+   "name": "金辰股份",
+   "changePct": 10,
+   "anomalyScore": 96.35,
+   "trendScore": 98.2,
    "signalType": "涨停"
   },
   {
-   "code": "002593",
-   "name": "日上集团",
-   "changePct": -9.18,
-   "anomalyScore": 95.88,
-   "trendScore": 91.4,
-   "signalType": "跌停附近"
+   "code": "301218",
+   "name": "华是科技",
+   "changePct": 15.31,
+   "anomalyScore": 96.1,
+   "trendScore": 99.33,
+   "signalType": "涨停附近"
   }
  ],
  "watch": [],
