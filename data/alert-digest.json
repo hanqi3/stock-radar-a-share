@@ -1,6 +1,6 @@
 {
  "date": "2026-11-16",
- "generatedAt": "2026-11-16T07:37:41.632Z",
+ "generatedAt": "2026-11-16T17:04:05.980Z",
  "limitUpCount": 34,
  "limitDownCount": 90,
  "advancers": 1135,
@@ -10,65 +10,65 @@
    "code": "600715",
    "name": "文投控股",
    "changePct": 10,
-   "anomalyScore": 98.28,
-   "trendScore": 95.89,
+   "anomalyScore": 98.1,
+   "trendScore": 97.5,
    "signalType": "涨停"
-  },
-  {
-   "code": "603366",
-   "name": "日出东方",
-   "changePct": -10,
-   "anomalyScore": 97.38,
-   "trendScore": 98.95,
-   "signalType": "跌停"
   },
   {
    "code": "002148",
    "name": "北纬科技",
    "changePct": 10.06,
-   "anomalyScore": 97.26,
-   "trendScore": 95.58,
+   "anomalyScore": 97.76,
+   "trendScore": 98.06,
    "signalType": "涨停"
   },
   {
    "code": "002425",
    "name": "凯撒文化",
    "changePct": 10.1,
-   "anomalyScore": 96.9,
-   "trendScore": 92.13,
+   "anomalyScore": 97.45,
+   "trendScore": 96.26,
    "signalType": "涨停"
   },
   {
    "code": "002205",
    "name": "国统股份",
    "changePct": 9.98,
-   "anomalyScore": 96.64,
-   "trendScore": 94.88,
+   "anomalyScore": 97.29,
+   "trendScore": 98.27,
    "signalType": "涨停"
-  },
-  {
-   "code": "002623",
-   "name": "亚玛顿",
-   "changePct": -9.98,
-   "anomalyScore": 96.5,
-   "trendScore": 98.87,
-   "signalType": "跌停"
-  },
-  {
-   "code": "600228",
-   "name": "返利科技",
-   "changePct": -10.03,
-   "anomalyScore": 95.21,
-   "trendScore": 93.98,
-   "signalType": "跌停"
   },
   {
    "code": "603103",
    "name": "横店影视",
    "changePct": 8.75,
-   "anomalyScore": 95.16,
-   "trendScore": 94.64,
+   "anomalyScore": 95.93,
+   "trendScore": 98.17,
    "signalType": "涨停附近"
+  },
+  {
+   "code": "000819",
+   "name": "岳阳兴长",
+   "changePct": 9.98,
+   "anomalyScore": 95.56,
+   "trendScore": 96.9,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300824",
+   "name": "北鼎股份",
+   "changePct": 19.94,
+   "anomalyScore": 95.4,
+   "trendScore": 90.49,
+   "signalType": "涨停"
+  },
+  {
+   "code": "000595",
+   "name": "新能股份",
+   "changePct": 9.95,
+   "anomalyScore": 95.3,
+   "trendScore": 92.93,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
