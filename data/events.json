@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T16:52:37.270Z",
+  "generatedAt": "2026-11-17T20:01:36.077Z",
   "providers": [
     {
       "id": "sina-live",
@@ -31,6 +31,1364 @@
   "note": "Public policy/market news and exchange announcements, classified at read time by lib/events.js.",
   "items": [
     {
+      "id": "sina-live-5220887",
+      "title": "美国交通部长达菲：周五故障路由器的根本原因仍未查明。",
+      "summary": "美国交通部长达菲：周五故障路由器的根本原因仍未查明。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1376755.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:54:47.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220886",
+      "title": "Muddy Waters做空英伟达。",
+      "summary": "Muddy Waters做空英伟达。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1376649.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:54:04.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220885",
+      "title": "美国安局内部网故障",
+      "summary": "美国国家安全局于美国东部时间11月17日下午发布声明称，该机构内部网络“在一次计划内的例行维护期间出现‘临时降速’”，部分内部系统受到影响，但“关键任务能力”保持全面正常运行。据美国媒体稍早前报道，美国国安局的机密内部通信网络（NSANet）中断运行，相关人员正在进行软件更新和补丁修复。知情人士称没有证据表明此次故障由网络攻击造成。（CCTV国际时讯）",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1872314.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:53:37.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220882",
+      "title": "参议院共和党领袖图恩：我们对美国交通部长达菲有信心。500亿美元拨款请求并非仅用于满足即时需求。",
+      "summary": "参议院共和党领袖图恩：我们对美国交通部长达菲有信心。500亿美元拨款请求并非仅用于满足即时需求。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1870325.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:47:05.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220881",
+      "title": "SpaceX首席财务官：公司可利用经营性现金流和债务进行融资。",
+      "summary": "SpaceX首席财务官：公司可利用经营性现金流和债务进行融资。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5093963.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:46:41.000Z",
+      "codes": [
+        "512890"
+      ]
+    },
+    {
+      "id": "sina-live-5220880",
+      "title": "SpaceX首席财务官：公司400亿美元的债务融资交易今日已启动公开承销。",
+      "summary": "SpaceX首席财务官：公司400亿美元的债务融资交易今日已启动公开承销。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1374391.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:46:31.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220878",
+      "title": "苹果发言人：正努力尽快让剩余系统重新上线。",
+      "summary": "苹果发言人：正努力尽快让剩余系统重新上线。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1869960.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:46:07.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220877",
+      "title": "SpaceX首席财务官：明年或成最大AI基础设施参与者。",
+      "summary": "SpaceX首席财务官：明年或成最大AI基础设施参与者。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5093547.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:45:40.000Z",
+      "codes": [
+        "159363"
+      ]
+    },
+    {
+      "id": "sina-live-5220876",
+      "title": "苹果发言人：今晨内部更新导致部分服务中断，目前我们的许多系统已恢复运行。",
+      "summary": "苹果发言人：今晨内部更新导致部分服务中断，目前我们的许多系统已恢复运行。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7257064.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:45:23.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220875",
+      "title": "美联储威廉姆斯：美联储将及时把通胀率降至2%。",
+      "summary": "美联储威廉姆斯：美联储将及时把通胀率降至2%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5093242.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:45:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220874",
+      "title": "SpaceX首席财务官表示，Anthropic将需要更多的算力。",
+      "summary": "SpaceX首席财务官表示，Anthropic将需要更多的算力。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5092760.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:44:02.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220873",
+      "title": "美联储威廉姆斯：网络安全问题仍是令人担忧的领域。",
+      "summary": "美联储威廉姆斯：网络安全问题仍是令人担忧的领域。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1868153.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:41:15.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220872",
+      "title": "美联储威廉姆斯：需求明显跑赢供给。",
+      "summary": "美联储威廉姆斯：需求明显跑赢供给。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1867964.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:40:31.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220868",
+      "title": "华硕在SC26展示全栈AI基础设施，涵盖英特尔和AMD平台。",
+      "summary": "华硕在SC26展示全栈AI基础设施，涵盖英特尔和AMD平台。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1867827.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:39:56.000Z",
+      "codes": [
+        "159363"
+      ]
+    },
+    {
+      "id": "sina-live-5220867",
+      "title": "巴西劳动部长：巴西总统卢拉将于周四签署立法，推行更短的工作周。",
+      "summary": "巴西劳动部长：巴西总统卢拉将于周四签署立法，推行更短的工作周。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5091421.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:39:15.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220866",
+      "title": "美联储威廉姆斯：目前尚未看到人工智能带来金融稳定风险。",
+      "summary": "美联储威廉姆斯：目前尚未看到人工智能带来金融稳定风险。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1867264.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:35:50.000Z",
+      "codes": [
+        "931071",
+        "159363"
+      ]
+    },
+    {
+      "id": "sina-live-5220865",
+      "title": "美联储威廉姆斯：金融市场运行状况良好。",
+      "summary": "美联储威廉姆斯：金融市场运行状况良好。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5090904.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:35:22.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220864",
+      "title": "美联储威廉姆斯：人工智能领域的融资正变得更加不透明和复杂。",
+      "summary": "美联储威廉姆斯：人工智能领域的融资正变得更加不透明和复杂。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1867007.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:33:55.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220863",
+      "title": "美联储威廉姆斯：金融环境仍对经济增长相当有利。",
+      "summary": "美联储威廉姆斯：金融环境仍对经济增长相当有利。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7253621.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:32:23.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220862",
+      "title": "Atlan与微软合作，将OneLake治理体系扩展至整个数据资产。",
+      "summary": "Atlan与微软合作，将OneLake治理体系扩展至整个数据资产。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7253555.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:32:05.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220861",
+      "title": "美联储威廉姆斯：2025年的降息举措在当时是正确的决定。",
+      "summary": "美联储威廉姆斯：2025年的降息举措在当时是正确的决定。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5090329.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:31:55.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220860",
+      "title": "WTI 12月原油期货收涨0.29美元，涨幅0.34%，报86.01美元/桶。NYMEX 12月天然气期货收报3.208",
+      "summary": "WTI 12月原油期货收涨0.29美元，涨幅0.34%，报86.01美元/桶。NYMEX 12月天然气期货收报3.2080美元/百万英热单位。NYMEX 12月汽油期货收报2.5349美元/加仑，NYMEX 12月取暖油期货收报4.0475美元/加仑。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1370247.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:31:42.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933309618",
+      "title": "WTI原油期货结算价为每桶86.01美元",
+      "summary": "WTI原油期货结算价为每桶86.01美元，涨幅0.34%。",
+      "url": "http://finance.eastmoney.com/a/202611183933309618.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T03:31:29.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220859",
+      "title": "美联储威廉姆斯：关税的影响已基本过去。",
+      "summary": "美联储威廉姆斯：关税的影响已基本过去。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1866460.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:30:42.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220858",
+      "title": "摩根大通任命Bregje de Best为新任首席财务官，接替Jeremy Barnum。",
+      "summary": "摩根大通任命Bregje de Best为新任首席财务官，接替Jeremy Barnum。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7253365.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:30:30.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220857",
+      "title": "美国官员称对格什姆岛的打击属于自卫行为，美国是在回应伊朗以美国人员和资产为目标。",
+      "summary": "美国官员称对格什姆岛的打击属于自卫行为，美国是在回应伊朗以美国人员和资产为目标。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1866351.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:30:09.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220855",
+      "title": "美联储威廉姆斯：我认为当前形势不需要采取大幅政策行动。（享有FOMC永久投票权、号称“美联储三把手”）",
+      "summary": "美联储威廉姆斯：我认为当前形势不需要采取大幅政策行动。（享有FOMC永久投票权、号称“美联储三把手”）",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1369789.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:27:14.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220854",
+      "title": "美联储威廉姆斯：正看到冲击蔓延至更广泛通胀数据的迹象。关税与能源冲击仍在影响通胀数据。经济具有韧性，劳动力市场稳健。",
+      "summary": "美联储威廉姆斯：正看到冲击蔓延至更广泛通胀数据的迹象。关税与能源冲击仍在影响通胀数据。经济具有韧性，劳动力市场稳健。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7253053.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:27:08.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933309572",
+      "title": "纽约联储主席：通胀“顽固地高企” 不认为当前形势需要采取重大行动",
+      "summary": "【纽约联储主席：通胀“顽固地高企” 不认为当前形势需要采取重大行动】纽约联储主席威廉姆斯表示，通胀“顽固地高企”，要让通胀回到2%仍有更多工作要做。但他同时指出，不认为当前形势需要采取重大行动。",
+      "url": "http://forex.eastmoney.com/a/202611183933309572.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T03:27:03.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933309411",
+      "title": "SpaceX表示 计划于11月21日从范登堡太空军基地4E航天发射场用猎鹰9号执行NROL-136任务",
+      "summary": "SpaceX表示，计划于11月21日从范登堡太空军基地4E航天发射场用猎鹰9号执行NROL-136任务。",
+      "url": "http://finance.eastmoney.com/a/202611183933309411.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T03:25:45.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220853",
+      "title": "美联储威廉姆斯：通胀仍“顽固偏高”。",
+      "summary": "美联储威廉姆斯：通胀仍“顽固偏高”。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1866067.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:25:34.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220852",
+      "title": "美军官员称，美国战斗机袭击了格什姆岛上的伊斯兰革命卫队导弹发射场。",
+      "summary": "美军官员称，美国战斗机袭击了格什姆岛上的伊斯兰革命卫队导弹发射场。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5089715.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:25:10.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220851",
+      "title": "美联储威廉姆斯：美联储在将通胀率降至2%方面仍有更多工作要做。",
+      "summary": "美联储威廉姆斯：美联储在将通胀率降至2%方面仍有更多工作要做。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1865995.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:24:51.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220850",
+      "title": "美联储威廉姆斯：经济强劲且持续向好，通胀未朝正确方向发展。",
+      "summary": "美联储威廉姆斯：经济强劲且持续向好，通胀未朝正确方向发展。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1369599.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:24:42.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933309373",
+      "title": "苹果表示 iCloud账户及登录问题已解决",
+      "summary": "苹果表示，iCloud账户及登录问题已解决。",
+      "url": "http://finance.eastmoney.com/a/202611183933309373.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T03:23:55.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220849",
+      "title": "SpaceX计划于11月21日在范登堡太空军基地4E发射台执行NROL-136任务的猎鹰9号火箭发射。",
+      "summary": "SpaceX计划于11月21日在范登堡太空军基地4E发射台执行NROL-136任务的猎鹰9号火箭发射。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5089543.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:23:07.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933309283",
+      "title": "据报道 伊朗方面正“认真寻求”通过外交途径结束僵局",
+      "summary": "据报道，伊朗方面正“认真寻求”通过外交途径结束僵局。",
+      "url": "http://finance.eastmoney.com/a/202611183933309283.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T03:21:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933306738",
+      "title": "据报道 在黄仁勋辞职后 英伟达联系了其投资的3家机器人初创公司",
+      "summary": "据报道，在黄仁勋辞职后，英伟达联系了其投资的3家机器人初创公司，向其保证英伟达的支持。",
+      "url": "http://finance.eastmoney.com/a/202611183933306738.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T03:18:41.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220848",
+      "title": "苹果：iCloud账户及登录问题已解决。",
+      "summary": "苹果：iCloud账户及登录问题已解决。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7252225.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:18:10.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220847",
+      "title": "据伊通社：伊朗正“认真寻求”通过外交途径解决僵局。",
+      "summary": "据伊通社：伊朗正“认真寻求”通过外交途径解决僵局。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7252211.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:18:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933306637",
+      "title": "苹果称中断并非由网络攻击所致 正努力“尽快”恢复系统运行",
+      "summary": "苹果称中断并非由网络攻击所致，正努力“尽快”恢复系统运行。",
+      "url": "http://finance.eastmoney.com/a/202611183933306637.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T03:17:38.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220846",
+      "title": "伊朗海军称，第四艘油轮在霍尔木兹海峡东部海域触雷。",
+      "summary": "伊朗海军称，第四艘油轮在霍尔木兹海峡东部海域触雷。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1864834.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:14:56.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220845",
+      "title": "市场消息：英伟达在黄仁勋辞职后联系了三家其投资的机器人初创公司，以重申对其的支持。",
+      "summary": "市场消息：英伟达在黄仁勋辞职后联系了三家其投资的机器人初创公司，以重申对其的支持。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1864719.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:13:37.000Z",
+      "codes": [
+        "159352",
+        "300024",
+        "159530"
+      ]
+    },
+    {
+      "id": "sina-live-5220844",
+      "title": "苹果：所有用户均受iCloud账户及登录服务持续故障影响。",
+      "summary": "苹果：所有用户均受iCloud账户及登录服务持续故障影响。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5088357.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:13:22.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220843",
+      "title": "苹果公司：部分用户无法使用iCloud网页应用（icloud.com）及iCloud邮件服务。",
+      "summary": "苹果公司：部分用户无法使用iCloud网页应用（icloud.com）及iCloud邮件服务。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1864276.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:11:20.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220842",
+      "title": "美国国家安全局：在例行计划维护期间，该局经历了临时性服务降级。尽管部分内部系统受到影响，但关键任务能力仍保持全面运行，维",
+      "summary": "美国国家安全局：在例行计划维护期间，该局经历了临时性服务降级。尽管部分内部系统受到影响，但关键任务能力仍保持全面运行，维护国家安全的能力持续有效。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7251383.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:11:13.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220841",
+      "title": "耐克高管表示，该公司预计2027财年至2031财年大中华区收入将大致持平，并指出2028财年将是“财务上充满挑战的一年”",
+      "summary": "耐克高管表示，该公司预计2027财年至2031财年大中华区收入将大致持平，并指出2028财年将是“财务上充满挑战的一年”，预计2028财年调整后每股收益较2027财年水平小幅下降。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5087853.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:10:50.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220840",
+      "title": "市场消息：Salesforce正为员工设定AI预算。",
+      "summary": "市场消息：Salesforce正为员工设定AI预算。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5087710.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:09:35.000Z",
+      "codes": [
+        "159363"
+      ]
+    },
+    {
+      "id": "sina-live-5220839",
+      "title": "市场消息：“和平委员会”敦促联合国支持加沙停火。",
+      "summary": "市场消息：“和平委员会”敦促联合国支持加沙停火。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7251020.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:08:51.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933306548",
+      "title": "耐克预计旗下品牌匡威将于2028年恢复增长",
+      "summary": "耐克预计旗下品牌匡威将于2028年恢复增长，预计匡威营收将突破10亿美元。",
+      "url": "http://finance.eastmoney.com/a/202611183933306548.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T03:08:48.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220838",
+      "title": "耐克高管表示，公司预计2028财年调整后每股收益将较2027财年水平小幅下降。",
+      "summary": "耐克高管表示，公司预计2028财年调整后每股收益将较2027财年水平小幅下降。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1863724.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:08:22.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220837",
+      "title": "众议院民主党领袖杰弗里斯：在发生停电事件及联邦航空管理局（FAA）相关情况后，国会也需要听取简报。",
+      "summary": "众议院民主党领袖杰弗里斯：在发生停电事件及联邦航空管理局（FAA）相关情况后，国会也需要听取简报。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5087343.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:08:02.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220836",
+      "title": "耐克跌幅扩大至5%。",
+      "summary": "耐克跌幅扩大至5%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5087270.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:07:26.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220835",
+      "title": "耐克预计匡威将于2028年恢复增长，预计匡威营收将突破10亿美元。将提升北美近岸生产规模。",
+      "summary": "耐克预计匡威将于2028年恢复增长，预计匡威营收将突破10亿美元。将提升北美近岸生产规模。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7250703.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:06:48.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220834",
+      "title": "在岸人民币兑美元（CNY）北京时间03:00收报6.6663元，较周一夜盘收盘跌21点。成交量340亿美元。",
+      "summary": "在岸人民币兑美元（CNY）北京时间03:00收报6.6663元，较周一夜盘收盘跌21点。成交量340亿美元。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1367286.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:06:00.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220833",
+      "title": "Alphabet旗下自动驾驶公司Waymo：暂时限制其在运营市场的 freeway 业务，加州及其他州正与相关部门协作，",
+      "summary": "Alphabet旗下自动驾驶公司Waymo：暂时限制其在运营市场的 freeway 业务，加州及其他州正与相关部门协作，以恢复高速公路运营。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1863214.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:05:11.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220832",
+      "title": "阿拉伯电视台援引一位高级消息人士称，美伊外交渠道迄今未取得突破。",
+      "summary": "阿拉伯电视台援引一位高级消息人士称，美伊外交渠道迄今未取得突破。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5086738.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:04:00.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220831",
+      "title": "恒指期货夜盘收跌0.35%，报23392.72点，低水115.45点。",
+      "summary": "恒指期货夜盘收跌0.35%，报23392.72点，低水115.45点。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1862256.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T03:00:03.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220830",
+      "title": "NASA宣布Terra卫星任务即将结束，Terra卫星将于2027年1月关闭所有航天器系统，并于12月1日停止收集数据。",
+      "summary": "NASA宣布Terra卫星任务即将结束，Terra卫星将于2027年1月关闭所有航天器系统，并于12月1日停止收集数据。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7249157.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:57:03.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933306461",
+      "title": "NASA表示，Terra卫星将于12月1日停止收集数据，并将于2027年1月关闭所有航天器系统",
+      "summary": "NASA表示，Terra卫星将于12月1日停止收集数据，并将于2027年1月关闭所有航天器系统。",
+      "url": "http://finance.eastmoney.com/a/202611183933306461.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T02:56:00.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220829",
+      "title": "耐克将跌幅扩大至3%。",
+      "summary": "耐克将跌幅扩大至3%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1861633.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:54:45.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220828",
+      "title": "耐克将提升北美近岸生产规模。",
+      "summary": "耐克将提升北美近岸生产规模。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1365001.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:51:08.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220827",
+      "title": "两名安全消息人士表示，两架无人机袭击了伊拉克苏莱曼尼亚境内属于伊朗库尔德反对派的据点。",
+      "summary": "两名安全消息人士表示，两架无人机袭击了伊拉克苏莱曼尼亚境内属于伊朗库尔德反对派的据点。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1860929.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:50:51.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220826",
+      "title": "据俄罗斯国防部消息，一架军用安-12运输机在库兹巴斯地区坠毁，造成19人死亡。",
+      "summary": "据俄罗斯国防部消息，一架军用安-12运输机在库兹巴斯地区坠毁，造成19人死亡。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5084448.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:50:21.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220825",
+      "title": "泽连斯基就克里米亚大桥表态：我们早已告知俄罗斯，我们受够了桥梁、城市和能源基础设施遭袭。",
+      "summary": "泽连斯基就克里米亚大桥表态：我们早已告知俄罗斯，我们受够了桥梁、城市和能源基础设施遭袭。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit1859859.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:45:52.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220824",
+      "title": "泽连斯基谈克里米亚大桥：乌克兰导弹和无人机再次打击了俄罗斯在南部的一条关键军事动脉。",
+      "summary": "泽连斯基谈克里米亚大桥：乌克兰导弹和无人机再次打击了俄罗斯在南部的一条关键军事动脉。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauit7246991.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:45:36.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220823",
+      "title": "泽连斯基谈克里米亚大桥：此次袭击是乌克兰安全局及其他部门共同行动的结果。",
+      "summary": "泽连斯基谈克里米亚大桥：此次袭击是乌克兰安全局及其他部门共同行动的结果。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1363673.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:45:30.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220822",
+      "title": "也门西部拉赫季省针对胡塞武装阵地和车队发动约20次空袭，造成60多名胡塞武装人员死亡。",
+      "summary": "也门西部拉赫季省针对胡塞武装阵地和车队发动约20次空袭，造成60多名胡塞武装人员死亡。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauir5082945.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:43:51.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220821",
+      "title": "美国加州总检察长称，英伟达丑闻已引发“危险信号”。",
+      "summary": "美国加州总检察长称，英伟达丑闻已引发“危险信号”。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizauip1362687.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:42:19.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220820",
+      "title": "英国制裁8家参与以色列定居点建设的公司",
+      "summary": "英国外交部17日宣布制裁8家参与扩建约旦河西岸以色列定居点的建筑和房地产开发公司和一个阻止援助物资进入加沙的活动组织。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5213009.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:40:37.000Z",
+      "codes": [
+        "931775"
+      ]
+    },
+    {
+      "id": "sina-live-5220819",
+      "title": "美国商品期货交易委员会（CFTC）发言人：针对Kalshi部分合约的暂缓令，与CFTC近期就提及市场发布的指引保持一致。",
+      "summary": "美国商品期货交易委员会（CFTC）发言人：针对Kalshi部分合约的暂缓令，与CFTC近期就提及市场发布的指引保持一致。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5212843.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:40:14.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933306226",
+      "title": "苹果状态页面列出音乐、App Store、AppleCare存在问题",
+      "summary": "苹果状态页面列出音乐、AppStore、AppleCare存在问题。",
+      "url": "http://finance.eastmoney.com/a/202611183933306226.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T02:38:14.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220818",
+      "title": "美国商品期货交易委员会（CFTC）发言人：此前已暂停部分Kalshi合约的交易，以等待就这些合约是否易受操纵问题作出进一",
+      "summary": "美国商品期货交易委员会（CFTC）发言人：此前已暂停部分Kalshi合约的交易，以等待就这些合约是否易受操纵问题作出进一步处理。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5212418.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:37:57.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220817",
+      "title": "苹果状态页面显示音乐、App Store及AppleCare服务出现故障。",
+      "summary": "苹果状态页面显示音乐、App Store及AppleCare服务出现故障。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1988702.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:37:36.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220816",
+      "title": "苹果在状态页面确认部分服务出现中断。",
+      "summary": "苹果在状态页面确认部分服务出现中断。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5212384.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:37:28.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220815",
+      "title": "安哥拉1月将装载26船原油，而12月计划装载32船。",
+      "summary": "安哥拉1月将装载26船原油，而12月计划装载32船。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7375587.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:36:36.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220814",
+      "title": "英国警方：一名于11月10日被英国警方逮捕的美国陆军成员，因涉嫌国家安全和间谍指控，已被美国军方拘留。",
+      "summary": "英国警方：一名于11月10日被英国警方逮捕的美国陆军成员，因涉嫌国家安全和间谍指控，已被美国军方拘留。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7375480.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:35:46.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220813",
+      "title": "乔什·库什纳的Thrive Capital正洽谈领投Ramp最新一轮融资。",
+      "summary": "乔什·库什纳的Thrive Capital正洽谈领投Ramp最新一轮融资。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7375219.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:33:32.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220812",
+      "title": "Ramp正与投资者进行早期磋商，拟融资10亿美元或更多。",
+      "summary": "Ramp正与投资者进行早期磋商，拟融资10亿美元或更多。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5211857.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:33:16.000Z",
+      "codes": [
+        "159352"
+      ]
+    },
+    {
+      "id": "sina-live-5220811",
+      "title": "企业信用卡初创公司Ramp以700亿美元估值融资。",
+      "summary": "企业信用卡初创公司Ramp以700亿美元估值融资。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1988027.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:32:38.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220810",
+      "title": "上期所原油期货夜盘收跌0.59%，报590.50元人民币/桶。沪金夜盘收跌0.09%，沪银收涨1.01%。",
+      "summary": "上期所原油期货夜盘收跌0.59%，报590.50元人民币/桶。沪金夜盘收跌0.09%，沪银收涨1.01%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5211283.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:30:02.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220809",
+      "title": "巴西众议院议长拟于今日就财政方案进行表决。",
+      "summary": "巴西众议院议长拟于今日就财政方案进行表决。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1491386.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:29:56.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220808",
+      "title": "美国天然气期货涨超3.00%，现报3.608美元/百万英热。",
+      "summary": "美国天然气期货涨超3.00%，现报3.608美元/百万英热。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5211266.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:29:35.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220807",
+      "title": "美国正重新考虑新泽西州沿海风电场许可。",
+      "summary": "美国正重新考虑新泽西州沿海风电场许可。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5210903.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:27:08.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933306169",
+      "title": "扎克伯格：新的Muse模型即将登陆Microsoft Foundry",
+      "summary": "【扎克伯格：新的Muse模型即将登陆Microsoft Foundry】扎克伯格表示，Muse Wonder、Muse Spark 1.3、Muse Ember即将推出，新的Muse模型即将登陆Microsoft Foundry。",
+      "url": "http://finance.eastmoney.com/a/202611183933306169.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T02:27:02.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220806",
+      "title": "扎克伯格：新款Muse模型即将登陆微软Foundry。",
+      "summary": "扎克伯格：新款Muse模型即将登陆微软Foundry。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1490869.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:26:11.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220805",
+      "title": "扎克伯格：Muse Wonder、Muse Spark 1.3及Muse Ember即将推出。",
+      "summary": "扎克伯格：Muse Wonder、Muse Spark 1.3及Muse Ember即将推出。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7374059.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:25:26.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933305973",
+      "title": "微软：与埃森哲、Adobe、毕马威、万事达卡、沃尔沃汽车等合作 协助制定AI系统开放标准",
+      "summary": "【微软：与埃森哲、Adobe、毕马威、万事达卡、沃尔沃汽车等合作 协助制定AI系统开放标准】微软表示，与埃森哲、Adobe、毕马威、万事达卡、沃尔沃汽车等合作，协助制定AI系统开放标准。",
+      "url": "http://finance.eastmoney.com/a/202611183933305973.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T02:22:23.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220804",
+      "title": "乌克兰总统泽连斯基：我们需要更多战斗机，特别是F-16战机。让我们共同努力实现这一目标。具体而言，我们还需要40架F-1",
+      "summary": "乌克兰总统泽连斯基：我们需要更多战斗机，特别是F-16战机。让我们共同努力实现这一目标。具体而言，我们还需要40架F-16战斗机。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7373056.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:20:52.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220803",
+      "title": "微软：与埃森哲、Adobe、毕马威、万事达卡、沃尔沃汽车等合作，协助制定人工智能系统的开放标准。",
+      "summary": "微软：与埃森哲、Adobe、毕马威、万事达卡、沃尔沃汽车等合作，协助制定人工智能系统的开放标准。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5209642.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:20:04.000Z",
+      "codes": [
+        "931071",
+        "159363"
+      ]
+    },
+    {
+      "id": "sina-live-5220802",
+      "title": "微软：将扩大参与美国国家标准与技术研究院的SI智能体标准倡议。",
+      "summary": "微软：将扩大参与美国国家标准与技术研究院的SI智能体标准倡议。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1489377.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:19:24.000Z",
+      "codes": [
+        "159363"
+      ]
+    },
+    {
+      "id": "sina-live-5220801",
+      "title": "周二（11月17日），美联储隔夜逆回购协议（RRP）使用规模为3.51亿美元（交易对手2家），上个交易日报1.82亿美元",
+      "summary": "周二（11月17日），美联储隔夜逆回购协议（RRP）使用规模为3.51亿美元（交易对手2家），上个交易日报1.82亿美元。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5209081.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:16:28.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220800",
+      "title": "微软与各行业组织共同发起人工智能透明度倡议，以增强企业对人工智能模型和代理的信任。",
+      "summary": "微软与各行业组织共同发起人工智能透明度倡议，以增强企业对人工智能模型和代理的信任。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1488679.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:16:15.000Z",
+      "codes": [
+        "931071",
+        "159363"
+      ]
+    },
+    {
+      "id": "sina-live-5220799",
+      "title": "美国中央司令部司令今日访问以色列，并与以色列国防军总参谋长及其他高级官员举行会谈。",
+      "summary": "美国中央司令部司令今日访问以色列，并与以色列国防军总参谋长及其他高级官员举行会谈。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5208681.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:14:35.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220798",
+      "title": "耐克预计，到2030财年，中国市场的格局将发生更大变化。",
+      "summary": "耐克预计，到2030财年，中国市场的格局将发生更大变化。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1488119.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:14:20.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220797",
+      "title": "耐克高管表示，公司预计2027财年至2031财年大中华区营收将大致持平。",
+      "summary": "耐克高管表示，公司预计2027财年至2031财年大中华区营收将大致持平。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1984731.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:13:44.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933305670",
+      "title": "微软力求推出更便宜、更专业化的AI模型",
+      "summary": "据报道，微软力求推出更便宜、更专业化的AI模型。",
+      "url": "http://finance.eastmoney.com/a/202611183933305670.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T02:13:39.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220796",
+      "title": "微软：语音AI模型MAI Realtime 1在公开基准测试和微软产品评估中表现优于GPT Realtime 2.1。",
+      "summary": "微软：语音AI模型MAI Realtime 1在公开基准测试和微软产品评估中表现优于GPT Realtime 2.1。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5208119.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:12:14.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220795",
+      "title": "微软：MAI Transcribe 2现已在Dragon Copilot中推出，用于医疗场景。",
+      "summary": "微软：MAI Transcribe 2现已在Dragon Copilot中推出，用于医疗场景。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1984356.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:12:07.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220794",
+      "title": "微软：在Ignite大会上宣布推出MAI Cyber 2 Flash，即将登陆微软安全产品。",
+      "summary": "微软：在Ignite大会上宣布推出MAI Cyber 2 Flash，即将登陆微软安全产品。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1984310.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:11:54.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220793",
+      "title": "微软：在Foundry公开预览版、MAI Playground、OpenRouter、Genspark和Vercel上推",
+      "summary": "微软：在Foundry公开预览版、MAI Playground、OpenRouter、Genspark和Vercel上推出MAI Image 2.7。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1487429.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:11:51.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220792",
+      "title": "微软：借助MAI Code 2 Flash，AT&T测试表现优于GPT 6.1 Sol，同时成本低50倍。",
+      "summary": "微软：借助MAI Code 2 Flash，AT&T测试表现优于GPT 6.1 Sol，同时成本低50倍。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1984295.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:11:47.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220791",
+      "title": "微软：在GitHub Copilot上推出MAI Code 2。",
+      "summary": "微软：在GitHub Copilot上推出MAI Code 2。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1984285.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:11:44.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220790",
+      "title": "微软：在GitHub Copilot上推出MAI Code 2 Flash，并在Foundry中进行有限访问预览。",
+      "summary": "微软：在GitHub Copilot上推出MAI Code 2 Flash，并在Foundry中进行有限访问预览。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5207974.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:11:41.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220789",
+      "title": "胡塞武装：过去24小时内，沙特空军出动从哈米斯穆谢特和塔伊夫空军基地起飞的F-15及“台风”战机，并从纳季兰发射导弹，对",
+      "summary": "胡塞武装：过去24小时内，沙特空军出动从哈米斯穆谢特和塔伊夫空军基地起飞的F-15及“台风”战机，并从纳季兰发射导弹，对首都萨那以及荷台达、塔伊兹、拉赫季、焦夫、哈杰、马里卜和萨达等省区的民用设施发动了81次空袭和导弹袭击。这些袭击造成数十名平民死伤。自针对该国的军事升级行动开始以来，沙特方面的空袭和导弹袭击总数已达5264次。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1984018.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:11:03.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220788",
+      "title": "德国国防部长：与其批评乌克兰的纵深打击，不如谴责其每晚每日对乌克兰能源、供水及供暖基础设施实施的恐怖袭击。",
+      "summary": "德国国防部长：与其批评乌克兰的纵深打击，不如谴责其每晚每日对乌克兰能源、供水及供暖基础设施实施的恐怖袭击。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1486676.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:09:17.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933305531",
+      "title": "赛富时（Salesforce）与微软宣布推出CopilotForce",
+      "summary": "【赛富时（Salesforce）与微软宣布推出CopilotForce】赛富时（Salesforce）与微软宣布推出CopilotForce，将Salesforce的客户上下文和销售工作流引入MicrosoftCopilot。",
+      "url": "http://finance.eastmoney.com/a/202611183933305531.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T02:09:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220787",
+      "title": "德国国防部长：最好讨论俄罗斯境内针对非民用目标的合法且正当的打击。",
+      "summary": "德国国防部长：最好讨论俄罗斯境内针对非民用目标的合法且正当的打击。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1983521.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:08:55.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220785",
+      "title": "市场资讯：耐克调整中国电商平台策略，短期内将加剧业绩压力。",
+      "summary": "市场资讯：耐克调整中国电商平台策略，短期内将加剧业绩压力。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1983267.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:07:46.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220784",
+      "title": "赛富时：Informatica在微软Ignite 2026大会上宣布扩大与微软的合作。",
+      "summary": "赛富时：Informatica在微软Ignite 2026大会上宣布扩大与微软的合作。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7369352.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:07:17.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220783",
+      "title": "赛富时与微软宣布推出CopilotForce，将赛富时的客户背景和销售工作流引入微软Copilot。",
+      "summary": "赛富时与微软宣布推出CopilotForce，将赛富时的客户背景和销售工作流引入微软Copilot。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1983000.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:06:45.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220782",
+      "title": "德国国防部长：批评像俄罗斯那样打击战略军事目标及军用目标的行动，是相当愚蠢的。",
+      "summary": "德国国防部长：批评像俄罗斯那样打击战略军事目标及军用目标的行动，是相当愚蠢的。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7368854.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:05:40.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220781",
+      "title": "北约秘书长吕特就纵深打击表态：重要的是使俄罗斯的战争机器瘫痪。",
+      "summary": "北约秘书长吕特就纵深打击表态：重要的是使俄罗斯的战争机器瘫痪。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5206345.d.html",
+      "source": "新浪财经7x24·公司",
+      "publishedAt": "2026-11-18T02:05:18.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933305246",
+      "title": "Meta：Muse现已在澳大利亚上线",
+      "summary": "【Meta：Muse现已在澳大利亚上线】Meta表示，旗下AI智能体Muse已在澳大利亚的iOS、Android、Muse.ai和Mac应用上线，并将很快登陆AI眼镜。Muse免费提供，另有可选订阅方案。",
+      "url": "http://finance.eastmoney.com/a/202611183933305246.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T02:03:18.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220774",
+      "title": "俄总统特别代表德米特里耶夫：欧洲应专注于为乌克兰重建提供资金，而非延长战争。",
+      "summary": "俄总统特别代表德米特里耶夫：欧洲应专注于为乌克兰重建提供资金，而非延长战争。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5204548.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:58:03.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933305173",
+      "title": "特朗普寻求500亿美元用于空域升级",
+      "summary": "在空管故障后，特朗普寻求500亿美元用于空域升级。",
+      "url": "http://finance.eastmoney.com/a/202611183933305173.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:54:40.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220767",
+      "title": "俄罗斯总统普京抵达深圳",
+      "summary": "11月18日，俄罗斯总统普京将抵达深圳，出席11月18日至19日举行的亚太经合组织第三十三次领导人非正式会议。（CCTV国际时讯）",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5203108.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:51:04.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
+      "id": "sina-live-5220764",
+      "title": "俄罗斯铁路公司表示，克里米亚大桥的铁路运输已全面恢复。此前延误的所有“塔夫里亚”号列车均已抵达刻赤站。",
+      "summary": "俄罗斯铁路公司表示，克里米亚大桥的铁路运输已全面恢复。此前延误的所有“塔夫里亚”号列车均已抵达刻赤站。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1978559.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:47:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933304616",
+      "title": "OpenAI推出新的Astra AI模型",
+      "summary": "【OpenAI推出新的Astra AI模型】OpenAI在取消先前发布后，推出新的Astra AI模型。OpenAI称GPT-6.2 Astra在执行复杂工作任务时更高效。GPT-6.2 Astra定价为每百万Token输入8美元、缓存输入0.40美元、输出40美元。即日起，GPT-6.2 Astra面向ChatGPT Work和Codex中的所有Plus、Pro、Enterprise和Edu用户开放。",
+      "url": "http://finance.eastmoney.com/a/202611183933304616.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:45:49.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933303819",
+      "title": "Anthropic在Claude平台推出测试版关联账单功能",
+      "summary": "Anthropic在Claude平台推出测试版关联账单功能。",
+      "url": "http://finance.eastmoney.com/a/202611183933303819.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:40:25.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220750",
+      "title": "据俄罗斯国防部消息，过去一天内，俄防空系统在俄罗斯联邦多个地区击落51架乌克兰无人机。",
+      "summary": "据俄罗斯国防部消息，过去一天内，俄防空系统在俄罗斯联邦多个地区击落51架乌克兰无人机。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1477836.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:31:40.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933303054",
+      "title": "SpaceX最快本周启动400亿美元AI芯片债务融资的部分发行",
+      "summary": "【SpaceX最快本周启动400亿美元AI芯片债务融资的部分发行】知情人士称，SpaceX最快可能于本周启动400亿美元债务融资的部分发行，约40亿美元债券可能在数日内发售。这笔融资旨在为其采购人工智能芯片提供资金。交易由高盛集团和阿波罗全球管理担任承销商。",
+      "url": "http://bond.eastmoney.com/a/202611183933303054.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:30:39.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933301898",
+      "title": "美元指数下跌0.17%",
+      "summary": "【行情】美元指数下跌0.17%，报103.4点；美元兑日元下跌0.1%，报159.27点。",
+      "url": "http://forex.eastmoney.com/a/202611183933301898.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:21:34.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933302110",
+      "title": "亚马逊CEO：英伟达长期以来一直是极其重要的合作伙伴 在可预见的未来也将一直如此",
+      "summary": "【亚马逊CEO：英伟达长期以来一直是极其重要的合作伙伴 在可预见的未来也将一直如此】亚马逊CEO在Semafor活动上就英伟达相关风波表示，英伟达长期以来一直是极其重要的合作伙伴，并且在可预见的未来也将一直如此。",
+      "url": "http://finance.eastmoney.com/a/202611183933302110.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:20:37.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933300745",
+      "title": "美国众议院民主党领袖Jeffries：将在新一届国会初期推动结束伊朗战争",
+      "summary": "美国众议院民主党领袖Jeffries表示，将在新一届国会初期推动结束伊朗战争。",
+      "url": "http://finance.eastmoney.com/a/202611183933300745.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:15:15.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220740",
+      "title": "德国芬兰总统表示欧洲必须参与乌克兰危机谈判",
+      "summary": "德国总统施泰因迈尔和芬兰总统斯图布17日表示，涉及乌克兰未来的谈判关乎安全保障，不能没有欧洲的参与。施泰因迈尔当天同来访的芬兰总统斯图布共同出席记者会时说，此前在阿联酋首都阿布扎比举行的会谈推动了乌克兰危机谈判进程，预计未来数周还将举行进一步会谈。欧洲只接受由欧洲亲自参与谈判达成的安全保障。（新华社）",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1475137.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:11:46.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
+      "id": "sina-live-5220739",
+      "title": "美国众议院民主党领袖杰弗里斯：将在新一届国会初期推动结束伊朗战争。",
+      "summary": "美国众议院民主党领袖杰弗里斯：将在新一届国会初期推动结束伊朗战争。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5195792.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:10:55.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220738",
+      "title": "美国众议院民主党领袖杰弗里斯：考虑推动更多关于战争权力决议的投票。",
+      "summary": "美国众议院民主党领袖杰弗里斯：考虑推动更多关于战争权力决议的投票。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5195674.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:10:29.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933299512",
+      "title": "谷歌钱包（Google Wallet）现已在美国iOS系统上推出",
+      "summary": "【谷歌钱包（Google Wallet）现已在美国iOS系统上推出】谷歌表示，谷歌钱包（Google Wallet）现已在美国iOS系统上推出。",
+      "url": "http://finance.eastmoney.com/a/202611183933299512.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:09:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933299934",
+      "title": "耐克股价高开低走 最新下跌2.5%",
+      "summary": "【行情】耐克股价高开低走，最新下跌2.5%，盘初一度涨近6%。",
+      "url": "http://finance.eastmoney.com/a/202611183933299934.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:06:52.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220733",
+      "title": "美国官员：国家安全局通信中断的原因是该机构正在更新软件以修补系统漏洞。",
+      "summary": "美国官员：国家安全局通信中断的原因是该机构正在更新软件以修补系统漏洞。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1474122.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:06:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220732",
+      "title": "谷歌：Gemini推出系列高级功能，率先在美国上线。",
+      "summary": "谷歌：Gemini推出系列高级功能，率先在美国上线。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1971070.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:05:05.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933298347",
+      "title": "美国众议院民主党领袖Jeffries被问及政府是否会关门时表示正在积极磋商",
+      "summary": "美国众议院民主党领袖Jeffries被问及政府是否会关门时表示，正在积极磋商。",
+      "url": "http://finance.eastmoney.com/a/202611183933298347.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:04:40.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220731",
+      "title": "美国众议院民主党领袖杰弗里斯：需要就联邦航空管理局和技术故障问题举行两院联合简报会。",
+      "summary": "美国众议院民主党领袖杰弗里斯：需要就联邦航空管理局和技术故障问题举行两院联合简报会。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1473906.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:04:37.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220730",
+      "title": "谷歌：Gemini更新覆盖美国、日本、韩国、加拿大、澳大利亚及印度。",
+      "summary": "谷歌：Gemini更新覆盖美国、日本、韩国、加拿大、澳大利亚及印度。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1970966.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:04:27.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933298511",
+      "title": "夜盘期货收盘：沪镍涨3.06% 不锈钢涨2.62%",
+      "summary": "【夜盘期货收盘：沪镍涨3.06% 不锈钢涨2.62%】国际铜夜盘收跌0.08%，沪铜收跌0.23%，沪铝收跌1.33%，沪锌收跌0.40%，沪铅收跌0.35%，沪镍收涨3.06%，沪锡收跌1.35%。氧化铝夜盘收跌0.31%，铝合金收跌1.01%。不锈钢夜盘收涨2.62%。",
+      "url": "http://futures.eastmoney.com/a/202611183933298511.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T01:03:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220729",
+      "title": "美国众议院民主党领袖杰弗里斯：（被问及政府是否会停摆）目前正在进行积极磋商。",
+      "summary": "美国众议院民主党领袖杰弗里斯：（被问及政府是否会停摆）目前正在进行积极磋商。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7356385.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:01:53.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220728",
+      "title": "美国中央司令部：11月17日，西奥多·罗斯福号航空母舰与乔治·华盛顿号航空母舰在阿拉伯海航行。",
+      "summary": "美国中央司令部：11月17日，西奥多·罗斯福号航空母舰与乔治·华盛顿号航空母舰在阿拉伯海航行。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5193804.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T01:01:05.000Z",
+      "codes": [
+        "600221"
+      ]
+    },
+    {
+      "id": "em-kuaixun-202611183933295613",
+      "title": "美国国债收益率扩大跌幅",
+      "summary": "美国国债收益率扩大跌幅，短暂触及日内低点。",
+      "url": "http://bond.eastmoney.com/a/202611183933295613.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T00:58:23.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220719",
+      "title": "美国国债收益率扩大跌幅，短暂触及日内低点。",
+      "summary": "美国国债收益率扩大跌幅，短暂触及日内低点。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7355653.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T00:58:07.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220718",
+      "title": "美国众议院民主党领袖杰弗里斯：黄仁勋作证是适当的下一步举措。",
+      "summary": "美国众议院民主党领袖杰弗里斯：黄仁勋作证是适当的下一步举措。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5192971.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T00:57:33.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933295853",
+      "title": "通用汽车正在为首席执行官玛丽·博拉寻找继任者",
+      "summary": "通用汽车正在为首席执行官玛丽·博拉寻找继任者。",
+      "url": "http://finance.eastmoney.com/a/202611183933295853.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T00:56:58.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220717",
+      "title": "美国众议院民主党领袖杰弗里斯：黄仁勋的任职问题最终由董事会决定。",
+      "summary": "美国众议院民主党领袖杰弗里斯：黄仁勋的任职问题最终由董事会决定。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7355357.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T00:56:57.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220716",
+      "title": "美国众议院民主党领袖杰弗里斯：（被问及英伟达是否应允许黄仁勋回归）不应允许。",
+      "summary": "美国众议院民主党领袖杰弗里斯：（被问及英伟达是否应允许黄仁勋回归）不应允许。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1968875.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T00:56:41.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220715",
+      "title": "美国众议院民主党领袖杰弗里斯：禁止议员交易股票将是优先事项。",
+      "summary": "美国众议院民主党领袖杰弗里斯：禁止议员交易股票将是优先事项。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1471812.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T00:55:23.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5220714",
+      "title": "美国众议院民主党领袖杰弗里斯：联邦航空管理局的拨款工作正在进行中。",
+      "summary": "美国众议院民主党领袖杰弗里斯：联邦航空管理局的拨款工作正在进行中。",
+      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1471553.d.html",
+      "source": "新浪财经7x24·国际",
+      "publishedAt": "2026-11-18T00:53:51.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611183933294086",
+      "title": "韩国总统李在明抵达深圳 将出席APEC领导人非正式会议",
+      "summary": "【韩国总统李在明抵达深圳 将出席APEC领导人非正式会议】11月18日凌晨，韩国总统李在明乘机抵达深圳，将出席亚太经合组织第三十三次领导人非正式会议。",
+      "url": "http://finance.eastmoney.com/a/202611183933294086.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T00:52:45.000Z",
+      "codes": []
+    },
+    {
       "id": "sina-live-5220710",
       "title": "美国众议院民主党领袖杰弗里斯：昨日曾与美国交通部长达菲通电话。",
       "summary": "美国众议院民主党领袖杰弗里斯：昨日曾与美国交通部长达菲通电话。",
@@ -40,42 +1398,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220709",
-      "title": "通用汽车正在寻找外部首席执行官候选人，同时也在考察内部人选。",
-      "summary": "通用汽车正在寻找外部首席执行官候选人，同时也在考察内部人选。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1967792.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:51:33.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220708",
-      "title": "英伟达董事会截至周二尚未考虑黄仁勋回归事宜。",
-      "summary": "英伟达董事会截至周二尚未考虑黄仁勋回归事宜。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1967702.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:51:03.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220707",
-      "title": "Anthropic上市后 亚马逊和谷歌将合计持股约28%",
-      "summary": "Anthropic的两大客户在其上市后将合计持有公司逾28%的股份，进一步凸显推动人工智能热潮的企业之间关系密切。根据周二向美国证券交易委员会(SEC)提交的文件，IPO及私募配售完成后，亚马逊和Alphabet旗下谷歌预计将分别持有Anthropic近15%和14%的已发行股本。文件显示，谷歌的持股包括其同意以约100亿美元购买的1.351亿股无投票权股份。这笔交易是与IPO同步安排的规模约260亿美元的私募配售的一部分。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1967621.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:50:36.000Z",
-      "codes": [
-        "931071",
-        "159363"
-      ]
-    },
-    {
-      "id": "sina-live-5220706",
-      "title": "城堡证券聘请优步的Danny Guo担任技术负责人。",
-      "summary": "城堡证券聘请优步的Danny Guo担任技术负责人。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5190909.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:49:27.000Z",
+      "id": "em-kuaixun-202611183933293937",
+      "title": "城堡证券聘请Uber的Danny Guo担任技术主管",
+      "summary": "城堡证券聘请Uber的DannyGuo担任技术主管。",
+      "url": "http://finance.eastmoney.com/a/202611183933293937.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-18T00:49:13.000Z",
       "codes": []
     },
     {
@@ -83,17 +1411,8 @@
       "title": "韩国总统李在明抵达深圳",
       "summary": "今天（11月18日），韩国总统李在明乘飞机抵达深圳宝安国际机场。李在明总统将出席在深圳举行的亚太经合组织第三十三次领导人非正式会议。（CCTV国际时讯）",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1470590.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:48:51.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220704",
-      "title": "耐克股价涨幅收窄，此前一度上涨6.3%。",
-      "summary": "耐克股价涨幅收窄，此前一度上涨6.3%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7352576.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:44:33.000Z",
       "codes": []
     },
     {
@@ -110,7 +1429,7 @@
       "title": "欧洲主要股指收盘普跌",
       "summary": "欧洲STOXX 600指数下跌1.68%，欧洲斯托克指数下跌 1.85%，欧元区蓝筹股下跌 2%。英国富时100指数下跌1.76%，德国DAX指数下跌1.97%，法国 CAC 40 指数下跌 1.62%，西班牙 IBEX 指数下跌 1.61%。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1468748.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:43:18.000Z",
       "codes": []
     },
@@ -119,47 +1438,8 @@
       "title": "伊朗外长阿拉格齐：地区安全应在无外国干涉的情况下建立。",
       "summary": "伊朗外长阿拉格齐：地区安全应在无外国干涉的情况下建立。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1468640.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:42:38.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220701",
-      "title": "阿波罗全球管理公司CEO：如果英伟达的银行功能被取消，大量新兴云厂商的资本获取渠道将随之消失。",
-      "summary": "阿波罗全球管理公司CEO：如果英伟达的银行功能被取消，大量新兴云厂商的资本获取渠道将随之消失。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1964814.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:42:10.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220700",
-      "title": "阿波罗全球管理公司CEO：英伟达一直是人工智能生态系统的银行或担保人。",
-      "summary": "阿波罗全球管理公司CEO：英伟达一直是人工智能生态系统的银行或担保人。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1964665.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:41:31.000Z",
-      "codes": [
-        "931071",
-        "159363"
-      ]
-    },
-    {
-      "id": "sina-live-5220699",
-      "title": "耐克CEO：预计截至2031财年的运动鞋服业务将保持3%至4%的增长。",
-      "summary": "耐克CEO：预计截至2031财年的运动鞋服业务将保持3%至4%的增长。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7351226.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:40:30.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220698",
-      "title": "AMD CEO苏姿丰谈黄仁勋丑闻：我们必须排除噪音。",
-      "summary": "AMD CEO苏姿丰谈黄仁勋丑闻：我们必须排除噪音。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzr1467228.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:38:08.000Z",
       "codes": []
     },
     {
@@ -167,7 +1447,7 @@
       "title": "美国财政部拍卖六周期国债，得标利率4.055%，投标倍数2.82。",
       "summary": "美国财政部拍卖六周期国债，得标利率4.055%，投标倍数2.82。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5185506.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-18T00:33:28.000Z",
       "codes": []
     },
@@ -176,7 +1456,7 @@
       "title": "马来西亚总理安瓦尔抵达深圳",
       "summary": "11月18日凌晨，马来西亚总理安瓦尔抵达深圳，将出席亚太经合组织第三十三次领导人非正式会议及APEC工商领导人峰会。马来西亚方面表示，将继续同中国及其他APEC成员经济体开展建设性合作，推动会议取得更多基于共识的务实成果。去年4月，中马宣布共建高水平战略性中马命运共同体，中马关系进入历史最好时期。（央视新闻）",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzt5184577.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:30:38.000Z",
       "codes": [],
       "alsoIn": [
@@ -188,7 +1468,7 @@
       "title": "美联储哈马克提议制定美国国债市场干预原则",
       "summary": "克利夫兰联储行长贝丝·哈马克表示，决策者应制定有关何时以及如何干预美国国债市场的原则，并传达清晰的退出策略。哈马克表示，美联储应趁市场平静时制定这些指导原则。她在加入美联储前曾在高盛集团工作30年。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv7347734.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:28:01.000Z",
       "codes": []
     },
@@ -197,17 +1477,8 @@
       "title": "美国总统特朗普与日本首相高市早苗在菲律宾举行会谈。",
       "summary": "美国总统特朗普与日本首相高市早苗在菲律宾举行会谈。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizapzv1959566.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:25:42.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220693",
-      "title": "安哥拉原油装载量预计1月份将降至80.6万桶/日。",
-      "summary": "安哥拉原油装载量预计1月份将降至80.6万桶/日。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx7477253.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:24:01.000Z",
       "codes": []
     },
     {
@@ -215,7 +1486,7 @@
       "title": "美国联邦航空管理局（FAA）暂停路由器安装",
       "summary": "在发生导致美国空中交通中断的通信故障后，FAA已暂停新路由器的安装工作。此次事故造成近2万架次航班取消及数千架次航班延误。调查人员怀疑，阿肯色州一台新安装的HPE Juniper路由器使通信网络过载，进而影响无线电和雷达系统。作为FAA的网络承包商，L3Harris正与HPE及思科共同开展诊断工作。目前具体原因仍在调查中。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx7477215.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:23:51.000Z",
       "codes": []
     },
@@ -233,7 +1504,7 @@
       "title": "美国联邦航空管理局尚未确定阿肯色州路由器是存在故障还是配置不当。",
       "summary": "美国联邦航空管理局尚未确定阿肯色州路由器是存在故障还是配置不当。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5312791.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:22:52.000Z",
       "codes": []
     },
@@ -242,7 +1513,7 @@
       "title": "美国联邦航空管理局：暂停措施将持续到查明问题所在。",
       "summary": "美国联邦航空管理局：暂停措施将持续到查明问题所在。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2089003.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:22:39.000Z",
       "codes": []
     },
@@ -251,7 +1522,7 @@
       "title": "美国联邦航空管理局在全国停飞后暂停路由器设备安装。",
       "summary": "美国联邦航空管理局在全国停飞后暂停路由器设备安装。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2088597.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:21:57.000Z",
       "codes": []
     },
@@ -269,7 +1540,7 @@
       "title": "应美国商品期货交易委员会要求，Kalshi下架备受争议的特朗普“提及”市场。",
       "summary": "应美国商品期货交易委员会要求，Kalshi下架备受争议的特朗普“提及”市场。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2087526.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:19:06.000Z",
       "codes": []
     },
@@ -283,39 +1554,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220687",
-      "title": "AMD CEO苏姿丰：黄仁勋“是一位卓越的领导者”。",
-      "summary": "AMD CEO苏姿丰：黄仁勋“是一位卓越的领导者”。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2086897.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:16:55.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220686",
-      "title": "AMD CEO苏姿丰：AMD正确保参与芯片出口管制相关谈判。",
-      "summary": "AMD CEO苏姿丰：AMD正确保参与芯片出口管制相关谈判。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2086810.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:16:31.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220685",
       "title": "AMD CEO苏姿丰：即便美国实施芯片出口管制，市场需求仍超过供应。",
       "summary": "AMD CEO苏姿丰：即便美国实施芯片出口管制，市场需求仍超过供应。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5310360.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:16:16.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220684",
-      "title": "AMD CEO苏姿丰：数据中心业务将占AMD需求的80%。",
-      "summary": "AMD CEO苏姿丰：数据中心业务将占AMD需求的80%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5310189.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:15:43.000Z",
       "codes": []
     },
     {
@@ -323,17 +1567,8 @@
       "title": "美国总统特朗普政府呼吁为空中交通管制提供全额资金。",
       "summary": "美国总统特朗普政府呼吁为空中交通管制提供全额资金。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2086387.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:15:30.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220682",
-      "title": "洛克希德与Thor Dynamics入选五角大楼无人机系统（UAS）评估合作伙伴。",
-      "summary": "洛克希德与Thor Dynamics入选五角大楼无人机系统（UAS）评估合作伙伴。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5309515.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:14:26.000Z",
       "codes": []
     },
     {
@@ -341,27 +1576,16 @@
       "title": "英国首相伯纳姆：与欧盟达成协议有望降低电力和食品价格。",
       "summary": "英国首相伯纳姆：与欧盟达成协议有望降低电力和食品价格。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitt1590308.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:13:14.000Z",
       "codes": []
-    },
-    {
-      "id": "sina-live-5220680",
-      "title": "文莱苏丹哈桑纳尔抵达深圳 将出席APEC领导人非正式会议",
-      "summary": "11月18日凌晨，文莱苏丹哈桑纳尔乘机抵达深圳，将出席亚太经合组织第三十三次领导人非正式会议。今年是两国建交35周年，哈桑纳尔此前表示，期待以此为契机，进一步拉紧两国关系纽带，深化经贸投资、国防、人文等领域交流合作，携手实现两国繁荣进步，更好惠及两国人民。（新华社）",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2085024.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:12:22.000Z",
-      "codes": [
-        "159352"
-      ]
     },
     {
       "id": "sina-live-5220679",
       "title": "三菱电机美国公司：已在美国制造设施投资2.595亿美元，并在宾夕法尼亚州、肯塔基州和俄亥俄州创造了400多个就业岗位。",
       "summary": "三菱电机美国公司：已在美国制造设施投资2.595亿美元，并在宾夕法尼亚州、肯塔基州和俄亥俄州创造了400多个就业岗位。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2084683.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:11:50.000Z",
       "codes": []
     },
@@ -375,24 +1599,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220678",
-      "title": "英伟达股价跌幅收窄至不足1%。",
-      "summary": "英伟达股价跌幅收窄至不足1%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2084105.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:10:44.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220677",
-      "title": "英国首相伯纳姆：米利班德的部分改革措施将纳入预算。",
-      "summary": "英国首相伯纳姆：米利班德的部分改革措施将纳入预算。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5307532.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:10:09.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611183933288359",
       "title": "黄仁勋：将致力于配合英伟达董事会的调查",
       "summary": "黄仁勋表示，将致力于配合英伟达董事会的调查。",
@@ -402,29 +1608,11 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220676",
-      "title": "SpaceX：目标11月18日从范登堡太空军基地4E航天发射复合体（SLC-4E）用猎鹰9号发射USSF-317任务。",
-      "summary": "SpaceX：目标11月18日从范登堡太空军基地4E航天发射复合体（SLC-4E）用猎鹰9号发射USSF-317任务。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5307195.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:09:15.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220675",
-      "title": "墨西哥失去自2016年以来持有的麻疹消除认证。",
-      "summary": "墨西哥失去自2016年以来持有的麻疹消除认证。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx7471811.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:09:00.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220674",
       "title": "俄罗斯战略轰炸机在日本、韩国附近飞行后降落在越南。",
       "summary": "俄罗斯战略轰炸机在日本、韩国附近飞行后降落在越南。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5307056.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:08:51.000Z",
       "codes": []
     },
@@ -433,7 +1621,7 @@
       "title": "五角大楼政策主管科尔比：美国希望加拿大满足北美防空司令部的要求。",
       "summary": "五角大楼政策主管科尔比：美国希望加拿大满足北美防空司令部的要求。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5306755.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:08:14.000Z",
       "codes": []
     },
@@ -442,7 +1630,7 @@
       "title": "英国首相伯纳姆：不急于决定与欧盟的长期关系。",
       "summary": "英国首相伯纳姆：不急于决定与欧盟的长期关系。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2082884.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:07:32.000Z",
       "codes": []
     },
@@ -451,7 +1639,7 @@
       "title": "五角大楼政策主管科尔比：美方仍希望就未来美军在欧洲的部署决定在12月1日截止日期前达成一致。",
       "summary": "五角大楼政策主管科尔比：美方仍希望就未来美军在欧洲的部署决定在12月1日截止日期前达成一致。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx7471143.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:07:19.000Z",
       "codes": []
     },
@@ -460,7 +1648,7 @@
       "title": "美国财政部：金融犯罪执法网络发布拟议规则，以加强对受监管金融机构的客户尽职调查要求。",
       "summary": "美国财政部：金融犯罪执法网络发布拟议规则，以加强对受监管金融机构的客户尽职调查要求。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5306277.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-18T00:06:58.000Z",
       "codes": []
     },
@@ -469,26 +1657,8 @@
       "title": "五角大楼政策主管科尔比：美国仍希望在12月1日的截止日期前，就未来美军在欧洲的部署问题作出决定。",
       "summary": "五角大楼政策主管科尔比：美国仍希望在12月1日的截止日期前，就未来美军在欧洲的部署问题作出决定。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5306233.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:06:49.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220668",
-      "title": "嘉信理财：网页短暂加载问题已解决。",
-      "summary": "嘉信理财：网页短暂加载问题已解决。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5305652.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:05:18.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220667",
-      "title": "嘉信理财：系统故障期间交易功能仍保持可用。",
-      "summary": "嘉信理财：系统故障期间交易功能仍保持可用。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2081876.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:05:06.000Z",
       "codes": []
     },
     {
@@ -496,7 +1666,7 @@
       "title": "美军再袭伊朗格什姆岛",
       "summary": "当地时间11月17日晚，伊朗霍尔木兹甘省政府方面证实，美军当天对该省格什姆岛发动袭击，但“未对当地住宅区、商业区或基础设施造成损害，当地局势目前处于可控状态，所有救援、服务及行政部门均已进入全面戒备状态”。稍早前，格什姆岛传出五六声爆炸巨响。 另据美媒援引美方官员消息报道，美军当天袭击了格什姆岛。（CCTV国际时讯）",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5305473.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:04:44.000Z",
       "codes": []
     },
@@ -510,30 +1680,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220665",
-      "title": "标普500指数下跌1.1%，纳斯达克100指数下跌1.2%。",
-      "summary": "标普500指数下跌1.1%，纳斯达克100指数下跌1.2%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitv5304315.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:01:53.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220664",
       "title": "伊朗外长在阿曼马斯喀特会见卡塔尔代表团后强调地区国家之间需要继续磋商。",
       "summary": "伊朗外长在阿曼马斯喀特会见卡塔尔代表团后强调地区国家之间需要继续磋商。",
       "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx7468669.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-18T00:01:41.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220663",
-      "title": "英伟达股价跌幅收窄至2.4%，此前一度下跌3.7%。",
-      "summary": "英伟达股价跌幅收窄至2.4%，此前一度下跌3.7%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-18/detail-inizaitx2080036.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-18T00:00:13.000Z",
       "codes": []
     },
     {
@@ -1842,20 +2994,11 @@
       "category": "专项说明/独立意见"
     },
     {
-      "id": "sina-live-5220662",
-      "title": "黄仁勋再次道歉：没达到英伟达对每个人的期望标准",
-      "summary": "前英伟达首席执行官黄仁勋周二上午发表卸任后的首次公开声明，黄仁勋再次就其不忠行为向家人和员工道歉，承认在私生活中犯了“严重错误”。“我没有达到英伟达对每个人的期望标准，”黄仁勋写道，“我为董事会制造了问题，对此深感后悔。我完全承担我的错误。”",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7468028.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:59:23.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220661",
       "title": "黄仁勋打破沉默，表示若获董事会邀请愿重返英伟达担任CEO",
       "summary": "前英伟达首席执行官黄仁勋周二上午发表卸任后的首次公开声明，表示如果董事会邀请，他愿意重返这家科技巨头担任CEO。黄仁勋称，自其离职以来，收到了来自英伟达员工、投资者、商业伙伴及客户的强烈呼声，要求他回归。“如果董事会认为我的回归符合股东、员工、公司及美国的最佳利益，我将很荣幸回应这些呼吁并重新担任CEO。”",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2079593.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:58:03.000Z",
       "codes": [
         "159352"
@@ -1889,38 +3032,11 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220660",
-      "title": "黄仁勋：若董事会允许，愿意重返英伟达CEO职位。",
-      "summary": "黄仁勋：若董事会允许，愿意重返英伟达CEO职位。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5303045.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:57:06.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220659",
-      "title": "黄仁勋：外界给予的支持让我深受触动。",
-      "summary": "黄仁勋：外界给予的支持让我深受触动。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2079281.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:56:50.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220658",
-      "title": "多伦多股票指数跌幅扩大，下跌1.1%。",
-      "summary": "多伦多股票指数跌幅扩大，下跌1.1%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5302754.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:56:02.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220656",
       "title": "美国官员称，美军袭击了霍尔木兹海峡中的伊朗格什姆岛。",
       "summary": "美国官员称，美军袭击了霍尔木兹海峡中的伊朗格什姆岛。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1584016.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:55:30.000Z",
       "codes": []
     },
@@ -1929,7 +3045,7 @@
       "title": "俄罗斯国防部称，俄军打击了位于罗夫诺州、第聂伯罗彼得罗夫斯克州和切尔尼戈夫州的三座变电站，这些变电站为乌克兰国防工业企业",
       "summary": "俄罗斯国防部称，俄军打击了位于罗夫诺州、第聂伯罗彼得罗夫斯克州和切尔尼戈夫州的三座变电站，这些变电站为乌克兰国防工业企业供电。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5302581.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:55:15.000Z",
       "codes": []
     },
@@ -1938,7 +3054,7 @@
       "title": "俄罗斯武装部队打击了位于克里沃罗格火车站附近的一台铁路机车，该机车当时正用于运输军事物资。",
       "summary": "俄罗斯武装部队打击了位于克里沃罗格火车站附近的一台铁路机车，该机车当时正用于运输军事物资。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7467233.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:55:08.000Z",
       "codes": []
     },
@@ -1988,24 +3104,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220653",
-      "title": "芝加哥期权交易所波动率指数升至约两周高位，最新上涨4.16点至27.07。",
-      "summary": "芝加哥期权交易所波动率指数升至约两周高位，最新上涨4.16点至27.07。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5302345.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:54:14.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220652",
-      "title": "高盛CEO所罗门：对英伟达临时首席执行官评价“非常高”。",
-      "summary": "高盛CEO所罗门：对英伟达临时首席执行官评价“非常高”。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2078605.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:54:09.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933284068",
       "title": "罔顾事实做空光模块龙头 这份“报告”坏得很",
       "summary": "【罔顾事实做空光模块龙头 这份“报告”坏得很】11月17日，一则关于中际旭创的看空测算消息在市场迅速发酵。某机构在一篇看空AI的总结性报告中，以2029年AI资本开支8000亿美元为测算基准，叠加15%利润率等假设，测算出中际旭创2029年净利润约300亿元，进而得出其“稳态估值”仅在3000亿至4500亿元之间的结论。按中际旭创当前市值测算，该报告暗示公司股价仍有约25%的回撤空间，并据此建议“配置型资金可酌情在4000亿以下设计左侧网格低吸策略”。这份报告看似模型严密、假设齐全，实则多处前提与产业事实严重背离。说它“坏”，不是因为它看空，而是因为它把极端悲观假设包装成“稳态测算”，用一套经不起产业数据检验的推演，去定义一家光模块龙头企业的长期价值。",
@@ -2033,56 +3131,11 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220651",
-      "title": "伦敦金属交易所三个月期锌跌至每吨3,640美元，为8月4日以来最低，最新下跌1.3%。",
-      "summary": "伦敦金属交易所三个月期锌跌至每吨3,640美元，为8月4日以来最低，最新下跌1.3%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5301883.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:52:33.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220650",
-      "title": "国际货币基金组织：IMF工作人员结束对卡塔尔的访问。",
-      "summary": "国际货币基金组织：IMF工作人员结束对卡塔尔的访问。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7466566.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:52:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220649",
-      "title": "罗素2000指数触及逾七个月低点，最新下跌1.47%。",
-      "summary": "罗素2000指数触及逾七个月低点，最新下跌1.47%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1583130.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:51:51.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220648",
-      "title": "纳指跌2.00%，现报24018.623点；道指跌1.62%，现报50771.410点；标普500指数跌1.54%，现报",
-      "summary": "纳指跌2.00%，现报24018.623点；道指跌1.62%，现报50771.410点；标普500指数跌1.54%，现报7302.130点。",
-      "url": "",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:51:32.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220647",
-      "title": "费城半导体指数日内跌3%",
-      "summary": "费城半导体指数日内跌3.00%，现报9321.88点。英伟达跌3.56%，博通跌0.64%，美光跌6.86%，英特尔跌5.09%，AMD跌4.30%，高通跌3.35%，台积电跌4.82%，阿斯麦跌3.42%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2077717.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:51:26.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220646",
       "title": "欧洲斯托克600指数势将创下自2026年3月以来最大单日跌幅，目前下跌1.7%。",
       "summary": "欧洲斯托克600指数势将创下自2026年3月以来最大单日跌幅，目前下跌1.7%。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2077655.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:51:18.000Z",
       "codes": [
         "159352"
@@ -2095,24 +3148,6 @@
       "url": "http://global.eastmoney.com/a/202611173933279918.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-17T23:51:06.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220645",
-      "title": "纳斯达克100指数下跌2%，标普500指数下跌近1.6%。",
-      "summary": "纳斯达克100指数下跌2%，标普500指数下跌近1.6%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5301142.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:50:31.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220644",
-      "title": "标普500指数触及四个多月低点，最新下跌1.5%。",
-      "summary": "标普500指数触及四个多月低点，最新下跌1.5%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5300969.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:50:09.000Z",
       "codes": []
     },
     {
@@ -2138,17 +3173,8 @@
       "title": "伊朗外长阿拉格齐从阿曼前往马斯喀特进行正式访问，并于今晚会见了卡塔尔代表团。",
       "summary": "伊朗外长阿拉格齐从阿曼前往马斯喀特进行正式访问，并于今晚会见了卡塔尔代表团。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5300789.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:49:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220642",
-      "title": "德国DAX指数下跌2%，报26063点。",
-      "summary": "德国DAX指数下跌2%，报26063点。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2076957.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:49:12.000Z",
       "codes": []
     },
     {
@@ -2156,27 +3182,16 @@
       "title": "俄罗斯国防部称，俄武装力量打击了一艘向敖德萨港运送军事物资的干散货船。",
       "summary": "俄罗斯国防部称，俄武装力量打击了一艘向敖德萨港运送军事物资的干散货船。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1582274.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:49:00.000Z",
       "codes": []
-    },
-    {
-      "id": "sina-live-5220640",
-      "title": "美元现货指数下跌0.2%，创一周以来最大跌幅。",
-      "summary": "美元现货指数下跌0.2%，创一周以来最大跌幅。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7465400.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:48:31.000Z",
-      "codes": [
-        "159352"
-      ]
     },
     {
       "id": "sina-live-5220639",
       "title": "俄罗斯称在黑海击中一艘货船。",
       "summary": "俄罗斯称在黑海击中一艘货船。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5300293.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:48:23.000Z",
       "codes": []
     },
@@ -2185,7 +3200,7 @@
       "title": "特朗普政府要求拨款501亿美元用于空中基础设施建设。",
       "summary": "特朗普政府要求拨款501亿美元用于空中基础设施建设。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1581957.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:48:10.000Z",
       "codes": []
     },
@@ -2194,20 +3209,11 @@
       "title": "欧洲斯托克600指数跌幅扩大至1.7%，创盘中新低。",
       "summary": "欧洲斯托克600指数跌幅扩大至1.7%，创盘中新低。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5300182.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:48:04.000Z",
       "codes": [
         "159352"
       ]
-    },
-    {
-      "id": "sina-live-5220636",
-      "title": "纳斯达克综合指数触及八个月低点，最新下跌1.6%。",
-      "summary": "纳斯达克综合指数触及八个月低点，最新下跌1.6%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2076422.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:47:47.000Z",
-      "codes": []
     },
     {
       "id": "em-kuaixun-202611173933277925",
@@ -2219,20 +3225,11 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220635",
-      "title": "瑞银集团股价延续跌势，目前下跌3.39%。",
-      "summary": "瑞银集团股价延续跌势，目前下跌3.39%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1581805.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:47:34.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220634",
       "title": "周二晚间，伊朗格什姆市传出五至六次爆炸声。",
       "summary": "周二晚间，伊朗格什姆市传出五至六次爆炸声。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2076009.d.html",
-      "source": "新浪财经7x24·公司",
+      "source": "新浪财经7x24·国际",
       "publishedAt": "2026-11-17T23:46:59.000Z",
       "codes": []
     },
@@ -2246,42 +3243,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220633",
-      "title": "伊朗称美国袭击格什姆岛，未造成人员伤亡。",
-      "summary": "伊朗称美国袭击格什姆岛，未造成人员伤亡。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2075498.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:45:57.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220632",
-      "title": "KBW银行指数下跌1.8%，创10月20日以来新低。",
-      "summary": "KBW银行指数下跌1.8%，创10月20日以来新低。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5299068.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:45:38.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220631",
-      "title": "白银连续主力合约日内涨2%，现报11488.00元。",
-      "summary": "白银连续主力合约日内涨2%，现报11488.00元。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1580582.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:45:19.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220630",
-      "title": "美股跌幅扩大",
-      "summary": "美国股市跌幅扩大；标普500指数下跌1.23%，纳斯达克指数下跌1.46%，道琼斯指数下跌1.32%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2075074.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:45:16.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933275133",
       "title": "美股芯片股再度普跌：美光跌5.5% 台积电跌超4%",
       "summary": "【美股芯片股再度普跌：美光跌5.5% 台积电跌超4%】美股AI硬件股多数下跌，费城半导体指数跌1.90%，英伟达跌3.13%，台积电跌4.06%，美光科技跌5.47%，SK海力士跌2.54%，AMD跌2.63%，英特尔跌3.71%，阿斯麦跌2.60%，闪迪跌5.32%，迈威尔科技跌1.29%。博通逆势涨0.15%，Arm涨1.36%，Coherent涨1.03%。三倍做多半导体ETF（SOXL）跌6.42%。",
@@ -2291,132 +3252,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220629",
-      "title": "现货黄金突破3890美元/盎司，日内涨0.89%。",
-      "summary": "现货黄金突破3890美元/盎司，日内涨0.89%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5297813.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:43:22.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220628",
-      "title": "纽约期金日内涨1%，现报3891.60美元/盎司。",
-      "summary": "纽约期金日内涨1%，现报3891.60美元/盎司。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7462686.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:42:58.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220627",
-      "title": "纽约期金突破3890美元/盎司，日内涨0.97%。",
-      "summary": "纽约期金突破3890美元/盎司，日内涨0.97%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2073959.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:42:56.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220626",
-      "title": "费城半导体指数日内跌2%",
-      "summary": "费城半导体指数日内跌2.01%，现报9417.49点。英伟达跌3.12%，博通涨0.06%，美光跌5.63%，英特尔跌3.75%，AMD跌2.82%，高通跌2.81%，台积电跌4.18%，阿斯麦跌2.67%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5297638.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:42:51.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220625",
-      "title": "标普500指数下跌1.2%，创7月29日以来新低。",
-      "summary": "标普500指数下跌1.2%，创7月29日以来新低。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5297586.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:42:42.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220624",
-      "title": "英伟达跌超3%。",
-      "summary": "英伟达跌超3%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7462562.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:42:37.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220623",
-      "title": "DownDetector：用户报告称嘉信理财出现服务问题。",
-      "summary": "DownDetector：用户报告称嘉信理财出现服务问题。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1579084.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:42:19.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220622",
-      "title": "美国股市跌幅扩大，标普500指数下跌1.00%。",
-      "summary": "美国股市跌幅扩大，标普500指数下跌1.00%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5297122.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:41:55.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220621",
+      "id": "em-kuaixun-202611173933274020",
       "title": "碧桂园：新增逾期有息债务约人民币3.74亿元",
-      "summary": "11月17日，碧桂园控股有限公司发布公告：截至2026年11月12日，发行人及其子公司较2026年11月5日涉及新增标的金额5000万元以上的未决诉讼、仲裁案件8宗，标的金额合计约11.57亿元。截至2026年11月12日，发行人及其子公司较2026年11月5日新增逾期的有息债务约人民币3.74亿元。上述事项可能对发行人的生产经营和偿债能力产生一定的不利影响。发行人将密切关注上述事项进展并持续与有关机构和债权人洽谈沟通，争取尽快妥善解决相关债务问题。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1578843.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:41:45.000Z",
-      "codes": [],
-      "alsoIn": [
-        "东方财富快讯"
-      ]
-    },
-    {
-      "id": "sina-live-5220620",
-      "title": "美股三大指数均跌超1%",
-      "summary": "道指跌1.14%，现报51019.250点；纳指跌1.30%，现报24190.380点；标普500指数跌1.04%，现报7339.670点。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2073119.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:41:27.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220619",
-      "title": "惠誉表示，10月份私人信贷违约率降至6.2%。",
-      "summary": "惠誉表示，10月份私人信贷违约率降至6.2%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1577978.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:40:19.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220618",
-      "title": "纳指跌1.00%，现报24263.607点；道指跌0.96%，现报51114.070点；标普500指数跌0.79%，现报",
-      "summary": "纳指跌1.00%，现报24263.607点；道指跌0.96%，现报51114.070点；标普500指数跌0.79%，现报7357.790点。",
-      "url": "",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:40:11.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220617",
-      "title": "美国股市跌至盘中低点，美国国债价格抹去了此前的跌幅。",
-      "summary": "美国股市跌至盘中低点，美国国债价格抹去了此前的跌幅。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5295947.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:39:43.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220616",
-      "title": "美国股市跌幅扩大，纳斯达克指数下跌1.00%。",
-      "summary": "美国股市跌幅扩大，纳斯达克指数下跌1.00%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5295879.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:39:30.000Z",
+      "summary": "【碧桂园：新增逾期有息债务约人民币3.74亿元】11月17日，碧桂园控股有限公司发布公告：截至2026年11月12日，发行人及其子公司较2026年11月5日涉及新增标的金额5000万元以上的未决诉讼、仲裁案件8宗，标的金额合计约11.57亿元。截至2026年11月12日，发行人及其子公司较2026年11月5日新增逾期的有息债务约人民币3.74亿元。上述事项可能对发行人的生产经营和偿债能力产生一定的不利影响。发行人将密切关注上述事项进展并持续与有关机构和债权人洽谈沟通，争取尽快妥善解决相关债务问题。",
+      "url": "http://finance.eastmoney.com/a/202611173933274020.html",
+      "source": "东方财富快讯",
+      "publishedAt": "2026-11-17T23:42:37.000Z",
       "codes": []
     },
     {
@@ -2429,75 +3270,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220615",
-      "title": "纳斯达克100指数跌幅扩大至1%，标普500指数下跌0.8%。",
-      "summary": "纳斯达克100指数跌幅扩大至1%，标普500指数下跌0.8%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5294925.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:37:27.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220614",
-      "title": "乌克兰总统泽连斯基在北约会议期间呼吁盟友立即向乌克兰交付“爱国者”导弹。",
-      "summary": "乌克兰总统泽连斯基在北约会议期间呼吁盟友立即向乌克兰交付“爱国者”导弹。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1576671.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:37:11.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220613",
-      "title": "英国30年期国债收益率升至5.836%，创四周新高。",
-      "summary": "英国30年期国债收益率升至5.836%，创四周新高。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5294614.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:36:41.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220612",
-      "title": "道指跌1.03%，现报51075.750点；纳指跌0.90%，现报24289.066点；标普500指数跌0.82%，现报",
-      "summary": "道指跌1.03%，现报51075.750点；纳指跌0.90%，现报24289.066点；标普500指数跌0.82%，现报7355.870点。",
-      "url": "",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:36:26.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220611",
-      "title": "美国股市跌幅扩大，道琼斯指数下跌1.00%。",
-      "summary": "美国股市跌幅扩大，道琼斯指数下跌1.00%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7459708.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:36:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220610",
-      "title": "科特迪瓦可可出口商协会数据显示，10月该国可可研磨量为43639吨，低于去年同期的44075吨。",
-      "summary": "科特迪瓦可可出口商协会数据显示，10月该国可可研磨量为43639吨，低于去年同期的44075吨。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2070574.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:35:56.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933269137",
       "title": "美国国家安全局内部通讯网络中断",
       "summary": "美国国家安全局内部通讯网络中断。",
       "url": "http://finance.eastmoney.com/a/202611173933269137.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-17T23:35:42.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220609",
-      "title": "美国高度机密的国安通信网络宕机",
-      "summary": "据知情人士透露，美国国家安全局（NSA）用于内部通信的高度机密网络已经宕机。该网络名为NSA Net，供员工在内部传递机密信息。目前没有证据显示这是一起网络攻击。在国安局努力查明问题的影响范围之际，该局已对人员到岗实行错峰安排。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7459184.d.html",
-      "source": "新浪财经7x24·公司",
-      "publishedAt": "2026-11-17T23:34:34.000Z",
       "codes": []
     },
     {
@@ -2519,15 +3297,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220607",
-      "title": "美国国家安全通信网络已中断。",
-      "summary": "美国国家安全通信网络已中断。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2069407.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:32:43.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933267471",
       "title": "美国参议院民主党成员Warren：需要禁止总统持有个股",
       "summary": "美国参议院民主党成员Warren表示，需要禁止总统持有个股。",
@@ -2537,48 +3306,12 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611173933267584",
-      "title": "美国住宅建筑商信心降至14年新低 房贷利率高企打击购房需求",
-      "summary": "【美国住宅建筑商信心降至14年新低 房贷利率高企打击购房需求】美国住宅建筑商的情绪本月进一步恶化，降至14年新低，高企的抵押贷款利率令潜在买家望而却步，迫使建筑商更加依赖代价高昂的促销激励措施。周二公布的数据显示，全美住宅建筑商协会(NAHB)和富国编制的整体市场指数11月下降4点，至25，为2012年4月以来最低。读数低于50意味着认为市场状况不佳的建筑商多于认为状况良好的建筑商，该指标已连续两年多低于这一门槛。衡量当前销售状况的指标下降6点，至28，同样创14年新低。NAHB数据显示，销售预期和潜在买家客流指标均较上月下降2点。“住房市场面临一系列供应端挑战，包括关税推高建筑材料成本、建筑工人持续短缺，以及过度监管削弱住房可负担性，”NAHB首席经济学家RobertDietz在声明中表示。",
-      "url": "http://finance.eastmoney.com/a/202611173933267584.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T23:31:37.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220605",
-      "title": "美国寻求拨款101亿美元用于空中交通管制现代化。",
-      "summary": "美国寻求拨款101亿美元用于空中交通管制现代化。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2068888.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:30:56.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933267056",
       "title": "摩根大通将百度目标价从145美元下调至135美元",
       "summary": "【行情】摩根大通将百度目标价从145美元下调至135美元。",
       "url": "http://finance.eastmoney.com/a/202611173933267056.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-17T23:30:17.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220604",
-      "title": "美国参议员沃伦：应该禁止总统持有个股。",
-      "summary": "美国参议员沃伦：应该禁止总统持有个股。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5292361.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:30:12.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220603",
-      "title": "伊朗格什姆岛再次传出爆炸声。",
-      "summary": "伊朗格什姆岛再次传出爆炸声。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5292211.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:29:36.000Z",
       "codes": []
     },
     {
@@ -2600,59 +3333,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220599",
-      "title": "美联储哈马克：房地产是经济中我能看到利率产生限制性影响的一个领域，其他领域则没有看到这种影响。",
-      "summary": "美联储哈马克：房地产是经济中我能看到利率产生限制性影响的一个领域，其他领域则没有看到这种影响。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5291111.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:25:25.000Z",
-      "codes": [
-        "931775"
-      ]
-    },
-    {
-      "id": "sina-live-5220598",
-      "title": "美联储哈马克：通胀朝着错误的方向发展。",
-      "summary": "美联储哈马克：通胀朝着错误的方向发展。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2067236.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:24:48.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220597",
-      "title": "俄罗斯一架军用运输机在西伯利亚坠毁，已造成17人死亡。",
-      "summary": "俄罗斯一架军用运输机在西伯利亚坠毁，已造成17人死亡。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1573092.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:24:05.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220596",
-      "title": "美联储哈马克：增长预期及美联储政策推动收益率上行。",
-      "summary": "美联储哈马克：增长预期及美联储政策推动收益率上行。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5290611.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:23:46.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933260566",
       "title": "标普500指数和纳斯达克100指数下跌0.5%",
       "summary": "【行情】标普500指数和纳斯达克100指数下跌0.5%，触及盘中低点。",
       "url": "http://stock.eastmoney.com/a/202611173933260566.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-17T23:20:48.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933258582",
-      "title": "美联储理事库克将不参加白宫听证 律师称程序不公",
-      "summary": "【美联储理事库克将不参加白宫听证 律师称程序不公】美联储理事丽莎·库克明确拒绝出席白宫计划举行的听证会，并称该程序有失公允。美国总统唐纳德·特朗普正寻求将她解职，此次听证会是相关行动的一部分。库克的律师在致白宫的一封信中表示，针对未经证实的抵押贷款欺诈指控，这位美联储官员没有法律义务参加12月14日的听证会。库克的律师AbbeLowell表示，近期来自白宫的函件未能回应她的关切。",
-      "url": "http://forex.eastmoney.com/a/202611173933258582.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T23:16:47.000Z",
       "codes": []
     },
     {
@@ -2686,42 +3372,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220576",
-      "title": "美国银行将土耳其航空持股比例提高至3.154%。",
-      "summary": "美国银行将土耳其航空持股比例提高至3.154%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5284336.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:05:00.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220575",
-      "title": "伊朗革命卫队海军：过去数小时内，第四艘违规油轮在霍尔木兹海峡东部起火。",
-      "summary": "伊朗革命卫队海军：过去数小时内，第四艘违规油轮在霍尔木兹海峡东部起火。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1567213.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:04:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220573",
-      "title": "美联储哈马克：在紧缩周期中更难干预。",
-      "summary": "美联储哈马克：在紧缩周期中更难干预。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5283876.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:03:58.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220571",
-      "title": "美国金融业监管局（FINRA）责令斯巴达资本证券支付318万美元，以处罚其欺诈行为及私募发行监督失职。",
-      "summary": "美国金融业监管局（FINRA）责令斯巴达资本证券支付318万美元，以处罚其欺诈行为及私募发行监督失职。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5283428.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:02:59.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933251293",
       "title": "重庆路桥：董事长暂不能履职 推举董事代行职责",
       "summary": "【重庆路桥：董事长暂不能履职 推举董事代行职责】重庆路桥(600106.SH)公告称，公司董事长翁振杰因个人原因暂不能正常履行董事长及董事会相关专门委员会委员等职务。公司召开董事会会议，经半数以上董事推举，由董事马赟在董事长不能正常履职期间代行相关职责。",
@@ -2740,50 +3390,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220570",
-      "title": "俄罗斯克麦罗沃州一架军用飞机坠毁。",
-      "summary": "俄罗斯克麦罗沃州一架军用飞机坠毁。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2059544.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:02:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220569",
-      "title": "美国9月份商业库存增加0.5%，预估为0.5%。",
-      "summary": "美国9月份商业库存增加0.5%，预估为0.5%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5282758.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:01:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220568",
-      "title": "美国11月份NAHB住宅建筑商指数降至25，预估29。",
-      "summary": "美国11月份NAHB住宅建筑商指数降至25，预估29。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1565591.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:01:22.000Z",
-      "codes": [
-        "159352"
-      ]
-    },
-    {
       "id": "em-kuaixun-202611173933249086",
       "title": "焦煤夜盘收跌约2.9%",
       "summary": "【行情】焦煤夜盘收跌约2.9%，棕榈油跌1.1%，PVC跌1%，焦炭跌0.8%。",
       "url": "http://futures.eastmoney.com/a/202611173933249086.html",
       "source": "东方财富快讯·期货商品",
       "publishedAt": "2026-11-17T23:01:12.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220567",
-      "title": "美联储哈马克：在极端市场失序时期，美联储处于更有利的行动位置。",
-      "summary": "美联储哈马克：在极端市场失序时期，美联储处于更有利的行动位置。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5282559.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:01:01.000Z",
       "codes": []
     },
     {
@@ -2814,15 +3426,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220566",
-      "title": "美国9月库存/销售比为1.33个月，8月为1.35个月。",
-      "summary": "美国9月库存/销售比为1.33个月，8月为1.35个月。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2058537.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T23:00:21.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933247317",
       "title": "SpaceX拟通过债务融资采购AI芯片",
       "summary": "【SpaceX拟通过债务融资采购AI芯片】据报道，知情人士透露，SpaceX计划通过400亿美元的债务融资采购人工智能芯片，其中部分债券最早可能于本周开始发售。据悉，高盛和阿波罗全球管理将担任此次交易的承销商。",
@@ -2830,17 +3433,6 @@
       "source": "东方财富快讯",
       "publishedAt": "2026-11-17T22:59:14.000Z",
       "codes": []
-    },
-    {
-      "id": "sina-live-5220560",
-      "title": "亚马逊追加 70 亿美元在印度投资清洁能源",
-      "summary": "亚马逊宣布，计划到 2030 年在印度额外投入 70 亿美元用于可再生能源项目，扩大在当地清洁能源布局，推进运营脱碳。这家美国电商巨头周二发布声明称，这笔资金是在印度已承诺的 40 亿美元清洁能源投资之外新增的，公司未披露新项目细节。通常亚马逊这类企业电力采购方，会通过长期购电协议带动清洁能源项目投资。印度计划 2030 年将清洁能源装机提升 60% 至 500 吉瓦。印度联邦可再生能源部数据显示，该国在 2030 年前，需要约 2200 亿美元资金建设清洁能源基础设施，包含风光电站、输电网络、储能设备以及清洁能源装备制造工厂。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2057133.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:56:16.000Z",
-      "codes": [
-        "159352"
-      ]
     },
     {
       "id": "sina-live-5220559",
@@ -2852,30 +3444,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220558",
-      "title": "美联储哈马克：美联储在市场极度混乱时期更有能力采取行动。",
-      "summary": "美联储哈马克：美联储在市场极度混乱时期更有能力采取行动。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1563507.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:55:11.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220556",
       "title": "美联储官员哈马克：财政部和美联储在债券市场的目标不同。",
       "summary": "美联储官员哈马克：财政部和美联储在债券市场的目标不同。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5280314.d.html",
       "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-17T22:54:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220555",
-      "title": "美联储哈马克：自昨日以来，对货币政策收紧的看法没有任何改变。",
-      "summary": "美联储哈马克：自昨日以来，对货币政策收紧的看法没有任何改变。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2056380.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:54:03.000Z",
       "codes": []
     },
     {
@@ -2906,44 +3480,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220551",
-      "title": "美国软件公司股价下跌。赛富时下跌5.7%，Workday下跌5.5%，财捷下跌4.1%，Adobe下跌3.5%。iSha",
-      "summary": "美国软件公司股价下跌。赛富时下跌5.7%，Workday下跌5.5%，财捷下跌4.1%，Adobe下跌3.5%。iShares扩展科技软件行业ETF跌至三个多月低点，下跌2%。微软下跌1.2%，AppLovin下跌3.2%，Zscaler下跌2.2%，IBM下跌1.9%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2055761.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:52:37.000Z",
-      "codes": [
-        "159352"
-      ]
-    },
-    {
-      "id": "sina-live-5220548",
-      "title": "英国石油公司在致美国钢铁工人联合会的信函中表示：如今假装工会未掌握和解提议的内容，是“纯粹的恶意谈判和阻挠谈判的行为”。",
-      "summary": "英国石油公司在致美国钢铁工人联合会的信函中表示：如今假装工会未掌握和解提议的内容，是“纯粹的恶意谈判和阻挠谈判的行为”。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5278114.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:49:33.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220545",
-      "title": "乌克兰总理表示，该国国内生产总值预计在10月至11月期间出现下滑。",
-      "summary": "乌克兰总理表示，该国国内生产总值预计在10月至11月期间出现下滑。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2054003.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:48:56.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220544",
-      "title": "共和党人正考虑将参议员马歇尔作为FDA（美国食品药品监督管理局）潜在提名人选。",
-      "summary": "共和党人正考虑将参议员马歇尔作为FDA（美国食品药品监督管理局）潜在提名人选。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1561046.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:48:42.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933239998",
       "title": "花旗安立承：全球贸易并未萎缩 相当大部分增长来自APEC经济体",
       "summary": "【花旗安立承：全球贸易并未萎缩 相当大部分增长来自APEC经济体】在2026年APEC工商领导人峰会上，花旗国际业务总裁安立承表示，尽管外界普遍认为全球经济正趋向碎片化，但全球商业活动依然保持强劲。“在当前全球环境下，许多人认为全球贸易正在萎缩，但事实恰恰相反。全球贸易规模持续约占全球GDP的60%，而其中相当大部分的增长来自APEC经济体。”他援引花旗数据统计称，今年上半年花旗处理的全球支付交易量增长40%；其中，与科技板块相关的支付交易在全球增长50%，在亚洲则增长60%。",
@@ -2959,15 +3495,6 @@
       "url": "http://finance.eastmoney.com/a/202611173933241442.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-17T22:48:23.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220541",
-      "title": "英国石油公司致美国钢铁工人联合会的信中称：现在提出指控令人质疑工会是否在真诚谈判。",
-      "summary": "英国石油公司致美国钢铁工人联合会的信中称：现在提出指控令人质疑工会是否在真诚谈判。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2053516.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:48:05.000Z",
       "codes": []
     },
     {
@@ -2998,42 +3525,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220540",
-      "title": "英国石油在致美国钢铁工人联合会的信函中表示：工会在10月26日的会议期间未对其开展审查的能力提出任何关切。",
-      "summary": "英国石油在致美国钢铁工人联合会的信函中表示：工会在10月26日的会议期间未对其开展审查的能力提出任何关切。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1559983.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:47:00.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5220538",
       "title": "巴斯夫对赢创的改进报价或将在数日内出台。",
       "summary": "巴斯夫对赢创的改进报价或将在数日内出台。",
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2052731.d.html",
       "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-17T22:46:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220536",
-      "title": "美联储理事沃勒：银行在智能体人工智能应用方面还有很长的路要走。",
-      "summary": "美联储理事沃勒：银行在智能体人工智能应用方面还有很长的路要走。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5276039.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:46:22.000Z",
-      "codes": [
-        "159363",
-        "931071"
-      ]
-    },
-    {
-      "id": "sina-live-5220535",
-      "title": "英国石油在致美国钢铁工人联合会（USW）的信函中表示：工会已表明其意图，将进一步审议公司于2026年5月22日提出的当前",
-      "summary": "英国石油在致美国钢铁工人联合会（USW）的信函中表示：工会已表明其意图，将进一步审议公司于2026年5月22日提出的当前全面和解方案。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2052200.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:46:10.000Z",
       "codes": []
     },
     {
@@ -3046,42 +3543,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220533",
-      "title": "瑞典国防大臣：据乌克兰方面称，美国已按承诺的内容和时间表向基辅交付PURL援助包。",
-      "summary": "瑞典国防大臣：据乌克兰方面称，美国已按承诺的内容和时间表向基辅交付PURL援助包。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2051574.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:45:24.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220531",
-      "title": "英国石油在致美国钢铁工人联合会（USW）的信中表示：公司不同意工会关于其正在进行的审查是应公司要求进行的说法。",
-      "summary": "英国石油在致美国钢铁工人联合会（USW）的信中表示：公司不同意工会关于其正在进行的审查是应公司要求进行的说法。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2051318.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:45:03.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220529",
-      "title": "瑞典国防大臣：科尔比在与欧盟各国国防部长共进午餐时，并未透露任何有关美国军力部署评估的具体信息。",
-      "summary": "瑞典国防大臣：科尔比在与欧盟各国国防部长共进午餐时，并未透露任何有关美国军力部署评估的具体信息。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2050779.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:44:19.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220527",
-      "title": "英国石油公司就怀廷炼油厂谈判表示：已致函美国钢铁工人联合会第7-1分会代表，回应工会近期就双方谈判状况的来函。",
-      "summary": "英国石油公司就怀廷炼油厂谈判表示：已致函美国钢铁工人联合会第7-1分会代表，回应工会近期就双方谈判状况的来函。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx7440447.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:43:16.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933235929",
       "title": "百事股价下跌2%",
       "summary": "【行情】11月17日，百事股价下跌2%。",
@@ -3091,30 +3552,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220524",
-      "title": "美国参议员沃伦致函行政长官办公室，质询其与 CACI 公司的利益冲突问题。",
-      "summary": "美国参议员沃伦致函行政长官办公室，质询其与 CACI 公司的利益冲突问题。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5273134.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:42:21.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933233641",
       "title": "美联储理事克里斯托弗·沃勒：银行在未来支付体系变革中仍将发挥重要作用",
       "summary": "【美联储理事克里斯托弗·沃勒：银行在未来支付体系变革中仍将发挥重要作用】美联储理事克里斯托弗·沃勒表示，当前支付领域正经历一场变革，但银行在未来支付体系变革中仍将发挥重要作用。",
       "url": "http://forex.eastmoney.com/a/202611173933233641.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-17T22:42:04.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220523",
-      "title": "瑞典国防部长：我们明年将向乌克兰提供40亿欧元的援助。",
-      "summary": "瑞典国防部长：我们明年将向乌克兰提供40亿欧元的援助。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2049169.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:41:50.000Z",
       "codes": []
     },
     {
@@ -3136,24 +3579,6 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220521",
-      "title": "美国参议员沃伦要求海军部长提名人曹文杰作出道德承诺。",
-      "summary": "美国参议员沃伦要求海军部长提名人曹文杰作出道德承诺。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5272600.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:41:25.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220516",
-      "title": "美联储哈马克：干预应该是暂时的、有针对性的。",
-      "summary": "美联储哈马克：干预应该是暂时的、有针对性的。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2048404.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:40:32.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933232353",
       "title": "FAA将监督由联合发射联盟（ULA）牵头开展的调查 以查明亚马逊Vulcan LEO 1任务中出现的异常情况",
       "summary": "美国联邦航空管理局（FAA）将监督由联合发射联盟（ULA）牵头开展的调查，以查明亚马逊VulcanLEO1任务中出现的异常情况。",
@@ -3172,57 +3597,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220514",
-      "title": "美国联邦航空管理局将监督由联合发射联盟主导的针对亚马逊Vulcan LEO 1任务异常情况的调查。",
-      "summary": "美国联邦航空管理局将监督由联合发射联盟主导的针对亚马逊Vulcan LEO 1任务异常情况的调查。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5271509.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:39:29.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933229829",
       "title": "美股光通信板块盘初走高",
       "summary": "【美股光通信板块盘初走高】截至发稿，Applied Optoelectronics涨超4%，Coherent涨超5%，Lumentum涨超3%，康宁、迈威尔涨超2%。",
       "url": "http://finance.eastmoney.com/a/202611173933229829.html",
       "source": "东方财富快讯",
       "publishedAt": "2026-11-17T22:38:36.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220512",
-      "title": "美联储理事沃勒：在不断变化的支付系统中，银行仍将拥有重要的未来。",
-      "summary": "美联储理事沃勒：在不断变化的支付系统中，银行仍将拥有重要的未来。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitt1554227.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:38:35.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220509",
-      "title": "美国光学类股上涨，Coherent涨5%，Lumentum涨3.6%。",
-      "summary": "美国光学类股上涨，Coherent涨5%，Lumentum涨3.6%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5270709.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:37:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220507",
-      "title": "美联储理事沃勒：目前支付领域正在发生一场革命。",
-      "summary": "美联储理事沃勒：目前支付领域正在发生一场革命。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2046674.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:37:04.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220506",
-      "title": "土耳其外交部长表示，土耳其、沙特阿拉伯和巴基斯坦的官员将举行会谈，作为麦加联合防御协议的一部分。",
-      "summary": "土耳其外交部长表示，土耳其、沙特阿拉伯和巴基斯坦的官员将举行会谈，作为麦加联合防御协议的一部分。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5270345.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:37:00.000Z",
       "codes": []
     },
     {
@@ -3244,167 +3624,12 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611173933228286",
-      "title": "美联储哈马克：应提前制定美债市场干预原则 相关操作应具备临时性和针对性",
-      "summary": "【美联储哈马克：应提前制定美债市场干预原则 相关操作应具备临时性和针对性】美联储官员哈马克（Hammack）表示，美联储应在市场平稳时期提前制定美债市场干预原则，以便在市场压力出现时能够迅速作出决策并明确沟通。她指出，若市场波动反映基本面因素，即使流动性状况不佳，也不属于美联储能够或应该解决的问题；只有当美债市场失灵可能蔓延至实体经济，且美联储行动能够解决问题时，才应考虑干预。哈马克强调，相关操作应是临时性的、具有针对性，并最好从一开始就制定退出策略，待金融稳定恢复后及时出售相关持仓。",
-      "url": "http://forex.eastmoney.com/a/202611173933228286.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:36:31.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220505",
-      "title": "美联储哈马克：美联储的沟通应明确区分政策行动和市场运作行动。",
-      "summary": "美联储哈马克：美联储的沟通应明确区分政策行动和市场运作行动。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5269921.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:36:03.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220502",
-      "title": "克利夫兰联储主席哈马克提出市场干预原则",
-      "summary": "克利夫兰联邦储备银行行长贝丝・哈马克表示，政策制定者应当明确美联储何时、以何种方式干预国债市场，并对外传达清晰的退出方案。哈马克在加入美联储前曾在高盛任职 30 年。她提出，应当在市场平稳阶段敲定这套指引框架。 “一旦危机来袭，留给决策、确定行动原则以及对外沟通的时间会非常有限。” 哈马克周二在华盛顿一场活动的准备讲稿中说道。这位克利夫兰联储行长认为，美联储应当抬高国债市场干预门槛，仅在市场失灵风险会 “传导至实体经济” 时出手；如果流动性、波动变化只是基本面因素导致，则不应干预。当回购等其他流动性工具效果不足时，才可以考虑购入国债。哈马克支持优化美联储常备回购工具，延长其交易时段。她提出，美联储需要清晰区分资产购买目的：一类是为改善市场流动性，另一类是为提振经济。可以单独设立对应持仓组合，让公众分清两类购债。全球金融危机与疫情期间，美联储曾大规模购债，一部分用于给信贷市场提供流动性，另一部分通过压低长端利率刺激经济。美联储主席凯文・沃什已组建五支外部专家专项小组，围绕 6.8 万亿美元资产负债表管理等方向提出优化方案。沃什倾向于缩表，降低美联储对市场的影响。市场上已有多项资产负债表相关提议，达拉斯联储行长洛里・洛根就建议，将维稳金融市场的购债和刺激经济的债券分开管理。哈马克周一重申，她支持小幅、稳步加息，以此抑制高通胀。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5269770.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:35:40.000Z",
-      "codes": [
-        "510300"
-      ]
-    },
-    {
-      "id": "em-kuaixun-202611173933226213",
-      "title": "耐克公布五年计划：2031财年目标新增营收50亿美元",
-      "summary": "【耐克公布五年计划：2031财年目标新增营收50亿美元】11月17日，耐克在美国总部举行投资者日，公布“全速前进”（FullStrideAhead）战略及2031财年发展规划。耐克将聚焦跑步、训练、足球、篮球、户外五大专业运动和运动生活业务，预计这些领域将贡献2028至2031财年约95%的收入增长。跑步业务已连续六个季度实现双位数增长，为这一方向提供了初步验证。产品端，耐克展示近20款未来6至12个月推出的创新产品，包括TunedAIR技术、NikeMind及NikeFree等。与此同时，耐克股价在美股盘前交易中一度上涨约7%。",
-      "url": "http://finance.eastmoney.com/a/202611173933226213.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:35:32.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933225817",
-      "title": "耐克公司股价上涨5%",
-      "summary": "【行情】11月17日，耐克公司股价上涨5%。",
-      "url": "http://finance.eastmoney.com/a/202611173933225817.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:34:35.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933227152",
-      "title": "惠城环保：连续2个交易日收盘价跌幅偏离值累超30%",
-      "summary": "【惠城环保：连续2个交易日收盘价跌幅偏离值累超30%】21财经11月17日电，惠城环保发布股票交易异常波动公告，公司股票于2026年11月16日、11月17日连续2个交易日收盘价跌幅偏离值累计超过30%，属于股票交易异常波动情况。经核查，公司近期经营情况及内外部经营环境未发生重大变化，不存在应披露而未披露的重大事项或处于筹划阶段的重大事项，前期披露的信息不存在需要更正、补充之处。针对公司控股股东、实际控制人、董事张新功被实施留置事项，公司目前尚未知悉进展及结论，但公司生产经营活动正常，其他董事和高级管理人员均正常履职。此外，在本次股票异常波动期间，公司控股股东、实际控制人不存在买卖公司股票的情况。",
-      "url": "http://finance.eastmoney.com/a/202611173933227152.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:33:00.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933225565",
-      "title": "京东ADR下跌6.9%",
-      "summary": "【行情】京东ADR下跌6.9%，创8月以来最大跌幅。",
-      "url": "http://finance.eastmoney.com/a/202611173933225565.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:32:52.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933225252",
-      "title": "瑞银将亚马逊目标价从352美元下调至340美元",
-      "summary": "瑞银将亚马逊目标价从352美元下调至340美元。",
-      "url": "http://finance.eastmoney.com/a/202611173933225252.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:31:44.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220491",
-      "title": "欧洲卫星公司将在欧洲航天局合作项目下开发欧洲直连设备技术。",
-      "summary": "欧洲卫星公司将在欧洲航天局合作项目下开发欧洲直连设备技术。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5267698.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:31:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933221092",
-      "title": "美股纳指高开0.01% 芯片股小幅反弹 市场静待英伟达财报",
-      "summary": "【美股纳指高开0.01% 芯片股小幅反弹 市场静待英伟达财报】美股三大指数开盘涨跌不一，道琼斯指数跌0.79%，标普500指数跌0.22%，纳斯达克综合指数涨0.01%。英伟达财报发布之前，芯片股小幅反弹，希捷科技涨超2%，ARM、拉姆研究、恩智浦、AMD、博通涨超1%。美股“科技七巨头”涨跌不一，苹果股价下跌0.11%，微软股价下跌0.62%，英伟达股价上涨0.34%，谷歌股价下跌0.33%，亚马逊股价上涨0.23%，Meta股价下跌0.53%，特斯拉股价上涨0.41%。",
-      "url": "http://finance.eastmoney.com/a/202611173933221092.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:31:25.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220488",
-      "title": "10月，俄罗斯卢布实际有效汇率环比上涨2.6%。",
-      "summary": "10月，俄罗斯卢布实际有效汇率环比上涨2.6%。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5267422.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:30:55.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933225098",
-      "title": "高盛、阿波罗将牵头为SpaceX的402亿美元ABS融资提供资金",
-      "summary": "高盛、阿波罗将牵头为SpaceX的402亿美元ABS融资提供资金。",
-      "url": "http://finance.eastmoney.com/a/202611173933225098.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:29:22.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933218472",
-      "title": "英伟达董事会设立国家安全与出口管制监督委员会",
-      "summary": "【英伟达董事会设立国家安全与出口管制监督委员会】11月17日，英伟达宣布，董事会已设立国家安全与出口管制监督委员会。这一新设常设委员会负责在董事会层面监督公司的国家安全政策、出口管制合规及全球贸易风险管理。",
-      "url": "http://finance.eastmoney.com/a/202611173933218472.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:25:32.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220467",
-      "title": "瑞典、英国与乌克兰签署谅解备忘录，向乌克兰提供“鹰狮”战斗机弹药。",
-      "summary": "瑞典、英国与乌克兰签署谅解备忘录，向乌克兰提供“鹰狮”战斗机弹药。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5265443.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:24:51.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933215513",
-      "title": "我国日均词元调用量已突破500万亿 AI算力紧张有新解法",
-      "summary": "【我国日均词元调用量已突破500万亿 AI算力紧张有新解法】最新数据显示，国内日均词元调用量已突破500万亿，算力市场需求暴涨。智能算力短期补不上，只能向存量要效益。2025年，郑纬民院士团队研发的大模型推理系统Mooncake拿下埃里克里德尔最佳论文奖，核心就是用PD分离技术盘活存量算力，用软件调度把现有算力用足。据悉，P负责“读入用户问题”，D负责“生成回答”。传统方式下，同一批算力轮流干两件事；PD分离让一组只读题，把结果传给另一组专门答题。同样硬件规模下，系统多承接75%的用户请求，长文本吞吐能力提升五倍以上。",
-      "url": "http://finance.eastmoney.com/a/202611173933215513.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:23:13.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933211442",
       "title": "美国10月份工业产值下降0.4% 预估为0.1%",
       "summary": "美国10月份工业产值下降0.4%，预估为0.1%。",
       "url": "http://finance.eastmoney.com/a/202611173933211442.html",
-      "source": "东方财富快讯",
+      "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-17T22:16:18.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220453",
-      "title": "美国10月汽车装配率从9月的1034万辆/年升至1073万辆/年。",
-      "summary": "美国10月汽车装配率从9月的1034万辆/年升至1073万辆/年。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2038139.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:15:31.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220452",
-      "title": "美国10月工业生产环比下降0.4%；预期增长0.1%。 美国10月份产能利用率为76.4%；预估值为76.8%。 美国1",
-      "summary": "美国10月工业生产环比下降0.4%；预期增长0.1%。 美国10月份产能利用率为76.4%；预估值为76.8%。 美国10月工厂产出环比增长0.3%；预期增长0.2%。",
-      "url": "",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:15:22.000Z",
       "codes": []
     },
     {
@@ -3417,52 +3642,12 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220449",
-      "title": "Genesis AI的CEO：我不明白机器人为什么需要头",
-      "summary": "法国机器人初创公司Genesis AI首席执行官周衔（Zhou Xian）表示，Genesis将利用这笔资金提高其旗舰通用机器人Eno的产量，扩大数据采集和AI训练，并提升机器人手部操作物体的能力。“我不明白机器人为什么需要头，因为……那里并没有住着大脑，”周衔在解释Genesis为何放弃更类人外形时说道。周衔表示，Genesis初期优先布局美国市场，计划先建立美国供应链、签约美国合同制造商并服务美国客户，然后再向欧洲更广泛扩张。该公司在加州圣卡洛斯也设有总部，目前正在与客户小规模测试机器人。Genesis已与韩国LG CNS达成合作，在制造和物流场景测试Eno。周衔表示，公司预计2027年将面向更广泛的客户推出产品。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitx2037581.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:14:04.000Z",
-      "codes": [
-        "159363",
-        "300024",
-        "159530"
-      ]
-    },
-    {
-      "id": "sina-live-5220447",
-      "title": "美国家族办公室公司公布2026年前九个月营收为171万美元，净利润为正。",
-      "summary": "美国家族办公室公司公布2026年前九个月营收为171万美元，净利润为正。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5260923.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:13:19.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933205066",
       "title": "美联储理事克里斯托弗·沃勒：美联储将继续支持负责任的创新",
       "summary": "美联储理事克里斯托弗·沃勒表示，美联储将继续支持负责任的创新。",
       "url": "http://finance.eastmoney.com/a/202611173933205066.html",
-      "source": "东方财富快讯",
+      "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-17T22:12:53.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-live-5220443",
-      "title": "美联储理事沃勒表示央行将与私营部门在数字金融领域展开合作。",
-      "summary": "美联储理事沃勒表示央行将与私营部门在数字金融领域展开合作。",
-      "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizaitv5259300.d.html",
-      "source": "新浪财经7x24·国际",
-      "publishedAt": "2026-11-17T22:10:30.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933200676",
-      "title": "耐克未来五年预计向股东返还120亿美元",
-      "summary": "【耐克未来五年预计向股东返还120亿美元】耐克在投资者日公布“Full Stride Ahead”战略及2031财年财务框架，2027至2031财年，公司计划通过股息累计向股东返还约120亿美元。",
-      "url": "http://finance.eastmoney.com/a/202611173933200676.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:07:14.000Z",
       "codes": []
     },
     {
@@ -3475,66 +3660,12 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611173933200812",
-      "title": "耐克预计2029财年恢复市场平均收入增速 2030至2031财年增速将超过市场",
-      "summary": "【耐克预计2029财年恢复市场平均收入增速 2030至2031财年增速将超过市场】耐克在投资者日公布2031财年财务框架，预计2027和2028财年仍处于增长投资阶段，2028财年收入降幅将收窄，2029财年恢复至市场平均收入增速，2030和2031财年收入增速将超过市场。公司预计，到2031财年新增收入约50亿美元，其中运动表现业务贡献约40亿美元。",
-      "url": "http://finance.eastmoney.com/a/202611173933200812.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:06:03.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933201238",
-      "title": "本田投资4.62亿美元扩建阿拉巴马州汽车工厂 将创造200个就业岗位",
-      "summary": "【本田投资4.62亿美元扩建阿拉巴马州汽车工厂 将创造200个就业岗位】本田汽车计划投资4.62亿美元扩建其位于美国阿拉巴马州的汽车工厂，预计创造200个就业岗位。此次投资将用于提升汽车产能及混合动力发动机生产能力。",
-      "url": "http://finance.eastmoney.com/a/202611173933201238.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T22:04:18.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933187751",
-      "title": "华为与中国人寿签署战略合作协议",
-      "summary": "【华为与中国人寿签署战略合作协议】据华为消息，11月17日，中国人寿保险（集团）公司与华为技术有限公司在深圳签署战略合作协议。根据协议，双方将围绕保险数智变革在科技金融、业务合作及人才培养等领域进行深入合作。",
-      "url": "http://insurance.eastmoney.com/a/202611173933187751.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:59:20.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933188419",
-      "title": "Anthropic据悉将把首次公开募股的定价推向区间上限或更高水平",
-      "summary": "Anthropic据悉将把首次公开募股（IPO）的定价推向区间上限或更高水平。",
-      "url": "http://finance.eastmoney.com/a/202611173933188419.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:58:25.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933183031",
-      "title": "岚图汽车：获得道路机动车辆独立生产资质",
-      "summary": "【岚图汽车：获得道路机动车辆独立生产资质】11月17日晚间，岚图汽车在港交所公告，中华人民共和国工业和信息化部于2026年11月16日正式发布2026年第31号公告，公布《道路机动车辆生产企业及产品》（第412批）目录，公司已被列入该批次道路机动车辆生产企业准入名单，正式取得道路机动车辆生产企业准入资格。",
-      "url": "http://finance.eastmoney.com/a/202611173933183031.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:52:47.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933175851",
       "title": "伊朗海军称第三艘油轮在霍尔木兹海峡以东触雷后起火",
       "summary": "据伊朗方面消息，伊朗海军称，第三艘油轮在霍尔木兹海峡以东触雷后起火。",
       "url": "http://finance.eastmoney.com/a/202611173933175851.html",
-      "source": "东方财富快讯",
+      "source": "东方财富快讯·期货商品",
       "publishedAt": "2026-11-17T21:50:07.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933173365",
-      "title": "南京新百：拟9亿元出售以色列子公司股权",
-      "summary": "【南京新百：拟9亿元出售以色列子公司股权】南京新百(600682.SH)公告称，公司全资控股的境外公司NataliHealthcare拟将其全资持有的ASNursing和ASOne两家公司100%股权出售给以色列上市公司Danel，基础股权价值4.1亿新谢克尔(折合人民币约9亿元)。本次交易完成后，上述两家公司不再纳入公司合并报表范围。",
-      "url": "http://finance.eastmoney.com/a/202611173933173365.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:48:42.000Z",
       "codes": []
     },
     {
@@ -3552,111 +3683,12 @@
       ]
     },
     {
-      "id": "em-kuaixun-202611173933172440",
-      "title": "京东CEO许冉：收购CECONOMY后将聚焦供应链、履约、技术三大协同方向",
-      "summary": "【京东CEO许冉：收购CECONOMY后将聚焦供应链、履约、技术三大协同方向】京东CEO许冉在今日的业绩会上表示，收购德国消费电子零售集团CECONOMY后的协同会在三个方面进行：一是供应链方面，会结合双方的品牌资源和商品采销优势进一步增加商品供给，提升采购和供应链效率；二是履约方面，将探索京东的履约能力和仓网设施与CECONOMY服务网络之间的协同，提升整体的履约效率；三是技术上会支持CECONOMY提升数字化能力。",
-      "url": "http://finance.eastmoney.com/a/202611173933172440.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:46:56.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933171932",
-      "title": "京东：外卖业务2027年目标是继续同比显著减亏",
-      "summary": "【京东：外卖业务2027年目标是继续同比显著减亏】京东高管在今日的业绩会表示，京东的目标是2027年外卖业务继续同比显著减亏，从长期来看，将在保持外卖业务规模健康增长的同时，持续提升运营效率，改善外卖的亏损。",
-      "url": "http://finance.eastmoney.com/a/202611173933171932.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:46:38.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933171780",
-      "title": "特朗普媒体科技集团回购了1亿美元未偿还可转换票据",
-      "summary": "【特朗普媒体科技集团回购了1亿美元未偿还可转换票据】特朗普媒体科技集团回购了1亿美元未偿还可转换票据，公司将未偿本金削减逾10%。",
-      "url": "http://finance.eastmoney.com/a/202611173933171780.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:46:36.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933166343",
-      "title": "抖音生活服务回应负责人调整：正常的管理岗位轮换与交接",
-      "summary": "【抖音生活服务回应负责人调整：正常的管理岗位轮换与交接】针对抖音生活服务负责人调整一事，抖音方面回应称，此次调整属于正常的管理岗位轮换与交接，生活服务是公司长期发展方向之一，对该板块会持续投入、长期经营。",
-      "url": "http://finance.eastmoney.com/a/202611173933166343.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:43:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933166126",
-      "title": "商汤发布SenseNova Loop-9B模型",
-      "summary": "【商汤发布SenseNova Loop-9B模型】11月17日，商汤科技正式发布SenseNova Loop-9B。该模型总参数量约为9B。模型通过两次执行共享的中间层，将32个物理解码层扩展为56次层计算；支持文本、图像输入和文本输出，上下文长度最高可达512K tokens。",
-      "url": "http://finance.eastmoney.com/a/202611173933166126.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:43:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933165081",
-      "title": "雷军APEC谈AI：下一步是走进物理世界 小米机器人已完成连续8小时作业",
-      "summary": "【雷军APEC谈AI：下一步是走进物理世界 小米机器人已完成连续8小时作业】在雷军看来，具身智能是AI走进物理世界的重要方向。他介绍，小米机器人研发已持续约6年，近期具身智能机器人在小米汽车工厂“实习”，已能完成8小时作业任务，期间两次自主充电。他认为，具身智能机器人将成为巨大的产业机会，“它的想象力应该会超过汽车产业”。",
-      "url": "http://finance.eastmoney.com/a/202611173933165081.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:39:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933164363",
-      "title": "美元指数短线上涨十余点 最新报103.77",
-      "summary": "【美元指数短线上涨十余点 最新报103.77】美元指数短线上涨十余点，最新报103.77，续刷2025年4月以来新高。",
-      "url": "http://forex.eastmoney.com/a/202611173933164363.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:38:59.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933161633",
-      "title": "Altimeter CEO透露Anthropic IPO超购10-20倍",
-      "summary": "【Altimeter CEO透露Anthropic IPO超购10-20倍】Altimeter Capital首席执行官布拉德·格斯特纳透露，Anthropic的首次公开募股(IPO)认购热度极高，超额认购倍数达10至20倍。他同时表示，其投资机构已经申报了价值50亿美元的新股认购意向。",
-      "url": "http://finance.eastmoney.com/a/202611173933161633.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:37:32.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173933161152",
       "title": "美联储理事丽莎·库克拒绝参加白宫12月14日的听证会",
       "summary": "美联储理事丽莎·库克拒绝参加白宫12月14日的听证会。",
       "url": "http://forex.eastmoney.com/a/202611173933161152.html",
-      "source": "东方财富快讯",
+      "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-17T21:36:56.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933160446",
-      "title": "AI药企Isomorphic Labs融资50亿美元 Greenoaks和红杉资本共同领投",
-      "summary": "【AI药企Isomorphic Labs融资50亿美元 Greenoaks和红杉资本共同领投】11月17日，AI制药公司Isomorphic Labs宣布完成50亿美元C轮融资。本轮融资由 Greenoaks和红杉资本共同领投，Alphabet继续大规模注资，Thrive Capital、MGX、淡马锡等现有投资者以及包括a16z在内的多家新投资者参投。",
-      "url": "http://finance.eastmoney.com/a/202611173933160446.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:35:39.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933149279",
-      "title": "美股Sellas Life Sciences盘前股价飙升315%",
-      "summary": "美股Sellas Life Sciences盘前股价因癌症试验数据飙升315%。",
-      "url": "http://finance.eastmoney.com/a/202611173933149279.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:34:29.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933161397",
-      "title": "康方生物：拟新增不超过2亿港元在公开市场购买股份",
-      "summary": "【康方生物：拟新增不超过2亿港元在公开市场购买股份】康方生物（09926.HK）发布自愿公告，于2026年11月17日，公司董事会批准新增不超过2亿港元以在公开市场上购买公司股份。",
-      "url": "http://finance.eastmoney.com/a/202611173933161397.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:34:00.000Z",
       "codes": []
     },
     {
@@ -3666,15 +3698,6 @@
       "url": "https://finance.sina.cn/7x24/2026-11-17/detail-inizacmx5366755.d.html",
       "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-17T21:33:44.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173933159110",
-      "title": "王兴兴：今年机器人相关技术已看到突破的临界点",
-      "summary": "【王兴兴：今年机器人相关技术已看到突破的临界点】11月17日，王兴兴用“最激动人心”表达对AI与具身智能前景的判断，未来几年潜力非常大。他提到，当下机器人赛道升温，源于语言类AI在办公、生活场景验证价值，市场期待AI走出屏幕，依托机器人在物理世界落地作业。不过，在技术快速发展的同时，他也看到了机器人实际应用仍面临的瓶颈。“我们希望一个模型、一台机器人到千家万户都可以马上干活，而不是需要更换场景、重新训练。”在他看来，今年相关技术已经看到了突破的临界点。",
-      "url": "http://finance.eastmoney.com/a/202611173933159110.html",
-      "source": "东方财富快讯",
-      "publishedAt": "2026-11-17T21:33:22.000Z",
       "codes": []
     },
     {
@@ -4006,6 +4029,15 @@
       "codes": []
     },
     {
+      "id": "sina-roll-comos:nizauit1866367",
+      "title": "伊朗“认真寻求”通过外交途径打破僵局",
+      "summary": "伊朗总统佩泽希齐扬表示，伊朗正“认真寻求通过有尊严的外交途径，摆脱‘非战非和’的局面”。 此前，伊朗称美国袭击了格什姆岛多个地点，美伊双方持续互袭。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizauit1866367.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T19:30:16.000Z",
+      "codes": []
+    },
+    {
       "id": "em-kuaixun-202611173933035224",
       "title": "高点回撤31.6%！黄金迎来年内低位窗口 婚嫁买家扎堆进场",
       "summary": "【高点回撤31.6%！黄金迎来年内低位窗口 婚嫁买家扎堆进场】黄金现货价格持续下跌，最低探至3832.23美元/盎司，较高点5598.75美元/盎司已经回撤31.6%。持续的下跌彻底激活了零售市场。在各大零售门店，到店询价、试戴与购金的客流见涨。有店员表示，当前，品牌足金饰品挂牌价几近全年低位，一只50克素圈手镯，相比今年高点时，可以省下2.76万元。",
@@ -4021,6 +4053,15 @@
       "url": "http://finance.eastmoney.com/a/202611173933028682.html",
       "source": "东方财富快讯·期货商品",
       "publishedAt": "2026-11-17T19:29:01.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizauit7253199",
+      "title": "摩根大通任命Bregje de Best为新任首席财务官",
+      "summary": "摩根大通任命Bregje de Best为新任首席财务官，接替Jeremy Barnum。 摩根大通周二在声明中表示，43岁的De Best将在该行公布第一季度业绩后就任。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizauit7253199.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T19:28:23.000Z",
       "codes": []
     },
     {
@@ -4046,6 +4087,15 @@
       ]
     },
     {
+      "id": "sina-roll-comos:nizauip1369274",
+      "title": "美国全国停飞事件后 FAA暂停安装新路由器",
+      "summary": "美国联邦航空管理局（FAA）周二表示，将暂停安装新路由器，此前该技术问题导致该机构周五发布了罕见的全国地面停飞令。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizauip1369274.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T19:21:17.000Z",
+      "codes": []
+    },
+    {
       "id": "em-kuaixun-202611173933017694",
       "title": "富国银行下调美国必需消费品板块评级至减持 下调金融和工业板块至中性",
       "summary": "【富国银行下调美国必需消费品板块评级至减持 下调金融和工业板块至中性】富国银行在2027年市场展望中，将美国必需消费品板块评级从标配下调至减持，将金融板块和工业板块评级均从增持下调至标配。",
@@ -4061,6 +4111,15 @@
       "url": "http://finance.eastmoney.com/a/202611173933016880.html",
       "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-17T19:14:30.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizauir5088339",
+      "title": "欧洲债市：德国国债随美国国债上涨 科技股遭抛售推升避险需求",
+      "summary": "欧洲债券上涨，追随美国国债涨势，科技股再度遭到抛售，推升了对较安全资产的需求。CNN报道称，美国国家安全局高度机密的通信网络发生中断，进一步提振尾盘避险需求。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizauir5088339.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T19:13:13.000Z",
       "codes": []
     },
     {
@@ -4109,6 +4168,24 @@
       "codes": []
     },
     {
+      "id": "sina-roll-comos:nizauir5082881",
+      "title": "城堡证券任命前优步高管Danny Guo为首席技术官",
+      "summary": "随着做市商大举投资于支撑公司运营所需的基础设施，城堡证券任命Danny Guo为首席技术官。 根据Guo的领英个人资料，他在优步科技工作近12年，离任前担任工程与科学副总裁...",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizauir5082881.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T18:43:32.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizauit7246170",
+      "title": "欧洲股市延续跌势 科技股领跌 德意志银行重挫",
+      "summary": "欧洲股市周二延续跌势，科技股构成拖累，英伟达即将公布业绩。 斯托克欧洲600指数下跌1.8%，创3月份以来最大跌幅，围绕人工智能交易的担忧持续，92%的成分股收跌。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizauit7246170.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T18:43:05.000Z",
+      "codes": []
+    },
+    {
       "id": "sina-live-5219802",
       "title": "北京：鼓励工厂（算力设施）因地制宜开发利用分布式光伏等可再生能源 探索开展绿电直连",
       "summary": "近日，北京市经济和信息化局出台《北京市零碳工厂培育建设工作方案（2026—2030年）》。其中提到，鼓励工厂（算力设施）因地制宜开发利用分布式光伏、分散式风电、生物天然气、地热等可再生能源，探索开展绿电直连，提高可再生能源使用比例。鼓励有条件的工厂建设工业绿色微网，充分利用工厂余热余压，配建新型储能，应用高效热泵，实现多能互补高效利用。鼓励使用电锅炉、电窑炉、电加热等技术，提高电能终端能源消费比重。（人民财讯）",
@@ -4142,6 +4219,36 @@
       ]
     },
     {
+      "id": "sina-live-5220786",
+      "title": "英伟达董事会新设委员会 监督国家安全政策、出口管制合规等事务",
+      "summary": "英伟达董事会成立了一个新的委员会，负责监督国家安全和出口管制事务。 英伟达周二表示，新设立的委员会将由董事、前高盛高管Suzanne Nora Johnson担任主席...",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzv1985933.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T18:19:56.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizapzt5209451",
+      "title": "报道：英伟达2025年通过新加坡子公司确认1040亿美元营收",
+      "summary": "英国《金融时报》援引公司账目报道称，英伟达2025年通过其新加坡子公司确认1040亿美元营收，12个月内增长72%。 报道称，实现这一增长之际...",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzt5209451.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T18:18:57.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizapzr1488983",
+      "title": "美联储理事库克将不参加白宫听证 律师称程序不公",
+      "summary": "美联储理事丽莎·库克更进一步，明确拒绝出席白宫计划举行的听证会，并称该程序有失公允。美国总统唐纳德·特朗普正寻求将她解职，此次听证会是相关行动的一部分。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzr1488983.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T18:17:31.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
       "id": "em-kuaixun-202611173932967926",
       "title": "报道：卡塔尔称在美伊之间的斡旋工作仍在进行",
       "summary": "据报道，卡塔尔称在美伊之间的斡旋工作仍在进行。",
@@ -4157,6 +4264,24 @@
       "url": "http://stock.eastmoney.com/a/202611173932964367.html",
       "source": "东方财富快讯·期货商品",
       "publishedAt": "2026-11-17T18:00:49.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizapzv7366542",
+      "title": "黄仁勋将出席美国国会委员会听证会",
+      "summary": "英伟达前首席执行官黄仁勋同意下月向美国国会说明，回应议员就这场席卷英伟达及其前亿万富豪掌门人的丑闻提出的质询。 根据委员会主席发表的声明...",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzv7366542.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T17:57:11.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizapzt5201957",
+      "title": "研究称先进AI模型在模拟场景中经常将平民等误判为军事目标",
+      "summary": "一项新的独立研究报告显示，在模拟场景中，先进人工智能模型经常将平民、救护车、投降士兵以及伊朗的一所学校误判为军事目标。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzt5201957.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T17:45:48.000Z",
       "codes": []
     },
     {
@@ -4232,12 +4357,36 @@
       "codes": []
     },
     {
+      "id": "sina-live-5220707",
+      "title": "Anthropic上市后 亚马逊和谷歌将合计持股约28%",
+      "summary": "Anthropic PBC的两大客户在其上市后将合计持有公司逾28%的股份，进一步凸显推动人工智能热潮的企业之间关系密切。 根据周二向美国证券交易委员会（SEC）提交的文件...",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzv7358468.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T17:12:08.000Z",
+      "codes": [
+        "931071",
+        "159363"
+      ],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
+    },
+    {
       "id": "em-kuaixun-202611173932922643",
       "title": "俄国防部：俄军一夜击落超1400架乌无人机",
       "summary": "【俄国防部：俄军一夜击落超1400架乌无人机】俄罗斯国防部17日通报说，自16日20时至17日8时，俄防空部队在俄罗斯别尔哥罗德州、布良斯克州、莫斯科地区等多地及亚速海和黑海上空共击落1441架乌克兰固定翼无人机。据俄新社统计，这是俄军一夜间击落乌克兰固定翼无人机数量的最高纪录。",
       "url": "http://finance.eastmoney.com/a/202611173932922643.html",
       "source": "东方财富快讯·期货商品",
       "publishedAt": "2026-11-17T17:03:35.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizapzr1473254",
+      "title": "大型炸鸡连锁加盟商申请第11章破产保护",
+      "summary": "市场数据机构 Circana 的数据显示，尽管 2025 年炸鸡类餐厅到店客流增长 3%，但部分大型加盟商依旧深陷困境，面临销售额下滑、成本上涨的压力。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzr1473254.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T17:02:12.000Z",
       "codes": []
     },
     {
@@ -4250,30 +4399,12 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611173932914887",
-      "title": "《数字广东建设“十五五”规划》印发",
-      "summary": "【《数字广东建设“十五五”规划》印发】广东省人民政府印发《数字广东建设“十五五”规划》，力争到2030年，人工智能全面重塑生产生活范式，广东成为全国领先的智能创新高地和应用典范，数字广东升级跃迁为“数智广东”。",
-      "url": "http://finance.eastmoney.com/a/202611173932914887.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-17T16:56:52.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-roll-comos:nizapzv1967204",
       "title": "英伟达前首席执行官黄仁勋发布辞职后首份声明，称愿意回归公司",
       "summary": "核心要点上周辞去英伟达首席执行官后，黄仁勋发表首次公开声明，语气充满悔意，表示将全力配合董事会的调查。黄仁勋书面声明中写道：“我给董事会造成麻烦，对此深感懊悔。",
       "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzv1967204.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-17T16:49:28.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173932903937",
-      "title": "图解期货 | 伦铝市场逼仓全景！谁“搬空”了LME的铝库存？",
-      "summary": "【图解期货 | 伦铝市场逼仓全景！谁“搬空”了LME的铝库存？】据财联社，LME的铝市场目前正面临数十年来最严峻的逼仓局面——因为支撑合约的库存急剧下降，而剩余的大部分库存仅由两家交易商掌控。有市场人士判定：LME铝可能面临逼空风险。一图速览这场铝市变局的来龙去脉。",
-      "url": "http://futures.eastmoney.com/a/202611173932903937.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-17T16:48:06.000Z",
       "codes": []
     },
     {
@@ -4287,24 +4418,6 @@
       "alsoIn": [
         "东方财富快讯"
       ]
-    },
-    {
-      "id": "em-kuaixun-202611173932897292",
-      "title": "每日龙虎榜 | 商品期货综合指数下跌1.09% 日内资金净流出79.43亿元",
-      "summary": "【每日龙虎榜】螺纹钢增仓29万余手，豆粕减仓15万余手，期市资金净流出79.43亿元。一文带你深度了解期货市场！",
-      "url": "http://futures.eastmoney.com/a/202611173932897292.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-17T16:34:54.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173932895584",
-      "title": "德国日前基本负荷电价下跌33.6%至139.5欧元/兆瓦时",
-      "summary": "德国日前基本负荷电价下跌33.6%至139.5欧元/兆瓦时。",
-      "url": "http://stock.eastmoney.com/a/202611173932895584.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-17T16:33:52.000Z",
-      "codes": []
     },
     {
       "id": "sina-roll-comos:nizapzv7348894",
@@ -4337,15 +4450,6 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611173932894221",
-      "title": "甲醇龙虎榜 | 主力合约今日减仓下行 多空双方均呈退场态势",
-      "summary": "甲醇701合约今日减仓下行，多空持仓排名前20席中，多空双方均呈退场态势，多头退场意愿弱于空头。",
-      "url": "http://futures.eastmoney.com/a/202611173932894221.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-17T16:31:16.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5219519",
       "title": "《智能计算集群效能指标与测试方法》指导性技术文件发布",
       "summary": "记者今天了解到，市场监管总局（国家标准委）批准发布《智能计算集群效能指标与测试方法》国家标准化指导性技术文件。该指导性技术文件由全国智能计算标准化工作组归口，首次建立了面向大模型训练与推理场景的智能计算集群效能指标体系与统一测试方法，为我国智能算力基础设施的规划建设与高效运行提供有力支撑。（央视新闻）",
@@ -4356,24 +4460,6 @@
         "159363",
         "158050"
       ]
-    },
-    {
-      "id": "em-kuaixun-202611173932891291",
-      "title": "碳酸锂龙虎榜 | 主力合约今日减仓上行 多空双方均呈退场态势",
-      "summary": "碳酸锂2701合约今日减仓上行，多空持仓排名前20席中，多空双方均呈退场态势，多头退场意愿弱于空头。",
-      "url": "http://futures.eastmoney.com/a/202611173932891291.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-17T16:26:04.000Z",
-      "codes": []
-    },
-    {
-      "id": "em-kuaixun-202611173932883967",
-      "title": "马斯克确认即将前往中国",
-      "summary": "【马斯克确认即将前往中国】11月17日，马斯克在一条关于纽约DealBook峰会的帖文下留言称“我会在中国，所以届时将由数字版的我出席（这个峰会）”，透露自己未来行程。",
-      "url": "http://finance.eastmoney.com/a/202611173932883967.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-17T16:23:55.000Z",
-      "codes": []
     },
     {
       "id": "sina-roll-comos:nizaitv5312215",
@@ -4403,21 +4489,21 @@
       "codes": []
     },
     {
-      "id": "em-kuaixun-202611173932881623",
-      "title": "俄罗斯调查委员会：克里米亚大桥在11月16日和17日遭到乌克兰无人机袭击后受损",
-      "summary": "俄罗斯调查委员会称，克里米亚大桥在11月16日和17日遭到乌克兰无人机袭击后受损。",
-      "url": "http://finance.eastmoney.com/a/202611173932881623.html",
-      "source": "东方财富快讯·期货商品",
-      "publishedAt": "2026-11-17T16:20:07.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-roll-comos:nizaitt1592092",
       "title": "黄仁勋公开表态：愿意重新执掌英伟达",
       "summary": "英伟达前首席执行官黄仁勋发表了辞职后的首份公开声明。他表示，如果董事会允许，他愿意再次执掌该公司。 “自我离职以来，我听到了大量来自英伟达员工、投资者...",
       "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizaitt1592092.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-17T16:18:55.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizapzr1485663",
+      "title": "迈赫尔通讯社：伊朗称美国袭击格什姆岛 未造成人员伤亡",
+      "summary": "据半官方的迈赫尔通讯社报道，霍尔木兹甘省副省长Ahmad Nafisi表示，美国周二袭击了伊朗位于波斯湾的格什姆岛多个地点。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzr1485663.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T16:17:55.000Z",
       "codes": []
     },
     {
@@ -4437,6 +4523,18 @@
       "source": "新浪财经7x24·政策",
       "publishedAt": "2026-11-17T16:09:17.000Z",
       "codes": []
+    },
+    {
+      "id": "sina-roll-comos:nizapzv1983035",
+      "title": "美国住宅建筑商信心降至14年新低 房贷利率高企打击购房需求",
+      "summary": "美国住宅建筑商的情绪本月进一步恶化，降至14年新低，高企的抵押贷款利率令潜在买家望而却步，迫使建筑商更加依赖代价高昂的促销激励措施。",
+      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-18/doc-inizapzv1983035.shtml",
+      "source": "新浪财经·股市",
+      "publishedAt": "2026-11-17T16:00:48.000Z",
+      "codes": [],
+      "alsoIn": [
+        "东方财富快讯"
+      ]
     },
     {
       "id": "em-kuaixun-202611173932866675",
@@ -4588,15 +4686,13 @@
       "codes": []
     },
     {
-      "id": "sina-live-5220528",
+      "id": "sina-roll-comos:nizaitt1557817",
       "title": "美国制造业产值连续第二个月增长0.3% 延续今年回升势头",
       "summary": "美国10月制造业产值增幅超过预期，延续今年以来美国制造业的回升势头。 美联储周二公布的数据显示，制造业产值连续第二个月增长0.3%。",
       "url": "https://finance.sina.com.cn/world/2026-11-17/doc-inizaitt1557817.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-17T14:44:14.000Z",
-      "codes": [
-        "159363"
-      ],
+      "codes": [],
       "alsoIn": [
         "东方财富快讯"
       ]
@@ -4782,30 +4878,12 @@
       "codes": []
     },
     {
-      "id": "sina-roll-comos:nizacmz7555104",
-      "title": "重磅！刘昇任金监总局人身保险监管司司长，刘宏健任机构恢复与处置司司长",
-      "summary": "11月17日消息，金融一线获悉，国家金融监管总局机构恢复与处置司、人身险司两部门“一把手”对调：刘昇任金监总局人身保险监管司司长...",
-      "url": "https://finance.sina.com.cn/jryx/insurance/2026-11-17/doc-inizacmz7555104.shtml",
-      "source": "新浪财经·财经",
-      "publishedAt": "2026-11-17T14:06:04.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173932799187",
       "title": "日本经济再现负增长 日央行12月还加息吗",
       "summary": "【日本经济再现负增长 日央行12月还加息吗】最新数据显示，日本经济呈失速之势。据央视新闻报道，日本内阁府16日公布的2026年三季度（7月至9月）国内生产总值（GDP）速报值显示，剔除物价变动影响后的实际GDP较上季度减少0.0%，按年率换算为下降0.1%。这是日本GDP时隔四个季度出现负增长。",
       "url": "http://forex.eastmoney.com/a/202611173932799187.html",
       "source": "东方财富快讯·日本央行",
       "publishedAt": "2026-11-17T14:06:01.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmv1672399",
-      "title": "券商并购“再下一城”：东吴证券115亿元收购东海证券过会！",
-      "summary": "21世纪经济报道记者 孙永乐 上海报道 11月17日，上交所并购重组审核委员会召开2026年第23次会议，审议东吴证券发行股份及支付现金购买资产暨关联交易申请。",
-      "url": "https://finance.sina.com.cn/roll/2026-11-17/doc-inizacmv1672399.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-17T14:05:49.000Z",
       "codes": []
     },
     {
@@ -4818,75 +4896,12 @@
       "codes": []
     },
     {
-      "id": "sina-roll-comos:nizacmz2154520",
-      "title": "中金公司保荐双欣材料IPO项目质量评级A-级 上市周期较长 实际募资19.6亿元",
-      "summary": "（一）公司基本情况 全称：内蒙古双欣环保材料股份有限公司 简称：双欣材料 代码：001369.SZ IPO申报日期：2023年2月28日 上市日期：2025年12月30日 上市板块：主板...",
-      "url": "https://finance.sina.com.cn/stock/observe/2026-11-17/doc-inizacmz2154520.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-17T14:00:32.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmx5364744",
-      "title": "光大证券保荐泰禾股份IPO项目质量评级C级 上市周期较长 实际募资额较预期大幅缩水",
-      "summary": "（一）公司基本情况 全称：南通泰禾化工股份有限公司 简称：泰禾股份 代码：301665.SZ IPO申报日期：2020年9月15日 上市日期：2025年4月11日 上市板块：创业板...",
-      "url": "https://finance.sina.com.cn/stock/observe/2026-11-17/doc-inizacmx5364744.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-17T14:00:26.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmx5373946",
-      "title": "东北证券保荐三协电机IPO项目质量评级B-级 报告期内因信披不规范被警示",
-      "summary": "（一）公司基本情况 全称：常州三协电机集团股份有限公司 简称：三协电机 代码：920100.BJ IPO申报日期：2023年12月29日 上市日期：2025年9月8日 上市板块：北交所...",
-      "url": "https://finance.sina.com.cn/stock/observe/2026-11-17/doc-inizacmx5373946.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-17T14:00:25.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmx5383905",
-      "title": "中信证券保荐誉帆科技IPO项目质量评级C级 上市首年增收不增利 申报周期较长",
-      "summary": "（一）公司基本情况 全称：上海誉帆环境科技股份有限公司 简称：誉帆科技 代码：001396.SZ IPO申报日期：2023年3月3日 上市日期：2025年12月30日 上市板块：主板...",
-      "url": "https://finance.sina.com.cn/stock/observe/2026-11-17/doc-inizacmx5383905.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-17T14:00:14.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmv1669995",
-      "title": "监管重磅人事：刘昇时隔两年回归执掌人身险司，刘宏健升任机构恢复与处置司司长",
-      "summary": "来源：慧保天下 “慧保天下”独家获悉，今日下午，国家金融监管总局机构恢复与处置司、人身险司相继召开会议，宣布重要人事任命，两部门事实上的“一把手”实现对调...",
-      "url": "https://finance.sina.com.cn/money/insurance/bxfg/2026-11-17/doc-inizacmv1669995.shtml",
-      "source": "新浪财经·财经",
-      "publishedAt": "2026-11-17T13:59:50.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmz2161568",
-      "title": "智能网联新能源车险示范条款“过审”，险企、车企、车主将迎哪些变化？",
-      "summary": "来源：保险秘闻 一份行业示范条款走到“落地前夜”，市场投来关注的目光。11月17日，北京商报记者了解到，近日，中国保险行业协会召开第六届常务理事会第六次会议...",
-      "url": "https://finance.sina.com.cn/money/insurance/bxdt/2026-11-17/doc-inizacmz2161568.shtml",
-      "source": "新浪财经·财经",
-      "publishedAt": "2026-11-17T13:58:17.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-roll-comos:nizacmx5383382",
       "title": "艾斯曼：受英伟达风波波及，AI“新云概念股”陷入“巨大困境”",
       "summary": "因《大空头》一书为人熟知的投资人史蒂夫・艾斯曼表示，在英伟达丑闻持续发酵的过程中，所谓 AI新云概念股将会是最大输家。",
       "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmx5383382.shtml",
       "source": "新浪财经·股市",
       "publishedAt": "2026-11-17T13:57:05.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmv1671906",
-      "title": "深市科技龙头估值探底 订单确定性支撑价值重估",
-      "summary": "近期，A股科技板块经历了一轮估值调整。以深圳证券交易所市场（以下简称“深市”）科技龙头为例，相关公司估值普遍处于低位。数据显示...",
-      "url": "https://finance.sina.com.cn/stock/relnews/cn/2026-11-17/doc-inizacmv1671906.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-17T13:56:00.000Z",
       "codes": []
     },
     {
@@ -4928,15 +4943,6 @@
       "codes": []
     },
     {
-      "id": "sina-roll-comos:nizaitt1544325",
-      "title": "山鹰国际、金科股份、*ST美丽会否被面值退市，也成为年末市场的悬念",
-      "summary": "来源：@第一财经日报微博 #三家A股企业或被面值退市#山鹰国际、金科股份、*ST美丽会否被面值退市，也成为年末市场的悬念。",
-      "url": "https://finance.sina.com.cn/stock/wbstock/2026-11-17/doc-inizaitt1544325.shtml",
-      "source": "新浪财经·要闻",
-      "publishedAt": "2026-11-17T13:48:01.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-roll-comos:nizacmz7546324",
       "title": "英伟达市值蒸发2万亿美元：期权交易员如何看待本次财报",
       "summary": "要点期权交易员预计，周二财报公布后股价波动幅度将高于往常。英伟达较历史最高点市值已蒸发 2 万亿美元。150 美元下方的未平仓看跌期权持仓正在枯竭。",
@@ -4955,15 +4961,6 @@
       "codes": []
     },
     {
-      "id": "sina-roll-comos:nizacmz2151733",
-      "title": "美联储理事库克拒绝参加12月14日的白宫听证会",
-      "summary": "根据美联储理事丽莎·库克的律师致白宫法律顾问的信函，库克没有法律义务参加拟议听证会。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmz2151733.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:44:26.000Z",
-      "codes": []
-    },
-    {
       "id": "sina-live-5219217",
       "title": "全国计量工作座谈会在安徽召开",
       "summary": "11月17日，2026年全国计量工作座谈会在安徽省合肥市召开。安徽省人民政府副省长李中出席会议并致辞，市场监管总局副局长白清元出席会议并讲话。会议强调，全国计量工作要以习近平新时代中国特色社会主义思想为指导，深入学习贯彻习近平党建思想，全面贯彻党的二十大和二十届历次全会精神，高质量实施国家“十五五”规划和《计量发展规划（2021—2035年）》，牢固树立胸怀“国之大者”的政治自觉，寓监管于服务之中，主动担当作为，以实施计量强基工程为主线，统筹推进科学计量、法制计量、产业计量和计量国际化，强化体系建设，加快培育计量人才队伍，推动国家计量体系和能力建设不断取得新成效。会议全面总结过去一年来计量工作成效及存在的问题，研究分析计量工作面临的新形势新要求，对下一步工作作出系统部署、提出明确要求。中国计量科学研究院和安徽、河北、江苏、福建、河南、重庆等省（市）市场监管部门代表作交流发言。与会代表现场了解计量支撑科技创新、服务产业发展有关情况，并围绕工作报告进行深入研讨。（市场监管总局）",
@@ -4976,138 +4973,12 @@
       ]
     },
     {
-      "id": "sina-roll-comos:nizacmx5371164",
-      "title": "迪士尼Q4营收和盈利超预期 流媒体业务表现亮眼",
-      "summary": "华特迪士尼公布的营收与盈利数据超出分析师预期，流媒体电视板块表现尤为强劲。 包含Disney+和Hulu流媒体业务在内的板块，第四财季营业利润翻番至8.24亿美元...",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmx5371164.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:39:53.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmx5370546",
-      "title": "TD Cowen将可口可乐列为2027年首选标的",
-      "summary": "TD Cowen分析师罗伯特·莫斯科将可口可乐列为2027年最佳投资标的，把该股目标价从104美元上调至市场最高的112美元。 莫斯科写道：“在消费品行业环境充满挑战的背景下...",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmx5370546.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:39:03.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmx5368949",
-      "title": "美国10月份零售销售较前月上升0.2% 预估为0.1%",
-      "summary": "美国10月份扣除汽车的零售销售较前月上升0.6%，预估为0.4%。 61位经济学家的预估区间为-0.3%至0.8%。 10月份零售销售额上升至7，482亿美元。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmx5368949.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:36:37.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmz2145931",
-      "title": "突发！300069，重大资产重组终止",
-      "summary": "又有A股上市公司重大资产重组终止。 11月17日晚间，金利华电（300069）公告，当日公司召开第六届董事会第二十四次会议，审议通过相关议案...",
-      "url": "https://finance.sina.com.cn/stock/s/2026-11-17/doc-inizacmz2145931.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:33:12.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmx5372178",
-      "title": "盘前：纳指期货涨0.39% 英伟达盘后公布财报",
-      "summary": "在英伟达公布财报前，三大股指期货涨跌不一，市场关注的焦点已经不仅限于这家芯片制造商，而是扩大至整个人工智能投资领域。与此同时，欧洲股市下跌，德意志银行领跌。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmx5372178.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:30:43.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmv1650167",
-      "title": "高盛：美股AI行情进入新阶段 2027年AI资本开支扩张放缓",
-      "summary": "高盛策略师表示，美股市场周期正进入AI热潮的新阶段，预计2027年AI资本开支扩张放缓，股票收益将越来越依赖新的盈利增长来源。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmv1650167.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:29:49.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmv1649570",
-      "title": "New Street Research给予Anthropic买入评级及105美元目标价",
-      "summary": "11月17日，独立研究机构New Street Research首次覆盖即将在纳斯达克上市的Anthropic，给予其“买入”评级及105美元目标价，较其预期IPO发行价区间70至78美元的中值高出约42%...",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmv1649570.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:28:12.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmz7522981",
-      "title": "高盛：预计金价2027年底升至4650美元，2028年底有望触及5600美元",
-      "summary": "高盛预计，尽管美联储进一步加息将在短期内压制黄金价格，但全球央行持续购金将推动金价在2027年底升至4650美元/盎司。随着美联储转向降息、西方投资者重新进入黄金市场...",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmz7522981.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:07:52.000Z",
-      "codes": []
-    },
-    {
       "id": "em-kuaixun-202611173932762673",
       "title": "美大型数据中心年碳排放量堪比一国 超半数电力来自化石燃料",
       "summary": "【美大型数据中心年碳排放量堪比一国 超半数电力来自化石燃料】随着人工智能产业快速扩张，美国大型数据中心的能源消耗与环境影响日益受到关注。一项最新发表于《自然·可持续性》期刊的研究估算，美国403座大型数据中心一年产生的二氧化碳排放约为2570万吨，与丹麦、玻利维亚等国家的年度排放总量相当。",
       "url": "http://finance.eastmoney.com/a/202611173932762673.html",
       "source": "东方财富快讯·宏观",
       "publishedAt": "2026-11-17T13:03:46.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmz2125634",
-      "title": "GXO物流瞄准数据中心、航空航天与国防领域谋求业务增长",
-      "summary": "GXO 物流已经成长为全球规模最大的第三方物流企业之一，为孩之宝、苹果、耐克等消费品牌提供仓储服务。如今该企业正转向数据中心、航空航天企业以及国防制造厂商...",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmz2125634.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:03:25.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmz2124115",
-      "title": "美国民主党拟调查特朗普1000亿美元委内瑞拉石油交易",
-      "summary": "美国国会民主党人准备发起多项调查，核查特朗普政府与一名争议委内瑞拉商人达成的规模达1000亿美元的重磅协议，该协议将令美方取得委内瑞拉十余个油田的控制权。",
-      "url": "https://finance.sina.com.cn/world/2026-11-17/doc-inizacmz2124115.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:01:10.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmv1635000",
-      "title": "谷歌采用地热技术，通过汽化岩石获取清洁能源",
-      "summary": "该科技企业将从初创公司 Quaise 采购电力；这家企业使用回旋管 —— 本质上就是一台巨型微波炉 —— 钻探至地表以下 3 英里深处",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmv1635000.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T13:00:51.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmv1633429",
-      "title": "迪士尼计划到2029年实现30亿美元成本节约",
-      "summary": "本轮削减开支是首席执行官乔希・达马罗为提升公司数字化竞争实力所采取举措的一部分迪士尼表示，计划将大部分节约下来的资金投入内容预算。",
-      "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-17/doc-inizacmv1633429.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T12:57:47.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmz2123242",
-      "title": "300069，重大资产重组终止！曾连续3天“20cm”涨停",
-      "summary": "金利华电（300069）终止并购中科西光82.5%股权。 11月17日晚间，金利华电公告，当日公司召开第六届董事会第二十四次会议，审议通过相关议案...",
-      "url": "https://finance.sina.com.cn/stock/zqgd/2026-11-17/doc-inizacmz2123242.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T12:57:21.000Z",
-      "codes": []
-    },
-    {
-      "id": "sina-roll-comos:nizacmx5344145",
-      "title": "美联储穆萨莱姆：到明年春季可能需要“数次”加息",
-      "summary": "圣路易斯联储行长阿尔伯托·穆萨莱姆周二释放出支持未来数月多次加息的信号，以使通胀得到控制。 穆萨莱姆在一篇计划于周二在阿根廷发表的讲话中表示...",
-      "url": "https://finance.sina.com.cn/world/2026-11-17/doc-inizacmx5344145.shtml",
-      "source": "新浪财经·股市",
-      "publishedAt": "2026-11-17T12:55:18.000Z",
       "codes": []
     },
     {
@@ -9559,6 +9430,164 @@
       "source": "东方财富快讯·美国·美联储",
       "publishedAt": "2026-11-10T17:23:26.000Z",
       "codes": []
+    },
+    {
+      "id": "sina-live-5205774",
+      "title": "岚图梦想家10月销量5177辆，来自BBA等传统豪华品牌换购比例达55%",
+      "summary": "根据乘联会最新市场数据，2026年10月，岚图梦想家销量5177辆，在40万以上MPV销量排行榜中位列第一。数据显示，从2022年全球首款高端新能源MPV上市，到如今坐稳高端MPV市场，岚图梦想家已拥有超20万用户。2024—2025年蝉联新能源MPV用户净推荐值NPS第一。在高端MPV市场，每卖出3台就有1台是岚图梦想家，用户中来自BBA等传统豪华品牌的换购比例达55%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-10/detail-iniyfuyw5980316.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-10T17:09:38.000Z",
+      "codes": [
+        "000941"
+      ]
+    },
+    {
+      "id": "sina-live-5205731",
+      "title": "中国汽车流通协会：2026年10月汽车经销商库存系数为1.38",
+      "summary": "2026年11月10日，中国汽车流通协会发布2026年10月“汽车经销商库存”调查结果：10月汽车经销商综合库存系数为1.38，环比下降17.9%，同比上升17.9%。10月库存系数同比上升，环比下降。据中国汽车流通协会乘联分会数据，10月全国乘用车市场零售164.3万辆，测算10月末汽车经销商库存总量约226万辆。",
+      "url": "https://finance.sina.cn/7x24/2026-11-10/detail-iniyfuyy2750083.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-10T16:59:08.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611103927313072",
+      "title": "欧洲央行官员Lane：如果经济数据未见变化 12月加息将是谨慎之举",
+      "summary": "欧洲央行官员Lane表示，如果经济数据未见变化，12月加息将是谨慎之举。",
+      "url": "http://forex.eastmoney.com/a/202611103927313072.html",
+      "source": "东方财富快讯·欧洲央行",
+      "publishedAt": "2026-11-10T16:00:18.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611103927272966",
+      "title": "欧洲央行管委穆兰：能源价格出现积极信号",
+      "summary": "欧洲央行管委穆兰称，能源价格出现积极信号，12月才能看出是否需要加息。",
+      "url": "http://forex.eastmoney.com/a/202611103927272966.html",
+      "source": "东方财富快讯·欧洲央行",
+      "publishedAt": "2026-11-10T14:56:56.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611103927271826",
+      "title": "欧洲央行管委穆兰预计法国2026年GDP增长约0.3%",
+      "summary": "欧洲央行管委穆兰预计法国2026年GDP增长约0.3%。",
+      "url": "http://forex.eastmoney.com/a/202611103927271826.html",
+      "source": "东方财富快讯·欧洲央行",
+      "publishedAt": "2026-11-10T14:55:35.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611103926854621",
+      "title": "日本央行委员：潜在通胀率已达到2%",
+      "summary": "【日本央行委员：潜在通胀率已达到2%】日本央行10月会议意见摘要显示，一位委员表示，潜在通胀率已达到2%，日本央行需尽快将政策利率调整至中性水平。",
+      "url": "http://forex.eastmoney.com/a/202611103926854621.html",
+      "source": "东方财富快讯·日本央行",
+      "publishedAt": "2026-11-10T08:00:33.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5203523",
+      "title": "小米澎程10月交付27132台，全国乘用车增程市场逆势环比上涨31.3%",
+      "summary": "11月9日消息，据懂车帝月度销量榜单，小米澎程系列单月共交付27,132台，其中N70交付14,545台，N90交付12,587台。N70当月拿下增程车销量第一、中大型SUV销量第一；N90位居增程车销量第二、大型SUV销量第一。乘联会数据显示，2026年10月全国乘用车市场零售164.3万辆，同比下降27.1%，其中增程市场整体走强，批发15.2万辆，同比增长19.9%，环比增长31.3%。",
+      "url": "https://finance.sina.cn/7x24/2026-11-09/detail-iniycwiw3250232.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-09T19:42:40.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611093926334872",
+      "title": "欧洲央行行长候选人诺特：不排除设计新工具应对未来危机",
+      "summary": "【欧洲央行行长候选人诺特：不排除设计新工具应对未来危机】克拉斯·诺特是欧洲央行下一任行长的两位候选人之一，他告诉《金融时报》，如果他能获得这份工作，他愿意制定一些可能对应对欧洲债务危机至关重要的新工具。",
+      "url": "http://forex.eastmoney.com/a/202611093926334872.html",
+      "source": "东方财富快讯·欧洲央行",
+      "publishedAt": "2026-11-09T17:41:06.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5203073",
+      "title": "“星云星座计划”发布 我国太空算力网加快部署",
+      "summary": "“太空云”是指在轨协同的天基云服务系统，它改变传统卫星“单星观测、数据回传地面处理”模式，让天基资源可以按需调用、即连即用。在今天（9日）举办的2026太空云产业生态大会上，“星云星座计划”等我国太空云产业化成果发布，标志着我国“太空云”生态建设迈出了从技术验证走向产业化布局的关键一步。（央视新闻）",
+      "url": "https://finance.sina.cn/7x24/2026-11-09/detail-iniycrzy3241240.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-09T16:14:36.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5202970",
+      "title": "若美国寻求对华采取更加严格的科技限制，中方将如何应对？外交部回应",
+      "summary": "11月9日，外交部发言人郭嘉昆主持例行记者会。彭博社记者提问，英伟达CEO黄仁勋提倡销售更多芯片到中国，并主张采取更加宽松的监管措施。如果美国尤其是刚刚赢得国会两院多数地位的民主党寻求对中国采取更加严格的科技限制，中方将如何应对？郭嘉昆表示，正如我刚才所回答的，中方在美国输华芯片问题上的立场是一贯的。具体的情况建议向主管部门询问。（北京日报）",
+      "url": "https://finance.sina.cn/7x24/2026-11-09/detail-iniycmua3341097.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-09T15:38:00.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5202936",
+      "title": "外交部：中国率先批准《关于成立世界人工智能合作组织的协定》体现真诚意愿和坚定承诺",
+      "summary": "11月9日，外交部发言人郭嘉昆主持例行记者会。郭嘉昆介绍，作为世界人工智能合作组织的发起国和东道国，中国率先批准《关于成立世界人工智能合作组织的协定》，体现了推进合作组织筹建进程的真诚意愿和坚定承诺。郭嘉昆表示，我们将继续秉持共商、共建、共享理念，积极推进合作组织实体化运行，聚焦面向全球南方国家的务实合作和能力建设，让各国分享人工智能带来的机遇和红利。我们欢迎并期待更多国家加入世界人工智能合作组织，共促人工智能向善普惠发展，共同推动构建公正合理的全球人工智能治理体系。（澎湃新闻）",
+      "url": "https://finance.sina.cn/7x24/2026-11-09/detail-iniycmty6552869.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-09T15:25:11.000Z",
+      "codes": [
+        "931071",
+        "159363",
+        "512890"
+      ]
+    },
+    {
+      "id": "sina-live-5202842",
+      "title": "英国拟将2030年电动汽车销售目标从80%下调至60% 以缓解车企压力",
+      "summary": "有报道称，英国政府计划将2030年新车销售中零排放汽车的占比目标从目前的80%下调至约60%，并将针对汽车制造商的合规灵活性措施延长至2034年。英国副首相路易丝·黑格预计将在本周三举行的会议后敲定相关方案。不过，英国政府发言人表示，目前尚未作出最终决定。",
+      "url": "https://finance.sina.cn/7x24/2026-11-09/detail-iniycmty6513091.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-09T14:35:37.000Z",
+      "codes": []
+    },
+    {
+      "id": "em-kuaixun-202611093926174210",
+      "title": "欧央行行长候选人诺特：不排除设计新工具应对未来危机",
+      "summary": "【欧央行行长候选人诺特：不排除设计新工具应对未来危机】克拉斯·诺特是欧洲央行下一任行长的两位候选人之一，他告诉《金融时报》，如果他能获得这份工作，他愿意制定一些可能对应对欧洲债务危机至关重要的新工具。诺特表示，他已准备好动用欧洲央行现有的危机应对工具，包括购买债券。“如果情况需要，我们将毫不犹豫地进行干预”。",
+      "url": "http://forex.eastmoney.com/a/202611093926174210.html",
+      "source": "东方财富快讯·欧洲央行",
+      "publishedAt": "2026-11-09T13:55:59.000Z",
+      "codes": []
+    },
+    {
+      "id": "sina-live-5202750",
+      "title": "乘联分会：2026年1-9月中国新能源乘用车占世界新能源车63%",
+      "summary": "乘联分会数据显示，2026年1-9月世界新能源乘用车达到1,838万辆，同比增长15%，其中9月新能源车销量265万辆，同比增长16%，环比增长18%，增速回到历史正常水平。2026年1-9月的新能源车份额达到25.3%，其中纯电动车的占比达到17.8%，插电混动占比达到7.6%。混合动力占比达到8%的表现优秀。",
+      "url": "https://finance.sina.cn/7x24/2026-11-09/detail-iniycfna6607267.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-09T13:30:54.000Z",
+      "codes": [
+        "000941",
+        "399417",
+        "930997"
+      ]
+    },
+    {
+      "id": "sina-live-5202749",
+      "title": "乘联分会：2026年1-9月中国销量占世界汽车份额32%",
+      "summary": "乘联分会数据显示，2026年1-9月全球汽车累计销量7,252万辆。分国家来看，中国销量2,327万辆，份额32.1%，较2025年35.4%明显回落；美国销量1,230万辆，份额17.0%，小幅下滑；印度表现亮眼，份额提升至6.7%，成为增长亮点。从历年份额变化看，2022-2025年中国在全球占比持续走高，2025年达到阶段性高点。欧洲主要国家份额整体稳中有降，巴西、俄罗斯等新兴市场份额保持稳定。2026年前9月中国市场销量下滑，是全球份额变动的核心原因，印度等新兴市场的快速增长，一定程度上对冲了中、美市场的增长压力，支撑全球车市维持小幅正增长。",
+      "url": "https://finance.sina.cn/7x24/2026-11-09/detail-iniycfmw6367872.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-09T13:29:47.000Z",
+      "codes": [
+        "378006"
+      ]
+    },
+    {
+      "id": "sina-live-5202748",
+      "title": "乘联分会：2026年9月进口车进口2.1万辆，同比下滑49%",
+      "summary": "乘联分会数据显示，2026年9月进口车进口2.1万辆，同比下滑49%，环比下降6%。2026年1-9月进口汽车29万辆，同比下降20%。今年汽车进口结构中的乘用车占比超99%，为绝对主力地位，如果包含轻卡中的皮卡，则乘用车数量占比更高。2026年1-9月进口混动增长15%的表现很好，纯电动乘用车下降27%，插混下降54%，进口新能源乘用车表现较弱。乘用车的进口车型排量集中于2升以下汽油车型，去年3-4升抗跌能力较好，今年转为1.5-2升相对较好。",
+      "url": "https://finance.sina.cn/7x24/2026-11-09/detail-iniycfna6606653.d.html",
+      "source": "新浪财经7x24·数据",
+      "publishedAt": "2026-11-09T13:29:19.000Z",
+      "codes": [
+        "000941"
+      ]
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-17T16:57:58.205Z",
+ "generatedAt": "2026-11-17T20:07:01.956Z",
  "source": "上证指数(000001) 日线收盘 via 新浪财经",
  "closes": {
   "2025-03-26": 3368.697,
@@ -2065,8 +2065,8 @@
    "drivers": [
     {
      "key": "a50",
-     "z": -0.18,
-     "contribution": -3.6
+     "z": -0.155,
+     "contribution": -3.1
     },
     {
      "key": "us",
@@ -2075,18 +2075,18 @@
     },
     {
      "key": "sox",
-     "z": -0.563,
-     "contribution": -3.38
+     "z": -0.567,
+     "contribution": -3.4
     },
     {
      "key": "dxy",
-     "z": 0.187,
-     "contribution": 1.12
+     "z": 0.112,
+     "contribution": 0.67
     },
     {
      "key": "cnh",
-     "z": -0.04,
-     "contribution": -0.24
+     "z": -0.06,
+     "contribution": -0.36
     },
     {
      "key": "us10y",
