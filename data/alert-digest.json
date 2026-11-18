@@ -1,88 +1,88 @@
 {
- "date": "2026-11-17",
- "generatedAt": "2026-11-17T08:49:24.395Z",
- "limitUpCount": 38,
- "limitDownCount": 101,
- "advancers": 1325,
- "decliners": 4119,
+ "date": "2026-11-18",
+ "generatedAt": "2026-11-18T08:03:42.572Z",
+ "limitUpCount": 48,
+ "limitDownCount": 53,
+ "advancers": 1318,
+ "decliners": 4132,
  "items": [
   {
    "code": "920309",
-   "name": "N菊乐",
-   "changePct": 77.88,
-   "anomalyScore": 100,
-   "trendScore": 50.13,
+   "name": "菊乐股份",
+   "changePct": -29.99,
+   "anomalyScore": 99.2,
+   "trendScore": 1.61,
+   "signalType": "跌停"
+  },
+  {
+   "code": "920924",
+   "name": "广脉科技",
+   "changePct": 30,
+   "anomalyScore": 98.72,
+   "trendScore": 95.45,
    "signalType": "涨停"
   },
   {
-   "code": "920489",
-   "name": "佳先股份",
-   "changePct": 29.95,
-   "anomalyScore": 98.57,
-   "trendScore": 91.62,
-   "signalType": "涨停附近"
+   "code": "301391",
+   "name": "卡莱特",
+   "changePct": 20.01,
+   "anomalyScore": 98.33,
+   "trendScore": 94.75,
+   "signalType": "涨停"
   },
   {
-   "code": "300779",
-   "name": "惠城环保",
-   "changePct": -19.99,
-   "anomalyScore": 98.57,
-   "trendScore": 0.21,
-   "signalType": "跌停"
+   "code": "300324",
+   "name": "旋极信息",
+   "changePct": 20,
+   "anomalyScore": 97.9,
+   "trendScore": 97.47,
+   "signalType": "涨停"
   },
   {
    "code": "301288",
    "name": "清研环境",
-   "changePct": 20.02,
-   "anomalyScore": 97.8,
-   "trendScore": 98.63,
-   "signalType": "涨停"
+   "changePct": 13.36,
+   "anomalyScore": 97.81,
+   "trendScore": 99.49,
+   "signalType": "涨停附近"
   },
   {
-   "code": "300824",
-   "name": "北鼎股份",
-   "changePct": 16.05,
+   "code": "301209",
+   "name": "联合化学",
+   "changePct": 13.31,
    "anomalyScore": 97.74,
-   "trendScore": 98.02,
+   "trendScore": 96.24,
    "signalType": "涨停附近"
   },
   {
-   "code": "002425",
-   "name": "凯撒文化",
-   "changePct": 6.65,
-   "anomalyScore": 97.61,
-   "trendScore": 98,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "301395",
-   "name": "仁信新材",
-   "changePct": 19.18,
-   "anomalyScore": 97.38,
-   "trendScore": 99.19,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "002861",
-   "name": "瀛通通讯",
-   "changePct": 10,
-   "anomalyScore": 97.33,
-   "trendScore": 91.19,
+   "code": "688757",
+   "name": "胜科纳米",
+   "changePct": 20,
+   "anomalyScore": 97.02,
+   "trendScore": 87.1,
    "signalType": "涨停"
+  },
+  {
+   "code": "301077",
+   "name": "星华新材",
+   "changePct": 16.05,
+   "anomalyScore": 96.87,
+   "trendScore": 97.35,
+   "signalType": "涨停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "codes": [
-   "600715",
-   "002148",
-   "002425",
-   "002205",
-   "603103",
-   "000819",
+   "920309",
+   "920489",
+   "300779",
+   "301288",
    "300824",
-   "000595"
+   "002425",
+   "301395",
+   "002861"
   ]
  }
 }
