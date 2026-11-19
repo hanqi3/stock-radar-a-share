@@ -1,6 +1,6 @@
 {
  "date": "2026-11-19",
- "generatedAt": "2026-11-19T08:14:45.041Z",
+ "generatedAt": "2026-11-19T16:38:02.522Z",
  "limitUpCount": 32,
  "limitDownCount": 93,
  "advancers": 648,
@@ -35,7 +35,7 @@
    "name": "盛剑科技",
    "changePct": 10,
    "anomalyScore": 96.23,
-   "trendScore": 94.36,
+   "trendScore": 94.35,
    "signalType": "涨停"
   },
   {
