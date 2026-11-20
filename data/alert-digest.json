@@ -1,6 +1,6 @@
 {
  "date": "2026-11-20",
- "generatedAt": "2026-11-20T08:05:13.669Z",
+ "generatedAt": "2026-11-20T16:09:06.822Z",
  "limitUpCount": 33,
  "limitDownCount": 84,
  "advancers": 313,
@@ -10,7 +10,7 @@
    "code": "300812",
    "name": "易天股份",
    "changePct": 20,
-   "anomalyScore": 97.77,
+   "anomalyScore": 97.76,
    "trendScore": 95.6,
    "signalType": "涨停"
   },
@@ -66,7 +66,7 @@
    "code": "688679",
    "name": "通源环境",
    "changePct": -16.26,
-   "anomalyScore": 90.22,
+   "anomalyScore": 90.21,
    "trendScore": 4.88,
    "signalType": "跌停附近"
   }
