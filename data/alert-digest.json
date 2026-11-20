@@ -1,88 +1,88 @@
 {
- "date": "2026-11-19",
- "generatedAt": "2026-11-19T19:44:36.562Z",
- "limitUpCount": 32,
- "limitDownCount": 93,
- "advancers": 648,
- "decliners": 4876,
+ "date": "2026-11-20",
+ "generatedAt": "2026-11-20T08:05:13.669Z",
+ "limitUpCount": 33,
+ "limitDownCount": 84,
+ "advancers": 313,
+ "decliners": 5235,
  "items": [
   {
-   "code": "301391",
-   "name": "卡莱特",
-   "changePct": 19.97,
-   "anomalyScore": 99.15,
-   "trendScore": 99.46,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "688691",
-   "name": "灿芯股份",
-   "changePct": 15.3,
-   "anomalyScore": 97.73,
-   "trendScore": 95.91,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "301348",
-   "name": "蓝箭电子",
+   "code": "300812",
+   "name": "易天股份",
    "changePct": 20,
-   "anomalyScore": 97.61,
-   "trendScore": 96.39,
+   "anomalyScore": 97.77,
+   "trendScore": 95.6,
    "signalType": "涨停"
   },
   {
    "code": "603324",
    "name": "盛剑科技",
    "changePct": 10,
-   "anomalyScore": 96.23,
-   "trendScore": 94.36,
+   "anomalyScore": 97.72,
+   "trendScore": 98.16,
    "signalType": "涨停"
   },
   {
-   "code": "600156",
-   "name": "华升股份",
+   "code": "002771",
+   "name": "真视通",
    "changePct": 10.01,
-   "anomalyScore": 95.64,
-   "trendScore": 98.37,
+   "anomalyScore": 97.25,
+   "trendScore": 99.46,
    "signalType": "涨停"
   },
   {
-   "code": "002724",
-   "name": "海洋王",
-   "changePct": -9.8,
-   "anomalyScore": 95.58,
-   "trendScore": 21.6,
+   "code": "301096",
+   "name": "百诚医药",
+   "changePct": -16.67,
+   "anomalyScore": 95.88,
+   "trendScore": 1.86,
    "signalType": "跌停附近"
   },
   {
-   "code": "603078",
-   "name": "江化微",
-   "changePct": 9.99,
-   "anomalyScore": 95.27,
-   "trendScore": 82.68,
-   "signalType": "涨停"
+   "code": "000826",
+   "name": "*ST启环",
+   "changePct": -9.4,
+   "anomalyScore": 93.44,
+   "trendScore": 8.56,
+   "signalType": "跌停"
   },
   {
-   "code": "688033",
-   "name": "*ST天宜",
-   "changePct": -12.84,
-   "anomalyScore": 94.98,
-   "trendScore": 3.05,
+   "code": "920575",
+   "name": "*ST康乐",
+   "changePct": -26.2,
+   "anomalyScore": 93.04,
+   "trendScore": 7.76,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "603818",
+   "name": "曲美家居",
+   "changePct": -9.9,
+   "anomalyScore": 90.83,
+   "trendScore": 14.16,
+   "signalType": "跌停"
+  },
+  {
+   "code": "688679",
+   "name": "通源环境",
+   "changePct": -16.26,
+   "anomalyScore": 90.22,
+   "trendScore": 4.88,
    "signalType": "跌停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "codes": [
-   "920309",
-   "920924",
    "301391",
-   "300324",
-   "301288",
-   "301209",
-   "688757",
-   "301077"
+   "688691",
+   "301348",
+   "603324",
+   "600156",
+   "002724",
+   "603078",
+   "688033"
   ]
  }
 }
