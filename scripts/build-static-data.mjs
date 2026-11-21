@@ -61,6 +61,103 @@ async function writeJson(file, value) {
   await fs.writeFile(file, JSON.stringify(value));
 }
 
+// Bars dominate the payload, so they ship as parallel arrays and the shim expands
+// them back into objects. Numbers are rounded to two decimals; the chart never
+// needs more.
+function compactBars(bars) {
+  const columns = { dates: [], open: [], high: [], low: [], close: [], volume: [] };
+  for (const bar of bars) {
+    columns.dates.push(bar.date);
+    columns.open.push(round2(bar.open));
+    columns.high.push(round2(bar.high));
+    columns.low.push(round2(bar.low));
+    columns.close.push(round2(bar.close));
+    columns.volume.push(Math.round(bar.volume || 0));
+  }
+  return columns;
+}
+
+function round2(value) {
+  return Number.isFinite(value) ? Math.round(value * 100) / 100 : null;
+}
+
+function roundDeep(value) {
+  if (Array.isArray(value)) return value.map(roundDeep);
+  if (value && typeof value === "object") {
+    const out = {};
+    for (const [key, inner] of Object.entries(value)) out[key] = roundDeep(inner);
+    return out;
+  }
+  return typeof value === "number" ? round2(value) : value;
+}
+
+// The analysis payload carries a lot of quote/derivation fields that the chart
+// panel already has from the stock row; keep only what loadChart() reads.
+function compactChart(payload) {
+  const history = payload.history || {};
+  return {
+    code: payload.code,
+    name: payload.name,
+    exchange: payload.exchange,
+    board: payload.board,
+    price: payload.price,
+    changePct: payload.changePct,
+    limitLabel: payload.limitLabel,
+    updatedAt: history.updatedAt || null,
+    history: {
+      source: history.source || null,
+      updatedAt: history.updatedAt || null,
+      days: history.days || null,
+      bars: compactBars(history.bars || []),
+      plan: history.plan || null
+    },
+    technicals: payload.technicals || null,
+    events: payload.events
+      ? {
+          items: (payload.events.items || []).slice(0, 4),
+          eventScore: payload.events.eventScore,
+          eventBias: payload.events.eventBias
+        }
+      : null,
+    narrative: payload.narrative || "",
+    node: payload.node || null,
+    themes: payload.themes || null
+  };
+}
+
+async function writeAllCharts(rows) {
+  const chartDir = path.join(outDir, "charts");
+  await fs.mkdir(chartDir, { recursive: true });
+  const cached = new Set(
+    (await fs.readdir(path.join(root, ".cache", "history")).catch(() => []))
+      .filter((name) => name.endsWith(".json"))
+      .map((name) => name.replace(/\.json$/, ""))
+  );
+  const codes = rows.map((row) => row.code).filter((code) => cached.has(code));
+  let done = 0;
+  let written = 0;
+  const queue = codes.slice();
+  const worker = async () => {
+    for (;;) {
+      const code = queue.shift();
+      if (!code) return;
+      try {
+        const payload = await getJson(`/api/stocks/${code}/analysis`);
+        if (payload?.history?.bars?.length) {
+          await writeJson(path.join(chartDir, `${code}.json`), compactChart(payload));
+          written += 1;
+        }
+      } catch (error) {
+        // A single missing history must not sink the whole build.
+      }
+      done += 1;
+      if (done % 500 === 0) console.log(`  charts ${done}/${codes.length}`);
+    }
+  };
+  await Promise.all(Array.from({ length: 8 }, worker));
+  return written;
+}
+
 async function main() {
   await fs.rm(outDir, { recursive: true, force: true });
   await fs.mkdir(analysisDir, { recursive: true });
@@ -122,6 +219,12 @@ async function main() {
   }
   console.log(`analysis: ${analyses} stocks`);
 
+  // Every stock that has a cached K-line gets its own compact chart payload, so
+  // the public build can open any code instead of only the curated ones. Missing
+  // cache entries are skipped: the page then says the chart is unavailable.
+  const charts = await writeAllCharts(exported.rows);
+  console.log(`charts: ${charts} stocks`);
+
   const manifest = {
     generatedAt: new Date().toISOString(),
     dataUpdatedAt: exported.meta?.updatedAt || null,
@@ -129,6 +232,7 @@ async function main() {
     stocks: exported.total,
     curated: exported.curated,
     analyses,
+    charts,
     sources: exported.meta?.sourceLabel || exported.meta?.source || null
   };
   await writeJson(path.join(outDir, "manifest.json"), manifest);
