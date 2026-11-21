@@ -1962,6 +1962,14 @@ async function handleApi(req, res, pathname, params) {
       const detail = getStockDetail(stock, stocks, meta);
       details[code] = {
         ...detail,
+        node: {
+          limitPct: stock.limitPct,
+          limitLabel: limitLabel(stock),
+          st: stock.st,
+          anomalyScore: stock.anomalyScore ?? null,
+          trendScore: stock.trendScore ?? null
+        },
+        events: eventsForCode(stock.code, view, 5),
         peers: (detail.peers || []).map((peer) => ({
           code: peer.code,
           name: peer.name,
