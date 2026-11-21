@@ -30,12 +30,21 @@ npx serve dist          # 或 python -m http.server 5200 --directory dist
 
 ## 自动部署
 
-`.github/workflows/pages.yml` 在 `main` 分支上以下任一变化时触发：
+整条链路分两段，全部在 GitHub 上跑，不需要任何机器常开：
 
-- `public/**`、`server.js`、`lib/**`、`scripts/*static*` 改动；
-- `data/**` 改动 —— 也就是每天几次的 `Update A-share market data` 提交。
+1. **`Update A-share data`（`update-data.yml`）**：每天 12:30、16:30、22:00（北京时间）各跑一次，从公开数据源现拉数据：
+   - 新浪 `Market_Center.getHQNodeData`：全量 A 股行情快照
+   - 东方财富 `push2`：资金流与估值（PE/PB/换手/量比）
+   - 新浪新闻 / 东财事件：个股事件与新闻
+   - 板块、历史 K 线、指标、宏观（美债）等补全
+   跑完把 `data/**` 提交回 `main`。
+2. **`Deploy static site to Pages`（`pages.yml`）**：由上面那次提交触发（`workflow_run`，因为 `GITHUB_TOKEN` 的提交不会触发普通 `push` 事件），恢复历史 K 线缓存 → 生成 `static-data/` → 打包 `dist/` → 部署到 Pages。
 
-流程：恢复历史 K 线缓存（`npm run history`，失败则跳过）→ 生成 `static-data/` → 打包 `dist/` → 部署到 Pages。
+`public/**`、`server.js`、`lib/**`、`scripts/*static*` 的改动也会单独触发一次部署。
+
+**数据为什么总是新的**：`assemble-static-site.mjs` 会把数据目录命名成 `static-data-<构建哈希>/`，每次构建 URL 都变，GitHub Pages 的 CDN 缓存不会把旧快照发出去。
+
+**唯一的延迟**：Pages 对 `index.html` 本身有约 10 分钟的 CDN 缓存，所以刚刚部署完的头几分钟，个别访客可能还看到上一版 HTML（数据目录是新的，下一次刷新就换过来）。
 
 **首次启用**：仓库 Settings → Pages → Build and deployment → Source 选 **GitHub Actions**，然后跑一次 `Deploy static site to Pages` 工作流即可。
 
