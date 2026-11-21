@@ -17,6 +17,8 @@
 
 ## A. 最快：Cloudflare Quick Tunnel（不用域名，不用公网 IP）
 
+这是**完整版**（登录、账号、全量 K 线、自选同步）上公网最省事的方式，适合自己用、发给朋友试用。
+
 ```bash
 # 1. 本机先把服务跑起来（HOST 用默认 localhost 即可）
 npm start
@@ -25,11 +27,13 @@ npm start
 cloudflared tunnel --url http://localhost:5173
 ```
 
-输出里会出现一行 `https://随机词.trycloudflare.com`，这就是公网 HTTPS 地址，手机、别人的电脑都能打开。
+Windows 上可以直接双击仓库里的 `scripts\tunnel.cmd`：它会启动服务、再起隧道，把两件事合并成一步（要求 `tools\bin\cloudflared.exe` 存在）。
+
+输出里会出现一行 `https://随机词.trycloudflare.com`，这就是公网 HTTPS 地址，手机、别人的电脑都能打开，登录页、注册页、游客登录、自选同步全都可用。
 
 注意：
 
-- 进程关掉网址就失效，重启会换新域名，只适合演示和临时试用。
+- 进程关掉网址就失效，重启会换新域名，只适合演示和临时试用；电脑休眠/关机，链接就断。
 - 这条隧道把你本机的服务暴露到公网，**别把 demo 账号密码发给无关的人**；用完 Ctrl+C。
 - 想要固定域名，用 Cloudflare 账号建一条 Named Tunnel 绑定自己的域名（命令变成 `cloudflared tunnel run stockradar`），配置和证书都由 Cloudflare 管。
 - 国内网络访问 `trycloudflare.com` 不一定稳定，长期用还是建议 B 方案。
