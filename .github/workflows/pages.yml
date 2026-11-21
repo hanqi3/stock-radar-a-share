@@ -32,7 +32,7 @@ jobs:
   build:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,9 +42,22 @@ jobs:
         with:
           node-version: 20
 
-      # The K-line files are generated from the local history cache, which is
-      # rebuilt here because CI checkouts start empty. If a third-party feed is
-      # down the dashboard still deploys, it just has fewer stock charts.
+      # One cache entry per day: the day's first build pays for the K-line
+      # downloads, later builds reuse them and just top up the missing session.
+      - name: Cache key
+        id: cachekey
+        run: echo "day=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the history cache
+        uses: actions/cache@v4
+        with:
+          path: .cache/history
+          key: history-${{ steps.cachekey.outputs.day }}
+          restore-keys: |
+            history-
+
+      # The per-stock chart files are generated from this cache, so a warm cache
+      # means every stock has a K-line instead of only the curated ones.
       - name: Warm the history cache
         continue-on-error: true
         run: npm run history
