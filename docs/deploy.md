@@ -93,6 +93,47 @@ docker compose -f deploy/docker-compose.yml up -d --build
 
 镜像里自带 busybox cron，同样的 17:30 / 12:30 两条任务（时区由 `TZ=Asia/Shanghai` 决定）。数据落在仓库的 `data/`，`.cache/` 存历史 K 线。前面的 Caddy 一样反代到 `127.0.0.1:5173`。
 
+### 用 CI 构建好的镜像（推代码即上线）
+
+`Publish container image` 工作流在每次 push 到 `main`（以及数据同步任务跑完）时，把镜像推到 GitHub Container Registry：
+
+```
+ghcr.io/hanqi3/stock-radar-a-share:latest
+ghcr.io/hanqi3/stock-radar-a-share:sha-<短 sha>
+```
+
+两个架构都构建（`linux/amd64` + `linux/arm64`），Oracle 免费 ARM 机器也能直接跑。
+
+服务器上只需要一个目录和一份 compose 文件，**不用 clone 代码、不用本地构建**：
+
+```bash
+mkdir -p /opt/stockradar && cd /opt/stockradar
+curl -fsSLO https://raw.githubusercontent.com/hanqi3/stock-radar-a-share/main/deploy/docker-compose.prod.yml
+docker compose -f docker-compose.prod.yml up -d
+```
+
+之后要更新，二选一：
+
+```bash
+# 手动：拉新镜像再起
+docker compose -f docker-compose.prod.yml pull && docker compose -f docker-compose.prod.yml up -d
+```
+
+或者让 CI 自己来——在仓库 **Settings → Secrets and variables → Actions** 里加：
+
+| 类型 | 名字 | 值 |
+| --- | --- | --- |
+| Variable | `DEPLOY_ENABLED` | `true` |
+| Secret | `SSH_HOST` | 服务器 IP / 域名 |
+| Secret | `SSH_USER` | 登录用户（要能跑 docker） |
+| Secret | `SSH_KEY` | 该用户的私钥 |
+| Secret | `DEPLOY_PATH` | `/opt/stockradar`（可省） |
+| Secret | `SSH_PORT` | `22`（可省） |
+
+设好后每次镜像构建成功，`deploy` 任务就会 SSH 过去 `pull` + `up -d`，最后打一次 `/api/health`。登录用户要么在 `docker` 组里，要么配好免 sudo 的 docker 权限。
+
+> 镜像默认是私有的。想让服务器免登录拉取，到 GitHub 的 Packages → `stock-radar-a-share` → Package settings 里把可见性改成 public；否则先 `docker login ghcr.io -u <用户名>`（密码用 PAT，勾 `read:packages`）。
+
 ## C. Render（不想碰服务器）
 
 仓库里的 `render.yaml` 是 Render Blueprint：
