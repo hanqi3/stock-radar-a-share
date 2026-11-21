@@ -5,7 +5,7 @@ import zlib from "node:zlib";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
-import { buildSearchIndex, matchesQuery, suggest, EMPTY_LOOKUP } from "./lib/search.js";
+import { buildSearchIndex, matchesQuery, pinyinOf, suggest, EMPTY_LOOKUP } from "./lib/search.js";
 import { inferBoard, inferExchange, isRiskWarned, isSt, limitLabel, limitPctFor, limitState } from "./lib/boards.js";
 import { computeFactorTable, directionalScore } from "./lib/factors.js";
 import { computeIndicators } from "./lib/indicators.js";
@@ -1936,12 +1936,28 @@ async function handleApi(req, res, pathname, params) {
       .map((code) => code.trim())
       .filter((code) => /^[0-9]{6}$/.test(code));
     const view = eventView(stocks, events);
+    const lookup = await loadPinyinLookup();
+    // The static bundle carries only what the browser actually renders: the
+    // long technical series live in each stock's analysis file, and the
+    // concept/industry lists are not read by the UI.
+    const DROPPED_ROW_FIELDS = [
+      "raw", "factors", "bars", "concepts", "industries", "industryMomentum20",
+      "peStatic", "riskWarned", "group", "ma5", "ma10", "ma20", "ma60",
+      "ma20Gap", "ma60Gap", "momentum5", "momentum20", "momentum60",
+      "volatility20", "atrPct", "rsi14", "macdHist", "bollPercentB",
+      "close", "date", "volume", "limitUpPrice", "limitDownPrice",
+      "limitUp", "limitDown"
+    ];
     const rows = stocks
       .map((stock) => {
-        const { raw, factors, ...rest } = stock;
+        const rest = { ...stock };
+        for (const key of DROPPED_ROW_FIELDS) delete rest[key];
+        const { pinyin, initials } = pinyinOf(stock.name, lookup);
         const matched = eventsForCode(stock.code, view, 0);
         return {
           ...rest,
+          pinyin,
+          initials,
           signalType: getSignalType(stock),
           score: round2(getStockScore(stock)),
           eventBias: matched.eventBias,
