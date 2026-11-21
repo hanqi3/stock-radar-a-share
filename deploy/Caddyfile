@@ -1,0 +1,24 @@
+# 把 stockradar.example.com 换成你的域名，再把 A/AAAA 记录指到这台服务器。
+# Caddy 会自动申请并续期 HTTPS 证书，iOS App 只接受 HTTPS 后端。
+stockradar.example.com {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+
+	# 账号文件、会话与自选由 Node 自己写盘，Caddy 只做反代。
+	reverse_proxy 127.0.0.1:5173 {
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+	}
+
+	log {
+		output file /var/log/caddy/stockradar.log {
+			roll_size 20MiB
+			roll_keep 5
+		}
+	}
+}

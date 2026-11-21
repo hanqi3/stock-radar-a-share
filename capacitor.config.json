@@ -1,0 +1,11 @@
+{
+  "appId": "com.hanqi.stockradar",
+  "appName": "StockRadar",
+  "webDir": "public",
+  "backgroundColor": "#0b1220",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#0b1220",
+    "preferredContentMode": "mobile"
+  }
+}

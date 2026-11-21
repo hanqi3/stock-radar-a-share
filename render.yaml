@@ -1,0 +1,25 @@
+# Render Blueprint：推上 GitHub 后在 Render 里 New > Blueprint 选这个仓库。
+# 免费实例没有持久盘，data/ 里的账号与自选会在重新部署后清空；
+# 要长期保存，换成 Starter + Disk（把 DATA_DIR 指到 /var/data），或用自己的 VPS。
+services:
+  - type: web
+    name: stockradar
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: "echo no build step"
+    startCommand: "node server.js"
+    healthCheckPath: /api/health
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: DATA_DIR
+        value: /opt/render/project/data
+      - key: NODE_VERSION
+        value: 22.11.0
+
+# 付费方案下把下面的 disk 打开（同时把 plan 改成 starter）：
+#    disk:
+#      name: data
+#      mountPath: /var/data
+#      sizeGB: 1

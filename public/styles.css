@@ -3271,8 +3271,866 @@ html[data-theme="dark"] .anomaly-chip {
   color: var(--ink);
 }
 
+/* ===== account sheet ===================================================== */
+
+.account-button {
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.account-button span {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.account-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.account-sheet[hidden] {
+  display: none;
+}
+
+.account-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 12, 20, 0.48);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.account-panel {
+  position: relative;
+  width: min(420px, 100%);
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--panel);
+  box-shadow: 0 30px 70px -20px rgba(8, 12, 20, 0.55);
+  animation: account-rise 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes account-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.account-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+.account-identity {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-name {
+  font-weight: 700;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-email {
+  color: var(--muted);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-row {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.account-row input {
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel-soft);
+  color: var(--ink);
+  font-size: 14px;
+  outline: none;
+}
+
+.account-row input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.account-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.account-note {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.account-logout {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(217, 45, 32, 0.35);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--red);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.account-logout:hover {
+  background: rgba(217, 45, 32, 0.08);
+}
+
+.account-logout:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
 @media (max-width: 720px) {
   .alert-bar { flex-wrap: wrap; }
   .alert-bar-body { order: 3; width: 100%; }
 }
 
+/* ===== iOS glass theme (v2) ==============================================
+   A translucent layer on top of the original tokens: frosted panels over a
+   soft aurora background, iOS-like segmented controls and tab pills. Every
+   rule here is additive, so the layout rules above still decide geometry. */
+
+:root {
+  --text: var(--ink);
+  --accent: var(--blue);
+  --accent-border: var(--line);
+  --panel-alt: var(--panel);
+  --line: rgba(15, 23, 42, 0.1);
+  --row-line: rgba(15, 23, 42, 0.07);
+  --row-hover: rgba(37, 99, 235, 0.06);
+  --row-selected: rgba(37, 99, 235, 0.1);
+  --segment-active-bg: rgba(255, 255, 255, 0.95);
+  --pill-bg: rgba(15, 23, 42, 0.06);
+  --shadow: 0 18px 40px -26px rgba(23, 37, 84, 0.5), 0 1px 2px rgba(23, 37, 84, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.52);
+  --glass-bg-strong: rgba(255, 255, 255, 0.72);
+  --glass-stroke: rgba(255, 255, 255, 0.72);
+  --glass-stroke-soft: rgba(15, 23, 42, 0.08);
+  --glass-shadow: 0 22px 48px -28px rgba(23, 37, 84, 0.55), 0 1px 2px rgba(23, 37, 84, 0.05);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --blur: blur(22px) saturate(170%);
+  --grad-brand: linear-gradient(135deg, #2563eb, #7c3aed);
+  --chart-bg: rgba(255, 255, 255, 0.55);
+}
+
+:root[data-theme="dark"] {
+  --line: rgba(255, 255, 255, 0.1);
+  --row-line: rgba(255, 255, 255, 0.07);
+  --row-hover: rgba(122, 162, 255, 0.09);
+  --row-selected: rgba(122, 162, 255, 0.14);
+  --segment-active-bg: rgba(255, 255, 255, 0.12);
+  --pill-bg: rgba(255, 255, 255, 0.1);
+  --pill-ink: #dbe4f3;
+  --shadow: 0 22px 48px -26px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --glass-bg: rgba(21, 30, 45, 0.62);
+  --glass-bg-strong: rgba(17, 25, 39, 0.8);
+  --glass-stroke: rgba(255, 255, 255, 0.1);
+  --glass-stroke-soft: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 26px 60px -30px rgba(0, 0, 0, 0.8), 0 1px 2px rgba(0, 0, 0, 0.35);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --chart-bg: rgba(16, 24, 37, 0.55);
+}
+
+html,
+body {
+  background:
+    radial-gradient(1100px 620px at 8% -8%, #dbe7ff 0%, transparent 62%),
+    radial-gradient(900px 560px at 98% 2%, #efe4ff 0%, transparent 58%),
+    radial-gradient(1000px 620px at 82% 102%, #d9f5ef 0%, transparent 60%),
+    radial-gradient(760px 520px at 6% 96%, #ffe9d6 0%, transparent 58%),
+    linear-gradient(168deg, #f2f5fd 0%, #f7f4ff 46%, #eef7f5 100%);
+  background-attachment: fixed;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:root[data-theme="dark"] html,
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(1000px 600px at 6% -8%, rgba(37, 99, 235, 0.34) 0%, transparent 60%),
+    radial-gradient(900px 560px at 100% 0%, rgba(124, 58, 237, 0.28) 0%, transparent 58%),
+    radial-gradient(1000px 640px at 86% 104%, rgba(15, 159, 134, 0.24) 0%, transparent 60%),
+    linear-gradient(168deg, #070c16 0%, #0a1222 46%, #071019 100%);
+}
+
+/* Film grain keeps large translucent areas from looking flat. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- chrome ------------------------------------------------------------ */
+
+.topbar {
+  top: 12px;
+  height: 66px;
+  margin: 12px 16px 0;
+  padding: 0 18px;
+  border: 1px solid var(--glass-stroke);
+  border-radius: 20px;
+  background: var(--glass-bg-strong);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+.brand {
+  font-size: 22px;
+  letter-spacing: -0.025em;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brand::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12), 0 0 14px rgba(37, 99, 235, 0.55);
+}
+
+.subline {
+  margin-top: 3px;
+  font-size: 12.5px;
+  letter-spacing: 0.01em;
+}
+
+.dashboard {
+  padding-top: 16px;
+}
+
+/* --- glass surfaces ---------------------------------------------------- */
+
+.panel,
+.metric,
+.index-strip-cell,
+.table-shell,
+.metric-cell,
+.forecast-score,
+.search-box,
+.segment,
+.tv-chart,
+.briefing-card,
+.sector-news-panel,
+.backtest-panel {
+  border: 1px solid var(--glass-stroke);
+  border-radius: 18px;
+  background: var(--glass-bg);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+
+.metric,
+.index-strip-cell {
+  border-radius: 16px;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 180ms ease;
+}
+
+.metric:hover,
+.index-strip-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 26px 50px -28px rgba(23, 37, 84, 0.6), var(--glass-inset);
+}
+
+.metric {
+  min-height: 96px;
+  padding: 16px 18px;
+}
+
+.metric-label {
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+}
+
+.metric-value {
+  margin-top: 12px;
+  font-size: 27px;
+  letter-spacing: -0.03em;
+}
+
+.metric-foot {
+  margin-top: 9px;
+  font-size: 11.5px;
+}
+
+.index-strip-cell {
+  padding: 11px 14px;
+}
+
+.index-strip-value {
+  font-size: 18.5px;
+  letter-spacing: -0.02em;
+}
+
+.index-strip-name,
+.index-strip-change {
+  font-size: 12px;
+}
+
+.panel-title {
+  height: 50px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--glass-stroke-soft);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.panel-title .panel-hint {
+  font-weight: 500;
+}
+
+/* --- tab rail: iOS pill stack ------------------------------------------ */
+
+.tab-rail {
+  padding: 6px;
+  border: 1px solid var(--glass-stroke);
+  border-radius: 20px;
+  background: var(--glass-bg);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  gap: 4px;
+}
+
+.tab-button {
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+  padding: 11px 4px 9px;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.tab-button .tab-icon {
+  font-size: 18px;
+}
+
+.tab-button .tab-label {
+  font-size: 11.5px;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+.tab-button:hover {
+  color: var(--ink);
+  background: rgba(15, 23, 42, 0.05);
+}
+
+:root[data-theme="dark"] .tab-button:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.tab-button.active {
+  color: #fff;
+  background: var(--grad-brand);
+  box-shadow: 0 14px 26px -14px rgba(37, 99, 235, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  font-weight: 700;
+}
+
+.tab-button.active .tab-label {
+  font-weight: 700;
+}
+
+/* --- controls ---------------------------------------------------------- */
+
+.icon-button,
+.ghost-link,
+.ghost-button,
+.row-button,
+.pager button,
+.account-logout {
+  border: 1px solid var(--glass-stroke-soft);
+  border-radius: 12px;
+  background: var(--glass-bg-strong);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(23, 37, 84, 0.05);
+  transition: transform 140ms ease, border-color 140ms ease, color 140ms ease, background 140ms ease;
+}
+
+.icon-button:hover,
+.ghost-link:hover,
+.ghost-button:hover,
+.pager button:hover,
+.row-button:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  color: var(--blue);
+  transform: translateY(-1px);
+}
+
+.icon-button:active,
+.ghost-button:active,
+.pager button:active {
+  transform: scale(0.97);
+}
+
+.ghost-button {
+  padding: 7px 13px;
+  font-weight: 600;
+}
+
+.search-box {
+  border-radius: 14px;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.search-box:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14), var(--glass-inset);
+  background: var(--glass-bg-strong);
+}
+
+.search-box input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.segment {
+  border-radius: 14px;
+  padding: 4px;
+  gap: 2px;
+}
+
+.segment button {
+  border-radius: 10px;
+  height: 36px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: background 140ms ease, color 140ms ease, box-shadow 140ms ease;
+}
+
+.segment button.active {
+  background: var(--segment-active-bg);
+  color: var(--ink);
+  box-shadow: 0 6px 14px -8px rgba(23, 37, 84, 0.45), inset 0 0 0 1px rgba(15, 23, 42, 0.04);
+  font-weight: 700;
+}
+
+:root[data-theme="dark"] .segment button.active {
+  color: #fff;
+  inset: 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+select {
+  border-radius: 14px;
+  border-color: var(--glass-stroke);
+  background-color: var(--glass-bg-strong);
+  font-weight: 600;
+}
+
+select:focus-visible,
+.icon-button:focus-visible,
+.ghost-button:focus-visible,
+.ghost-link:focus-visible,
+.tab-button:focus-visible,
+.pager button:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.55);
+  outline-offset: 2px;
+}
+
+/* --- tables ------------------------------------------------------------ */
+
+.table-shell {
+  border-radius: 18px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th {
+  height: 46px;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-stroke-soft);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+:root[data-theme="dark"] th {
+  background: rgba(17, 25, 39, 0.72);
+}
+
+td {
+  font-size: 13.5px;
+}
+
+tbody tr {
+  transition: background 120ms ease;
+}
+
+.pill {
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+/* --- misc surfaces ----------------------------------------------------- */
+
+.search-suggestions {
+  border-radius: 16px;
+  border-color: var(--glass-stroke);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  backdrop-filter: blur(26px) saturate(180%);
+  box-shadow: 0 28px 60px -26px rgba(15, 23, 42, 0.5);
+}
+
+.alert-bar {
+  margin: 0 16px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(183, 121, 31, 0.28);
+  background: rgba(255, 244, 229, 0.72);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  box-shadow: 0 16px 36px -26px rgba(183, 121, 31, 0.6);
+}
+
+:root[data-theme="dark"] .alert-bar {
+  background: rgba(59, 47, 24, 0.6);
+  border-color: rgba(247, 195, 95, 0.24);
+}
+
+.footer {
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+/* --- account sheet ----------------------------------------------------- */
+
+.account-backdrop {
+  background: rgba(8, 12, 20, 0.34);
+  -webkit-backdrop-filter: blur(9px) saturate(115%);
+  backdrop-filter: blur(9px) saturate(115%);
+}
+
+.account-panel {
+  border: 1px solid var(--glass-stroke);
+  border-radius: 24px;
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter: blur(30px) saturate(180%);
+  box-shadow: 0 40px 90px -30px rgba(8, 12, 20, 0.65), var(--glass-inset);
+}
+
+.account-row input {
+  border-radius: 12px;
+  border-color: var(--glass-stroke-soft);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+:root[data-theme="dark"] .account-row input {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.account-avatar {
+  border-radius: 15px;
+  box-shadow: 0 10px 22px -10px rgba(37, 99, 235, 0.8);
+}
+
+/* --- scrollbars -------------------------------------------------------- */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, 0.4) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+  background-color: rgba(100, 116, 139, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.6);
+}
+
+/* Windows/browsers without backdrop-filter still get readable surfaces. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .topbar,
+  .panel,
+  .metric,
+  .index-strip-cell,
+  .tab-rail,
+  .table-shell,
+  .search-box,
+  .segment {
+    background: var(--panel);
+  }
+}
+
+/* ===== Liquid Glass (v3) =================================================
+   Apple-style depth: heavier blur, a bright specular rim, a diagonal sheen
+   inside each pane, and slow ambient light drifting behind the glass. */
+
+:root {
+  --lg-blur: blur(34px) saturate(200%);
+  --lg-rim-top: rgba(255, 255, 255, 0.95);
+  --lg-rim-bottom: rgba(255, 255, 255, 0.3);
+  --lg-edge: rgba(255, 255, 255, 0.55);
+  --lg-sheen: linear-gradient(
+    152deg,
+    rgba(255, 255, 255, 0.44) 0%,
+    rgba(255, 255, 255, 0.1) 32%,
+    rgba(255, 255, 255, 0.03) 58%,
+    rgba(255, 255, 255, 0.22) 100%
+  );
+  --lg-shadow: 0 30px 62px -34px rgba(23, 37, 84, 0.55), 0 2px 6px -2px rgba(23, 37, 84, 0.12);
+}
+
+:root[data-theme="dark"] {
+  --lg-blur: blur(38px) saturate(185%);
+  --lg-rim-top: rgba(255, 255, 255, 0.24);
+  --lg-rim-bottom: rgba(255, 255, 255, 0.06);
+  --lg-edge: rgba(255, 255, 255, 0.14);
+  --lg-sheen: linear-gradient(
+    152deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 34%,
+    rgba(255, 255, 255, 0.02) 60%,
+    rgba(255, 255, 255, 0.09) 100%
+  );
+  --lg-shadow: 0 32px 74px -32px rgba(0, 0, 0, 0.85), 0 2px 8px -2px rgba(0, 0, 0, 0.45);
+}
+
+/* Ambient light behind the glass. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -18%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.62;
+  background:
+    radial-gradient(closest-side at 26% 32%, rgba(96, 165, 250, 0.6), transparent 72%),
+    radial-gradient(closest-side at 76% 24%, rgba(167, 139, 250, 0.55), transparent 72%),
+    radial-gradient(closest-side at 64% 80%, rgba(45, 212, 191, 0.4), transparent 72%),
+    radial-gradient(closest-side at 16% 84%, rgba(251, 191, 36, 0.3), transparent 70%);
+  filter: blur(72px) saturate(125%);
+  animation: lg-drift 32s ease-in-out infinite alternate;
+}
+
+:root[data-theme="dark"] body::before {
+  opacity: 0.4;
+}
+
+@keyframes lg-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
+/* Glass panes. */
+.topbar,
+.panel,
+.metric,
+.metric-cell,
+.index-strip-cell,
+.tab-rail,
+.table-shell,
+.search-box,
+.segment,
+.tv-chart,
+.briefing-card,
+.sector-news-panel,
+.backtest-panel,
+.forecast-score,
+.account-panel {
+  border-color: var(--lg-edge);
+  background-image: var(--lg-sheen);
+  box-shadow: var(--lg-shadow), inset 0 1px 0 var(--lg-rim-top), inset 0 -1px 0 var(--lg-rim-bottom);
+  -webkit-backdrop-filter: var(--lg-blur);
+  backdrop-filter: var(--lg-blur);
+}
+
+.panel,
+.tab-rail,
+.table-shell,
+.account-panel,
+.briefing-card,
+.sector-news-panel,
+.backtest-panel,
+.tv-chart {
+  border-radius: 22px;
+}
+
+.metric,
+.metric-cell,
+.index-strip-cell,
+.forecast-score {
+  border-radius: 20px;
+}
+
+/* Specular sweep across the floating topbar. */
+.topbar {
+  overflow: hidden;
+}
+
+.topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(120% 150% at 16% -40%, rgba(255, 255, 255, 0.9), transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent 26%);
+  mix-blend-mode: screen;
+  opacity: 0.75;
+}
+
+:root[data-theme="dark"] .topbar::before {
+  opacity: 0.35;
+}
+
+.topbar > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pill controls get the same wet look as the floating chrome. */
+.icon-button,
+.ghost-button,
+.ghost-link,
+.pager button,
+.row-button,
+.account-logout {
+  border-radius: 999px;
+  border-color: var(--lg-edge);
+  background-image: var(--lg-sheen);
+  box-shadow: inset 0 1px 0 var(--lg-rim-top), 0 8px 18px -12px rgba(23, 37, 84, 0.45);
+}
+
+.icon-button:active,
+.ghost-button:active,
+.ghost-link:active,
+.pager button:active {
+  transform: scale(0.95);
+}
+
+/* Segmented control + active pill. */
+.segment button.active {
+  background-image: linear-gradient(170deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.78));
+  box-shadow: 0 8px 18px -12px rgba(23, 37, 84, 0.55), inset 0 1px 0 #fff;
+}
+
+:root[data-theme="dark"] .segment button.active {
+  background-image: linear-gradient(170deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+  box-shadow: 0 8px 18px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.tab-button.active {
+  box-shadow: 0 16px 30px -16px rgba(37, 99, 235, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+}
+
+th {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.42));
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+:root[data-theme="dark"] th {
+  background-image: linear-gradient(180deg, rgba(22, 31, 47, 0.82), rgba(17, 25, 39, 0.7));
+}
+
+
+
+/* ===== stale snapshot badge ===== */
+.stale-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #b45309;
+  background: rgba(251, 191, 36, 0.22);
+  border: 1px solid rgba(217, 119, 6, 0.35);
+}
+
+:root[data-theme="dark"] .stale-badge {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.16);
+  border-color: rgba(251, 191, 36, 0.32);
+}

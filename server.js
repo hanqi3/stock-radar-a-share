@@ -18,6 +18,7 @@ import { buildDigest, digestChanged, mergeDigest } from "./lib/alert-digest.js";
 import { buildOutlook } from "./lib/outlook.js";
 import { attachActuals, summarizeHistory, toRecord, upsertRecord } from "./lib/outlook-history.js";
 import { emptyWatchlist, normalizeCodes, parseWatchlist } from "./lib/watchlist.js";
+import { createAuthStore } from "./lib/auth.js";
 import { buildTechnicalView } from "./lib/technicals.js";
 import { buildAlerts as buildMacroAlerts, formatAlerts } from "./lib/alerts.js";
 import { isTradingDay, nextTradingDayDetail } from "./lib/trading-calendar.js";
@@ -26,7 +27,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 5173);
 const HOST = process.env.HOST || "localhost";
 const PUBLIC_DIR = path.join(__dirname, "public");
-const DATA_DIR = path.join(__dirname, "data");
+const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, "data");
 const FULL_DATA_FILE = path.join(DATA_DIR, "all-a-shares.json");
 const SAMPLE_DATA_FILE = path.join(DATA_DIR, "sample-a-shares.json");
 const META_FILE = path.join(DATA_DIR, "meta.json");
@@ -40,6 +41,8 @@ const MACRO_FILE = path.join(DATA_DIR, "macro.json");
 const OUTLOOK_HISTORY_FILE = path.join(DATA_DIR, "outlook-history.json");
 const ALERT_DIGEST_FILE = path.join(DATA_DIR, "alert-digest.json");
 const WATCHLIST_FILE = path.join(DATA_DIR, "watchlist.json");
+const WATCHLISTS_DIR = path.join(DATA_DIR, "watchlists");
+const authStore = createAuthStore({ dataDir: DATA_DIR });
 const PINYIN_INDEX_FILE = path.join(__dirname, "lib", "pinyin-index.json");
 const HISTORY_CACHE_DIR = process.env.HISTORY_CACHE_DIR || path.join(__dirname, ".cache", "history");
 const historyCache = createHistoryCache(HISTORY_CACHE_DIR, { days: 250 });
@@ -49,6 +52,7 @@ const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
   ".js": "application/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".webmanifest": "application/manifest+json; charset=utf-8",
   ".svg": "image/svg+xml",
   ".png": "image/png",
   ".ico": "image/x-icon"
@@ -76,8 +80,61 @@ async function loadPinyinLookup() {
   return pinyinLookup;
 }
 
-function isFresh() {
-  return Date.now() - cache.loadedAt < 15_000 && cache.stocks.length > 0;
+// The cache is refreshed when the data files change, not on a timer: a sync
+// run rewrites them, and until then re-parsing 10 MB of JSON on every 15 s
+// tick only added latency spikes for whoever happened to arrive at the wrong
+// moment. `loadData` is single-flight so a burst of parallel requests on a cold
+// process pays for one parse instead of one each.
+const DATA_SIGNATURE_FILES = [
+  FULL_DATA_FILE,
+  META_FILE,
+  INDICATORS_FILE,
+  PROFILES_FILE,
+  EVENTS_FILE,
+  SECTORS_FILE
+];
+
+async function dataSignature() {
+  const stamps = [];
+  for (const file of DATA_SIGNATURE_FILES) {
+    try {
+      stamps.push((await fs.stat(file)).mtimeMs);
+    } catch {
+      stamps.push(0);
+    }
+  }
+  return stamps.join(":");
+}
+
+let refreshing = null;
+let reloading = false;
+
+/**
+ * Serve the cached snapshot. When the files on disk changed (someone ran a
+ * sync) the new snapshot is parsed in the background and swapped in for later
+ * requests, so an update never stalls the page that happens to notice it.
+ * Only a cold process waits for the parse, and that path is warmed at boot.
+ */
+function loadData() {
+  if (refreshing) return refreshing;
+  refreshing = (async () => {
+    const signature = await dataSignature();
+    if (cache.stocks.length === 0) return refreshData(signature);
+    if (cache.signature === signature) return cache;
+    if (!reloading) {
+      reloading = true;
+      refreshData(signature)
+        .then(() => console.log(`Reloaded data: ${cache.stocks.length} stocks`))
+        .catch((error) => console.error("Data reload failed", error))
+        .finally(() => {
+          reloading = false;
+        });
+    }
+    return cache;
+  })().finally(() => {
+    refreshing = null;
+  });
+  return refreshing;
 }
 
 async function readJson(file) {
@@ -256,24 +313,33 @@ async function recordOutlook(outlook) {
 /**
  * The persisted 自选 list. The browser is authoritative while it is open; this
  * file is the copy the scheduled job can read.
+ *
+ * `userId` selects a signed-in user's private list under data/watchlists/.
+ * Without it the legacy shared list is used, so the scheduled notify job and
+ * the pre-account frontends keep working.
  */
-async function loadWatchlist() {
+function watchlistFileFor(userId) {
+  return userId ? path.join(WATCHLISTS_DIR, `${userId}.json`) : WATCHLIST_FILE;
+}
+
+async function loadWatchlist(userId = null) {
   try {
-    return parseWatchlist(JSON.parse(await fs.readFile(WATCHLIST_FILE, "utf8")));
+    return parseWatchlist(JSON.parse(await fs.readFile(watchlistFileFor(userId), "utf8")));
   } catch {
     return emptyWatchlist();
   }
 }
 
-async function saveWatchlist(codes) {
-  const current = await loadWatchlist();
+async function saveWatchlist(codes, userId = null) {
+  const file = watchlistFileFor(userId);
+  const current = await loadWatchlist(userId);
   // Idempotent: the browser republishes its list on every edit and on boot, so
   // an unchanged list must not bump `updatedAt` and dirty the committed file.
   const same = current.codes.length === codes.length && current.codes.every((code, index) => code === codes[index]);
   if (same) return current;
   const payload = { updatedAt: new Date().toISOString(), codes };
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  await fs.writeFile(WATCHLIST_FILE, JSON.stringify(payload, null, 1), "utf8");
+  await fs.mkdir(path.dirname(file), { recursive: true });
+  await fs.writeFile(file, JSON.stringify(payload, null, 1), "utf8");
   return payload;
 }
 
@@ -412,8 +478,9 @@ function buildThemeIndex(stocks) {
   return index;
 }
 
-async function loadData() {
-  if (isFresh()) return cache;
+async function refreshData(signature = null) {
+  const stamp = signature ?? (await dataSignature());
+  if (cache.stocks.length > 0 && cache.signature === stamp) return cache;
 
   let sourceFile = FULL_DATA_FILE;
   try {
@@ -466,8 +533,23 @@ async function loadData() {
     searchIndex: buildSearchIndex(stocks, lookup),
     events,
     themeIndex: buildThemeIndex(stocks),
+    signature: stamp,
     loadedAt: Date.now()
   };
+
+  // Prebuild the news/price impact table now. The first /api/stocks call used
+  // to pay ~1.7 s for it inside the request; doing it here moves that cost into
+  // the background preload at boot or into the sync-triggered refresh.
+  try {
+    cache.eventView = {
+      at: Date.now(),
+      loadedAt: cache.loadedAt,
+      view: buildEventImpacts(events, stocks, { now: new Date(), themeIndex: cache.themeIndex })
+    };
+  } catch {
+    cache.eventView = null;
+  }
+
   return cache;
 }
 
@@ -507,6 +589,13 @@ function writeResponse(req, res, statusCode, contentType, body, cacheControl = "
 
   const acceptsGzip = req && /\bgzip\b/i.test(String(req.headers["accept-encoding"] || ""));
   const headers = { "content-type": contentType, "cache-control": cacheControl, etag };
+  // The iOS shell bundles the page locally (capacitor://localhost), so every
+  // /api call is cross-origin. Tokens travel in the Authorization header, not
+  // cookies, which makes `*` safe here.
+  if (req?.headers?.origin) {
+    headers["access-control-allow-origin"] = "*";
+    headers.vary = headers.vary ? `${headers.vary}, origin` : "origin";
+  }
   let payload = buffer;
   if (acceptsGzip && buffer.length >= GZIP_MIN_BYTES && COMPRESSIBLE_TYPE.test(contentType)) {
     payload = zlib.gzipSync(buffer, { level: 6 });
@@ -1767,11 +1856,128 @@ function buildGlobalBriefing(indices, events, quotesUpdatedAt = null, now = new 
   };
 }
 
+function bearerToken(req) {
+  const header = String(req?.headers?.authorization || "");
+  const match = header.match(/^Bearer\s+(.+)$/i);
+  return match ? match[1].trim() : "";
+}
+
+function clientIp(req) {
+  const forwarded = String(req?.headers?.["x-forwarded-for"] || "").split(",")[0].trim();
+  return forwarded || req?.socket?.remoteAddress || "";
+}
+
+/** Account endpoints. They never touch the market data, so they answer fast. */
+async function handleAuthApi(req, res, pathname) {
+  try {
+    if (pathname === "/api/auth/register") {
+      if (req.method !== "POST") return json(res, 405, { error: "Method not allowed" });
+      const body = await readBody(req);
+      const result = await authStore.register({ ...(body || {}), ip: clientIp(req) });
+      return json(res, 200, result);
+    }
+
+    if (pathname === "/api/auth/login") {
+      if (req.method !== "POST") return json(res, 405, { error: "Method not allowed" });
+      const body = await readBody(req);
+      const result = await authStore.login({ ...(body || {}), ip: clientIp(req) });
+      return json(res, 200, result);
+    }
+
+    if (pathname === "/api/auth/me") {
+      const user = await authStore.authenticate(req);
+      if (!user) return json(res, 401, { error: "登录已失效，请重新登录", code: "unauthorized" });
+      return json(res, 200, { user: authStore.publicUser(user) });
+    }
+
+    if (pathname === "/api/auth/logout") {
+      await authStore.logout(bearerToken(req));
+      return json(res, 200, { ok: true });
+    }
+
+    return notFound(res);
+  } catch (error) {
+    if (error?.status) return json(res, error.status, { error: error.message, code: error.code });
+    if (error?.message === "Request body is not valid JSON" || error?.message === "Request body too large") {
+      return json(res, 400, { error: error.message });
+    }
+    console.error(error);
+    return json(res, 500, { error: "Internal server error" });
+  }
+}
+
 async function handleApi(req, res, pathname, params) {
+  if (pathname.startsWith("/api/auth/")) {
+    return handleAuthApi(req, res, pathname);
+  }
+
   const { stocks, meta, searchIndex, events } = await loadData();
 
   if (pathname === "/api/health") {
-    return json(res, 200, { ok: true, stocks: stocks.length, mode: meta.mode });
+    const updatedAt = meta.updatedAt || null;
+    const ageDays = updatedAt ? (Date.now() - Date.parse(updatedAt)) / 86400000 : null;
+    return json(res, 200, {
+      ok: true,
+      stocks: stocks.length,
+      mode: meta.mode,
+      dataUpdatedAt: updatedAt,
+      dataAgeDays: ageDays === null ? null : Math.round(ageDays * 10) / 10,
+      // A snapshot older than four days almost always means the sync job stopped.
+      stale: ageDays === null ? true : ageDays > 4
+    });
+  }
+
+  // Build-time export for the read-only GitHub Pages build. Off by default so a
+  // public deployment never exposes the whole universe in one response.
+  if (pathname === "/api/static/export" && process.env.STATIC_EXPORT === "1") {
+    const top = Math.min(parsePositiveInt(params.get("top"), 80, 500), 500);
+    const extras = String(params.get("extra") || "")
+      .split(",")
+      .map((code) => code.trim())
+      .filter((code) => /^[0-9]{6}$/.test(code));
+    const view = eventView(stocks, events);
+    const rows = stocks
+      .map((stock) => {
+        const { raw, factors, ...rest } = stock;
+        const matched = eventsForCode(stock.code, view, 0);
+        return {
+          ...rest,
+          signalType: getSignalType(stock),
+          score: round2(getStockScore(stock)),
+          eventBias: matched.eventBias,
+          eventSentiment: matched.sentiment,
+          eventScope: matched.scope,
+          eventPositive: matched.positive,
+          eventNegative: matched.negative
+        };
+      })
+      .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+      .map((row, index) => ({ ...row, rank: index + 1 }));
+
+    const curated = [...new Set([...rows.slice(0, top).map((row) => row.code), ...extras])];
+    const details = {};
+    for (const code of curated) {
+      const stock = stocks.find((item) => item.code === code);
+      if (!stock) continue;
+      const detail = getStockDetail(stock, stocks, meta);
+      details[code] = {
+        ...detail,
+        peers: (detail.peers || []).map((peer) => ({
+          code: peer.code,
+          name: peer.name,
+          changePct: peer.changePct
+        }))
+      };
+    }
+
+    return json(res, 200, {
+      generatedAt: new Date().toISOString(),
+      meta,
+      total: rows.length,
+      curated,
+      rows,
+      details
+    });
   }
 
   if (pathname === "/api/search") {
@@ -1985,6 +2191,7 @@ async function handleApi(req, res, pathname, params) {
   }
 
   if (pathname === "/api/watchlist") {
+    const viewer = await authStore.authenticate(req);
     if (req.method === "PUT" || req.method === "POST") {
       let body;
       try {
@@ -1998,7 +2205,7 @@ async function handleApi(req, res, pathname, params) {
         return json(res, 400, { error: "codes must be six-digit A-share codes", rejected });
       }
       try {
-        const saved = await saveWatchlist(codes);
+        const saved = await saveWatchlist(codes, viewer?.id);
         return json(res, 200, { ...saved, rejected, truncated, meta });
       } catch {
         return json(res, 500, { error: "Could not persist the watchlist" });
@@ -2007,7 +2214,7 @@ async function handleApi(req, res, pathname, params) {
     const query = String(params.get("codes") || "").trim();
     // `?codes=` is the live check of an ad-hoc list; without it, hand back the
     // persisted 自选 the scheduled job reads.
-    if (!query) return json(res, 200, { ...(await loadWatchlist()), meta });
+    if (!query) return json(res, 200, { ...(await loadWatchlist(viewer?.id)), meta });
     const codes = query
       .split(",")
       .map((code) => code.trim())
@@ -2033,6 +2240,7 @@ async function handleApi(req, res, pathname, params) {
   // 自选股的利好利空面板：只读当前自选（或 ?codes= 临时列表），把每条消息的
   // 方向、逻辑与原文链接一起给出去，前端不需要再自己归类。
   if (pathname === "/api/watchlist/news") {
+    const viewer = await authStore.authenticate(req);
     const query = String(params.get("codes") || "").trim();
     const codes = query
       ? query
@@ -2040,7 +2248,7 @@ async function handleApi(req, res, pathname, params) {
           .map((code) => code.trim())
           .filter((code) => /^\d{6}$/.test(code))
           .slice(0, 60)
-      : (await loadWatchlist()).codes;
+      : (await loadWatchlist(viewer?.id)).codes;
     const byCode = new Map(stocks.map((stock) => [String(stock.code), stock]));
     const view = eventView(stocks, events);
     const items = codes.map((code) => {
@@ -2251,7 +2459,12 @@ async function serveStatic(res, pathname) {
   try {
     const content = await fs.readFile(filePath);
     const ext = path.extname(filePath);
-    writeResponse(res.req, res, 200, MIME_TYPES[ext] || "application/octet-stream", content);
+    // Hash-named assets would deserve max-age=31536000, but these filenames are
+    // stable, so a short shared cache plus the ETag is the safe middle ground.
+    const cacheControl = /\.(?:css|js|png|svg|ico|webmanifest)$/i.test(filePath)
+      ? "public, max-age=60"
+      : "no-cache";
+    writeResponse(res.req, res, 200, MIME_TYPES[ext] || "application/octet-stream", content, cacheControl);
   } catch {
     notFound(res);
   }
@@ -2260,6 +2473,16 @@ async function serveStatic(res, pathname) {
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
+    if (req.method === "OPTIONS") {
+      res.writeHead(204, {
+        "access-control-allow-origin": "*",
+        "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "access-control-allow-headers": "authorization, content-type",
+        "access-control-max-age": "600"
+      });
+      res.end();
+      return;
+    }
     if (url.pathname.startsWith("/api/")) {
       await handleApi(req, res, url.pathname, url.searchParams);
       return;
@@ -2274,4 +2497,10 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, HOST, () => {
   const displayHost = HOST === "0.0.0.0" || HOST === "::" ? "localhost" : HOST;
   console.log(`StockRadar is running at http://${displayHost}:${PORT}`);
+  // Warm the cache before the first visitor arrives: parsing the snapshot and
+  // ranking 5.5k stocks takes a couple of seconds, which used to land on
+  // whoever opened the page first.
+  loadData()
+    .then(() => console.log(`Preloaded ${cache.stocks.length} stocks`))
+    .catch((error) => console.error("Preload failed", error));
 });

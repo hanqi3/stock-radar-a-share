@@ -20,8 +20,9 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const OUT_FILE = path.join(ROOT, "data", "profiles.json");
-const UNIVERSE_FILE = path.join(ROOT, "data", "all-a-shares.json");
+const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(ROOT, "data");
+const OUT_FILE = path.join(DATA_DIR, "profiles.json");
+const UNIVERSE_FILE = path.join(DATA_DIR, "all-a-shares.json");
 
 const HEADERS = {
   "User-Agent":

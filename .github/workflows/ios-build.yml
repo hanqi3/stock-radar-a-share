@@ -1,0 +1,97 @@
+name: iOS build (unsigned)
+
+# Builds the Capacitor shell on a macOS runner and publishes an unsigned .ipa
+# plus the generated Xcode project. Signing happens on the user's side
+# (Sideloadly / AltStore with a free Apple ID), so no certificates live here.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "public/**"
+      - "capacitor.config.json"
+      - "package.json"
+      - "resources/**"
+      - "tools/make-app-assets.py"
+      - ".github/workflows/ios-build.yml"
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Create the iOS project (first run only)
+        run: |
+          if [ ! -d ios ]; then
+            npx cap add ios
+          fi
+
+      - name: Apply icon and splash
+        run: npx capacitor-assets generate --ios
+
+      - name: Copy the web bundle into the shell
+        run: npx cap sync ios
+
+      - name: Allow a plain-HTTP API address
+        run: |
+          PLIST=ios/App/App/Info.plist
+          # The login screen can be pointed at an http:// address (a LAN server,
+          # for example). ATS blocks that by default; this keeps the option open
+          # until the backend is served over HTTPS.
+          /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity dict" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSAllowsArbitraryLoads bool true" "$PLIST" 2>/dev/null \
+            || /usr/libexec/PlistBuddy -c "Set :NSAppTransportSecurity:NSAllowsArbitraryLoads true" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :NSLocalNetworkUsageDescription string \"连接局域网内的 StockRadar 服务端\"" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Print :NSAppTransportSecurity" "$PLIST"
+
+      - name: Build the unsigned app
+        run: |
+          cd ios/App
+          xcodebuild \
+            -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+
+      - name: Package the .ipa
+        run: |
+          APP=$(find ios/App/build/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n 1)
+          if [ -z "$APP" ]; then
+            echo "No .app produced" >&2
+            exit 1
+          fi
+          rm -rf Payload
+          mkdir -p Payload
+          cp -R "$APP" Payload/
+          zip -qry StockRadar-unsigned.ipa Payload
+          ls -lh StockRadar-unsigned.ipa
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: StockRadar-unsigned-ipa
+          path: StockRadar-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios-project
+          path: ios
+          if-no-files-found: error
+          retention-days: 14

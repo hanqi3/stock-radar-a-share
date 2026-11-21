@@ -22,7 +22,21 @@
     "enrich": "node scripts/sync-sectors.js && node scripts/sync-history.js && node scripts/sync-profiles.js && node scripts/sync-news.js && node scripts/sync-macro.js && node scripts/sync-flow.js",
     "macro": "node scripts/sync-macro.js",
     "profiles": "node scripts/sync-profiles.js",
-    "notify": "node scripts/notify-alerts.js"
+    "notify": "node scripts/notify-alerts.js",
+    "static:data": "node scripts/build-static-data.mjs",
+    "static:build": "node scripts/assemble-static-site.mjs",
+    "ios:add": "cap add ios",
+    "ios:sync": "cap sync ios",
+    "ios:open": "cap open ios",
+    "ios:assets": "capacitor-assets generate --ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^7.0.0"
   },
   "keywords": [
     "a-share",

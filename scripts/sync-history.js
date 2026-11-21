@@ -19,7 +19,7 @@ import { inferExchange } from "../lib/boards.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const DATA_DIR = path.join(ROOT, "data");
+const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(ROOT, "data");
 const FULL_DATA_FILE = path.join(DATA_DIR, "all-a-shares.json");
 const DEFAULT_OUT = path.join(DATA_DIR, "indicators.json");
 const DEFAULT_CACHE_DIR = path.join(ROOT, ".cache", "history");

@@ -1,0 +1,5 @@
+# Shell scripts must keep LF so they run inside Linux containers and servers.
+*.sh text eol=lf
+*.cmd text eol=crlf
+Dockerfile text eol=lf
+deploy/* text eol=lf

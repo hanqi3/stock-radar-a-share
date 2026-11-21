@@ -1,4 +1,5 @@
 import { drawPriceChart } from "./chart.js";
+import { apiUrl, authHeaders, isGuest, request as api } from "./api.js";
 
 const state = {
   tab: localStorage.getItem("stockradar-tab") || "stocks",
@@ -210,13 +211,7 @@ function encode(params) {
   return query.toString();
 }
 
-async function api(path) {
-  const response = await fetch(path);
-  if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
-  }
-  return response.json();
-}
+// api(), the bearer token and the native shell's absolute base live in api.js.
 
 // --- Persisted 自选 ---------------------------------------------------------
 // localStorage is what this tab uses; data/watchlist.json is the copy the
@@ -225,10 +220,12 @@ async function api(path) {
 let watchlistPushTimer = null;
 
 async function pushWatchlist() {
+  // Guests keep their picks in localStorage: never write the shared server file.
+  if (isGuest()) return;
   try {
-    await fetch("/api/watchlist", {
+    await fetch(apiUrl("/api/watchlist"), {
       method: "PUT",
-      headers: { "content-type": "application/json" },
+      headers: authHeaders({ "content-type": "application/json" }),
       body: JSON.stringify({ codes: [...state.watchlist].sort() })
     });
   } catch {
@@ -237,10 +234,9 @@ async function pushWatchlist() {
 }
 
 async function syncWatchlist() {
+  if (isGuest()) return;
   try {
-    const response = await fetch("/api/watchlist");
-    if (!response.ok) return;
-    const payload = await response.json();
+    const payload = await api("/api/watchlist");
     const remote = Array.isArray(payload.codes) ? payload.codes : [];
     if (remote.length) {
       const same = remote.length === state.watchlist.size && remote.every((code) => state.watchlist.has(code));
@@ -310,6 +306,15 @@ function renderOverview(data) {
 
   const time = data.meta.updatedAt ? new Date(data.meta.updatedAt).toLocaleString("zh-CN") : "未知时间";
   els.dataStatus.textContent = `${data.meta.mode === "full" ? "全量股票池" : "样例数据"} · ${data.total} 只 · 更新 ${time}`;
+  // Surface a sync that silently stopped: the topbar date alone is easy to miss.
+  const ageDays = data.meta.updatedAt ? (Date.now() - Date.parse(data.meta.updatedAt)) / 86400000 : Infinity;
+  if (ageDays > 4) {
+    const badge = document.createElement("span");
+    badge.className = "stale-badge";
+    badge.title = "快照已超过 4 天没有更新，检查服务器上的同步任务";
+    badge.textContent = "数据待更新";
+    els.dataStatus.append(" · ", badge);
+  }
 
   els.boardList.innerHTML = data.hotBoards
     .map(
@@ -486,6 +491,16 @@ async function selectStock(code) {
   state.selectedCode = code;
   showTab("stocks");
   renderRows();
+  // Keep the address bar shareable: /?code=600519 opens the same stock.
+  try {
+    const url = new URL(location.href);
+    if (url.searchParams.get("code") !== code) {
+      url.searchParams.set("code", code);
+      history.replaceState(null, "", url);
+    }
+  } catch {
+    /* history is unavailable in some embedded webviews */
+  }
   // Chart and card load in parallel; the caller can await the analysis render
   // (the 利好/利空 expansion needs it) without serialising the two requests.
   const chart = loadChart(code);
@@ -1094,6 +1109,7 @@ function renderScenario(scenario) {
 }
 
 function renderDetail(stock) {
+  state.detailStock = stock;
   els.detailPanel.innerHTML = `
     <div class="detail-head">
       <div class="detail-title-row">
@@ -1134,7 +1150,7 @@ function renderDetail(stock) {
       <div class="kv-grid">
         <div class="kv">
           <div class="kv-label">事件信号</div>
-          <div class="kv-value">${stock.signalType}</div>
+          <div class="kv-value">${stock.signalType ?? "—"}</div>
         </div>
         <div class="kv">
           <div class="kv-label">异动分</div>
@@ -1157,7 +1173,7 @@ function renderDetail(stock) {
           <div class="kv-value">${stock.outlook?.strategy?.stance || "暂无"}</div>
         </div>
       </div>
-      <div class="narrative">${stock.narrative}</div>
+      <div class="narrative">${stock.narrative || ""}</div>
       ${renderStockOutlook(stock.outlook)}
     </div>
   `;
@@ -2428,8 +2444,9 @@ function bindEvents() {
 
   els.themeToggle.addEventListener("click", () => {
     applyTheme(state.theme === "dark" ? "light" : "dark");
+    // Canvas art is painted from CSS variables, so repaint instead of refetching.
     paintChart();
-    if (state.selectedCode) selectStock(state.selectedCode);
+    if (state.detailStock) drawSparkline(state.detailStock);
   });
 
   els.watchNewsButton?.addEventListener("click", () => toggleWatchNews());
@@ -2671,10 +2688,51 @@ function bindEvents() {
     }
   });
   paintSegment(els.newsScopeSegment, "newsScope", state.news.scope);
+
+  // --- keyboard shortcuts -------------------------------------------------
+  // "/" jumps to search, 1-5 switch the bottom tabs, matching the rail order.
+  const TAB_ORDER = ["flow", "stocks", "news", "watch", "outlook"];
+  els.tabRail?.querySelectorAll(".tab-button").forEach((button) => {
+    const index = TAB_ORDER.indexOf(button.dataset.tab);
+    if (index < 0) return;
+    const label = button.querySelector(".tab-label")?.textContent?.trim() || "";
+    button.title = `${label}（快捷键 ${index + 1}）`;
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    const active = document.activeElement;
+    const typing =
+      active &&
+      (active.tagName === "INPUT" ||
+        active.tagName === "TEXTAREA" ||
+        active.tagName === "SELECT" ||
+        active.isContentEditable);
+
+    if (!typing && event.key === "/") {
+      event.preventDefault();
+      els.searchInput?.focus();
+      els.searchInput?.select();
+      return;
+    }
+    if (typing) return;
+
+    const index = Number(event.key);
+    if (Number.isInteger(index) && index >= 1 && index <= 5) {
+      event.preventDefault();
+      showTab(TAB_ORDER[index - 1]);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
 }
 
 async function init() {
   els.dataStatus.textContent = "加载市场数据中";
+  // The read-only Pages build has no backtest endpoint; hide the card instead of
+  // letting its button turn into an error message.
+  if (window.STATIC_SITE && els.backtestRun) {
+    els.backtestRun.closest(".panel")?.setAttribute("hidden", "");
+  }
   applyTheme(state.theme);
   showTab(state.tab || "stocks");
   await Promise.all([
@@ -2690,7 +2748,19 @@ async function init() {
   syncWatchlist();
   if (state.tab === "flow") reloadFlow();
   if (state.tab === "news") reloadNews();
-  if (!state.selectedCode && state.rows[0]) {
+
+  // /?code=600519 (shared link, notification tap) opens that stock directly.
+  const deepCode = new URLSearchParams(location.search).get("code");
+  if (deepCode && /^\d{6}$/.test(deepCode)) {
+    try {
+      await selectStock(deepCode);
+      return;
+    } catch (error) {
+      console.warn("deep link failed, falling back", error);
+    }
+  }
+  // Respect a tab the user switched to while data was loading.
+  if (state.tab === "stocks" && !state.selectedCode && state.rows[0]) {
     await selectStock(state.rows[0].code);
   }
 }
