@@ -3,17 +3,15 @@ name: Update A-share data
 on:
   workflow_dispatch:
   schedule:
-    # GitHub's scheduler routinely starts a job 5-20 minutes late, so every slot
-    # is pulled forward: the run is meant to be finished by the time the reader
-    # opens the page, not to start then. Asia/Shanghai is UTC+8.
-    # 15:05 CST -> done ~15:25, in time for the post-close review.
-    - cron: "5 7 * * 1-5"
-    # 19:30 CST -> done ~19:50, the evening refresh.
-    - cron: "30 11 * * 1-5"
-    # 08:40 CST -> done ~09:00, after the overnight US session closed.
-    - cron: "40 0 * * 1-5"
-    # Sunday 19:00 CST -> the weekend catch-up, before Monday's open.
-    - cron: "0 11 * * 0"
+    # GitHub's scheduler can start a job 5-20 minutes late, so the three slots
+    # requested by the product owner are kept exact and the pipeline is built to
+    # finish inside the same hour. Times are UTC; Asia/Shanghai is UTC+8.
+    # 12:30 CST -> 04:30 UTC, the lunch-break refresh.
+    - cron: "30 4 * * *"
+    # 16:30 CST -> 08:30 UTC, after the A-share close.
+    - cron: "30 8 * * *"
+    # 22:00 CST -> 14:00 UTC, the evening wrap-up with the US session open.
+    - cron: "0 14 * * *"
 
 permissions:
   contents: write
