@@ -12,6 +12,41 @@
   const nativeFetch = window.fetch.bind(window);
   const cache = new Map();
 
+  // Mirrors lib/search.js so pinyin initials such as "zgyh" work offline too.
+  const SEARCH_SCORE = {
+    codeExact: 120,
+    codePrefix: 100,
+    namePrefix: 90,
+    pinyinPrefix: 80,
+    initialsPrefix: 70,
+    nameContains: 55,
+    pinyinContains: 45,
+    initialsContains: 35
+  };
+
+  function normalizeQuery(raw) {
+    return String(raw ?? "")
+      .trim()
+      .toLowerCase()
+      .replace(/[\s·．.\-_/]+/g, "");
+  }
+
+  function searchScore(row, query) {
+    const code = String(row.code || "");
+    const name = String(row.name || "").toLowerCase();
+    const pinyin = String(row.pinyin || "");
+    const initials = String(row.initials || "");
+    if (code === query) return SEARCH_SCORE.codeExact;
+    if (code.startsWith(query)) return SEARCH_SCORE.codePrefix;
+    if (name.startsWith(query)) return SEARCH_SCORE.namePrefix;
+    if (pinyin.startsWith(query)) return SEARCH_SCORE.pinyinPrefix;
+    if (initials.startsWith(query)) return SEARCH_SCORE.initialsPrefix;
+    if (name.includes(query)) return SEARCH_SCORE.nameContains;
+    if (pinyin.includes(query)) return SEARCH_SCORE.pinyinContains;
+    if (initials.includes(query)) return SEARCH_SCORE.initialsContains;
+    return 0;
+  }
+
   function load(name) {
     if (!cache.has(name)) {
       const request = nativeFetch(`${DATA}/${name}`).then((response) => {
@@ -132,21 +167,27 @@
     }
 
     if (pathname === "/api/search") {
-      const query = (params.get("q") || "").trim().toLowerCase();
+      const rawQuery = params.get("q") || "";
       const limit = Math.min(Number(params.get("limit")) || 10, 50);
+      const query = normalizeQuery(rawQuery);
       if (!query) return replyOk({ query: "", items: [], count: 0, limit });
       const { rows } = await load("stocks.json");
       const items = rows
-        .filter((row) => `${row.code}${row.name}`.toLowerCase().includes(query) || row.name.toLowerCase().includes(query))
+        .map((row) => ({ row, score: searchScore(row, query) }))
+        .filter((hit) => hit.score > 0)
+        .sort((a, b) => b.score - a.score)
         .slice(0, limit)
-        .map((row) => ({
+        .map(({ row }) => ({
           code: row.code,
           name: row.name,
+          exchange: row.exchange,
           board: row.board,
           price: row.price,
-          changePct: row.changePct
+          changePct: row.changePct,
+          pinyin: row.pinyin || "",
+          initials: row.initials || ""
         }));
-      return replyOk({ query, items, count: items.length, limit });
+      return replyOk({ query: rawQuery.trim(), items, count: items.length, limit });
     }
 
     if (pathname === "/api/stocks") {
