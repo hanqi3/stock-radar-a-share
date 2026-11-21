@@ -68,6 +68,52 @@
     });
   }
 
+  // Chart payloads keep bars as parallel arrays to stay small; the chart code
+  // wants one object per session and the moving averages it draws.
+  function expandBars(payload) {
+    const bars = payload && payload.history && payload.history.bars;
+    if (!bars || Array.isArray(bars) || !Array.isArray(bars.dates)) return payload;
+    const rows = bars.dates.map((date, index) => ({
+      date,
+      open: bars.open[index],
+      high: bars.high[index],
+      low: bars.low[index],
+      close: bars.close[index],
+      volume: bars.volume[index]
+    }));
+    const history = { ...payload.history, bars: rows };
+    if (!history.indicators) history.indicators = movingAverages(rows);
+    return { ...payload, history };
+  }
+
+  function sma(closes, window) {
+    const out = new Array(closes.length).fill(null);
+    let sum = 0;
+    for (let i = 0; i < closes.length; i += 1) {
+      sum += closes[i];
+      if (i >= window) sum -= closes[i - window];
+      if (i >= window - 1) out[i] = sum / window;
+    }
+    return out;
+  }
+
+  function movingAverages(rows) {
+    const closes = rows.map((bar) => bar.close);
+    const ma = {};
+    for (const window of [5, 10, 15, 20, 60]) ma[window] = sma(closes, window);
+    const middle = ma[20];
+    const upper = new Array(closes.length).fill(null);
+    const lower = new Array(closes.length).fill(null);
+    for (let i = 19; i < closes.length; i += 1) {
+      let variance = 0;
+      for (let j = i - 19; j <= i; j += 1) variance += (closes[j] - middle[i]) ** 2;
+      const deviation = Math.sqrt(variance / 20);
+      upper[i] = middle[i] + 2 * deviation;
+      lower[i] = middle[i] - 2 * deviation;
+    }
+    return { ma, boll: { upper, middle, lower } };
+  }
+
   const replyOk = (payload) => reply(200, payload);
   const replyMissing = (message) => reply(404, { error: message, code: "static" });
 
@@ -197,14 +243,20 @@
 
     const analysis = pathname.match(/^\/api\/stocks\/(\d{6})\/analysis$/);
     if (analysis) {
-      try {
-        return replyOk(await load(`analysis/${analysis[1]}.json`));
-      } catch {
-        return reply(404, {
-          error: "静态演示版只内置了部分个股的 K 线，可以试试 600519 贵州茅台，或在搜索里换一只。",
-          code: "static-no-analysis"
-        });
+      const code = analysis[1];
+      // Every stock with a cached history ships its own compact chart payload.
+      // The curated files stay as a fallback for older builds.
+      for (const file of [`charts/${code}.json`, `analysis/${code}.json`]) {
+        try {
+          return replyOk(expandBars(await load(file)));
+        } catch {
+          // try the next location
+        }
       }
+      return reply(404, {
+        error: "这只个股没有本地 K 线缓存，可以试试 600519 贵州茅台，或在搜索里换一只。",
+        code: "static-no-analysis"
+      });
     }
 
     const detail = pathname.match(/^\/api\/stocks\/(\d{6})$/);
