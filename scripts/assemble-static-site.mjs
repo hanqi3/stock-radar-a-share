@@ -11,31 +11,9 @@ const publicDir = path.join(root, "public");
 const dataDir = path.join(root, "static-data");
 const distDir = path.join(root, "dist");
 
-const BANNER = `
-  <style>
-    .static-chip {
-      margin-left: 8px; padding: 2px 7px; border-radius: 999px;
-      font: 10px/1.4 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-weight: 500; letter-spacing: .02em;
-      color: #2b6cb0; background: rgba(96, 165, 250, .16);
-      border: 1px solid rgba(96, 165, 250, .38);
-      vertical-align: 2px; white-space: nowrap;
-    }
-    :root[data-theme="dark"] .static-chip { color: #9ec5ff; }
-    @media (max-width: 820px) { .static-chip { display: none; } }
-  </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var brand = document.querySelector(".brand");
-      if (!brand) return;
-      var chip = document.createElement("span");
-      chip.className = "static-chip";
-      chip.textContent = "演示版";
-      chip.title = "静态演示：数据只读，自选只保存在这台设备";
-      brand.appendChild(chip);
-    });
-  </script>
-`;
+// No extra badge: the page should read as the product itself. The login page
+// is only reachable after an explicit sign-out and explains the guest mode.
+const BANNER = "";
 
 async function copyDir(from, to) {
   await fs.mkdir(to, { recursive: true });
@@ -95,7 +73,7 @@ async function main() {
     if (!html) continue;
     const notice = `
       <div style="margin:0 0 16px;padding:12px 14px;border-radius:14px;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.35);font:13px/1.5 -apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#1d4ed8">
-        当前是<strong>静态演示版</strong>，没有后端账号系统。直接点下面的「游客登录」就能进去浏览。
+        当前是<strong>公开只读版</strong>，数据每交易日自动更新；直接点下面的「游客登录」就能进去浏览，自选股保存在这台设备。
       </div>`;
     let patched = relative(html).replace('<div class="auth-card">', `<div class="auth-card">${notice}`);
     patched = patched.replace("<body>", `<body>${BOOT}`);
@@ -116,7 +94,7 @@ async function main() {
     path.join(distDir, "404.html"),
     "<!doctype html><meta charset=\"utf-8\"><title>Not found</title>" +
       "<body style=\"font:16px -apple-system,sans-serif;padding:48px\">" +
-      "<p>这个地址不存在。</p><p><a href=\"./\">回到 StockRadar 演示版</a></p>"
+      "<p>这个地址不存在。</p><p><a href=\"./\">回到 StockRadar 首页</a></p>"
   );
 
   const files = await countFiles(distDir);
