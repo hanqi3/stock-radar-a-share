@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T10:03:11.656Z",
+  "generatedAt": "2026-11-21T12:07:37.676Z",
   "source": "sina-hq",
   "count": 44,
   "note": "Overseas benchmarks and commodities quoted by Sina hq.sinajs.cn.",
@@ -12,7 +12,7 @@
       "price": 3533.79,
       "change": -43.82,
       "changePct": -1.22,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "s_sz399001",
@@ -22,7 +22,7 @@
       "price": 10256.39,
       "change": -326.81,
       "changePct": -3.09,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "s_sz399006",
@@ -32,7 +32,7 @@
       "price": 2212.13,
       "change": -81.21,
       "changePct": -3.54,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "s_sh000688",
@@ -42,7 +42,7 @@
       "price": 1231.09,
       "change": -39.69,
       "changePct": -3.12,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "s_sh000300",
@@ -52,7 +52,7 @@
       "price": 3954.57,
       "change": -30.27,
       "changePct": -0.76,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "s_sh000016",
@@ -62,7 +62,7 @@
       "price": 2785.92,
       "change": 12.46,
       "changePct": 0.45,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "s_sz399905",
@@ -72,7 +72,7 @@
       "price": 6006.08,
       "change": -245.88,
       "changePct": -3.93,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "s_bj899050",
@@ -82,7 +82,7 @@
       "price": 759.9,
       "change": -38.74,
       "changePct": -4.85,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "gb_dji",
@@ -182,7 +182,7 @@
       "price": 44946.64,
       "change": -408.35,
       "changePct": -0.9,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "rt_hkHSI",
@@ -212,7 +212,7 @@
       "price": 9284.83,
       "change": 70.85,
       "changePct": 0.77,
-      "updatedAt": "2026-11-21T10:03:11.798Z"
+      "updatedAt": "2026-11-21T12:07:39.271Z"
     },
     {
       "symbol": "hf_CHA50CFD",

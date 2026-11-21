@@ -1,79 +1,88 @@
 {
- "date": "2026-10-18",
- "generatedAt": "2026-10-18T10:39:19.361Z",
- "limitUpCount": 71,
- "limitDownCount": 15,
- "advancers": 3301,
- "decliners": 2127,
+ "date": "2026-11-21",
+ "generatedAt": "2026-11-21T12:13:01.431Z",
+ "limitUpCount": 33,
+ "limitDownCount": 84,
+ "advancers": 313,
+ "decliners": 5235,
  "items": [
   {
-   "code": "920196",
-   "name": "N南乳",
-   "changePct": 58.76,
-   "anomalyScore": 99.99,
-   "trendScore": 81.51,
+   "code": "300812",
+   "name": "易天股份",
+   "changePct": 20,
+   "anomalyScore": 97.76,
+   "trendScore": 95.6,
    "signalType": "涨停"
   },
   {
-   "code": "301569",
-   "name": "C联亚",
-   "changePct": -28.33,
-   "anomalyScore": 99.94,
-   "trendScore": 12.61,
+   "code": "603324",
+   "name": "盛剑科技",
+   "changePct": 10,
+   "anomalyScore": 97.72,
+   "trendScore": 98.16,
+   "signalType": "涨停"
+  },
+  {
+   "code": "002771",
+   "name": "真视通",
+   "changePct": 10.01,
+   "anomalyScore": 97.25,
+   "trendScore": 99.46,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301096",
+   "name": "百诚医药",
+   "changePct": -16.67,
+   "anomalyScore": 95.88,
+   "trendScore": 1.86,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "000826",
+   "name": "*ST启环",
+   "changePct": -9.4,
+   "anomalyScore": 93.44,
+   "trendScore": 8.56,
    "signalType": "跌停"
   },
   {
-   "code": "920162",
-   "name": "莫森泰克",
-   "changePct": -29.97,
-   "anomalyScore": 99.31,
-   "trendScore": 12.74,
+   "code": "920575",
+   "name": "*ST康乐",
+   "changePct": -26.2,
+   "anomalyScore": 93.04,
+   "trendScore": 7.76,
    "signalType": "跌停附近"
   },
   {
-   "code": "920006",
-   "name": "晟楠科技",
-   "changePct": 29.98,
-   "anomalyScore": 99.26,
-   "trendScore": 98.5,
-   "signalType": "涨停"
+   "code": "603818",
+   "name": "曲美家居",
+   "changePct": -9.9,
+   "anomalyScore": 90.83,
+   "trendScore": 14.16,
+   "signalType": "跌停"
   },
   {
-   "code": "920690",
-   "name": "捷众科技",
-   "changePct": 30,
-   "anomalyScore": 99.11,
-   "trendScore": 98.6,
-   "signalType": "涨停"
-  },
-  {
-   "code": "300006",
-   "name": "莱美药业",
-   "changePct": 19.93,
-   "anomalyScore": 98.47,
-   "trendScore": 99.74,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "301345",
-   "name": "涛涛车业",
-   "changePct": -18.83,
-   "anomalyScore": 97.92,
-   "trendScore": 0.52,
+   "code": "688679",
+   "name": "通源环境",
+   "changePct": -16.26,
+   "anomalyScore": 90.21,
+   "trendScore": 4.88,
    "signalType": "跌停附近"
-  },
-  {
-   "code": "000530",
-   "name": "冰山冷热",
-   "changePct": 9.96,
-   "anomalyScore": 97.64,
-   "trendScore": 99.25,
-   "signalType": "涨停"
   }
  ],
  "watch": [],
  "previous": {
-  "date": null,
-  "codes": []
+  "date": "2026-10-18",
+  "codes": [
+   "920196",
+   "301569",
+   "920162",
+   "920006",
+   "920690",
+   "300006",
+   "301345",
+   "000530"
+  ]
  }
 }
