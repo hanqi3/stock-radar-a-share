@@ -12,6 +12,12 @@ on:
       - "data/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
+  # Data refreshes are committed by the update workflow with GITHUB_TOKEN, and
+  # such pushes never start another workflow. Rebuild the site when that job
+  # finishes so the published snapshot keeps up with the committed data.
+  workflow_run:
+    workflows: ["Update A-share data"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -24,6 +30,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
