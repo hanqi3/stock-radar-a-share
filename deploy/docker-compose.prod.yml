@@ -1,0 +1,31 @@
+# StockRadar on a VPS, running the image built by GitHub Actions instead of a
+# local build. Pulls ghcr.io/<owner>/<repo>:latest; the CI workflow republishes
+# it on every push to main, so "redeploy" is just a pull + up.
+#
+#   docker compose -f docker-compose.prod.yml pull
+#   docker compose -f docker-compose.prod.yml up -d
+#
+# Caddy (or nginx) terminates TLS in front of 127.0.0.1:5173, same as the
+# build-from-source variant in docker-compose.yml.
+services:
+  stockradar:
+    image: ghcr.io/hanqi3/stock-radar-a-share:latest
+    container_name: stockradar
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5173:5173"
+    environment:
+      TZ: Asia/Shanghai
+      HOST: 0.0.0.0
+      PORT: "5173"
+      DATA_DIR: /app/data
+      # 17:30 and 12:30 Beijing time, Monday to Friday (container time = TZ above)
+      SYNC_CRON: "30 17 * * 1-5"
+      NEWS_CRON: "30 12 * * 1-5"
+    volumes:
+      - stockradar-data:/app/data
+      - stockradar-cache:/app/.cache
+
+volumes:
+  stockradar-data:
+  stockradar-cache:
