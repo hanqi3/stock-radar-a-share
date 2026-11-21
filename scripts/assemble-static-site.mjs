@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Package the read-only GitHub Pages build: public/ + static-data/ -> dist/.
 // No server, no dependencies, deterministic, so the Pages workflow only runs this.
+import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,16 +37,6 @@ const BANNER = `
   </script>
 `;
 
-const BOOT = `<script>window.STATIC_SITE = true; window.STATIC_DATA_BASE = "static-data";</script>`;
-const BOOT_HEAD = `<script>
-  window.STATIC_SITE = true;
-  window.STATIC_DATA_BASE = "static-data";
-  try {
-    if (!localStorage.getItem("stockradar-token")) localStorage.setItem("stockradar-guest", "1");
-    localStorage.removeItem("stockradar-api-base");
-  } catch (error) { /* ignore */ }
-</script>`;
-
 async function copyDir(from, to) {
   await fs.mkdir(to, { recursive: true });
   for (const entry of await fs.readdir(from, { withFileTypes: true })) {
@@ -61,9 +52,27 @@ async function main() {
     throw new Error("static-data/ is missing; run `npm run static:data` first");
   }
 
+  // GitHub Pages caches files by URL for ten minutes, so a rebuild that reuses
+  // "static-data/stocks.json" can keep serving yesterday's snapshot. Namespacing
+  // the directory with the build stamp makes every deploy a fresh URL.
+  const dataManifest = JSON.parse(await fs.readFile(path.join(dataDir, "manifest.json"), "utf8"));
+  const stamp = `${dataManifest.generatedAt || ""}:${dataManifest.stocks || 0}:${dataManifest.dataUpdatedAt || ""}`;
+  const dataBase = `static-data-${crypto.createHash("sha1").update(stamp).digest("hex").slice(0, 8)}`;
+
   await fs.rm(distDir, { recursive: true, force: true });
   await copyDir(publicDir, distDir);
-  await copyDir(dataDir, path.join(distDir, "static-data"));
+  await copyDir(dataDir, path.join(distDir, dataBase));
+
+  const boot = (key, value) => key.replaceAll("static-data", dataBase);
+  const BOOT = boot(`<script>window.STATIC_SITE = true; window.STATIC_DATA_BASE = "static-data";</script>`, dataBase);
+  const BOOT_HEAD = boot(`<script>
+  window.STATIC_SITE = true;
+  window.STATIC_DATA_BASE = "static-data";
+  try {
+    if (!localStorage.getItem("stockradar-token")) localStorage.setItem("stockradar-guest", "1");
+    localStorage.removeItem("stockradar-api-base");
+  } catch (error) { /* ignore */ }
+</script>`, dataBase);
 
   // Pages project sites live under /<repo>/, so every root-absolute asset path
   // has to become relative.
