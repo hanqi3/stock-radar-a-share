@@ -1,0 +1,68 @@
+name: Deploy static site to Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/**"
+      - "scripts/build-static-data.mjs"
+      - "scripts/assemble-static-site.mjs"
+      - "server.js"
+      - "lib/**"
+      - "data/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # The K-line files are generated from the local history cache, which is
+      # rebuilt here because CI checkouts start empty. If a third-party feed is
+      # down the dashboard still deploys, it just has fewer stock charts.
+      - name: Warm the history cache
+        continue-on-error: true
+        run: npm run history
+
+      - name: Build the static data bundle
+        run: node scripts/build-static-data.mjs
+
+      - name: Assemble the site
+        run: node scripts/assemble-static-site.mjs
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,28 @@
+# StockRadar on a single VPS: web app + built-in daily sync.
+#
+#   1. edit the domain in deploy/Caddyfile (or put Caddy in front yourself)
+#   2. docker compose -f deploy/docker-compose.yml up -d --build
+#
+# The container listens on 127.0.0.1 only; Caddy terminates HTTPS.
+services:
+  stockradar:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: stockradar:latest
+    container_name: stockradar
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5173:5173"
+    environment:
+      TZ: Asia/Shanghai
+      HOST: 0.0.0.0
+      PORT: "5173"
+      DATA_DIR: /app/data
+      # 17:30 and 12:30 Beijing time, Monday to Friday (container time = TZ above)
+      SYNC_CRON: "30 17 * * 1-5"
+      NEWS_CRON: "30 12 * * 1-5"
+    volumes:
+      # Relative to this file: the repo's data/ and .cache/ directories.
+      - ../data:/app/data
+      - ../.cache:/app/.cache

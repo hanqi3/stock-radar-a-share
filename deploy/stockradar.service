@@ -1,0 +1,29 @@
+[Unit]
+Description=StockRadar A-share dashboard
+Documentation=https://github.com/hanqi3/stock-radar-a-share
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=stockradar
+Group=stockradar
+WorkingDirectory=/opt/stockradar
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=5173
+# 数据与账号文件放这里；换成持久化磁盘路径即可。
+Environment=DATA_DIR=/var/lib/stockradar
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=3
+
+# 只允许写数据目录与历史缓存
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/stockradar /opt/stockradar/.cache
+
+[Install]
+WantedBy=multi-user.target

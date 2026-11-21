@@ -1,0 +1,356 @@
+/* Phone layout: the five tabs move from a vertical rail to a fixed bottom bar,
+   the workbench collapses to one column and the top bar tightens up.
+   Loaded after styles.css, so every rule here wins inside the breakpoint. */
+
+@media (max-width: 820px) {
+  :root {
+    --mobile-tabbar-h: calc(62px + env(safe-area-inset-bottom));
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  body {
+    padding-bottom: calc(var(--mobile-tabbar-h) + 4px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .app-shell {
+    min-height: 100dvh;
+  }
+
+  /* --- top bar ---------------------------------------------------------- */
+  .topbar {
+    height: auto;
+    min-height: 56px;
+    padding: calc(env(safe-area-inset-top) + 6px) 12px 6px;
+    gap: 8px;
+  }
+
+  .brand {
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  .subline {
+    font-size: 11px;
+    max-width: 40vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .top-actions {
+    gap: 6px;
+  }
+
+  .topbar .ghost-button {
+    height: 34px;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .topbar .icon-button {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  .topbar .ghost-link {
+    display: none;
+  }
+
+  /* --- workbench -------------------------------------------------------- */
+  .dashboard {
+    padding: 10px 10px 16px;
+  }
+
+  .workbench {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .tab-stage {
+    min-width: 0;
+    gap: 12px;
+  }
+
+  .tab-panel {
+    gap: 12px;
+  }
+
+  .right-rail {
+    grid-column: 1;
+    grid-template-columns: minmax(0, 1fr);
+    position: static;
+    gap: 12px;
+  }
+
+  .left-rail {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .panel {
+    border-radius: 12px;
+  }
+
+  .panel-title {
+    font-size: 14px;
+  }
+
+  /* Wide tables may scroll sideways; the page itself must not. */
+  .table-shell {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .footer {
+    padding: 0 16px 16px;
+    font-size: 11px;
+  }
+
+  /* --- bottom tab bar --------------------------------------------------- */
+  .tab-rail {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    padding: 4px 4px env(safe-area-inset-bottom);
+    border-top: 1px solid var(--line);
+    background: var(--topbar-bg);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    box-shadow: 0 -8px 24px rgba(17, 24, 39, 0.06);
+  }
+
+  .tab-button {
+    position: relative;
+    padding: 8px 2px 6px;
+    gap: 3px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .tab-button .tab-icon {
+    font-size: 19px;
+  }
+
+  .tab-button .tab-label {
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+
+  .tab-button.active {
+    color: var(--blue);
+    background: var(--segment-active-bg);
+    box-shadow: none;
+  }
+
+  /* --- account sheet ---------------------------------------------------- */
+  .account-sheet {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .account-panel {
+    width: 100%;
+    max-width: none;
+    border-radius: 24px 24px 0 0;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ===== phone glass refinements ==========================================
+   Loaded after the desktop glass layer so these win inside the breakpoint. */
+
+@media (max-width: 820px) {
+  .topbar {
+    top: 8px;
+    margin: calc(env(safe-area-inset-top) + 8px) 10px 0;
+    border-radius: 18px;
+    background: var(--glass-bg-strong);
+  }
+
+  .top-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .topbar .ghost-button {
+    padding: 7px 11px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .brand::before {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dashboard {
+    padding: 12px 10px 18px;
+  }
+
+  .panel {
+    border-radius: 16px;
+  }
+
+  .index-strip {
+    gap: 8px;
+    margin-bottom: 10px;
+    -webkit-mask-image: linear-gradient(90deg, #000 86%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 86%, transparent 100%);
+  }
+
+  .index-strip-cell {
+    border-radius: 14px;
+    padding: 9px 12px;
+    min-width: 104px;
+  }
+
+  .overview-band {
+    gap: 8px;
+  }
+
+  .metric {
+    border-radius: 14px;
+    min-height: 84px;
+    padding: 12px 14px;
+  }
+
+  .metric-value {
+    margin-top: 8px;
+    font-size: 22px;
+  }
+
+  .metric-label {
+    font-size: 11.5px;
+  }
+
+  .metric-foot {
+    margin-top: 5px;
+    font-size: 11px;
+  }
+
+  /* Bottom bar: an inset glass tray, not a hard divider. */
+  .tab-rail {
+    left: 8px;
+    right: 8px;
+    bottom: 0;
+    padding: 5px 5px calc(env(safe-area-inset-bottom) + 4px);
+    border: 1px solid var(--glass-stroke);
+    border-bottom: 0;
+    border-radius: 24px 24px 0 0;
+    background: var(--glass-bg-strong);
+    box-shadow: 0 -20px 44px -26px rgba(23, 37, 84, 0.55);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(180%);
+  }
+
+  .tab-button {
+    padding: 7px 2px 5px;
+    border-radius: 14px;
+    gap: 2px;
+  }
+
+  .tab-button .tab-icon {
+    font-size: 18px;
+  }
+
+  .tab-button .tab-label {
+    font-size: 10.5px;
+    letter-spacing: 0;
+  }
+
+  .tab-button.active {
+    color: #fff;
+    background: var(--grad-brand);
+    box-shadow: 0 12px 22px -12px rgba(37, 99, 235, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+
+  .search-box {
+    height: 44px;
+    border-radius: 13px;
+  }
+
+  .segment {
+    border-radius: 12px;
+  }
+
+  .segment button {
+    height: 34px;
+    font-size: 12.5px;
+  }
+
+  .toolbar {
+    gap: 8px;
+  }
+
+  .account-panel {
+    border-radius: 24px 24px 0 0;
+  }
+}
+
+/* ===== Liquid Glass (v3) on phones ====================================== */
+
+@media (max-width: 820px) {
+  .topbar {
+    border-radius: 22px;
+    -webkit-backdrop-filter: blur(34px) saturate(190%);
+    backdrop-filter: blur(34px) saturate(190%);
+  }
+
+  .panel,
+  .table-shell,
+  .tv-chart {
+    border-radius: 20px;
+  }
+
+  .metric,
+  .index-strip-cell {
+    border-radius: 18px;
+  }
+
+  /* Floating bottom tray with a lit top edge. */
+  .tab-rail {
+    border-radius: 26px 26px 0 0;
+    border-color: var(--lg-edge);
+    background-image: var(--lg-sheen);
+    box-shadow: 0 -26px 50px -26px rgba(23, 37, 84, 0.55), inset 0 1px 0 var(--lg-rim-top);
+    -webkit-backdrop-filter: blur(36px) saturate(190%);
+    backdrop-filter: blur(36px) saturate(190%);
+  }
+
+  :root[data-theme="dark"] .tab-rail {
+    box-shadow: 0 -26px 54px -24px rgba(0, 0, 0, 0.85), inset 0 1px 0 var(--lg-rim-top);
+  }
+
+  .tab-button {
+    border-radius: 18px;
+  }
+
+  .tab-button.active {
+    box-shadow: 0 14px 26px -14px rgba(37, 99, 235, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.14);
+  }
+
+  .account-sheet .account-panel {
+    border-radius: 28px 28px 0 0;
+    background-image: var(--lg-sheen);
+    -webkit-backdrop-filter: blur(40px) saturate(190%);
+    backdrop-filter: blur(40px) saturate(190%);
+  }
+}
+

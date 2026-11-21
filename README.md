@@ -32,18 +32,22 @@ StockRadar 是一个面向 A股市场的行情与事件雷达应用。项目会�
 - 板块成员：`data/sectors.json` 记录 31 个申万行业和 213 个概念板块的成员关系，用于行业相对强度和主题事件扩散
 - 事件驱动：`data/events.json` 聚合政策新闻、市场快讯和交易所公告，读取时分类并做时间衰减
 - 策略回测：`/api/backtest` 用事件分 + 异动分驱动的动量策略回测，含交易成本、T+1、涨跌停撮合限制和样本内 / 样本外拆分
-- 自选监控：自选列表写浏览器 `localStorage` 并同步到服务端 `data/watchlist.json`，按规则生成告警标签（涨停 / 跌停 / 放量 / 异动 / RSI / ST / 相关事件），也进每日推送摘要
+- 自选监控：自选列表写浏览器 `localStorage` 并同步到服务端；登录后按账号存 `data/watchlists/<用户 id>.json`，未登录时回落到旧的 `data/watchlist.json`，按规则生成告警标签（涨停 / 跌停 / 放量 / 异动 / RSI / ST / 相关事件），也进每日推送摘要
+- 账号体系：邮箱注册 / 登录（scrypt 哈希、Bearer token、30 天会话、登录与注册限流、退出即失效），接口可跨域，供手机 App 使用
+- 游客模式：登录页一键"先随便看看"，不需要账号即可浏览全部功能；自选只存本机，之后登录会自动接上账号数据
+- iPhone App：`public/` 可直接作为 PWA 加到主屏幕；同一套页面也能用 Capacitor 打成原生壳，GitHub Actions 在 macOS 上产出未签名 `.ipa`，配 Sideloadly + 免费 Apple ID 侧载。登录页 / 注册页 + 底部五个标签，账号与自选跨设备同步；详见 [docs/ios-app.md](docs/ios-app.md)
 - 明暗主题：支持亮色和暗色模式，并在浏览器本地保存偏好
 - 多维排序：支持按异动分、涨幅、跌幅、成交额、换手率、市值和代码排序
 - 省流量：JSON / HTML / JS / CSS 按 `Accept-Encoding` 协商 gzip（实测 `/api/stocks` 从 135 KB 压到 28 KB），每个响应都带内容哈希 ETag，二次访问直接 304
-- 响应式：1280 / 1080 / 720 三档宽度实测零横向溢出；窄屏下 tab 栏变横向一行、概览卡变 2 列、指数条可横向滚动并带右侧渐隐提示
+- 响应式：1280 / 1080 / 720 三档宽度实测零横向溢出；窄屏下 tab 栏变横向一行、概览卡变 2 列、指数条可横向滚动并带右侧渐隐提示。手机宽度（≤820px）下 tab 栏固定为底部五等分标签栏，工作台收成单列，适配刘海屏安全区
 - 零依赖运行：使用 Node.js 原生 HTTP 服务，无需安装第三方依赖
 
 ## 技术栈
 
 - Frontend: HTML, CSS, JavaScript（K 线为手写 canvas，不引入图表库）
 - Backend: Node.js HTTP Server
-- Storage: JSON file（行情 / 板块 / 指标 / 事件 / 全球指数 / 宏观利率 / 资金流七个数据文件）
+- Mobile: Capacitor 7（iOS 壳）+ Web App Manifest（PWA）
+- Storage: JSON file（行情 / 板块 / 指标 / 事件 / 全球指数 / 宏观利率 / 资金流七个数据文件 + 账号与会话）
 - Data Source: 多源提供者链（新浪财经 → 腾讯财经 → 东方财富），自动故障转移
 - Search: 预生成拼音索引 `lib/pinyin-index.json`
 - Runtime: Node.js 18+
@@ -89,6 +93,23 @@ HOST=0.0.0.0 PORT=5173 npm start
 
 如果看到 `StockRadar is running at http://localhost:5173`，说明服务已经启动成功。
 
+## 手机 App（iOS）
+
+三种用法，按需要选：
+
+1. **PWA（最快）**：把后端部署到有 HTTPS 的服务器，iPhone Safari 打开地址 → 分享 → 添加到主屏幕，图标与全屏体验和 App 一样。
+2. **未签名 `.ipa` 侧载**：仓库自带 `.github/workflows/ios-build.yml`，在 GitHub Actions 里手动运行（或 push 到 `main`）即可在 macOS runner 上打出 `StockRadar-unsigned.ipa`；下载后用 Sideloadly + 自己的 Apple ID 签名安装。免费 Apple ID 签的 App 7 天过期，到期重签一次。
+3. **上架 App Store**：需要付费开发者账号，用 Mac 打开 `ios/App/App.xcworkspace` 配好签名后归档上传。
+
+原生壳里页面是本地打包的，所以首次启动要在登录页填后端地址（形如 `https://your-domain.com`，必须是 HTTPS），账号与自选都存在你的服务器上。底部五个标签与网页版一致，登录后自选跨设备同步。完整步骤、Caddy 反代样例与常见问题见 [docs/ios-app.md](docs/ios-app.md)。
+
+## 静态演示版（GitHub Pages）
+
+不想养服务器、只想发个链接给人看时，仓库可以自动发布一个只读站点：数据在构建时预生成，浏览器端把 `/api/*` 就地接住，界面与完整版一致，但没有账号（游客模式）和回测，自选存在本机，K 线只内置当天异动分前 80 名加常见权重股。
+
+`.github/workflows/pages.yml` 会在 `main` 收到 `public/**`、`data/**` 等改动时自动重建并部署。首次使用在仓库 Settings → Pages 把 Source 设为 **GitHub Actions** 即可，地址形如 `https://<user>.github.io/stock-radar-a-share/`。本地构建与细节见 [docs/pages.md](docs/pages.md)。
+
+
 ## npm 脚本
 
 | 命令 | 作用 |
@@ -110,6 +131,10 @@ HOST=0.0.0.0 PORT=5173 npm start
 | `npm run index:calendar` | 从 `data/flow.json` 的交易日重建交易所日历（`scripts/build-trading-calendar.js`） |
 | `npm run outlook:history` | 用上证指数收盘价给前一交易日的评分计分（`scripts/sync-outlook-history.js`） |
 | `npm run notify` | 把当天的异动摘要推送到 webhook（`scripts/notify-alerts.js`，需 `ALERT_WEBHOOK_URL`） |
+| `npm run ios:add` | 生成 `ios/` 原生工程（本机需 macOS + Xcode + `npm install`） |
+| `npm run ios:sync` | 把 `public/` 同步进 iOS 工程（`cap sync ios`） |
+| `npm run ios:assets` | 由 `resources/icon.png` / `splash.png` 生成 iOS 图标与启动图 |
+| `npm run ios:open` | 用 Xcode 打开 `ios/App/App.xcworkspace` |
 
 ## 数据文件
 
@@ -126,6 +151,9 @@ data/profiles.json        收盘快照：估值与报价字段，5576 只全覆�
 data/outlook-history.json 明日参考的历史评分与次日实绩（已提交）
 data/alert-digest.json    当天的异动摘要，供推送脚本读取（已提交）
 data/watchlist.json       服务端持久化的自选列表，供推送脚本与跨设备同步（已提交）
+data/users.json           账号：邮箱 + scrypt 哈希 + salt（首次注册时生成，git 忽略）
+data/sessions.json        Bearer 会话，30 天过期（首次登录时生成，git 忽略）
+data/watchlists/<id>.json 每个账号自己的自选列表（登录后写入，git 忽略）
 lib/pinyin-index.json     拼音 / 首字母索引（已提交）
 lib/trading-days.json     交易所日历：交易日快照 + 观测到的周内休市日（已提交）
 .cache/history/           日线磁盘缓存（git 忽略，不提交）
@@ -637,14 +665,16 @@ ALERT_WEBHOOK_URL=https://... npm run notify
 npm start
 ```
 
-记得把 `HOST` 设为 `0.0.0.0`，否则容器外的健康检查连不上。日线磁盘缓存位于 `.cache/history/`，容器重建会丢失，属于预期行为。
+记得把 `HOST` 设为 `0.0.0.0`，否则容器外的健康检查连不上；用 `DATA_DIR` 可以把账号与自选挪到持久盘（默认 `./data`）。日线磁盘缓存位于 `.cache/history/`，容器重建会丢失，属于预期行为。
+
+三条现成的路（临时 HTTPS 隧道、云服务器 + Caddy、Render Blueprint）和备份 / 排错清单见 **[docs/deploy.md](docs/deploy.md)**；仓库里已经带了 `Dockerfile`、`deploy/Caddyfile`、`deploy/stockradar.service`、`render.yaml`。
 
 ## 路线图
 
 - 使用 PostgreSQL 存储多日市场数据
 - 增加 Redis 缓存热门榜单和搜索结果
 - 接入龙虎榜、资金流向等更多事件源
-- 用户系统（现在自选已经搬到服务端 `data/watchlist.json`，但还没有多用户隔离）
+- 价格提醒推送（APNs / Web Push；目前只有服务端告警摘要）
 - 增加指数维度分析
 - 明日参考的样本攒够后，按命中率给不同 score 区间标「历史胜率」，而不是只给一个分数
 

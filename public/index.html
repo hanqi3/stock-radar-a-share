@@ -2,9 +2,32 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1220" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="StockRadar" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
     <title>StockRadar A股事件雷达</title>
+    <script>
+      // Every page behind this one needs an account, or guest mode. Checked here,
+      // before paint, so a signed-out visitor never sees the workbench flash.
+      (function () {
+        try {
+          var signedIn = localStorage.getItem("stockradar-token");
+          var guest = localStorage.getItem("stockradar-guest") === "1";
+          if (!signedIn && !guest) {
+            var here = location.pathname + location.search;
+            location.replace("/login.html?next=" + encodeURIComponent(here === "/index.html" ? "/" : here));
+          }
+        } catch (error) {
+          /* Private mode without storage: the shell cannot run anyway. */
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/mobile.css" />
   </head>
   <body>
     <div class="app-shell">
@@ -17,6 +40,9 @@
           <button class="ghost-button" id="watchNewsButton" title="自选股的利好利空分析" aria-expanded="false" aria-controls="watchNewsPanel">自选情绪</button>
           <button class="icon-button" id="themeToggle" title="切换明暗模式" aria-label="切换明暗模式">◐</button>
           <button class="icon-button" id="refreshButton" title="刷新数据" aria-label="刷新数据">↻</button>
+          <button class="icon-button account-button" id="accountButton" title="账户" aria-label="账户" aria-haspopup="dialog" aria-expanded="false">
+            <span id="accountInitial">我</span>
+          </button>
           <a class="ghost-link" href="https://finance.sina.com.cn/stock/" target="_blank" rel="noreferrer">数据源</a>
         </div>
       </header>
@@ -473,10 +499,34 @@
         </section>
       </main>
 
+      <div class="account-sheet" id="accountSheet" hidden role="dialog" aria-modal="true" aria-labelledby="accountName">
+        <div class="account-backdrop" id="accountBackdrop"></div>
+        <div class="account-panel">
+          <div class="account-head">
+            <div class="account-avatar" id="accountAvatar" aria-hidden="true">我</div>
+            <div class="account-identity">
+              <div class="account-name" id="accountName">账户</div>
+              <div class="account-email" id="accountEmail"></div>
+            </div>
+            <button class="panel-close" id="accountClose" type="button" aria-label="关闭账户面板">×</button>
+          </div>
+          <label class="account-row">
+            <span>服务器地址</span>
+            <input id="accountBase" type="url" inputmode="url" autocomplete="url" placeholder="网页版留空即可" />
+          </label>
+          <div class="account-actions">
+            <button class="ghost-button" id="accountSaveBase" type="button">保存服务器地址</button>
+            <span class="account-note" id="accountBaseNote">App 内需填写后端公网地址</span>
+          </div>
+          <button class="account-logout" id="accountLogout" type="button">退出登录</button>
+        </div>
+      </div>
+
       <footer class="footer">
         仅用于公开行情信息整理与研究，不构成投资建议。K 线数据来源：新浪财经（主）/ 腾讯财经（备）。
       </footer>
     </div>
     <script src="/app.js" type="module"></script>
+    <script src="/account.js" type="module"></script>
   </body>
 </html>

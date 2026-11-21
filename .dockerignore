@@ -1,0 +1,14 @@
+node_modules
+.git
+.github
+ios
+resources
+tests
+docs
+*.md
+data/users.json
+data/sessions.json
+data/watchlists
+.cache
+.tmp-shots
+*.bak

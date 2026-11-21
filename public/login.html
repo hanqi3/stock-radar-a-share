@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1220" />
+    <title>登录 · StockRadar</title>
+    <link rel="stylesheet" href="/auth.css" />
+  </head>
+  <body class="auth-body">
+    <main class="auth-card">
+      <div class="auth-brand"><span class="auth-logo" aria-hidden="true">◎</span> StockRadar</div>
+      <h1>欢迎回来</h1>
+      <p class="auth-sub">登录后同步自选、账户提醒与明日参考。</p>
+
+      <form id="authForm" data-auth="login" novalidate>
+        <label class="auth-field">
+          <span>邮箱</span>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="username" placeholder="you@example.com" required />
+        </label>
+        <label class="auth-field">
+          <span>密码</span>
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="至少 8 位" required />
+        </label>
+        <p class="auth-error" id="authError" role="alert" hidden></p>
+        <button class="auth-submit" type="submit">登录</button>
+      </form>
+
+      <div class="auth-divider"><span>或者</span></div>
+      <button class="auth-guest" id="guestButton" type="button">
+        <span aria-hidden="true">👀</span> 先随便看看 · 游客登录
+      </button>
+      <p class="auth-hint auth-guest-hint">游客模式不需要账号，自选只保存在本机。</p>
+
+      <details class="auth-server" id="serverBox">
+        <summary>服务器地址</summary>
+        <label class="auth-field">
+          <span>API 地址</span>
+          <input id="serverBase" name="serverBase" type="url" inputmode="url" autocomplete="url" placeholder="https://your-server.com" />
+        </label>
+        <p class="auth-hint" id="serverHint">网页版留空即可；手机 App 需填写后端公网地址。</p>
+      </details>
+
+      <p class="auth-switch">还没有账号？<a href="/register.html">注册一个</a></p>
+    </main>
+    <script type="module" src="/auth.js"></script>
+  </body>
+</html>

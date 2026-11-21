@@ -15,7 +15,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const DATA_DIR = path.join(ROOT, "data");
+const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(ROOT, "data");
 const OUT_FILE = path.join(DATA_DIR, "events.json");
 const INDICES_FILE = path.join(DATA_DIR, "indices.json");
 

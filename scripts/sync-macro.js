@@ -10,7 +10,8 @@ import { MACRO_DEFINITIONS, buildMacroPayload } from "../lib/macro.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const OUT_FILE = path.join(ROOT, "data", "macro.json");
+const DATA_DIR = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(ROOT, "data");
+const OUT_FILE = path.join(DATA_DIR, "macro.json");
 
 const HEADERS = {
   "User-Agent":
