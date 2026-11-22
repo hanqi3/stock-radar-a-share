@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-22T16:38:18.631Z",
+ "generatedAt": "2026-11-22T20:41:56.487Z",
  "source": "上证指数(000001) 日线收盘 via 新浪财经",
  "closes": {
   "2025-03-31": 3335.746,
@@ -483,7 +483,7 @@
    "dataDate": "2026-11-20",
    "forDate": "2026-11-23",
    "forDateExact": true,
-   "score": -57,
+   "score": -60,
    "bias": "偏空",
    "tone": "down",
    "availableWeight": 100,
@@ -510,8 +510,8 @@
     },
     {
      "key": "cnh",
-     "z": 0.58,
-     "contribution": 3.48
+     "z": -0.02,
+     "contribution": -0.12
     },
     {
      "key": "us10y",
