@@ -1,79 +1,79 @@
 {
- "date": "2026-11-22",
- "generatedAt": "2026-11-22T12:55:38.054Z",
- "limitUpCount": 33,
- "limitDownCount": 84,
- "advancers": 313,
- "decliners": 5235,
+ "date": "2026-11-23",
+ "generatedAt": "2026-11-23T15:35:04.172Z",
+ "limitUpCount": 159,
+ "limitDownCount": 17,
+ "advancers": 4658,
+ "decliners": 782,
  "items": [
   {
-   "code": "300812",
-   "name": "易天股份",
-   "changePct": 20,
-   "anomalyScore": 97.76,
-   "trendScore": 95.6,
+   "code": "920067",
+   "name": "N华晟",
+   "changePct": 66.24,
+   "anomalyScore": 100,
+   "trendScore": 85.36,
+   "signalType": "涨停"
+  },
+  {
+   "code": "920690",
+   "name": "捷众科技",
+   "changePct": 29.99,
+   "anomalyScore": 98.21,
+   "trendScore": 99.25,
    "signalType": "涨停"
   },
   {
    "code": "603324",
    "name": "盛剑科技",
    "changePct": 10,
-   "anomalyScore": 97.72,
-   "trendScore": 98.16,
+   "anomalyScore": 97.45,
+   "trendScore": 98.98,
    "signalType": "涨停"
   },
   {
    "code": "002771",
    "name": "真视通",
-   "changePct": 10.01,
-   "anomalyScore": 97.25,
-   "trendScore": 99.46,
+   "changePct": 9.99,
+   "anomalyScore": 97.41,
+   "trendScore": 99.55,
    "signalType": "涨停"
   },
   {
-   "code": "301096",
-   "name": "百诚医药",
-   "changePct": -16.67,
-   "anomalyScore": 95.88,
-   "trendScore": 1.86,
+   "code": "002579",
+   "name": "中京电子",
+   "changePct": 10.01,
+   "anomalyScore": 97.28,
+   "trendScore": 96.1,
+   "signalType": "涨停"
+  },
+  {
+   "code": "301575",
+   "name": "艾芬达",
+   "changePct": 20,
+   "anomalyScore": 96.56,
+   "trendScore": 98.78,
+   "signalType": "涨停"
+  },
+  {
+   "code": "300872",
+   "name": "天阳科技",
+   "changePct": -15.96,
+   "anomalyScore": 96.33,
+   "trendScore": 3.46,
    "signalType": "跌停附近"
   },
   {
-   "code": "000826",
-   "name": "*ST启环",
-   "changePct": -9.4,
-   "anomalyScore": 93.44,
-   "trendScore": 8.56,
-   "signalType": "跌停"
-  },
-  {
-   "code": "920575",
-   "name": "*ST康乐",
-   "changePct": -26.2,
-   "anomalyScore": 93.04,
-   "trendScore": 7.76,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "603818",
-   "name": "曲美家居",
-   "changePct": -9.9,
-   "anomalyScore": 90.83,
-   "trendScore": 14.16,
-   "signalType": "跌停"
-  },
-  {
-   "code": "688679",
-   "name": "通源环境",
-   "changePct": -16.26,
-   "anomalyScore": 90.21,
-   "trendScore": 4.88,
-   "signalType": "跌停附近"
+   "code": "301391",
+   "name": "卡莱特",
+   "changePct": 12.52,
+   "anomalyScore": 96.31,
+   "trendScore": 99.5,
+   "signalType": "涨停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "codes": [
    "300812",
    "603324",
