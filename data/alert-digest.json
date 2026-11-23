@@ -1,6 +1,6 @@
 {
  "date": "2026-11-23",
- "generatedAt": "2026-11-23T15:35:04.172Z",
+ "generatedAt": "2026-11-23T20:34:22.007Z",
  "limitUpCount": 159,
  "limitDownCount": 17,
  "advancers": 4658,
@@ -11,7 +11,7 @@
    "name": "N华晟",
    "changePct": 66.24,
    "anomalyScore": 100,
-   "trendScore": 85.36,
+   "trendScore": 85.43,
    "signalType": "涨停"
   },
   {
@@ -19,7 +19,7 @@
    "name": "捷众科技",
    "changePct": 29.99,
    "anomalyScore": 98.21,
-   "trendScore": 99.25,
+   "trendScore": 99.26,
    "signalType": "涨停"
   },
   {
@@ -51,7 +51,7 @@
    "name": "艾芬达",
    "changePct": 20,
    "anomalyScore": 96.56,
-   "trendScore": 98.78,
+   "trendScore": 98.77,
    "signalType": "涨停"
   },
   {
