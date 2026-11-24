@@ -1,88 +1,88 @@
 {
- "date": "2026-11-23",
- "generatedAt": "2026-11-23T20:34:22.007Z",
- "limitUpCount": 159,
- "limitDownCount": 17,
- "advancers": 4658,
- "decliners": 782,
+ "date": "2026-11-24",
+ "generatedAt": "2026-11-24T01:35:11.730Z",
+ "limitUpCount": 29,
+ "limitDownCount": 5,
+ "advancers": 4961,
+ "decliners": 444,
  "items": [
   {
-   "code": "920067",
-   "name": "N华晟",
-   "changePct": 66.24,
-   "anomalyScore": 100,
-   "trendScore": 85.43,
-   "signalType": "涨停"
-  },
-  {
-   "code": "920690",
-   "name": "捷众科技",
-   "changePct": 29.99,
-   "anomalyScore": 98.21,
-   "trendScore": 99.26,
-   "signalType": "涨停"
-  },
-  {
-   "code": "603324",
-   "name": "盛剑科技",
-   "changePct": 10,
-   "anomalyScore": 97.45,
-   "trendScore": 98.98,
-   "signalType": "涨停"
-  },
-  {
-   "code": "002771",
-   "name": "真视通",
-   "changePct": 9.99,
-   "anomalyScore": 97.41,
-   "trendScore": 99.55,
-   "signalType": "涨停"
+   "code": "000635",
+   "name": "英 力 特",
+   "changePct": -10,
+   "anomalyScore": 96.94,
+   "trendScore": 99.3,
+   "signalType": "跌停"
   },
   {
    "code": "002579",
    "name": "中京电子",
-   "changePct": 10.01,
-   "anomalyScore": 97.28,
+   "changePct": 9.98,
+   "anomalyScore": 96.86,
    "trendScore": 96.1,
    "signalType": "涨停"
   },
   {
+   "code": "301391",
+   "name": "卡莱特",
+   "changePct": -7.39,
+   "anomalyScore": 96.74,
+   "trendScore": 99.5,
+   "signalType": "快速回撤"
+  },
+  {
    "code": "301575",
    "name": "艾芬达",
-   "changePct": 20,
-   "anomalyScore": 96.56,
+   "changePct": 19.98,
+   "anomalyScore": 96.68,
    "trendScore": 98.77,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "000711",
+   "name": "京蓝科技",
+   "changePct": 7.06,
+   "anomalyScore": 96.39,
+   "trendScore": 83.81,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "600467",
+   "name": "好当家",
+   "changePct": -5.08,
+   "anomalyScore": 96.36,
+   "trendScore": 98.72,
+   "signalType": "快速回撤"
+  },
+  {
+   "code": "002642",
+   "name": "荣联科技",
+   "changePct": 10.01,
+   "anomalyScore": 94.55,
+   "trendScore": 96.98,
    "signalType": "涨停"
   },
   {
-   "code": "300872",
-   "name": "天阳科技",
-   "changePct": -15.96,
-   "anomalyScore": 96.33,
-   "trendScore": 3.46,
-   "signalType": "跌停附近"
-  },
-  {
-   "code": "301391",
-   "name": "卡莱特",
-   "changePct": 12.52,
-   "anomalyScore": 96.31,
-   "trendScore": 99.5,
-   "signalType": "涨停附近"
+   "code": "600180",
+   "name": "*ST瑞茂",
+   "changePct": -10,
+   "anomalyScore": 93.98,
+   "trendScore": 9.56,
+   "signalType": "跌停"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "codes": [
-   "300812",
+   "920067",
+   "920690",
    "603324",
    "002771",
-   "301096",
-   "000826",
-   "920575",
-   "603818",
-   "688679"
+   "002579",
+   "301575",
+   "300872",
+   "301391"
   ]
  }
 }
