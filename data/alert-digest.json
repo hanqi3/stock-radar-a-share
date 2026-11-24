@@ -1,74 +1,74 @@
 {
  "date": "2026-11-24",
- "generatedAt": "2026-11-24T01:35:11.730Z",
- "limitUpCount": 29,
- "limitDownCount": 5,
- "advancers": 4961,
- "decliners": 444,
+ "generatedAt": "2026-11-24T15:34:58.268Z",
+ "limitUpCount": 76,
+ "limitDownCount": 8,
+ "advancers": 1951,
+ "decliners": 3498,
  "items": [
   {
-   "code": "000635",
-   "name": "英 力 特",
-   "changePct": -10,
-   "anomalyScore": 96.94,
-   "trendScore": 99.3,
-   "signalType": "跌停"
-  },
-  {
-   "code": "002579",
-   "name": "中京电子",
-   "changePct": 9.98,
-   "anomalyScore": 96.86,
-   "trendScore": 96.1,
+   "code": "301413",
+   "name": "安培龙",
+   "changePct": 20,
+   "anomalyScore": 98.22,
+   "trendScore": 88.79,
    "signalType": "涨停"
   },
   {
-   "code": "301391",
-   "name": "卡莱特",
-   "changePct": -7.39,
-   "anomalyScore": 96.74,
-   "trendScore": 99.5,
-   "signalType": "快速回撤"
+   "code": "301261",
+   "name": "恒工精密",
+   "changePct": 14.03,
+   "anomalyScore": 98.03,
+   "trendScore": 98.18,
+   "signalType": "涨停附近"
   },
   {
-   "code": "301575",
-   "name": "艾芬达",
+   "code": "300539",
+   "name": "横河精密",
    "changePct": 19.98,
-   "anomalyScore": 96.68,
-   "trendScore": 98.77,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "000711",
-   "name": "京蓝科技",
-   "changePct": 7.06,
-   "anomalyScore": 96.39,
-   "trendScore": 83.81,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "600467",
-   "name": "好当家",
-   "changePct": -5.08,
-   "anomalyScore": 96.36,
-   "trendScore": 98.72,
-   "signalType": "快速回撤"
-  },
-  {
-   "code": "002642",
-   "name": "荣联科技",
-   "changePct": 10.01,
-   "anomalyScore": 94.55,
-   "trendScore": 96.98,
+   "anomalyScore": 97.77,
+   "trendScore": 97.28,
    "signalType": "涨停"
   },
   {
-   "code": "600180",
-   "name": "*ST瑞茂",
-   "changePct": -10,
-   "anomalyScore": 93.98,
-   "trendScore": 9.56,
-   "signalType": "跌停"
+   "code": "920067",
+   "name": "华晟智能",
+   "changePct": -15.55,
+   "anomalyScore": 97.75,
+   "trendScore": 11.06,
+   "signalType": "快速回撤"
+  },
+  {
+   "code": "603358",
+   "name": "华达科技",
+   "changePct": -9.46,
+   "anomalyScore": 97.12,
+   "trendScore": 0.65,
+   "signalType": "跌停附近"
+  },
+  {
+   "code": "301030",
+   "name": "*ST仕净",
+   "changePct": 15.7,
+   "anomalyScore": 96.76,
+   "trendScore": 80.24,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "300550",
+   "name": "和仁科技",
+   "changePct": 17.73,
+   "anomalyScore": 96.55,
+   "trendScore": 99.11,
+   "signalType": "涨停附近"
+  },
+  {
+   "code": "002685",
+   "name": "华东重机",
+   "changePct": 9.95,
+   "anomalyScore": 96.39,
+   "trendScore": 99.52,
+   "signalType": "涨停"
   }
  ],
  "watch": [],
