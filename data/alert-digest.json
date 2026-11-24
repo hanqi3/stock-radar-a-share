@@ -1,6 +1,6 @@
 {
  "date": "2026-11-24",
- "generatedAt": "2026-11-24T15:34:58.268Z",
+ "generatedAt": "2026-11-24T19:45:10.568Z",
  "limitUpCount": 76,
  "limitDownCount": 8,
  "advancers": 1951,
@@ -18,7 +18,7 @@
    "code": "301261",
    "name": "恒工精密",
    "changePct": 14.03,
-   "anomalyScore": 98.03,
+   "anomalyScore": 98.02,
    "trendScore": 98.18,
    "signalType": "涨停附近"
   },
@@ -35,7 +35,7 @@
    "name": "华晟智能",
    "changePct": -15.55,
    "anomalyScore": 97.75,
-   "trendScore": 11.06,
+   "trendScore": 11.08,
    "signalType": "快速回撤"
   },
   {
