@@ -1,88 +1,88 @@
 {
- "date": "2026-11-26",
- "generatedAt": "2026-11-26T14:36:17.527Z",
- "limitUpCount": 74,
- "limitDownCount": 19,
- "advancers": 1766,
- "decliners": 3641,
+ "date": "2026-11-27",
+ "generatedAt": "2026-11-27T14:33:49.699Z",
+ "limitUpCount": 472,
+ "limitDownCount": 4,
+ "advancers": 5381,
+ "decliners": 181,
  "items": [
   {
-   "code": "920593",
-   "name": "鼎智科技",
-   "changePct": -30,
-   "anomalyScore": 98.02,
-   "trendScore": 2.09,
-   "signalType": "跌停"
+   "code": "002164",
+   "name": "宁波东力",
+   "changePct": 10.02,
+   "anomalyScore": 96.71,
+   "trendScore": 93.93,
+   "signalType": "涨停"
   },
   {
    "code": "300324",
    "name": "旋极信息",
-   "changePct": 20,
-   "anomalyScore": 97.76,
-   "trendScore": 99.11,
+   "changePct": 20.04,
+   "anomalyScore": 96.67,
+   "trendScore": 98.92,
    "signalType": "涨停"
   },
   {
-   "code": "603030",
-   "name": "全筑股份",
-   "changePct": 9.96,
-   "anomalyScore": 97.67,
-   "trendScore": 99.03,
+   "code": "920298",
+   "name": "腾信精密",
+   "changePct": 30,
+   "anomalyScore": 96.61,
+   "trendScore": 84.14,
    "signalType": "涨停"
   },
   {
    "code": "603960",
    "name": "克来机电",
-   "changePct": 10,
-   "anomalyScore": 97.66,
-   "trendScore": 99.34,
+   "changePct": 10.02,
+   "anomalyScore": 96.57,
+   "trendScore": 99.4,
    "signalType": "涨停"
   },
   {
-   "code": "002548",
-   "name": "金新农",
-   "changePct": 6.39,
-   "anomalyScore": 97.66,
-   "trendScore": 99.08,
-   "signalType": "涨停附近"
-  },
-  {
-   "code": "600814",
-   "name": "杭州解百",
-   "changePct": 10.06,
-   "anomalyScore": 97.55,
-   "trendScore": 98.91,
+   "code": "002081",
+   "name": "金 螳 螂",
+   "changePct": 10.05,
+   "anomalyScore": 96.48,
+   "trendScore": 89.22,
    "signalType": "涨停"
   },
   {
-   "code": "300086",
-   "name": "康芝药业",
-   "changePct": 13.4,
-   "anomalyScore": 97.41,
-   "trendScore": 91.85,
-   "signalType": "涨停附近"
+   "code": "301107",
+   "name": "瑜欣电子",
+   "changePct": 20,
+   "anomalyScore": 95.54,
+   "trendScore": 93.37,
+   "signalType": "涨停"
   },
   {
-   "code": "002579",
-   "name": "中京电子",
-   "changePct": 7.91,
-   "anomalyScore": 97.32,
-   "trendScore": 99.6,
+   "code": "688820",
+   "name": "盛合晶微",
+   "changePct": 20,
+   "anomalyScore": 95.49,
+   "trendScore": 96.43,
+   "signalType": "涨停"
+  },
+  {
+   "code": "920092",
+   "name": "汉鑫科技",
+   "changePct": 29.97,
+   "anomalyScore": 95.33,
+   "trendScore": 89.49,
    "signalType": "涨停附近"
   }
  ],
  "watch": [],
  "previous": {
-  "date": "2026-11-24",
+  "date": "2026-11-26",
   "codes": [
-   "301413",
-   "301261",
-   "300539",
-   "920067",
-   "603358",
-   "301030",
-   "300550",
-   "002685"
+   "920593",
+   "300324",
+   "603030",
+   "603960",
+   "002548",
+   "600814",
+   "300086",
+   "002579"
   ]
  }
 }
