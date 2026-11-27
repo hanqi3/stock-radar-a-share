@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-27T14:33:51.371Z",
+ "generatedAt": "2026-11-27T18:27:59.993Z",
  "source": "上证指数(000001) 日线收盘 via 新浪财经",
  "closes": {
   "2025-04-08": 3145.549,
@@ -783,35 +783,35 @@
    "dataDate": "2026-11-27",
    "forDate": "2026-11-30",
    "forDateExact": true,
-   "score": 38,
+   "score": 56,
    "bias": "偏多",
    "tone": "up",
    "availableWeight": 100,
    "drivers": [
     {
      "key": "a50",
-     "z": -0.1,
-     "contribution": -2
+     "z": -0.03,
+     "contribution": -0.6
     },
     {
      "key": "us",
-     "z": 0,
-     "contribution": 0
+     "z": 1,
+     "contribution": 11
     },
     {
      "key": "sox",
-     "z": 0,
-     "contribution": 0
+     "z": 1,
+     "contribution": 6
     },
     {
      "key": "dxy",
-     "z": -0.187,
-     "contribution": -1.12
+     "z": -0.287,
+     "contribution": -1.72
     },
     {
      "key": "cnh",
-     "z": 0.18,
-     "contribution": 1.08
+     "z": 0.2,
+     "contribution": 1.2
     },
     {
      "key": "us10y",
